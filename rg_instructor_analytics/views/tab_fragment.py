@@ -18,6 +18,7 @@ from util.views import ensure_valid_course_key
 
 from courseware.courses import get_course_by_id
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
+from openedx.core.djangoapps.course_groups.models import CourseUserGroup
 from rg_instructor_analytics.models import InstructorTabsConfig
 from student.models import CourseAccessRole
 
@@ -151,10 +152,27 @@ def instructor_analytics_dashboard(request, course_id):
         {
             'course_id': str(user_course.id),
             'course_name': str(user_course.display_name),
-            'is_current': course == user_course,
+            'course_key': user_course.id,
         }
         for user_course in get_available_courses(request.user)
     ]
+    available_courses_with_cohorts = []
+
+    for available_course in available_courses:
+        course_cohorts = get_course_cohorts(available_course['course_key'])
+
+        for course_cohort in course_cohorts:
+            coupled_id = '{}###{}'.format(available_course['course_id'], course_cohort['id'])
+            course_with_cohort_name = '{} - {}'.format(
+                available_course['course_name'],
+                course_cohort['name'],
+            )
+            available_courses_with_cohorts.append({
+                'course_id': coupled_id,
+                'course_name': course_with_cohort_name,
+                'is_current': coupled_id == course_id,
+            })
+
 
     course_dates_info = {
         str(course_item.id): get_course_dates_info(course_item)
@@ -168,8 +186,22 @@ def instructor_analytics_dashboard(request, course_id):
         'tabs': tabs,
         'course': course,
         'enroll_info': json.dumps(enroll_info),
-        'available_courses': available_courses,
+        'available_courses': available_courses_with_cohorts,
         'course_dates_info': json.dumps(course_dates_info),
     }
 
     return render_to_response('rg_instructor_analytics/instructor_analytics_fragment.html', context)
+
+def get_course_cohorts(course_key):
+    """
+    Return cohorts of the course, available for the given user.
+    """
+    result = [{'id': 0, 'name': 'No cohort'}]  # First item is always the "No cohort"
+
+    for course_user_group in CourseUserGroup.objects.filter(course_id=course_key).order_by('name'):
+        result.append({
+            'id': course_user_group.cohort.id,
+            'name': course_user_group.name
+        })
+
+    return result
