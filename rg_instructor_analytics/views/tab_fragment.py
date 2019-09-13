@@ -77,6 +77,13 @@ TABS = (
         'title': _('Suggestions'),
         'template': 'suggestion.html'
     },
+    {
+        'field': 'insights',
+        'class': 'insights',
+        'section': 'insights',
+        'title': _('General Metrics'),
+        'template': 'insights.html'
+    },
 )
 
 

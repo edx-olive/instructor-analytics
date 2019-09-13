@@ -32,6 +32,13 @@ function TabHolder(tabs, course) {
         for (var tabName in tabs) {
             if (tabs.hasOwnProperty(tabName)) {
                 tabs[tabName].setActive(tabName === tab);
+                
+                // Hide course selector for "General Metrics" tab and show for others.
+                if (tab === "insights") {
+                    $("#select_course").hide()
+                } else {
+                     $("#select_course").show()
+                }
             }
         }
     };
