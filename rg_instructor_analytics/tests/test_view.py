@@ -1,14 +1,18 @@
 """
 Test for view.
 """
-from datetime import date
+import json
+from datetime import date, timedelta
 
+from django.contrib.auth.models import User
 from django.http.request import QueryDict
 from django.test import RequestFactory, TestCase
 from mock import Mock, patch
 from opaque_keys import InvalidKeyError
 
-from rg_instructor_analytics.views import EnrollmentStatisticView
+from rg_instructor_analytics.views.enrollment import EnrollmentStatisticView
+from rg_instructor_analytics.views.insights import InsightsStatisticView
+from rg_instructor_analytics_log_collector.models import EnrollmentByDay
 
 
 class TestEnrollmentStatisticView(TestCase):
@@ -163,3 +167,171 @@ class TestEnrollmentStatisticView(TestCase):
         expect = (10, 0)
         stats = EnrollmentStatisticView.get_last_state('key', '12345')
         self.assertEqual(stats, expect)
+
+
+class TestGeneralMetricsTestView(TestCase):
+    """
+    Test for General Metrics View.
+    """
+    MOCK_COURSE_ID = 'course-v1:edX+DemoX+Demo_Course'
+    MOCK_COURSE_ID_2 = 'course-v1:edX+DemoX+Demo_Course1'
+
+    def setUp(self):
+        """
+        Implement from base class.
+        """
+        self.factory = RequestFactory()
+
+        self.request = self.factory.post(
+            '/courses/{}/tab/instructor_analytics/api/enroll_statics/'.format(self.MOCK_COURSE_ID)
+        )
+        self.request.GET = {'page': 1}
+        self.request.user = User.objects.create(username='staff', email='staff@example.com', is_staff=True)
+
+    def test_instructor_access(self):
+        """
+        Tests that user with staff access gets right status code and response.
+        """
+
+        response = InsightsStatisticView.as_view()(self.request)
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_student_without_access(self):
+        """
+        Tests that student hasn't access to endpoint.
+        """
+
+        student = User.objects.create(username='student', email='student@test.com')
+        self.request.user = student
+
+        response = InsightsStatisticView.as_view()(self.request)
+
+        self.assertEqual(response.status_code, 403)
+
+    def test_pagination_data(self):
+        """
+        Tests that response includes data for pagination.
+        """
+
+        response = InsightsStatisticView.as_view()(self.request)
+
+        content = json.loads(response.content)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIsNotNone(content.get('count_pages'))
+        self.assertIsNotNone(content.get('current_page'))
+
+        self.assertEqual(content.get('current_page'), 1)
+        self.assertEqual(content.get('count_pages'), 1)
+
+    def test_response_has_general_metrics(self):
+        """
+        Tests that response includes total metrics.
+        """
+
+        response = InsightsStatisticView.as_view()(self.request)
+
+        content = json.loads(response.content)
+
+        self.assertEqual(response.status_code, 200)
+
+        self.assertIsInstance(content, dict)
+
+        self.assertIsNotNone(content.get('total_metrics'))
+
+        expected_total_metrics = {
+            "total_enrolled": 0,
+            "total_current_enrolled": 0,
+            "total_diff_enrolled": 0,
+            "certificates": 0,
+        }
+
+        self.assertEqual(json.loads(content.get('total_metrics')), expected_total_metrics)
+
+    def test_getting_total_metrics(self):
+        """
+        Tests that helper method return data as excepted.
+        """
+
+        EnrollmentByDay.objects.create(
+            day=date.today(),
+            total=4,
+            enrolled=2,
+            unenrolled=1,
+            course=self.MOCK_COURSE_ID
+        )
+
+        expected_result = {
+            "total_enrolled": 4,
+            "total_current_enrolled": 2,
+            "total_diff_enrolled": 0,
+            "certificates": 0,
+        }
+
+        response_total_metrics = InsightsStatisticView.get_total_metrics()
+
+        self.assertEqual(response_total_metrics, expected_result)
+
+    def test_output_metrics(self):
+        """
+        Tests that endpoint return metrics as excepted.
+        """
+
+        today_date = date.today()
+
+        EnrollmentByDay.objects.bulk_create([
+            EnrollmentByDay(day=today_date, total=4, enrolled=2, unenrolled=1, course=self.MOCK_COURSE_ID),
+            EnrollmentByDay(day=today_date, total=12, enrolled=12, unenrolled=0, course=self.MOCK_COURSE_ID_2),
+            EnrollmentByDay(
+                day=today_date - timedelta(days=1), total=12, enrolled=12, unenrolled=0, course=self.MOCK_COURSE_ID_2
+            )
+        ])
+
+        response = InsightsStatisticView.as_view()(self.request)
+
+        content = json.loads(response.content)
+
+        course_keys = [
+            u"name",
+            u"course_url",
+            u"total",
+            u"enrolled_max",
+            u"week_change",
+            u"start_date",
+            u"end_date",
+            u"certificates",
+            u"count_graded"
+        ]
+
+        courses = json.loads(content.get("courses"))
+
+        expected_courses_list = [
+            {
+                u'name': u'course-v1:edX+DemoX+Demo_Course',
+                u'end_date': u'-',
+                u'week_change': 0,
+                u'course_url': u'/courses/course-v1:edX+DemoX+Demo_Course/course/',
+                u'enrolled_max': 2,
+                u'certificates': 0,
+                u'total': 4,
+                u'start_date': u'-',
+                u'count_graded': 0
+            },
+            {
+                u'name': u'course-v1:edX+DemoX+Demo_Course1',
+                u'end_date': u'-',
+                u'week_change': 0,
+                u'course_url': u'/courses/course-v1:edX+DemoX+Demo_Course1/course/',
+                u'enrolled_max': 12,
+                u'certificates': 0,
+                u'total': 12,
+                u'start_date': u'-',
+                u'count_graded': 0
+            }
+        ]
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(courses), 2)
+        self.assertEqual(sorted(courses[0].keys()), sorted(course_keys))
+        self.assertEqual(courses, expected_courses_list)

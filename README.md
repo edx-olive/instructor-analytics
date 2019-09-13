@@ -82,6 +82,16 @@ exit
 sudo /edx/bin/supervisorctl restart edxapp:lms
 ```
 
+For changing count of courses on "General Metrics" tab add new variable to the `lms.env.json`:
+```json
+{
+    ...
+    "ANALYTICS_GENERAL_COUNT_PER_PAGE": <count>,
+    ...
+}
+```
+By default count of courses equal 50.
+
 ##### After installation run next code in Django shell (warning this tasks can take time) 
 ```python
 from rg_instructor_analytics.tasks import grade_collector_stat
@@ -96,9 +106,12 @@ for microsite configurations use this flag for enable/disable tab: `ENABLE_RG_IN
 ## Unit tests
 All tests could be run only in local.
 
-##### For run unit test follow the next steps:
+##### For run tests follow the next steps:
 * Ensure that the source placed in one of the edx-platform subdirectory.
-* cd rg_instructor_analytics
-* sh ./test_tool/run_test.sh
+* Be sure that `instructor_analytics` and `instructor_analytics_log_collector` installed.
+* Run the following command:
+```python
+./manage.py lms test rg_instructor_analytics
+```
 
 DevOps: https://raccoongang.atlassian.net/wiki/spaces/tech/pages/1237057564/RG+Analytics+2.0+installation+manual

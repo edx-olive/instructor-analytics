@@ -58,6 +58,7 @@ class InstructorTabsConfig(models.Model):
     clusters = models.BooleanField(default=True, verbose_name=_('Clusters'))
     progress_funnel = models.BooleanField(default=True, verbose_name=_('Progress Funnel'))
     suggestions = models.BooleanField(default=True, verbose_name=_('Suggestions'))
+    insights = models.BooleanField(default=True, verbose_name=_('General Metrics'))
 
     @classmethod
     def get_tabs_names(cls):

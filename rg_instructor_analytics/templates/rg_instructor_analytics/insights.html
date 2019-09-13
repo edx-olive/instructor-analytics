@@ -1,0 +1,52 @@
+<%page args="section_data" expression_filter="h"/>
+<%
+from django.utils.translation import ugettext as _
+%>
+<h1>${_("Across all your courses:")}</h1>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<div id="insights">
+    <div id="insights-loader" class="loader hidden">
+        ${_("Computing")}
+        <img src="/static/rg_instructor_analytics/images/ajax-loader.gif" alt="loader">
+    </div>
+    <div id="insights-content">
+        <hr>
+        <div class="row">
+            <div class="col-md-3"><span id="total-enrollment"></span><br>${_("Total Enrollment")}</div>
+            <div class="col-md-3"><span id="current-enrollment"></span><br>${_("Current Enrollment")}</div>
+            <div class="col-md-3"><span id="week-change"></span><br>${_("Change Last Week")}</div>
+            <div class="col-md-3"><span id="passed-enrollment"></span><br>${_("Verified Enrollment")}</div>
+        </div>
+        <br>
+        <hr>
+        <h3>${_("Course List")}</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">${_("Course Name")}</th>
+                <th scope="col">${_("Start Date")}</th>
+                <th scope="col">${_("End Date")}</th>
+                <th scope="col">${_("Total Enrollment")}</th>
+                <th scope="col">${_("Current Enrollment")}</th>
+                <th scope="col">${_("Change Last Week")}</th>
+                <th scope="col">${_("Verified Enrollment")}</th>
+                <th scope="col">${_("Passing Learners")}</th>
+            </tr>
+            </thead>
+            <tbody id="insights-tbody">
+            </tbody>
+        </table>
+        <br>
+        <hr>
+        <div class="pagination">
+            <nav aria-label="Page navigation example" style="margin: 0 auto;">
+                <ul class="pagination" id="insights-pagination">
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
