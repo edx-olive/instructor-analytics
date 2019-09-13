@@ -1,8 +1,8 @@
 """
 Util decorators.
 """
-from functools import wraps
 import logging
+from functools import wraps
 
 from django.http import HttpResponseBadRequest, HttpResponseForbidden
 from django.utils.decorators import available_attrs
@@ -12,6 +12,7 @@ from opaque_keys.edx.keys import CourseKey
 
 from courseware.access import has_access
 from courseware.courses import get_course
+from student.roles import GlobalStaff, OrgInstructorRole
 
 log = logging.getLogger(__name__)
 
@@ -44,4 +45,22 @@ def instructor_access_required(view_func):
         except ValueError as exc:
             log.error(exc.message, course_id)
             return HttpResponseBadRequest(reason=exc.message)
+    return _wrapped_view
+
+
+def instructor_access_required_without_course(view_func):
+    """
+    Instructor access check decorator.
+
+    Decorator for views that checks the user is logged in and has staff or instructor access.
+    """
+
+    @wraps(view_func, assigned=available_attrs(view_func))
+    def _wrapped_view(request, *args, **kwargs):
+        org = request.POST.get('org', '')
+
+        # global staff, org instructors, and course instructors have all permissions:
+        if GlobalStaff().has_user(request.user) or OrgInstructorRole(org=org).has_user(request.user):
+            return view_func(request, *args, **kwargs)
+        return HttpResponseForbidden(reason='Instructors only!')
     return _wrapped_view

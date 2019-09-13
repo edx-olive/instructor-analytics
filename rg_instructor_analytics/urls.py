@@ -10,6 +10,7 @@ from rg_instructor_analytics.views.funnel import GradeFunnelSendMessage, GradeFu
 from rg_instructor_analytics.views.gradebook import (
     DiscussionActivityView, GradebookView, StudentStepView, VideoView
 )
+from rg_instructor_analytics.views.insights import InsightsStatisticView
 from rg_instructor_analytics.views.problem import (
     ProblemDetailView, ProblemHomeWorkStatisticView, ProblemQuestionView, ProblemsStatisticView, ProblemStudentDataView
 )
@@ -66,6 +67,9 @@ urlpatterns = [
 
     # Suggestions tab:
     url(r'^api/suggestion/$', SuggestionView.as_view(), name='suggestion'),
+
+    # Insights tab:
+    url(r'^api/insights/$', InsightsStatisticView.as_view(), name='insights'),
 
     url(r'^$', instructor_analytics_dashboard, name='instructor_analytics_dashboard'),
 ]

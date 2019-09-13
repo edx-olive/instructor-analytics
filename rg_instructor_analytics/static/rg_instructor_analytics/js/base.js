@@ -11,8 +11,9 @@ $(function() {
         'gradebook-btn': 'gradebook',
         'cohort-btn': 'cohort',
         'funnel-btn': 'funnel',
-        'suggestion-btn': 'suggestion'
-    }
+        'suggestion-btn': 'suggestion',
+        'insights': 'insights',
+    };
 
     var tabs = {
         enrollment: EnrollmentTab(
@@ -37,7 +38,10 @@ $(function() {
             $content.find('#section-funnel')),
         suggestion: SuggestionTab(
             $content.find('#suggestion-btn'),
-            $content.find('#section-suggestion'))
+            $content.find('#section-suggestion')),
+        insights: InsightsTab(
+            $content.find('#insights-btn'),
+            $content.find('#section-insights')),
     };
 
     var firstTab = $content.find('.instructor-nav').children().first();
