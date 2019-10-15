@@ -2,12 +2,19 @@
 <%
 from django.utils.translation import ugettext as _
 %>
-<h1>${_("Across all your courses:")}</h1>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
+<div class="row">
+    <div class="col-md-8"><h2>${_("Across all your courses:")}</h2></div>
+    <div class="col-md-4">
+        <div class="sites-selector-wrapper form-group hidden">
+            <label for="insight-site-selector">Microsites</label>
+            <select class="form-control" id="insight-site-selector"></select>
+        </div>
+    </div>
+</div>
 <div id="insights">
     <div id="insights-loader" class="loader hidden">
         ${_("Computing")}
@@ -27,14 +34,14 @@ from django.utils.translation import ugettext as _
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">${_("Course Name")}</th>
-                <th scope="col">${_("Start Date")}</th>
-                <th scope="col">${_("End Date")}</th>
-                <th scope="col">${_("Total Enrollment")}</th>
-                <th scope="col">${_("Current Enrollment")}</th>
-                <th scope="col">${_("Change Last Week")}</th>
-                <th scope="col">${_("Verified Enrollment")}</th>
-                <th scope="col">${_("Passing Learners")}</th>
+                <th scope="col" data-value="course" class="sortable ascending">${_("Course Name")}</th>
+                <th scope="col" data-value="start" class="sortable">${_("Start Date")}</th>
+                <th scope="col" data-value="end" class="sortable">${_("End Date")}</th>
+                <th scope="col" data-value="total" class="sortable">${_("Total Enrollment")}</th>
+                <th scope="col" data-value="enrolled_max" class="sortable">${_("Current Enrollment")}</th>
+                <th scope="col" data-value="diff" class="sortable">${_("Change Last Week")}</th>
+                <th scope="col" data-value="cert_count" class="sortable">${_("Verified Enrollment")}</th>
+                <th scope="col" data-value="total_passing" class="sortable">${_("Passing Learners")}</th>
             </tr>
             </thead>
             <tbody id="insights-tbody">
