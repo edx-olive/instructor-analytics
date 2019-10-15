@@ -5,10 +5,15 @@ import json
 from datetime import date, timedelta
 
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.http.request import QueryDict
 from django.test import RequestFactory, TestCase
 from mock import Mock, patch
 from opaque_keys import InvalidKeyError
+from opaque_keys.edx.keys import CourseKey
+
+from openedx.core.djangoapps.content.course_overviews.tests.factories import CourseOverviewFactory
+from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 
 from rg_instructor_analytics.views.enrollment import EnrollmentStatisticView
 from rg_instructor_analytics.views.insights import InsightsStatisticView
@@ -183,10 +188,38 @@ class TestGeneralMetricsTestView(TestCase):
         self.factory = RequestFactory()
 
         self.request = self.factory.post(
-            '/courses/{}/tab/instructor_analytics/api/enroll_statics/'.format(self.MOCK_COURSE_ID)
+            '/courses/{}/tab/instructor_analytics/api/insights/'.format(self.MOCK_COURSE_ID)
         )
-        self.request.GET = {'page': 1}
-        self.request.user = User.objects.create(username='staff', email='staff@example.com', is_staff=True)
+        self.sort_key = 'course'
+        self.ordering = 'ASC'
+        self.request.GET = {'page': 1, 'sortKey': self.sort_key, 'ordering': self.ordering}
+        self.user = User.objects.create(username='staff', email='staff@example.com', is_staff=True)
+        self.request.user = self.user
+
+        self.test_site = Site.objects.create(domain='sga 1', name='test SGA')
+        self.test_site_2 = Site.objects.create(domain='sga 2', name='test SGA 2')
+
+        self.test_course = CourseOverviewFactory()
+        self.test_course_2 = CourseOverviewFactory(
+            id=CourseKey.from_string(self.MOCK_COURSE_ID_2),
+            org=self.test_site.name
+        )
+
+        SiteConfiguration.objects.create(
+            site=self.test_site,
+            enabled=True,
+            values={"course_org_filter": self.test_course_2.org}
+        )
+
+        today_date = date.today()
+
+        EnrollmentByDay.objects.bulk_create([
+            EnrollmentByDay(day=today_date, total=4, enrolled=2, unenrolled=1, course=self.test_course.id),
+            EnrollmentByDay(day=today_date, total=12, enrolled=12, unenrolled=0, course=self.test_course_2.id),
+            EnrollmentByDay(
+                day=today_date - timedelta(days=1), total=12, enrolled=12, unenrolled=0, course=self.test_course_2.id
+            )
+        ])
 
     def test_instructor_access(self):
         """
@@ -241,8 +274,8 @@ class TestGeneralMetricsTestView(TestCase):
         self.assertIsNotNone(content.get('total_metrics'))
 
         expected_total_metrics = {
-            "total_enrolled": 0,
-            "total_current_enrolled": 0,
+            "total_enrolled": 16,
+            "total_current_enrolled": 14,
             "total_diff_enrolled": 0,
             "certificates": 0,
         }
@@ -254,17 +287,9 @@ class TestGeneralMetricsTestView(TestCase):
         Tests that helper method return data as excepted.
         """
 
-        EnrollmentByDay.objects.create(
-            day=date.today(),
-            total=4,
-            enrolled=2,
-            unenrolled=1,
-            course=self.MOCK_COURSE_ID
-        )
-
         expected_result = {
-            "total_enrolled": 4,
-            "total_current_enrolled": 2,
+            "total_enrolled": 16,
+            "total_current_enrolled": 14,
             "total_diff_enrolled": 0,
             "certificates": 0,
         }
@@ -277,16 +302,6 @@ class TestGeneralMetricsTestView(TestCase):
         """
         Tests that endpoint return metrics as excepted.
         """
-
-        today_date = date.today()
-
-        EnrollmentByDay.objects.bulk_create([
-            EnrollmentByDay(day=today_date, total=4, enrolled=2, unenrolled=1, course=self.MOCK_COURSE_ID),
-            EnrollmentByDay(day=today_date, total=12, enrolled=12, unenrolled=0, course=self.MOCK_COURSE_ID_2),
-            EnrollmentByDay(
-                day=today_date - timedelta(days=1), total=12, enrolled=12, unenrolled=0, course=self.MOCK_COURSE_ID_2
-            )
-        ])
 
         response = InsightsStatisticView.as_view()(self.request)
 
@@ -306,32 +321,52 @@ class TestGeneralMetricsTestView(TestCase):
 
         courses = json.loads(content.get("courses"))
 
-        expected_courses_list = [
-            {
-                u'name': u'course-v1:edX+DemoX+Demo_Course',
-                u'end_date': u'-',
-                u'week_change': 0,
-                u'course_url': u'/courses/course-v1:edX+DemoX+Demo_Course/course/',
-                u'enrolled_max': 2,
-                u'certificates': 0,
-                u'total': 4,
-                u'start_date': u'-',
-                u'count_graded': 0
-            },
-            {
-                u'name': u'course-v1:edX+DemoX+Demo_Course1',
-                u'end_date': u'-',
-                u'week_change': 0,
-                u'course_url': u'/courses/course-v1:edX+DemoX+Demo_Course1/course/',
-                u'enrolled_max': 12,
-                u'certificates': 0,
-                u'total': 12,
-                u'start_date': u'-',
-                u'count_graded': 0
-            }
-        ]
-
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(courses), 2)
         self.assertEqual(sorted(courses[0].keys()), sorted(course_keys))
-        self.assertEqual(courses, expected_courses_list)
+
+    def test_microsite_selection(self):
+        """
+        Test that shows filtering courses by selected microsite.
+        """
+
+        self.request = self.factory.post(
+            '/courses/{}/tab/instructor_analytics/api/insights/'.format(self.MOCK_COURSE_ID),
+            {'microsite': self.test_site.name}
+        )
+
+        self.request.GET = {'page': 1, 'sortKey': self.sort_key, 'ordering': self.ordering}
+
+        self.request.user = User.objects.create(username='staff1', email='staffe@test.com', is_staff=True)
+
+        response = InsightsStatisticView.as_view()(self.request)
+
+        self.assertEqual(response.status_code, 200)
+
+        content = json.loads(response.content)
+        courses = json.loads(content['courses'])
+
+        self.assertEqual(len(courses), 1)
+        self.assertEqual(courses[0].get('name'), str(self.test_course_2.id))
+
+    def test_microsite_without_org_filter(self):
+        """
+        Test microsite without site configuration.
+        """
+
+        self.request = self.factory.post(
+            '/courses/{}/tab/instructor_analytics/api/insights/'.format(self.MOCK_COURSE_ID),
+            {'microsite': self.test_site_2.name}
+        )
+
+        self.request.GET = {'page': 1, 'sortKey': self.sort_key, 'ordering': self.ordering}
+        self.request.user = self.user
+
+        response = InsightsStatisticView.as_view()(self.request)
+
+        self.assertEqual(response.status_code, 200)
+
+        content = json.loads(response.content)
+        courses = json.loads(content['courses'])
+
+        self.assertEqual(len(courses), 2)
