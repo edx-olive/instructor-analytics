@@ -1236,3 +1236,21 @@ body .disc-list {
 #problems-stats-plot .y-axis-l li > div {
     font-size: 12px;
 }
+
+/**
+ * Description: General metrics tab styles.
+ */
+.generate-reports{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.generate-reports__item {
+    margin-left: 10px;
+}
+
+.download-reports__item .icon{
+    margin-right: 10px;
+}

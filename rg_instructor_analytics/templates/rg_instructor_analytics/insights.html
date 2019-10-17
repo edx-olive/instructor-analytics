@@ -1,10 +1,16 @@
 <%page args="section_data" expression_filter="h"/>
 <%
 from django.utils.translation import ugettext as _
+from openedx.core.djangolib.markup import HTML, Text
 %>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src="/static/rg_instructor_analytics/plugins/jquery.richtext.min.js"></script>
+<link rel="stylesheet" href="/static/rg_instructor_analytics/plugins/ladda-bootstrap/ladda-themeless.min.css">
+<script src="/static/rg_instructor_analytics/plugins/ladda-bootstrap/spin.min.js"></script>
+<script src="/static/rg_instructor_analytics/plugins/ladda-bootstrap/ladda.min.js"></script>
 
 <div class="row">
     <div class="col-md-8"><h2>${_("Across all your courses:")}</h2></div>
@@ -31,6 +37,46 @@ from django.utils.translation import ugettext as _
         <br>
         <hr>
         <h3>${_("Course List")}</h3>
+        <div class="row">
+            <div class="col">
+                %if settings.FEATURES.get('ENABLE_INSTRUCTOR_BACKGROUND_TASKS'):
+                <div class="running-tasks-container action-type-container">
+                    <h3 class="hd hd-3">${_("Pending Tasks")}</h3>
+                    <div class="running-tasks-section">
+                        <p>${_("The status for any active tasks appears in a table below.")} </p>
+                        <br/>
+                        <div class="running-tasks-table">
+
+                        </div>
+                    </div>
+                    <div class="no-pending-tasks-message"></div>
+                </div>
+                %endif
+            </div>
+            <div class="col">
+                <ul class="generate-reports">
+                    <li class="generate-reports__item">
+                        <a href="#" class="btn btn-primary btn_insights-report ladda-button" data-style="zoom-out"
+                           data-action="courseMetricsDataSiteReport">
+                            <span class="ladda-label"><i class="icon fa fa-download"></i>Courses report</span>
+                        </a>
+                    </li>
+                    <li class="generate-reports__item">
+                        <a href="#" class="btn btn-primary btn_insights-report ladda-button" data-style="zoom-out"
+                           data-action="gradeDataSiteReport">
+                            <span class="ladda-label"><i class="icon fa fa-download"></i>Grades report</span>
+                        </a>
+                    </li>
+                    <li class="generate-reports__item">
+                        <a href="#" class="btn btn-primary btn_insights-report ladda-button" data-style="zoom-out"
+                           data-action="userDataSiteReport">
+                            <span class="ladda-label"><i class="icon fa fa-download"></i>Users report</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="error-message" style="display: none"></div>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -55,5 +101,17 @@ from django.utils.translation import ugettext as _
                 </ul>
             </nav>
         </div>
+        <br>
+        <h3 class="hd hd-3">${_("Reports Available for Download")}</h3>
+        <p>
+            ${_("The reports listed below are available for download. A link to every report remains available on this page, identified by the UTC date and time of generation. Reports are not deleted, so you will always be able to access previously generated reports from this page.")}
+        </p>
+        <p>
+            ${Text(_("{strong_start}Note{strong_end}: To keep student data secure, you cannot save or email these links for direct access. Copies of links expire within 5 minutes.")).format(
+            strong_start=HTML("<strong>"),
+            strong_end=HTML("</strong>"),
+            )}
+        </p>
+        <div class="report-downloads-table" id="report-downloads-table"></div>
     </div>
 </div>
