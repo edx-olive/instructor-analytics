@@ -6,7 +6,8 @@ function InsightsTab(button, content) {
         reportDownloads = new ReportDownloads($('#insights-content')),
         timerId,
         sitesSelector = InsightsTab.content.find('#insight-site-selector'),
-        sortableColumns = $("#insights-content").find(".sortable");
+        sortableColumns = $("#insights-content").find(".sortable"),
+        selectedMicrositeId;
 
     function toggleLoader() {
         $loader.toggleClass('hidden');
@@ -19,14 +20,15 @@ function InsightsTab(button, content) {
     sitesSelector.off();
 
     sitesSelector.on('change', function () {
-        InsightsTab.loadTabData(1, null, null, $(this).children("option:selected").val());
+        var selectedMicrositeSelector = sitesSelector.children("option:selected");
+        selectedMicrositeId = parseInt(selectedMicrositeSelector.val()) || undefined;
+        InsightsTab.loadTabData(1, null, null, selectedMicrositeId);
     });
 
     function sortColumns(currentPage) {
         return function () {
             var el = $(this),
-                sortKey = el.data('value'),
-                selectedMicrosite = sitesSelector.children("option:selected").val();
+                sortKey = el.data('value');
 
             if (!el.hasClass("ascending") && !el.hasClass("descending")) {
                 el.addClass("ascending");
@@ -38,7 +40,7 @@ function InsightsTab(button, content) {
 
             sortableColumns.not(el).removeClass("ascending descending");
 
-            InsightsTab.loadTabData(currentPage, sortKey, ordering, selectedMicrosite);
+            InsightsTab.loadTabData(currentPage, sortKey, ordering, selectedMicrositeId);
         }
     }
 
@@ -48,9 +50,9 @@ function InsightsTab(button, content) {
 
         pagination[0].innerHTML = renderPagination(response.count_pages, response.current_page);
 
-        if (response.microsites_names.length) {
+        if (response.microsites.length) {
             $('.sites-selector-wrapper').removeClass('hidden');
-            sitesSelector[0].innerHTML = renderSitesSelector(response.microsites_names, response.ms_selected);
+            sitesSelector[0].innerHTML = renderSitesSelector(response.microsites, response.ms_selected);
         }
 
         $(".page-link").on("click", function (e) {
@@ -95,9 +97,9 @@ function InsightsTab(button, content) {
     }
 
     function renderSitesSelector(sites, selected) {
-        let selector = "<option>All courses</option>";
+        let selector = "<option value=''>All courses</option>";
         for (let i = 0; i < sites.length; i++) {
-            selector += `<option ${sites[i] === selected ? 'selected' : ''}>${sites[i]}</option>`
+            selector += `<option value=${sites[i]['id']} ${sites[i]['id'] === selected ? 'selected' : ''}>${sites[i]['name']}</option>`
         }
         return selector;
     }
@@ -168,7 +170,11 @@ function InsightsTab(button, content) {
 
         $.ajax({
             type: "POST",
-            data: {action_name: action},
+            data: {
+                action_name: action,
+                microsite_id: selectedMicrositeId,
+                microsite_name: sitesSelector.children("option:selected").text()
+            },
             url: "api/insights/generate_report/",
             dataType: "json",
             success: function (data) {
