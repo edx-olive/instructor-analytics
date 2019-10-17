@@ -53,7 +53,6 @@
                         </select>
                     </li>
                 </ul>
-
                 % for tab in tabs:
                   <section id="section-${tab['class']}" class="idash-section">
                     <%include file="${tab['template']}" args="section_data={'course':course, 'enroll_info':enroll_info}" />
@@ -70,6 +69,7 @@
 
 <%block name="js_extra">
 <script src="${static.url('rg_instructor_analytics/js/utils.js')}"></script>
+<script src="${static.url('rg_instructor_analytics/js/reports-utils.js')}"></script>
 <script src="${static.url('rg_instructor_analytics/js/tab.js')}"></script>
 <script src="${static.url('rg_instructor_analytics/js/tab-holder.js')}"></script>
 <script src="${static.url('rg_instructor_analytics/js/enrollment-tab.js')}"></script>

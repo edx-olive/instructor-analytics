@@ -1,4 +1,4 @@
-$(function() {
+(function() {
     'use strict';
     var CSS_INSTRUCTOR_CONTENT = 'instructor-dashboard-content-2';
     var $content = $('.' + CSS_INSTRUCTOR_CONTENT);
