@@ -1,16 +1,19 @@
 function InsightsTab(button, content) {
     'use strict';
-    var InsightsTab = new Tab(button, content);
-    var $loader = $('#insights-loader');
-    var sitesSelector = InsightsTab.content.find('#insight-site-selector');
-    var sortableColumns = $("#insights-content").find(".sortable");
+    var InsightsTab = new Tab(button, content),
+        $loader = $('#insights-loader'),
+        instructorAnalyticsTasks = new PendingInstructorAnalyticsTasks($('#insights-content')),
+        reportDownloads = new ReportDownloads($('#insights-content')),
+        timerId,
+        sitesSelector = InsightsTab.content.find('#insight-site-selector'),
+        sortableColumns = $("#insights-content").find(".sortable");
 
     function toggleLoader() {
         $loader.toggleClass('hidden');
     }
 
     function onInsightsLoadError() {
-        alert("Can't load data!");
+        showInfoMsg(content.find('.error-message'), "Can't load data.");
     }
 
     sitesSelector.off();
@@ -118,6 +121,14 @@ function InsightsTab(button, content) {
         return pagination
     }
 
+    function showInfoMsg($msg_section, msg_text) {
+        $msg_section.fadeIn().text(msg_text);
+        clearTimeout(timerId);
+        timerId = setTimeout(function () {
+            $msg_section.fadeOut(500);
+        }, 3000);
+    }
+
     InsightsTab.loadTabData = function (page, sortKey, ordering, microsite) {
         $.ajax({
             type: 'POST',
@@ -135,6 +146,62 @@ function InsightsTab(button, content) {
             complete: toggleLoader,
         });
     };
+
+    InsightsTab.onClickTitle = function () {
+        instructorAnalyticsTasks.task_poller.start();
+        reportDownloads.load_report_downloads();
+    };
+
+    InsightsTab.onExit = function () {
+        instructorAnalyticsTasks.task_poller.stop();
+        return instructorAnalyticsTasks.report_downloads.downloads_poller.stop();
+    };
+
+    $(".generate-reports").on("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var self = this,
+            action = e.target.closest('a[href="#"]').dataset.action,
+            laddaLoader = Ladda.create($(e.target).closest("a")[0]);
+
+        laddaLoader.start();
+
+        $.ajax({
+            type: "POST",
+            data: {action_name: action},
+            url: "api/insights/generate_report/",
+            dataType: "json",
+            success: function (data) {
+                instructorAnalyticsTasks.task_poller.start();
+                instructorAnalyticsTasks.subscribe(function (taskId, params) {
+                    var runningTasks = params.tasks.filter(function (i) {
+                        return i.task_id === taskId;
+                    });
+                    if (!runningTasks.length) {
+                        laddaLoader.stop();
+                        instructorAnalyticsTasks.unsubscribe(taskId);
+                        reportDownloads.load_report_downloads().then(function (data) {
+                            var requestedReport = data.downloads.find(function (item) {
+                                return item.name.indexOf(action) !== -1;
+                            });
+                            if (requestedReport) {
+                                return document.location.href = requestedReport.url;
+                            } else {
+                                showInfoMsg(content.find('.error-message'), 'No available report was found.');
+                            }
+                        });
+                    }
+                }, self, data.task_id)
+            },
+            error: function (err) {
+                if (err.status !== 400) {
+                    laddaLoader.stop();
+                    showInfoMsg(content.find('.error-message'), 'During csv report generation we got a problem. ' + err.statusText);
+                }
+            },
+        });
+
+    });
 
     return InsightsTab;
 }

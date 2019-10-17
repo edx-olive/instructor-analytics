@@ -5,6 +5,14 @@
  * @class old realisation
  * @abstract
  */
+
+function NotImplementedError(message) {
+    this.name = "NotImplementedError";
+    this.message = (message || "");
+}
+
+NotImplementedError.prototype = Error.prototype;
+
 function Tab(button, content) {
     var tab = this;
 
@@ -35,7 +43,23 @@ function Tab(button, content) {
      * @abstract
      */
     this.loadTabData = function () {
-        throw new Error("missing implementation")
+        throw new NotImplementedError("missing implementation")
+    };
+
+    /**
+     * Called for notify that tab is opened.
+     * @abstract
+     */
+    this.onClickTitle = function () {
+        throw new NotImplementedError("missing implementation")
+    };
+
+    /**
+     * Called for notify that tab is closed.
+     * @abstract
+     */
+    this.onExit = function () {
+        throw new NotImplementedError("missing implementation")
     };
 
     /**
