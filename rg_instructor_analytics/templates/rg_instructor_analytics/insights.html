@@ -4,56 +4,48 @@ from django.utils.translation import ugettext as _
 from openedx.core.djangolib.markup import HTML, Text
 %>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 <script src="/static/rg_instructor_analytics/plugins/jquery.richtext.min.js"></script>
 <link rel="stylesheet" href="/static/rg_instructor_analytics/plugins/ladda-bootstrap/ladda-themeless.min.css">
 <script src="/static/rg_instructor_analytics/plugins/ladda-bootstrap/spin.min.js"></script>
 <script src="/static/rg_instructor_analytics/plugins/ladda-bootstrap/ladda.min.js"></script>
 
-<div class="row">
-    <div class="col-md-8"><h2>${_("Across all your courses:")}</h2></div>
-    <div class="col-md-4">
-        <div class="sites-selector-wrapper form-group hidden">
-            <label for="insight-site-selector">Microsites</label>
+<header class="insights-header">
+    <h2>${_("Across all your courses")}</h2>
+    <div class="sites-selector-wrapper hidden">
+        <label for="insight-site-selector">Microsites</label>
+        <div class="custom-select">
             <select class="form-control" id="insight-site-selector"></select>
         </div>
     </div>
-</div>
+</header>
 <div id="insights">
     <div id="insights-loader" class="loader hidden">
         ${_("Computing")}
         <img src="/static/rg_instructor_analytics/images/ajax-loader.gif" alt="loader">
     </div>
     <div id="insights-content">
-        <hr>
-        <div class="row">
-            <div class="col-md-3"><span id="total-enrollment"></span><br>${_("Total Enrollment")}</div>
-            <div class="col-md-3"><span id="current-enrollment"></span><br>${_("Current Enrollment")}</div>
-            <div class="col-md-3"><span id="week-change"></span><br>${_("Change Last Week")}</div>
-            <div class="col-md-3"><span id="passed-enrollment"></span><br>${_("Verified Enrollment")}</div>
+        <div class="insights-list">
+            <div class="insights-item"><span id="total-enrollment"></span> ${_("Total Enrollment")}</div>
+            <div class="insights-item"><span id="current-enrollment"></span> ${_("Current Enrollment")}</div>
+            <div class="insights-item"><span id="week-change"></span> ${_("Change Last Week")}</div>
+            <div class="insights-item"><span id="passed-enrollment"></span> ${_("Verified Enrollment")}</div>
         </div>
-        <br>
-        <hr>
-        <h3>${_("Course List")}</h3>
-        <div class="row">
-            <div class="col">
+        <h2>${_("Course List")}</h2>
+        <div class="insights-course-list">
+            <div class="insights-course-list-col">
                 %if settings.FEATURES.get('ENABLE_INSTRUCTOR_BACKGROUND_TASKS'):
                 <div class="running-tasks-container action-type-container">
                     <h3 class="hd hd-3">${_("Pending Tasks")}</h3>
                     <div class="running-tasks-section">
                         <p>${_("The status for any active tasks appears in a table below.")} </p>
                         <br/>
-                        <div class="running-tasks-table">
-
-                        </div>
+                        <div class="running-tasks-table"></div>
                     </div>
                     <div class="no-pending-tasks-message"></div>
                 </div>
                 %endif
             </div>
-            <div class="col">
+            <div class="insights-course-list-col">
                 <ul class="generate-reports">
                     <li class="generate-reports__item">
                         <a href="#" class="btn btn-primary btn_insights-report ladda-button" data-style="zoom-out"
@@ -77,28 +69,26 @@ from openedx.core.djangolib.markup import HTML, Text
             </div>
         </div>
         <div class="error-message" style="display: none"></div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col" data-value="course" class="sortable ascending">${_("Course Name")}</th>
-                <th scope="col" data-value="start" class="sortable">${_("Start Date")}</th>
-                <th scope="col" data-value="end" class="sortable">${_("End Date")}</th>
-                <th scope="col" data-value="total" class="sortable">${_("Total Enrollment")}</th>
-                <th scope="col" data-value="enrolled_max" class="sortable">${_("Current Enrollment")}</th>
-                <th scope="col" data-value="diff" class="sortable">${_("Change Last Week")}</th>
-                <th scope="col" data-value="cert_count" class="sortable">${_("Verified Enrollment")}</th>
-                <th scope="col" data-value="total_passing" class="sortable">${_("Passing Learners")}</th>
-            </tr>
-            </thead>
-            <tbody id="insights-tbody">
-            </tbody>
-        </table>
-        <br>
-        <hr>
-        <div class="pagination">
+        <div class="insights-table-wrapper">
+            <table class="insights-table">
+                <thead>
+                    <tr>
+                        <th scope="col" data-value="course" class="sortable ascending">${_("Course Name")}&nbsp;<span class="arrows"></span></th>
+                        <th scope="col" data-value="start" class="sortable">${_("Start Date")}&nbsp;<span class="arrows"></span></th>
+                        <th scope="col" data-value="end" class="sortable">${_("End Date")}&nbsp;<span class="arrows"></span></th>
+                        <th scope="col" data-value="total" class="sortable">${_("Total Enrollment")}&nbsp;<span class="arrows"></span></th>
+                        <th scope="col" data-value="enrolled_max" class="sortable">${_("Current Enrollment")}&nbsp;<span class="arrows"></span></th>
+                        <th scope="col" data-value="diff" class="sortable">${_("Change Last Week")}&nbsp;<span class="arrows"></span></th>
+                        <th scope="col" data-value="cert_count" class="sortable">${_("Verified Enrollment")}&nbsp;<span class="arrows"></span></th>
+                        <th scope="col" data-value="total_passing" class="sortable">${_("Passing Learners")}&nbsp;<span class="arrows"></span></th>
+                    </tr>
+                </thead>
+                <tbody id="insights-tbody"></tbody>
+            </table>
+        </div>
+        <div class="pagination insights-pagination-wrapper">
             <nav aria-label="Page navigation example" style="margin: 0 auto;">
-                <ul class="pagination" id="insights-pagination">
-                </ul>
+                <ul class="pagination" id="insights-pagination"></ul>
             </nav>
         </div>
         <br>
