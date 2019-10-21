@@ -5,8 +5,9 @@ General metrics stats sub-tab module.
 import json
 from datetime import datetime, timedelta
 
+from django.db.models import Count, F, Value
+
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 from django.db.models import Max, Min, Q
 from django.http import HttpResponseBadRequest, JsonResponse
@@ -31,6 +32,7 @@ from lms.djangoapps.instructor_task.api import (
 from lms.djangoapps.instructor_task.models import ReportStore
 from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 from rg_instructor_analytics.utils.mixins import InstructorRequiredMixin
+from rg_instructor_analytics.utils.helpers import get_all_orgs_by_selected_sites
 from rg_instructor_analytics_log_collector.models import EnrollmentByDay
 
 COUNT_PER_PAGE = getattr(settings, 'ANALYTICS_GENERAL_COUNT_PER_PAGE', 50)
@@ -66,8 +68,8 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
 
         total_metrics_query = (
             EnrollmentByDay.objects.order_by("course")
-                .values('course')
-                .annotate(
+            .values('course')
+            .annotate(
                 total=Max('total'),
                 enrolled_max=Max('enrolled'),
                 diff_enr_max=Max('enrolled', filter=Q(day__gt=datetime.now() - timedelta(weeks=1))),
@@ -81,28 +83,6 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
             total_metrics["total_diff_enrolled"] += course['diff_enr_max'] - course['diff_enr_min']
 
         return total_metrics
-
-    @staticmethod
-    def get_microsite_filter(microsites, ms_selected):
-        """
-        Helper method that returns course_org_filter for selected microsite.
-
-        :return: string or tuple with course_org_filter value(s) for filtering
-                 or None if SiteConfiguration does not exist.
-        """
-
-        try:
-            m_site = microsites.get(site__name=ms_selected)
-            course_org_filter = m_site.values.get('course_org_filter')
-
-            if course_org_filter is not None:
-                if isinstance(course_org_filter, list):
-                    course_org_filter = tuple(str(course_filter) for course_filter in course_org_filter)
-
-                return course_org_filter
-
-        except ObjectDoesNotExist:
-            return
 
     def post(self, request, **kwargs):
         """
@@ -121,21 +101,18 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
 
         # Microsites filtering parameters
         ms_selected = request.POST.get('microsite')
-
-        microsites = SiteConfiguration.objects.all().select_related('site')
-
-        if ms_selected:
-            microsite_filter = self.get_microsite_filter(microsites, ms_selected)
-        else:
-            microsite_filter = None
-
+        microsite_orgs = get_all_orgs_by_selected_sites(ms_selected)
         courses = EnrollmentByDay.objects.extract_analytics_data(
-            COUNT_PER_PAGE * page + COUNT_PER_PAGE, page * COUNT_PER_PAGE, sort_key, ordering, microsite_filter
+            COUNT_PER_PAGE * page + COUNT_PER_PAGE, page * COUNT_PER_PAGE, sort_key, ordering, microsite_orgs
         )
 
-        count_courses = EnrollmentByDay.objects.get_courses_count_by_site(microsite_filter)
+        count_courses = EnrollmentByDay.objects.get_courses_count_by_site(microsite_orgs)
 
         count_pages = count_courses / COUNT_PER_PAGE
+
+        microsites = SiteConfiguration.objects.values('values', 'site__id', 'site__name').annotate(
+            id=F("site__id"), name=F("site__name")
+        )
 
         return JsonResponse(
             data={
@@ -143,8 +120,8 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
                 "total_metrics": json.dumps(self.get_total_metrics()),
                 "count_pages": count_pages if count_pages else 1,
                 "current_page": page + 1,
-                "microsites_names": [microsite.site.name for microsite in microsites],
-                "ms_selected": ms_selected,
+                "microsites": list(microsites),
+                "ms_selected": int(ms_selected or '0'),
             },
             status=200,
             content_type='application/json',
@@ -177,12 +154,12 @@ class CsvReportInitializerView(InstructorRequiredMixin, View):
         return super(CsvReportInitializerView, self).dispatch(request, *args, **kwargs)
 
     @staticmethod
-    def submit_report(csv_generator, request, course_key, *args, **kwargs):
+    def submit_report(csv_generator, request, course_key, microsite, *args, **kwargs):
         return {
             'userDataSiteReport': submit_users_features_csv,
             'courseMetricsDataSiteReport': submit_general_enrollment_features_csv,
             'gradeDataSiteReport': submit_general_grade_csv_report,
-        }[csv_generator](request, course_key, *args, **kwargs)
+        }[csv_generator](request, course_key, microsite, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         """
@@ -193,14 +170,19 @@ class CsvReportInitializerView(InstructorRequiredMixin, View):
         :returns JsonResponse object.
         """
         csv_report_generator = request.POST.get("action_name")
+
         course_key = CourseKeyField.Empty
+        microsite = {
+            'orgs': get_all_orgs_by_selected_sites(request.POST.get('microsite_id')),
+            'name': request.POST.get('microsite_name')
+        }
         message = _(
             'Report generation task for all students of this course has been started. '
             'You can view the status of the generation task in the "Pending Tasks" section.'
             'Report will be downloaded automatically. Please be patient.'
         )
         try:
-            task = self.submit_report(csv_report_generator, request, course_key)
+            task = self.submit_report(csv_report_generator, request, course_key, microsite)
         except KeyError:
             return HttpResponseBadRequest("Action name %r does not support." % csv_report_generator)
 
