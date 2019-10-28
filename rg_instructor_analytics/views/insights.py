@@ -3,13 +3,10 @@ General metrics stats sub-tab module.
 """
 
 import json
-from datetime import datetime, timedelta
-
-from django.db.models import Count, F, Value
 
 from django.conf import settings
 from django.db import transaction
-from django.db.models import Max, Min, Q
+from django.db.models import F, Q
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
@@ -20,7 +17,6 @@ from django.views.generic import View
 from opaque_keys.edx.django.models import CourseKeyField
 from opaque_keys.edx.keys import CourseKey
 
-from lms.djangoapps.certificates.models import GeneratedCertificate
 from lms.djangoapps.instructor.views.api import common_exceptions_400, require_level
 from lms.djangoapps.instructor.views.instructor_task_helpers import extract_task_features
 from lms.djangoapps.instructor_task.api import (
@@ -30,6 +26,7 @@ from lms.djangoapps.instructor_task.api import (
     submit_users_features_csv,
 )
 from lms.djangoapps.instructor_task.models import ReportStore
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 from rg_instructor_analytics.utils.mixins import InstructorRequiredMixin
 from rg_instructor_analytics.utils.helpers import get_all_orgs_by_selected_sites
@@ -46,9 +43,9 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
     """
 
     @staticmethod
-    def get_total_metrics():
+    def get_total_metrics(courses):
         """
-        Method that returns total metrics across all courses.
+        Method that returns total metrics across all courses or courses for the selected microsite.
 
         :return: (dict) total metrics.
         example output: {
@@ -63,24 +60,14 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
             "total_enrolled": 0,
             "total_current_enrolled": 0,
             "total_diff_enrolled": 0,
-            "certificates": GeneratedCertificate.objects.count(),
+            "certificates": 0,
         }
 
-        total_metrics_query = (
-            EnrollmentByDay.objects.order_by("course")
-            .values('course')
-            .annotate(
-                total=Max('total'),
-                enrolled_max=Max('enrolled'),
-                diff_enr_max=Max('enrolled', filter=Q(day__gt=datetime.now() - timedelta(weeks=1))),
-                diff_enr_min=Min('enrolled', filter=Q(day__gt=datetime.now() - timedelta(weeks=1))),
-            )
-        )
-
-        for course in total_metrics_query:
-            total_metrics["total_enrolled"] += course["total"]
-            total_metrics["total_current_enrolled"] += course['enrolled_max']
-            total_metrics["total_diff_enrolled"] += course['diff_enr_max'] - course['diff_enr_min']
+        for course in courses:
+            total_metrics['total_enrolled'] += course.get('total')
+            total_metrics['total_current_enrolled'] += course.get('enrolled_max')
+            total_metrics['total_diff_enrolled'] += course.get('week_change')
+            total_metrics['certificates'] += course.get('certificates')
 
         return total_metrics
 
@@ -103,12 +90,17 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
         ms_selected = request.POST.get('microsite')
         microsite_orgs = get_all_orgs_by_selected_sites(ms_selected)
         courses = EnrollmentByDay.objects.extract_analytics_data(
-            COUNT_PER_PAGE * page + COUNT_PER_PAGE, page * COUNT_PER_PAGE, sort_key, ordering, microsite_orgs
+            COUNT_PER_PAGE, page * COUNT_PER_PAGE, sort_key, ordering, microsite_orgs
         )
 
-        count_courses = EnrollmentByDay.objects.get_courses_count_by_site(microsite_orgs)
+        courses_by_site = CourseOverview.objects
 
-        count_pages = count_courses / COUNT_PER_PAGE
+        if microsite_orgs:
+            courses_by_site = courses_by_site.filter(
+                Q(org__in=microsite_orgs) | Q(display_org_with_default__in=microsite_orgs)
+            )
+
+        count_pages = courses_by_site.count() / COUNT_PER_PAGE
 
         microsites = SiteConfiguration.objects.values('values', 'site__id', 'site__name').annotate(
             id=F("site__id"), name=F("site__name")
@@ -117,7 +109,7 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
         return JsonResponse(
             data={
                 "courses": json.dumps(courses),
-                "total_metrics": json.dumps(self.get_total_metrics()),
+                "total_metrics": json.dumps(self.get_total_metrics(courses)),
                 "count_pages": count_pages if count_pages else 1,
                 "current_page": page + 1,
                 "microsites": list(microsites),
