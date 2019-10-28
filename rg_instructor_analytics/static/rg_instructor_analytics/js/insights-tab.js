@@ -46,7 +46,10 @@ function InsightsTab(button, content) {
 
     function onInsightsLoad(response) {
         var analyticsContent = InsightsTab.content.find('#insights-tbody'),
-            pagination = InsightsTab.content.find('#insights-pagination');
+            pagination = InsightsTab.content.find('#insights-pagination'),
+            insightsTable = InsightsTab.content.find('.insights-table-wrapper'),
+            insightsPagination = InsightsTab.content.find('.insights-pagination-wrapper'),
+            noAvailableMessage = InsightsTab.content.find('.no-available-results');
 
         pagination[0].innerHTML = renderPagination(response.count_pages, response.current_page);
 
@@ -60,22 +63,35 @@ function InsightsTab(button, content) {
             InsightsTab.loadTabData(this.dataset.value, null, null, response.ms_selected);
         });
 
-        if (response.courses.length > 0) {
-            analyticsContent[0].innerHTML = JSON.parse(response.courses).map(renderCourse).join('\n');
-            var totalMetrics = JSON.parse(response.total_metrics);
+        var courses = JSON.parse(response.courses);
 
-            $("#total-enrollment").html(totalMetrics.total_enrolled);
-            $("#current-enrollment").html(totalMetrics.total_current_enrolled);
-            $("#week-change").html(totalMetrics.total_diff_enrolled);
-            $("#passed-enrollment").html(totalMetrics.certificates);
+        if (courses.length > 0) {
+            insightsTable.removeClass('hidden');
+            insightsPagination.removeClass('hidden');
+            noAvailableMessage.remove();
 
+            analyticsContent[0].innerHTML = courses.map(renderCourse).join('\n');
             sortableColumns.off();
 
             sortableColumns.on("click", sortColumns(response.current_page));
-
         } else {
-            analyticsContent[0].innerHTML = '<div>' + django.gettext("No available statistics.") + '</div>';
+            insightsTable.addClass('hidden');
+            insightsPagination.addClass('hidden');
+
+            if(!noAvailableMessage.length) {
+                $(".insights-course-list").after(
+                    '<div class="no-available-results"><b>' + django.gettext("No available statistics.") + '</b></div>'
+                );
+            }
         }
+
+        var totalMetrics = JSON.parse(response.total_metrics);
+
+        $("#total-enrollment").html(totalMetrics.total_enrolled);
+        $("#current-enrollment").html(totalMetrics.total_current_enrolled);
+        $("#week-change").html(totalMetrics.total_diff_enrolled);
+        $("#passed-enrollment").html(totalMetrics.certificates);
+
         analyticsContent.find('.go-to-item').click(function (evt) {
             InsightsTab.tabHolder.openLocation(JSON.parse(evt.target.dataset.location));
         })
