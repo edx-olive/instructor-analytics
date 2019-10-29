@@ -3,10 +3,12 @@ General metrics stats sub-tab module.
 """
 
 import json
+from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.core.paginator import Paginator
 from django.db import transaction
-from django.db.models import F, Q
+from django.db.models import Case, Count, F, IntegerField, Q, Sum, When
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
@@ -17,6 +19,7 @@ from django.views.generic import View
 from opaque_keys.edx.django.models import CourseKeyField
 from opaque_keys.edx.keys import CourseKey
 
+from lms.djangoapps.certificates.models import GeneratedCertificate
 from lms.djangoapps.instructor.views.api import common_exceptions_400, require_level
 from lms.djangoapps.instructor.views.instructor_task_helpers import extract_task_features
 from lms.djangoapps.instructor_task.api import (
@@ -31,6 +34,8 @@ from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 from rg_instructor_analytics.utils.mixins import InstructorRequiredMixin
 from rg_instructor_analytics.utils.helpers import get_all_orgs_by_selected_sites
 from rg_instructor_analytics_log_collector.models import EnrollmentByDay
+from student.models import CourseEnrollment
+
 
 COUNT_PER_PAGE = getattr(settings, 'ANALYTICS_GENERAL_COUNT_PER_PAGE', 50)
 
@@ -56,18 +61,19 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
         }
         """
 
-        total_metrics = {
-            "total_enrolled": 0,
-            "total_current_enrolled": 0,
-            "total_diff_enrolled": 0,
-            "certificates": 0,
-        }
+        week_ago = datetime.now() - timedelta(weeks=1)
 
-        for course in courses:
-            total_metrics['total_enrolled'] += course.get('total')
-            total_metrics['total_current_enrolled'] += course.get('enrolled_max')
-            total_metrics['total_diff_enrolled'] += course.get('week_change')
-            total_metrics['certificates'] += course.get('certificates')
+        total_metrics = CourseEnrollment.objects.filter(course_id__in=courses).aggregate(
+            total_enrolled=Count('id'),
+            total_current_enrolled=Sum(Case(When(is_active=True, then=1), default=0, output_field=IntegerField())),
+            total_diff_enrolled=
+            Sum(Case(When(Q(is_active=True) & Q(created__gt=week_ago), then=1), default=0,
+                     output_field=IntegerField())) -
+            Sum(Case(When(Q(is_active=False) & Q(created__gt=week_ago), then=1), default=0,
+                     output_field=IntegerField())),
+        )
+
+        total_metrics.update({"certificates": GeneratedCertificate.objects.filter(course_id__in=courses).count()})
 
         return total_metrics
 
@@ -100,17 +106,19 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
                 Q(org__in=microsite_orgs) | Q(display_org_with_default__in=microsite_orgs)
             )
 
-        count_pages = courses_by_site.count() / COUNT_PER_PAGE
+        courses_ids = courses_by_site.values_list('id', flat=True)
 
-        microsites = SiteConfiguration.objects.values('values', 'site__id', 'site__name').annotate(
+        paginator = Paginator(courses_ids, COUNT_PER_PAGE)
+
+        microsites = SiteConfiguration.objects.filter(enabled=True).values('values', 'site__id', 'site__name').annotate(
             id=F("site__id"), name=F("site__name")
         )
 
         return JsonResponse(
             data={
                 "courses": json.dumps(courses),
-                "total_metrics": json.dumps(self.get_total_metrics(courses)),
-                "count_pages": count_pages if count_pages else 1,
+                "total_metrics": json.dumps(self.get_total_metrics(courses_ids)),
+                "count_pages": paginator.num_pages,
                 "current_page": page + 1,
                 "microsites": list(microsites),
                 "ms_selected": int(ms_selected or '0'),
