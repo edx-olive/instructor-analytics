@@ -60,7 +60,10 @@ function InsightsTab(button, content) {
 
         $(".page-link").on("click", function (e) {
             e.preventDefault();
-            InsightsTab.loadTabData(this.dataset.value, null, null, response.ms_selected);
+            var currentColumnFilter = $(".descending,.ascending");
+            var ordering = currentColumnFilter.hasClass("descending") ? "DESC" : "ASC";
+            var sortKey = currentColumnFilter.data('value');
+            InsightsTab.loadTabData(this.dataset.value, sortKey, ordering, response.ms_selected);
         });
 
         var courses = JSON.parse(response.courses);
@@ -87,10 +90,10 @@ function InsightsTab(button, content) {
 
         var totalMetrics = JSON.parse(response.total_metrics);
 
-        $("#total-enrollment").html(totalMetrics.total_enrolled);
-        $("#current-enrollment").html(totalMetrics.total_current_enrolled);
-        $("#week-change").html(totalMetrics.total_diff_enrolled);
-        $("#passed-enrollment").html(totalMetrics.certificates);
+        $("#total-enrollment").html(totalMetrics.total_enrolled || 0);
+        $("#current-enrollment").html(totalMetrics.total_current_enrolled || 0);
+        $("#week-change").html(totalMetrics.total_diff_enrolled || 0);
+        $("#passed-enrollment").html(totalMetrics.certificates || 0);
 
         analyticsContent.find('.go-to-item').click(function (evt) {
             InsightsTab.tabHolder.openLocation(JSON.parse(evt.target.dataset.location));
