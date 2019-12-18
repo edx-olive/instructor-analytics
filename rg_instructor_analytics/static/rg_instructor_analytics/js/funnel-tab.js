@@ -15,6 +15,10 @@ function FunnelTab(button, content) {
 
     funnelTab.courseStructureView = $tabContent;
 
+    $('.export-funnel-to-csv').click(function(e) {
+        exportToCSV('api/funnel/', funnelTab.tabHolder.course, timeFilter.timestampRange);
+    });
+
     content.find('#funnel-send-email-btn').click(function () {
         var $funnelCheckbox = content.find("input:checkbox[name=funnel_send_email]:checked");
         var emails = '';

@@ -1,9 +1,10 @@
 """
 Clusters sub-tab module.
 """
+import csv
 import math
 
-from django.http.response import HttpResponseBadRequest, JsonResponse
+from django.http.response import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic import View
@@ -34,6 +35,7 @@ class CohortView(View):
         :param course_id: (str) context course ID (from urlconf)
         """
         stats_course_id = request.POST.get('course_id')
+        _format = request.POST.get('format', 'json')
 
         try:
             course_key = CourseKey.from_string(stats_course_id)
@@ -66,6 +68,15 @@ class CohortView(View):
                     _('from {} % to {} %').format(prev_cohort['max_progress'], cohort['max_progress'])
                 )
         values = [info['percent'] for info in cohorts]
+
+        if _format == 'csv':
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="clusters.csv"'
+
+            writer = csv.writer(response)
+            writer.writerow(labels)
+            writer.writerow(values)
+            return response
 
         return JsonResponse(data={'labels': labels, 'values': values, 'cohorts': cohorts})
 
