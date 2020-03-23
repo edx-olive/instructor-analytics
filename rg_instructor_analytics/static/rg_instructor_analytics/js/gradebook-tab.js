@@ -357,6 +357,8 @@ function GradebookTab(button, content) {
             $tableCells[item].style.flex = '0 0 ' + maxLength + 'px';
         });
 
+        greadebookTab.gradebookTableBody.css('padding-top', greadebookTab.gradebookTableHeader.height() + 1);
+
         $(greadebookTab.gradebookTableBody).off('click');
         $(greadebookTab.gradebookTableBody).on('click', function (evt) {
             var colorArray = greadebookTab.examNames.map(function (item, idx, arr) {
