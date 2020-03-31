@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-30 15:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:42
+#: static/rg_instructor_analytics/js/enrollment-tab.js:62
+msgid "Total"
+msgstr "Kopā"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:51
+msgid "Enrollments/Unenrollments"
+msgstr "Reģistrēšanās/Izreģistrēšanās"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:78
+msgid "Enrollments"
+msgstr "Reģistrēšanās"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:93
+msgid "Unenrollments"
+msgstr "Izreģistrēšanās"
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:283
+msgid "Search students"
+msgstr "Meklēt studentus"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:91
+msgid "DETAILS"
+msgstr "APRAKSTS"
+
+#: static/rg_instructor_analytics/js/suggestions-tab.js:20
+msgid "No suggestions so far."
+msgstr "Pagaidām nav ierosinājumu."
+
+#: static/rg_instructor_analytics/js/suggestions-tab.js:39
+msgid "Go to item"
+msgstr "Aiziet uz vienumu"
