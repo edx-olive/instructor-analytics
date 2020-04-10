@@ -22,7 +22,6 @@ from opaque_keys.edx.keys import CourseKey
 
 from courseware.courses import get_course_by_id
 from courseware.models import StudentModule
-from lms import CELERY_APP
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 from rg_instructor_analytics.models import GradeStatistic, LastGradeStatUpdate
 from student.models import CourseEnrollment
@@ -55,7 +54,7 @@ log = logging.getLogger(__name__)
 DEFAULT_DATE_TIME = datetime(2000, 1, 1, 0, 0)
 
 
-@CELERY_APP.task
+@task
 def send_email(subject, message, students):
     """
     Send email task.
