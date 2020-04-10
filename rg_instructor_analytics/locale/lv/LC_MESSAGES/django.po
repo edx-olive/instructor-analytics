@@ -149,12 +149,12 @@ msgstr ""
 "vai interesantākā jūsu studentiem."
 
 #: templates/rg_instructor_analytics/cohort.html
-msgid "Keep an eye on your students\\u2019 progress"
+msgid "Keep an eye on your students' progress"
 msgstr "Sekojiet līdzi studentu progresam"
 
 #: templates/rg_instructor_analytics/cohort.html
 msgid ""
-"This report constantly divides your students\\u2019 progress in clusters: "
+"This report constantly divides your students' progress in clusters: "
 "from low-performing to high-performing groups. You can take action right "
 "away - send appropriate email to clusters in couple of clicks."
 msgstr ""
@@ -287,7 +287,7 @@ msgstr ""
 
 #: templates/rg_instructor_analytics/gradebook.html
 msgid ""
-"This reports gives an overview of all students\\u2019 progress in a simple "
+"This reports gives an overview of all students' progress in a simple "
 "spreadsheet form."
 msgstr ""
 "Šī atskaite vienkāršā izklājlapas veidā sniedz  "
@@ -303,11 +303,11 @@ msgstr ""
 
 #: templates/rg_instructor_analytics/gradebook.html
 msgid ""
-"You can filter student list by using \\u201cSearch Student\\u2026\\u201d "
+"You can filter student list by using 'Search Student...' "
 "field."
 msgstr ""
 "Jūs varat filtrēt studentu sarakstu, izmantojot "
-"\\u201cMeklēt studentu\\u2026\\u201d lauku. "
+"'Meklēt studentu...' lauku. "
 
 #: templates/rg_instructor_analytics/gradebook.html
 msgid "You can search by first name, last name or email (non-case-sensitive)."
@@ -382,7 +382,7 @@ msgstr ""
 
 #: templates/rg_instructor_analytics/problems.html
 msgid ""
-"Red columns represent average level of student\\u2019s success in a "
+"Red columns represent average level of student's success in a "
 "subsection (%)"
 msgstr ""
 "Sarkanās kolonnas norāda vidējo studentu sekmju līmeni "

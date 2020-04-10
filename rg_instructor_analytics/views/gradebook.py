@@ -71,7 +71,7 @@ class GradebookView(View):
         for student in course_students:
             student_exam_values.append(json.JSONDecoder(object_pairs_hook=OrderedDict).decode(student.exam_info))
             student_last_visit_date = students_last_visit_dict.get(student.student.id, '')
-            student_last_visit = student_last_visit_date and student_last_visit_date.strftime("%d %B %Y")
+            student_last_visit = student_last_visit_date and student_last_visit_date.strftime("%d/%m/%Y")
             students_info.append({'username': student.student.username,
                                   'is_enrolled': student.is_enrolled,
                                   'last_visit': student_last_visit

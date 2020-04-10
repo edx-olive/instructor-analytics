@@ -92,11 +92,11 @@ function FunnelTab(button, content) {
         var $ev = $(ev.currentTarget);
         var $blockContent = $ev.parents('.funnel-item-content');
         if ($ev.hasClass('show-emails-button')) {
-            $ev.text('Hide emails');
+            $ev.text(gettext('Hide emails'));
             $ev.removeClass('show-emails-button');
             $blockContent.next('.emails-list').prop('hidden', false);
         } else {
-            $ev.text('Show emails');
+            $ev.text(gettext('Show emails'));
             $ev.addClass('show-emails-button');
             $blockContent.next('.emails-list').prop('hidden', true);
         }
@@ -156,7 +156,7 @@ function FunnelTab(button, content) {
                           '<input type="checkbox" class="level-<%= level %>" id="level-<%= level %>-<%= blockId %>" name="funnel_send_email" <%if (studentEmails.length == 0) {%>disabled <%}%> value="<%= studentEmails %>">' +
                           '<label for="level-<%= level %>-<%= blockId %>" class="funnel-checkbox-label"></label>' +
                           '<%if (studentEmails.length != 0) {%>' +
-                              '<button class="emails-list-button show-emails-button">Show emails</button>' +
+                              '<button class="emails-list-button show-emails-button"><%- gettext("Show emails") %></button>' +
                           '<%}%>' +
                       '</span>' +
                       '<%}%>' +

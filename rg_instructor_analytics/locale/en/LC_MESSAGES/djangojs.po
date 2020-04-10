@@ -16,34 +16,76 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: static/rg_instructor_analytics/js/enrollment-tab.js
+#: static/rg_instructor_analytics/js/enrollment-tab.js:42
+#: static/rg_instructor_analytics/js/enrollment-tab.js:62
 msgid "Total"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/enrollment-tab.js
+#: static/rg_instructor_analytics/js/enrollment-tab.js:51
 msgid "Enrollments/Unenrollments"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/enrollment-tab.js
+#: static/rg_instructor_analytics/js/enrollment-tab.js:78
 msgid "Enrollments"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/enrollment-tab.js
+#: static/rg_instructor_analytics/js/enrollment-tab.js:93
 msgid "Unenrollments"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/gradebook-tab.js
+#: static/rg_instructor_analytics/js/funnel-tab.js:95
+msgid "Hide emails"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/funnel-tab.js:99
+msgid "Show emails"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:283
 msgid "Search students"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/problem-tab.js
+#: static/rg_instructor_analytics/js/gradebook-tab.js:375
+msgid "Date of the last Course visit: "
+msgstr ""
+
+#: static/rg_instructor_analytics/js/problem-tab.js:96
 msgid "DETAILS"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/suggestions-tab.js
+#: static/rg_instructor_analytics/js/problem-tab.js:213
+msgid "Subsection"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/problem-tab.js:341
+msgid "Problem"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/problem-tab.js:521
+#: static/rg_instructor_analytics/js/problem-tab.js:540
+msgid "Show Plot"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/problem-tab.js:528
+msgid "Hide Plot"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/suggestions-tab.js:20
 msgid "No suggestions so far."
 msgstr ""
 
-#: static/rg_instructor_analytics/js/suggestions-tab.js
+#: static/rg_instructor_analytics/js/suggestions-tab.js:39
 msgid "Go to item"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/problem-tab.js:22
+msgid "%(blockTitle)s Details"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/problem-tab.js:27
+msgid "%(blockTitle)s statistics is based on submits of %(studentsEmailsLength)s student(s)"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/problem-tab.js:39
+msgid "Nothing to show"
 msgstr ""
