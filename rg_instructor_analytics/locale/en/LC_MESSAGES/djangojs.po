@@ -46,7 +46,7 @@ msgid "Search students"
 msgstr ""
 
 #: static/rg_instructor_analytics/js/gradebook-tab.js:375
-msgid "Date of the last Course visit: "
+msgid "Date of the last Course visit:"
 msgstr ""
 
 #: static/rg_instructor_analytics/js/problem-tab.js:96

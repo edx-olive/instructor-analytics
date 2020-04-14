@@ -372,7 +372,7 @@ function GradebookTab(button, content) {
             var studentPosition = evt.target.dataset['position'];
             var stat;
             var lastVisit = greadebookTab.studentInfo[studentPosition]['last_visit'];
-            $lastVisitInfo.prop('hidden', false).html(gettext('Date of the last Course visit: ') + lastVisit);
+            $lastVisitInfo.prop('hidden', false).html(gettext('Date of the last Course visit:') + ' ' + lastVisit);
 
             getDiscussionActivity(studentPosition);
             getVideoActivity(studentPosition);
