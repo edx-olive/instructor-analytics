@@ -92,3 +92,15 @@ msgstr "%(blockTitle)s statistika, kas veidota no %(studentsEmailsLength)s studn
 #: static/rg_instructor_analytics/js/problem-tab.js:39
 msgid "Nothing to show"
 msgstr "Nav nekā, ko parādīt"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:31
+msgid "Video"
+msgstr "Video"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:41
+msgid "Discussion"
+msgstr "Diskusija"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:51
+msgid "Visit"
+msgstr "Vizīte"

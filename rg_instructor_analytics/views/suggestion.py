@@ -127,8 +127,9 @@ class FunnelSuggestion(BaseSuggestion):
 
         threshold = subsections_percent.mean() + subsections_percent.std()
 
-        description = 'Take a look at "{}" - ' \
-                      'the number of students that stuck there is {:01.0f}% higher than average.'
+        description = _(
+            'Take a look at "{}" - the number of students that stuck there is {:01.0f}% higher than average.'
+        )
 
         for unit in units:
             percent = get_percent(unit['student_count_in'], unit['student_count'])
@@ -172,7 +173,7 @@ class ProblemSuggestion(BaseSuggestion):
         threshold = problems.mean() - problems.std()
 
         description = (
-            'Take a look at `{}`: there is too high avg attempts number and too low value of the mean success rate'
+            _('Take a look at "{}": there is too high avg attempts number and too low value of the mean success rate.')
         )
         for i in range(len(problem_stat['success'])):
             if problem_stat['success'][i] and problem_stat['success'][i] < threshold:

@@ -28,7 +28,7 @@ function ActivityTab(button, content) {
       var videoActivities = {
           x: dailyActivities.video_dates.map(dataFixFunction),
           y: dailyActivities.video_activities,
-          name: 'Video',
+          name: django.gettext('Video'),
           type: 'bar',
           marker:{
               color: '#568ecc'
@@ -38,7 +38,7 @@ function ActivityTab(button, content) {
       var discussionActivities = {
           x: dailyActivities.discussion_dates.map(dataFixFunction),
           y: dailyActivities.discussion_activities,
-          name: 'Discussion',
+          name: django.gettext('Discussion'),
           type: 'bar',
           marker:{
               color: '#50c156'
@@ -48,7 +48,7 @@ function ActivityTab(button, content) {
       var courseActivities = {
         x: dailyActivities.course_dates.map(dataFixFunction),
         y: dailyActivities.course_activities,
-        name: 'Visit',
+        name: django.gettext('Visit'),
         type: 'bar',
         marker:{
             color: '#8e28c1'

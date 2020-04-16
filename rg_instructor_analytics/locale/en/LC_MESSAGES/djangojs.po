@@ -89,3 +89,15 @@ msgstr ""
 #: static/rg_instructor_analytics/js/problem-tab.js:39
 msgid "Nothing to show"
 msgstr ""
+
+#: static/rg_instructor_analytics/js/activity-tab.js:31
+msgid "Video"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/activity-tab.js:41
+msgid "Discussion"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/activity-tab.js:51
+msgid "Visit"
+msgstr ""

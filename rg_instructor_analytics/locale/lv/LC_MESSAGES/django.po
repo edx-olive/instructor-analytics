@@ -469,3 +469,11 @@ msgstr "No kursa sākuma"
 #: templates/rg_instructor_analytics/time-filter.html
 msgid "All Enrollments"
 msgstr "Visas reģistrēšanās"
+
+#: views/suggestion.py
+msgid "Take a look at \"{}\" - the number of students that stuck there is {:01.0f}% higher than average."
+msgstr ""
+
+#: views/suggestion.py
+msgid "Take a look at \"{}\": there is too high avg attempts number and too low value of the mean success rate."
+msgstr ""
