@@ -310,7 +310,7 @@ function ProblemTab(button, content) {
         }
 
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "api/problem_statics/problem_detail/",
             data: { problem: stringProblemID },
             dataType: "json",
