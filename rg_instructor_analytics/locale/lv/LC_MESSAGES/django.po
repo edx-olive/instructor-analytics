@@ -472,8 +472,8 @@ msgstr "Visas reģistrēšanās"
 
 #: views/suggestion.py
 msgid "Take a look at \"{}\" - the number of students that stuck there is {:01.0f}% higher than average."
-msgstr ""
+msgstr "Apskaties \"{}\" - studentu skaits, kas ir iestrēguši šeit ir {:01.0f}% un tas ir lielāks kā vidēji."
 
 #: views/suggestion.py
 msgid "Take a look at \"{}\": there is too high avg attempts number and too low value of the mean success rate."
-msgstr ""
+msgstr "Apskaties \"{}\": šo ieskaiti atkārtoti kārto ļoti daudzas reizes un tam ir ļoti zems sekmīgi aizpildīto skaits."
