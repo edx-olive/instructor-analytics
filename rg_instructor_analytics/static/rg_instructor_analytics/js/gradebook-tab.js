@@ -317,7 +317,7 @@ function GradebookTab(button, content) {
                 htmlStringStudents += _.template(
                     '<div class="gradebook-table-row">' +
                         '<div class="gradebook-table-cell">' +
-                            '<a data-position="<%= dataPosition %>"><%= studentName %></a>' +
+                            '<a data-position="<%= dataPosition %>" title="<%= studentName %>"><%= studentName %></a>' +
                         '</div>' +
                         htmlStringResults +
                     '</div>'
@@ -329,7 +329,7 @@ function GradebookTab(button, content) {
                 htmlStringStudentsUnenroll += _.template(
                     '<div class="gradebook-table-row">' +
                         '<div class="gradebook-table-cell">' +
-                            '<a data-position="<%= dataPosition %>"><%= studentName %> (unenroll)</a>' +
+                            '<a data-position="<%= dataPosition %>" title="<%= studentName %> (unenroll)"><%= studentName %> (unenroll)</a>' +
                         '</div>' +
                         htmlStringResults +
                     '</div>'
@@ -372,7 +372,7 @@ function GradebookTab(button, content) {
             var studentPosition = evt.target.dataset['position'];
             var stat;
             var lastVisit = greadebookTab.studentInfo[studentPosition]['last_visit'];
-            $lastVisitInfo.prop('hidden', false).html('Date of the last Course visit: ' + lastVisit);
+            $lastVisitInfo.prop('hidden', false).html(gettext('Date of the last Course visit:') + ' ' + lastVisit);
 
             getDiscussionActivity(studentPosition);
             getVideoActivity(studentPosition);

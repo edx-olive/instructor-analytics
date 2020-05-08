@@ -113,10 +113,10 @@ function CohortTab(button, content) {
                                 '<%if (studentsEmails.length != 0) {%>' +
                                 '<div class="block-emails-list">' +
                                     '<span class="cohort-emails-list">' +
-                                      '<a class="emails-list-button">Show emails</a>' +
+                                      '<a class="emails-list-button"><%- gettext("Show emails") %></a>' +
                                     '</span>' +
                                     '<span class="cohort-emails-list hidden">' +
-                                      '<a class="emails-list-button">Hide emails</a>' +
+                                      '<a class="emails-list-button"><%- gettext("Hide emails") %></a>' +
                                     '</span>' +
                                 '</div>' +
                                 '<div class="emails-list-holder hidden"><%= studentsEmails.join(", ") %></div>' +

@@ -16,24 +16,29 @@ function ProblemTab(button, content) {
     var $problemEmailList = content.find('.problem-emails-list');
     var $problemLegend = content.find('.js-legend-holder');
 
-    var $emailTemplate = '<div>' +
-                            '<h2 class="analytics-title"><%= blockTitle %> Details</h2>' +
-                            '<%if (studentsEmails.length != 0) {%>' +
-                            '<div class="block-emails-list">' +
-                                '<span><%= blockTitle %> statistics is based on submits of ' +
-                                    '<%= studentsEmails.length %> student(s) </span>' +
-                                '<span class="<%= blockName %>-emails-span">' +
-                                  '<button class="emails-list-button">Show emails</button>' +
-                                '</span>' +
-                                '<span class="<%= blockName %>-emails-span hidden">' +
-                                  '<button class="emails-list-button">Hide emails</button>' +
-                                  '<div class="emails-list-holder"><%= studentsEmails.join(", ") %></div>' +
-                                '</span>' +
-                            '</div>' +
-                            '<%} else {%>' +
-                                '<span>Nothing to show</span>' +
-                            '<%}%>' +
-                        '</div>'
+    var $emailTemplate =
+        '<div>' +
+            '<h2 class="analytics-title">' +
+                '<%= interpolate(gettext("%(blockTitle)s Details"), {blockTitle: blockTitle}, true) %>' +
+            '</h2>' +
+            '<%if (studentsEmails.length != 0) {%>' +
+            '<div class="block-emails-list">' +
+                '<span>' +
+                    '<%= interpolate(gettext("%(blockTitle)s statistics is based on submits of %(studentsEmailsLength)s student(s)"), ' +
+                                     '{blockTitle: blockTitle, studentsEmailsLength:studentsEmails.length}, true) %>' +
+                '</span>' +
+                '<span class="<%= blockName %>-emails-span">' +
+                  '<button class="emails-list-button"><%- gettext("Show emails") %></button>' +
+                '</span>' +
+                '<span class="<%= blockName %>-emails-span hidden">' +
+                  '<button class="emails-list-button"><%- gettext("Hide emails") %></button>' +
+                  '<div class="emails-list-holder"><%= studentsEmails.join(", ") %></div>' +
+                '</span>' +
+            '</div>' +
+            '<%} else {%>' +
+                '<span><%- gettext("Nothing to show") %></span>' +
+            '<%}%>' +
+        '</div>';
 
 
     function openLocation(){
@@ -205,7 +210,7 @@ function ProblemTab(button, content) {
             $subsectionEmailList.append(_.template($emailTemplate)({
                 studentsEmails: studentsEmails,
                 blockName: 'subsection',
-                blockTitle: 'Subsection'
+                blockTitle: gettext('Subsection')
             }));
             showEmailList('.subsection-emails-span');
             $problemDetailSection.prop('hidden', false);
@@ -333,7 +338,7 @@ function ProblemTab(button, content) {
             $problemEmailList.append(_.template($emailTemplate)({
                 studentsEmails: studentsEmails,
                 blockName: 'problem',
-                blockTitle: 'Problem'
+                blockTitle: gettext('Problem')
             }));
 
             showEmailList('.problem-emails-span');
@@ -513,14 +518,14 @@ function BaseQuestion(questionHtml, stringProblemID) {
     * @param html layout for inserting the button to display the plot
     */
     this.applyToCurrentProblem = function (html) {
-        const $plotBtn = $('<button>Show Plot</button>');
+        const $plotBtn = $(`<button>${gettext("Show Plot")}</button>`);
         $plotBtn.appendTo(html);
         $plotBtn.click((item) => {
             var requestMap = this.getRequestMap();
             requestMap.problemID = this.problemID;
             $(item.target).toggleClass('active');
             if ($(item.target).hasClass('active')) {
-                $(item.target).html('Hide Plot');
+                $(item.target).html(gettext('Hide Plot'));
                 this.questionHtml.parent().find('.modal-for-plot').removeClass('hidden');
                 $.ajax({
                     traditional: true,
@@ -532,7 +537,7 @@ function BaseQuestion(questionHtml, stringProblemID) {
                     dataType: "json"
                 });
             } else {
-                $(item.target).html('Show Plot');
+                $(item.target).html(gettext('Show Plot'));
                 this.questionHtml.parent().find('.modal-for-plot').addClass('hidden');
             }
         });
