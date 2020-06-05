@@ -1,0 +1,106 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-30 15:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:42
+#: static/rg_instructor_analytics/js/enrollment-tab.js:62
+msgid "Total"
+msgstr "Kopā"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:51
+msgid "Enrollments/Unenrollments"
+msgstr "Reģistrēšanās/Izreģistrēšanās"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:78
+msgid "Enrollments"
+msgstr "Reģistrēšanās"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:93
+msgid "Unenrollments"
+msgstr "Izreģistrēšanās"
+
+#: static/rg_instructor_analytics/js/funnel-tab.js:95
+msgid "Hide emails"
+msgstr "Slēpt e-pastus"
+
+#: static/rg_instructor_analytics/js/funnel-tab.js:99
+msgid "Show emails"
+msgstr "Rādīt e-pastus"
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:283
+msgid "Search students"
+msgstr "Meklēt studentus"
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:375
+msgid "Date of the last Course visit:"
+msgstr "Datums, kad pēdējo reizi apmeklēts kurss:"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:91
+msgid "DETAILS"
+msgstr "APRAKSTS"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:213
+msgid "Subsection"
+msgstr "Apakšnodaļa"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:341
+msgid "Problem"
+msgstr "Problēma"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:521
+#: static/rg_instructor_analytics/js/problem-tab.js:540
+msgid "Show Plot"
+msgstr "Parādīt izklājumu"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:528
+msgid "Hide Plot"
+msgstr "Slēpt izklājumu"
+
+#: static/rg_instructor_analytics/js/suggestions-tab.js:20
+msgid "No suggestions so far."
+msgstr "Pagaidām nav ierosinājumu."
+
+#: static/rg_instructor_analytics/js/suggestions-tab.js:39
+msgid "Go to item"
+msgstr "Aiziet uz vienumu"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:22
+msgid "%(blockTitle)s Details"
+msgstr "%(blockTitle)s detaļas"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:27
+msgid "%(blockTitle)s statistics is based on submits of %(studentsEmailsLength)s student(s)"
+msgstr "%(blockTitle)s statistika, kas veidota no %(studentsEmailsLength)s studnetu pieteikumiem"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:39
+msgid "Nothing to show"
+msgstr "Nav nekā, ko parādīt"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:31
+msgid "Video"
+msgstr "Video"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:41
+msgid "Discussion"
+msgstr "Diskusija"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:51
+msgid "Visit"
+msgstr "Vizīte"

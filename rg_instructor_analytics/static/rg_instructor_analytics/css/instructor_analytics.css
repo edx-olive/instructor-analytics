@@ -129,21 +129,28 @@
 .gradebook-table-cell:first-child {
     flex: 0 0 250px;
     text-align: left;
-    padding: 7px 15px;
+    padding: 0;
     position: relative;
     left: auto !important;
+    max-width: 250px;
+}
+.gradebook-table-cell:first-child a {
+    display: block;
+    overflow: hidden;
+    padding: 7px 15px;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 #gradebook_table_header .gradebook-table-cell {
     background: rgb(210,210,210);
 }
 #gradebook_table_header .gradebook-table-cell:first-child {
-    background: none !important;
+    background: #fff !important;
     padding: 0 5px 0 0 !important;
 }
 #gradebook_table_body {
     max-height: 200px;
     overflow: auto;
-    padding-top: 28px;
 }
 .funnel-item.active > .content {
     display: block;

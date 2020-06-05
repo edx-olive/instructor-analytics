@@ -28,10 +28,10 @@ try:
 except ImportError:
     RELEASE_LINE = 'ficus'
 
-if RELEASE_LINE == 'hawthorn':
-    from rg_instructor_analytics.utils import hawthorn_specific as specific
-else:
+if RELEASE_LINE == 'ficus' or RELEASE_LINE == 'ginkgo':
     from rg_instructor_analytics.utils import ginkgo_ficus_specific as specific
+else:
+    from rg_instructor_analytics.utils import hawthorn_specific as specific
 
 
 class ProblemHomeWorkStatisticView(View):
@@ -253,13 +253,13 @@ class ProblemDetailView(View):
         """
         return super(ProblemDetailView, self).dispatch(*args, **kwargs)
 
-    def post(self, request, course_id):
+    def get(self, request, course_id):
         """
         POST request handler.
 
         :param course_id: (str) context course ID (from urlconf)
         """
-        return xblock_view(request, request.POST.get('course_id'), request.POST['problem'], 'student_view')
+        return xblock_view(request, request.GET.get('course_id'), request.GET['problem'], 'student_view')
 
 
 class ProblemQuestionParser():
