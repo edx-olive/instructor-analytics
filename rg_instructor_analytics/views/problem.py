@@ -328,7 +328,10 @@ class ProblemSelectQuestion(ProblemQuestionParser):
         """
         Overwrite base class.
         """
-        state['stats'][self.answer_map[item['student_answers'][self.questionID]]] += 1
+        try:
+            state['stats'][self.answer_map[item['student_answers'][self.questionID]]] += 1
+        except KeyError:
+            pass
 
 
 class ProblemMultiSelectQuestion(ProblemSelectQuestion):
@@ -347,7 +350,10 @@ class ProblemMultiSelectQuestion(ProblemSelectQuestion):
         Overwrite base class.
         """
         for answer in item['student_answers'][self.questionID]:
-            state['stats'][self.answer_map[answer]] += 1
+            try:
+                state['stats'][self.answer_map[answer]] += 1
+            except KeyError:
+                pass
 
 
 class ProblemQuestionView(View):
