@@ -2,6 +2,7 @@ touch-deploy:
     stage: deploy
     script:
         - apk add curl
-        - "curl -X POST -F token=$RG_ANALYTICS_TRIGGER -F ref=master https://gitlab.raccoongang.com/api/v4/projects/288/trigger/pipeline"
+        - "curl -X POST -F token=$HAWTHORN_RG_TRIGGER -F ref=master https://gitlab.raccoongang.com/api/v4/projects/288/trigger/pipeline"
+        - "curl -X POST -F token=$IRONWOOD_RG_TRIGGER -F ref=master https://gitlab.raccoongang.com/api/v4/projects/778/trigger/pipeline"
     only:
         - master
