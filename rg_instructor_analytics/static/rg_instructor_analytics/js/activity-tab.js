@@ -58,11 +58,10 @@ function ActivityTab(button, content) {
       var stat = [videoActivities, discussionActivities, courseActivities];
 
       var x_template = {
-      type: "date"
+        type: "date"
       };
 
-      var y_template = {
-      };
+      var y_template = {};
 
       if (dailyActivities.customize_yticks) {
         y_template["nticks"] = dailyActivities.nticks_y+1
@@ -75,43 +74,42 @@ function ActivityTab(button, content) {
         showlegend: false
       };
 
-      Plotly.newPlot('activity-stats-plot', stat, layout, {displayModeBar: false});
+    Plotly.newPlot('activity-stats-plot', stat, layout, {displayModeBar: false});
   }
 
   function renderUnitVisits(unitVisits) {
-      $loaderUnitVisits.addClass('hidden');
-      $tabContentUnitVisits.removeClass('hidden');
-      var heightLayout = unitVisits.tickvals.length * 20;
+    $loaderUnitVisits.addClass('hidden');
+    $tabContentUnitVisits.removeClass('hidden');
+    var heightLayout = unitVisits.tickvals.length * 20;
 
-      var stat = {
-          type: 'bar',
-          orientation: 'h',
-          x: unitVisits.count_visits,
-          y: unitVisits.tickvals,
-          name: '',
-      };
+    var stat = {
+        type: 'bar',
+        orientation: 'h',
+        x: unitVisits.count_visits,
+        y: unitVisits.tickvals,
+        name: '',
+    };
 
-      var x_template = {
-      };
+    var x_template = {};
 
-      if (Math.max(...unitVisits.count_visits) <= 5) {
-      x_template["nticks"] = Math.max(...unitVisits.count_visits)+1
-      }
+    if (Math.max(...unitVisits.count_visits) <= 5) {
+    x_template["nticks"] = Math.max(...unitVisits.count_visits)+1
+    }
 
-      var layout = {
-          showlegend: false,
-          height: heightLayout > 450 && heightLayout || 450,
-          xaxis: x_template,
-          yaxis: {
-              ticktext: unitVisits.ticktext,
-              tickvals: unitVisits.tickvals,
-              tickmode: 'array',
-              automargin: true,
-              autorange: true,
-          },
-      };
+    var layout = {
+        showlegend: false,
+        height: heightLayout > 450 && heightLayout || 450,
+        xaxis: x_template,
+        yaxis: {
+            ticktext: unitVisits.ticktext,
+            tickvals: unitVisits.tickvals,
+            tickmode: 'array',
+            automargin: true,
+            autorange: true,
+        },
+    };
 
-      Plotly.newPlot('activity-unit-visits-stats-plot', [stat], layout, {displayModeBar: false});
+    Plotly.newPlot('activity-unit-visits-stats-plot', [stat], layout, {displayModeBar: false});
 
   }
 

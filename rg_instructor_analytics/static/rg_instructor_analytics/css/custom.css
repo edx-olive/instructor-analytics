@@ -1,0 +1,96 @@
+.enrollment-toggle-btns {
+  margin-top: 25px;
+}
+
+.enrollment-toggle-btns__item {
+  background-color: transparent;
+  border: 0;
+  font: 700 12px/16px "Exo 2.0", Arial, sans-serif;
+  color: #3f3f3f !important;
+}
+
+.enrollment-toggle-btns__label {
+  position: relative;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.enrollment-toggle-btns__label input[type="radio"] {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.enrollment-toggle-btns__label input[type="radio"]:focus + .label-text {
+  color: #c2c2c2;
+}
+
+.enrollment-toggle-btns__label input[type="radio"] + .label-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font: 700 12px/20px "Exo 2.0", Arial, sans-serif;
+  color: #3f3f3f;
+  padding-left: 30px;
+}
+
+.enrollment-toggle-btns__label input[type="radio"] + .label-text:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #c2c2c2;
+  border-radius: 50%;
+  transition: all 200ms ease;
+  box-sizing: border-box;
+}
+
+.enrollment-toggle-btns__label input[type="radio"] + .label-text:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #3caada;
+  border-radius: 50%;
+  transition: all 200ms ease;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.enrollment-toggle-btns__label input[type="radio"]:checked + .label-text:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.enrollment-toggle-btns__label:first-child {
+  margin-right: 40px;
+}
+
+.enrollment-toggle-btns__item:hover {
+  background-color: transparent;
+}
+
+.enrollment-toggle-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
