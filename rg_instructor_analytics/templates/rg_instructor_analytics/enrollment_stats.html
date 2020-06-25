@@ -16,12 +16,16 @@
 
 <%include file="time-filter.html" args="active_tab='enrollment'"/>
 
-<div class="analytics-legend-holder">
-    <div class="analytics-legend-item">${_("Enrollments")}</div>
-    <div class="analytics-legend-item">${_("Unenrollments")}</div>
-    <div class="analytics-legend-item">${_("Total")}</div>
-</div>
-<div id="enrollment-stats-plot">
-
-</div>
-
+<figure class="highcharts-figure">
+    <div id="enrollment-stats-plot"></div>
+    <div class="enrollment-toggle-btns">
+        <label class="enrollment-toggle-btns__label">
+            <input type="radio" name="chart" checked="checked" data-chart-name="chart1">
+            <span class="label-text">${_("Enrollments/Unenrollments")}</span>
+        </label>
+        <label class="enrollment-toggle-btns__label">
+            <input class="chartTotal" type="radio" name="chart" data-chart-name="chart2">
+            <span class="label-text">${_("Total")}</span>
+        </label>
+    </div>
+</figure>

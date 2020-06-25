@@ -16,14 +16,12 @@ function EnrollmentTab(button, content) {
       var totalTrace;
       var enrollTrace;
       var unenrollTrace;
-      var layout;
       var data;
+
 
       function dataFixFunction(x) {
         var result = new Date(x);
-        result.setHours(0);
-        result.setMinutes(0);
-        return result;
+        return result.getTime();
       }
 
       var x_template = {
@@ -58,62 +56,159 @@ function EnrollmentTab(button, content) {
       totalTrace = {
         x: response.dates_total.map(dataFixFunction),
         y: response.counts_total,
-        mode: 'lines',
-        name: django.gettext('Total'),
-        line: {
-          color: '#568ecc',
-          width: 4,
-          shape: 'hv',
-        },
-        hovermode: 'closest',
-        hoverdistance: 1000,
-        spikedistance: 1000,
-        type: 'scatter'
+        name: django.gettext('Total')
       };
 
       enrollTrace = {
         x: response.dates_enroll.map(dataFixFunction),
         y: response.counts_enroll,
-        mode: 'lines',
-        name: django.gettext('Enrollments'),
-        line: {
-          color: '#8BB22A',
-        },
-        yaxis: 'y2',
-        type: 'bar',
-        marker: {
-          color: '#8BB22A',
-        },
+        name: django.gettext('Enrollments')
       };
 
       unenrollTrace = {
         x: response.dates_unenroll.map(dataFixFunction),
         y: response.counts_unenroll,
-        mode: 'lines',
-        name: django.gettext('Unenrollments'),
-        yaxis: 'y2',
-        line: {
-          color: '#CC4630',
-        },
-        type: 'bar',
-        marker: {
-          color: '#CC4630',
-        },
+        name: django.gettext('Unenrollments')
       };
 
-      layout = {
-        hovermode: 'closest',
-        xaxis: x_template,
-        yaxis: y1_template,
-        yaxis2: y2_template,
-        showlegend: false,
+      data = [enrollTrace, unenrollTrace, totalTrace];
+
+      var chartSetOptions = {
+        colors: [
+          '#5BB215',
+          '#E37C67'
+        ],
+        chart: {
+          type: 'areaspline',
+          style: {
+            fontFamily: "'Open Sans', sans-serif"
+          }
+        }
       };
 
-      data = [unenrollTrace, enrollTrace, totalTrace];
+      Highcharts.setOptions(chartSetOptions);
 
-      Plotly.newPlot('enrollment-stats-plot', data, layout, {
-        displayModeBar: false,
-        scrollZoom: false,
+      function chartDatesAndValues(dates, values) {
+        return dates.map(function(value, index) {
+          return [dates[index], values[index]];
+        });
+      };
+
+      var chart1 = [{
+          name: enrollTrace.name,
+          data: chartDatesAndValues(enrollTrace.x, enrollTrace.y)
+      }, {
+          name: unenrollTrace.name,
+          data: chartDatesAndValues(unenrollTrace.x, unenrollTrace.y)
+      }];
+
+      var chart2 = [{
+        name: totalTrace.name,
+        data: chartDatesAndValues(totalTrace.x, totalTrace.y) 
+      }];
+
+      var chartOpt = {
+        title: {
+          text: ''
+        },
+        legend: {
+          layout: 'horizontal',
+          align: 'center',
+          verticalAlign: 'top',
+          x: 0,
+          y: 0,
+          floating: true,
+          borderWidth: 0,
+          backgroundColor:
+              Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+        },
+        xAxis: {
+          dateTimeLabelFormats: {
+            day: '%b %d'
+          },
+          type: 'datetime',
+          allowDecimals: false,
+          gridLineWidth: 1,
+          labels: {
+            enabled: true,
+            style: {
+              color: '#3F3F3F',
+              fontSize: '12px'
+            }
+          }
+        },
+        yAxis: {
+          title: {
+            text: ''
+          },
+          allowDecimals: false
+        },
+        tooltip: {
+          shared: true,
+          valueSuffix: ' users'
+        },
+        credits: {
+          enabled: false
+        },
+        plotOptions: {
+          areaspline: {
+            fillOpacity: 0.4
+          },
+          series: {
+            marker: {
+              enabled: true
+            }
+          }
+        },
+        series: chart1
+      };
+
+      var chartClass = 'enrollment-stats-plot';
+      var checkedClass = 'is-checked';
+
+      Highcharts.chart(chartClass, chartOpt);
+
+      function drawChart(data) {
+        Highcharts.setOptions(Object.assign(chartSetOptions, {
+          colors: data.colors
+        }));
+
+        Highcharts.chart(chartClass, Object.assign(chartOpt, {
+          series: data.name
+        }));
+      }
+
+      function drawChartTotal() {
+        drawChart({
+          name: chart2,
+          colors: [
+            '#232323'
+          ]
+        });
+      }
+
+      if ( $('.chartTotal').hasClass(checkedClass) ) {
+        drawChartTotal();
+      }
+
+      $('.enrollment-toggle-btns__label').on('click', function() {
+        var el = $(this);
+        var $input = el.find('input');
+
+        $('input').removeClass(checkedClass);
+        $input.addClass(checkedClass);
+
+        if ($input.data('chart-name') == 'chart1') {
+          drawChart({
+            name: chart1,
+            colors: [
+              '#5BB215',
+              '#E37C67'
+            ]
+          });
+        } else {
+          drawChartTotal();
+        }
       });
     }
 
