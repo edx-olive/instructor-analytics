@@ -104,3 +104,7 @@ msgstr "Diskusija"
 #: static/rg_instructor_analytics/js/activity-tab.js:51
 msgid "Visit"
 msgstr "Vizīte"
+
+#: static/rg_instructor_analytics/js/clusters-tab.js:123
+msgid "Percent:"
+msgstr ""
