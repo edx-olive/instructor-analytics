@@ -94,3 +94,14 @@
   -ms-flex-pack: center;
   justify-content: center;
 }
+
+.chart-backgrond {
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 10px rgba(149, 149, 149, .2);
+  box-shadow: 0 0 10px rgba(149, 149, 149, .2);
+  padding: 70px 35px 35px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 40px 0 55px;
+}

@@ -87,8 +87,82 @@ function CohortTab(button, content) {
                 x: response.labels,
                 type: 'bar',
             };
-            var data = [plot];
-            Plotly.newPlot('cohort-plot', data, {}, {displayModeBar: false});
+
+            // Highcharts
+            var chartData = plot.y.map(function(item, i) { 
+                return Object.assign
+                    (
+                        {name: plot.x[i]}, 
+                        {y: plot.y[i]},
+                        {sliced: true}
+                    )
+            });
+            
+            var pieColors = [
+                '#A0E13A',
+                '#616CC1',
+                '#8F55A5',
+                '#459EDB',
+                '#01CC9B'
+            ];
+
+            Highcharts.chart('cohort-plot', {
+                chart: {
+                    type: 'pie',
+                    marginRight: 380,
+                    style: {
+                        fontFamily: 'Exo 2.0, sans-serif'
+                    }
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                        django.gettext("Percent:") + ' <b>{point.y}</b>'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        colors: pieColors,
+                        dataLabels: {
+                            enabled: true,
+                            color: '#3F3F3F',
+                            style: {
+                                fontSize: '12px',
+                                fontWeight: 'normal'
+                            }
+                        },
+                        showInLegend: true
+                    }
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle',
+                    x: -200,
+                    y: 0,
+                    itemMarginBottom: 20,
+                    borderWidth: 0,
+                    symbolRadius: 0,
+                    itemStyle: {
+                        color: '#232323'
+                    },
+                    backgroundColor:
+                        Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+                    
+                },
+                series: [{
+                    innerSize: '23%',
+                    slicedOffset: 3,
+                    data: chartData
+                }]
+            });
 
             cohortTab.cohortList.empty();
             for (var i = 0; i < response.cohorts.length; i++) {
