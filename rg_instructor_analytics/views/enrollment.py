@@ -37,111 +37,63 @@ class EnrollmentStatisticView(View):
         return super(EnrollmentStatisticView, self).dispatch(*args, **kwargs)
 
     @staticmethod
-    def get_last_state(course_key, date):
-        """
-        Get the last available Enrollments statistics before the date.
-
-        :param course_key: (str) Edx course id
-        :param date: (DateTime) base date
-        :return: (dict) with count of `unenrolled`, `enrolled` and total users.
-        For example: `{'unenrolled': 1, 'enrolled': 2, 'total': 3}`
-        """
-        last_state = (
-            EnrollmentByDay.objects
-            .filter(course=course_key, day__lt=date)
-            .values('unenrolled', 'enrolled', 'total')
-            .first()
-        )
-        return last_state or {'unenrolled': 0, 'enrolled': 0, 'total': 0}
-
-    @staticmethod
-    def get_state_for_period(course_key, from_date, to_date):
-        """
-        Get Enrollments stats for the date range.
-
-        :param course_key: (str) Edx course id
-        :param from_date: (DateTime) start range date
-        :param to_date: (DateTime) end range date
-        :return: list of dicts || empty list
-        """
-        return (
-            EnrollmentByDay.objects
-            .filter(course=course_key, day__range=(from_date, to_date))
-            .values('unenrolled', 'enrolled', 'total', 'day')
-            .order_by('day')
-        )
-
-    @staticmethod
     def get_daily_stats_for_course(from_timestamp, to_timestamp, course_key):  # get_day_course_stats
         """
         Provide statistic, which contains: dates in unix-time, count of enrolled users, unenrolled and total.
 
-        Return map with next keys: dates - store list of dates in unix-time, total - store list of active users
-        for given day (enrolled users - unenrolled),  enrol - store list of enrolled user for given day,
-        unenroll - store list of unenrolled user for given day.
+        Return map with next keys:
+         enrolls - store list of pairs - dates in unix-time, count of enrolled user for given day;
+         unenrolls - store list of pairs - dates in unix-time, count of unenrolled user for given day;
+         total - store list of pairs - dates in unix-time, count of active users.
         """
         from_date = datetime.fromtimestamp(from_timestamp).date()
         to_date = datetime.fromtimestamp(to_timestamp).date()
 
-        previous_info = EnrollmentStatisticView.get_last_state(course_key, from_date)
+        enroll_list = []
+        unenroll_list = []
+        total_list = []
+        prev_enroll_day = from_date
+        prev_unenroll_day = from_date
+        prev_total_day = from_date
 
-        dates_total = [from_date]
-        counts_total = [previous_info['total']]
+        format_day = lambda fday: int(fday.strftime('%s')) * 1000
 
-        dates_enroll = []
-        counts_enroll = []
+        def check_and_complete(day, prev_day, value, values_list):
+            if value:
+                days_delta = (day - prev_day).days
+                if days_delta > 1:
+                    # at least one empty day between values - fill with zero day after previous value
+                    values_list.append((format_day(prev_day + timedelta(days=1)), 0))
+                    if days_delta > 2:
+                        # at least two day between values - fill with zero day before current value
+                        values_list.append((format_day(day - timedelta(days=1)), 0))
+                values_list.append((format_day(day), value))
+                return day
+            return prev_day  # not changed if value is 0
 
-        dates_unenroll = []
-        counts_unenroll = []
+        def check_and_complete_end(end_day, prev_day, values_list):
+            if end_day != prev_day:
+                days_delta = (end_day - prev_day).days
+                if days_delta > 1:
+                    values_list.append((format_day(prev_day + timedelta(days=1)), 0))
+                    if days_delta > 2:
+                        values_list.append((format_day(end_day), 0))
 
-        def insert_new_stat_item(count, date, counts_list, dates_list):
-            if count == 0:
-                return
+        qs = EnrollmentByDay.objects.filter(
+            course=course_key, day__range=(from_date, to_date)
+        ).values_list('day', 'enrolled', 'unenrolled', 'total').order_by('day')
 
-            yesterday = date - timedelta(1)
-            if yesterday >= from_date and not (len(dates_list) > 0 and dates_list[-1] == yesterday):
-                counts_list.append(0)
-                dates_list.append(yesterday)
+        for day, enrolled, unenrolled, total in qs:
+            prev_enroll_day = check_and_complete(day, prev_enroll_day, enrolled, enroll_list)
+            prev_unenroll_day = check_and_complete(day, prev_unenroll_day, unenrolled, unenroll_list)
+            prev_total_day = check_and_complete(day, prev_total_day, total, total_list)
 
-            if len(dates_list) > 0 and dates_list[-1] == date:
-                counts_list[-1] = count
-            else:
-                counts_list.append(count)
-                dates_list.append(date)
-
-            tomorrow = date + timedelta(1)
-            if tomorrow <= to_date:
-                counts_list.append(0)
-                dates_list.append(tomorrow)
-
-        for data in EnrollmentStatisticView.get_state_for_period(course_key, from_date, to_date):
-            dates_total.append(data['day'])
-            counts_total.append(data['total'])
-
-            insert_new_stat_item(data['enrolled'], data['day'], counts_enroll, dates_enroll)
-
-            insert_new_stat_item(data['unenrolled'], data['day'], counts_unenroll, dates_unenroll)
-
-        dates_total.append(to_date)
-        counts_total.append(counts_total[-1])
-
-        nticks_y1 = max(counts_total) - min(counts_total) if counts_total else 0
-        counts_enroll_unenroll = counts_enroll + counts_unenroll
-        nticks_y2 = max(counts_enroll_unenroll) if counts_enroll_unenroll else 0
-
-        dates_delta = to_date - from_date
-
-        customize_xticks = True if dates_delta.days <= 5 else False  # x-axis "Date"
-        customize_y1ticks = True if nticks_y1 <= 3 else False  # y-axis "Total"
-        customize_y2ticks = True if nticks_y2 <= 3 else False  # y-axis "Enrolled/Unenrolled"
+        check_and_complete_end(to_date, prev_enroll_day, enroll_list)
+        check_and_complete_end(to_date, prev_unenroll_day, unenroll_list)
+        check_and_complete_end(to_date, prev_total_day, total_list)
 
         return {
-            'dates_total': dates_total, 'counts_total': counts_total,
-            'dates_enroll': dates_enroll, 'counts_enroll': counts_enroll,
-            'dates_unenroll': dates_unenroll, 'counts_unenroll': counts_unenroll,
-            'customize_xticks': customize_xticks,
-            'customize_y1ticks': customize_y1ticks, 'customize_y2ticks': customize_y2ticks,
-            'nticks_y1': nticks_y1, 'nticks_y2': nticks_y2,
+            'enrolls': enroll_list, 'unenrolls': unenroll_list, 'totals': total_list
         }
 
     def post(self, request, course_id):
