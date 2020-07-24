@@ -9,6 +9,7 @@ from django.utils.translation import ugettext as _
 from django.views.generic import View
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
+from student.models import CourseEnrollment
 
 from rg_instructor_analytics import tasks
 from rg_instructor_analytics.models import GradeStatistic
@@ -40,9 +41,11 @@ class CohortView(View):
         except InvalidKeyError:
             return HttpResponseBadRequest(_("Invalid course ID."))
 
+        unenrolled_ids = CourseEnrollment.objects.filter(course_id=course_key, is_active=False).values_list('user__id')
         grade_stats = (
             GradeStatistic.objects
             .filter(course_id=course_key)
+            .exclude(student_id__in=unenrolled_ids)
             .values('student__email', 'total')
         )
 
