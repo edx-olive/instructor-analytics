@@ -1,6 +1,7 @@
 """
 Enrollment stats sub-tab module.
 """
+import calendar
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -46,8 +47,8 @@ class EnrollmentStatisticView(View):
          unenrolls - store list of pairs - dates in unix-time, count of unenrolled user for given day;
          total - store list of pairs - dates in unix-time, count of active users.
         """
-        from_date = datetime.fromtimestamp(from_timestamp).date()
-        to_date = datetime.fromtimestamp(to_timestamp).date()
+        from_date = datetime.utcfromtimestamp(from_timestamp).date()
+        to_date = datetime.utcfromtimestamp(to_timestamp).date()
 
         enroll_list = []
         unenroll_list = []
@@ -56,7 +57,13 @@ class EnrollmentStatisticView(View):
         prev_unenroll_day = from_date
         prev_total_day = from_date
 
-        format_day = lambda fday: int(fday.strftime('%s')) * 1000
+        format_day = lambda fday: calendar.timegm(fday.timetuple()) * 1000
+
+        def get_prev_total_value():
+            qs = EnrollmentByDay.objects.filter(
+                course=course_key, day__lt=from_date
+            ).values_list('total', flat=True).order_by('-day').first()
+            return qs if qs else 0
 
         def check_and_complete(day, prev_day, value, values_list):
             if value:
@@ -75,7 +82,8 @@ class EnrollmentStatisticView(View):
             if end_day != prev_day:
                 days_delta = (end_day - prev_day).days
                 if days_delta > 1:
-                    values_list.append((format_day(prev_day + timedelta(days=1)), 0))
+                    day = prev_day + timedelta(days=1) if values_list else prev_day
+                    values_list.append((format_day(day), 0))
                     if days_delta > 2:
                         values_list.append((format_day(end_day), 0))
 
@@ -83,14 +91,31 @@ class EnrollmentStatisticView(View):
             course=course_key, day__range=(from_date, to_date)
         ).values_list('day', 'enrolled', 'unenrolled', 'total').order_by('day')
 
+        # init start points
+        if qs:
+            day = qs[0][0]
+            if day != from_date:
+                enroll_list.append((format_day(from_date), 0))
+                unenroll_list.append((format_day(from_date), 0))
+                total_list.append((format_day(from_date), get_prev_total_value()))
+
         for day, enrolled, unenrolled, total in qs:
             prev_enroll_day = check_and_complete(day, prev_enroll_day, enrolled, enroll_list)
             prev_unenroll_day = check_and_complete(day, prev_unenroll_day, unenrolled, unenroll_list)
-            prev_total_day = check_and_complete(day, prev_total_day, total, total_list)
 
+            days_delta = (day - prev_total_day).days
+            if days_delta > 1:
+                total_list.append((format_day(day - timedelta(days=1)), total_list[-1][1]))
+            total_list.append((format_day(day), total))
+            prev_total_day = day
+
+        # complete end points
         check_and_complete_end(to_date, prev_enroll_day, enroll_list)
         check_and_complete_end(to_date, prev_unenroll_day, unenroll_list)
-        check_and_complete_end(to_date, prev_total_day, total_list)
+        if prev_total_day and prev_total_day != to_date:
+            if not total_list:
+                total_list.append((format_day(from_date), get_prev_total_value()))
+            total_list.append((format_day(to_date), total_list[-1][1]))
 
         return {
             'enrolls': enroll_list, 'unenrolls': unenroll_list, 'totals': total_list
