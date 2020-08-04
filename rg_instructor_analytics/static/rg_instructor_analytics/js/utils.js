@@ -75,8 +75,8 @@ function TimeFilter(content, action) {
     timestampRange: {
       get: function() {
         return {
-          from: this.startDate.unix(),
-          to: this.endDate.unix(),
+          from: this.startDate.add(this.startDate.utcOffset(), 'minutes').unix(), // make 00:00:00 by UTC
+          to: this.endDate.add(this.endDate.utcOffset(), 'minutes').unix(), // make 23:59:59 by UTC
         }
       }
     }
