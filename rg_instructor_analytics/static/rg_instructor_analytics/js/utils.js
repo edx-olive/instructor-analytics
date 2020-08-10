@@ -14,7 +14,6 @@ function TimeFilter(content, action) {
   this.firstEnrollDate = null;
   this.courseStartDate = null;
 
-
   this.$fromDatePicker = content.find(".js-from-datepicker")
     .datepicker({
       maxDate: moment().format(momentDateFormat),
@@ -75,8 +74,8 @@ function TimeFilter(content, action) {
     timestampRange: {
       get: function() {
         return {
-          from: this.startDate.add(this.startDate.utcOffset(), 'minutes').unix(), // make 00:00:00 by UTC
-          to: this.endDate.add(this.endDate.utcOffset(), 'minutes').unix(), // make 23:59:59 by UTC
+          from: moment(this.startDate + this.startDate.utcOffset() * 60 * 1000).unix(), // make 00:00:00 by UTC
+          to: moment(this.endDate + this.endDate.utcOffset() * 60 * 1000).unix(), // make 23:59:59 by UTC
         }
       }
     }

@@ -11,18 +11,27 @@
 <div class="tab-content">
     <%include file="time-filter.html" args="active_tab='activity'"/>
 
-    <div>
+    <div class="activity-chart">
         <div class="loader js-loader__activity_stats">
             ${_("Loading")}
             <img src="/static/rg_instructor_analytics/images/ajax-loader.gif" alt="loader">
         </div>
         <div class="item-content js-item-content__activity_stats hidden">
-            <div class="analytics-legend-holder activity-legend-holder__square">
-                <div class="activity-legend-item">${_("Video views count")}</div>
-                <div class="activity-legend-item">${_("Discussion activities count")}</div>
-                <div class="activity-legend-item">${_("Intensity of visits the course count")}</div>
-            </div>
             <div id="activity-stats-plot"></div>
+            <div class="activity-toggle-checkboxes">
+                <label class="activity-toggle-checkboxes__label">
+                    <input class="toggle" id="series-video" type="checkbox" checked="checked">
+                    <span class="label-text">${_("Video views count")}</span>
+                </label>
+                <label class="activity-toggle-checkboxes__label">
+                    <input class="toggle" id="series-discussion" type="checkbox" checked="checked">
+                    <span class="label-text">${_("Discussion activities count")}</span>
+                </label>
+                <label class="activity-toggle-checkboxes__label">
+                    <input class="toggle" id="series-visits" type="checkbox" checked="checked">
+                    <span class="label-text">${_("Intensity of visits the course count")}</span>
+                </label>
+            </div>
         </div>
     </div>
 
@@ -37,11 +46,8 @@
                 ${_("This graph indicates the amount of visits of each Unit and bring you the whole perspective "
                 "of what part of Course was the most difficult or interesting for your Students.")}
             </span>
-            <div id="activity-unit-visits-stats-plot"></div>
+            <div class="activity-chart units-chart" id="activity-unit-visits-stats-plot"></div>
         </div>
     </div>
 
 </div>
-
-
-
