@@ -1,9 +1,10 @@
 """
 Gradebook sub-tab module.
 """
+import calendar
 from datetime import datetime, timedelta
 
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
@@ -34,68 +35,49 @@ class ActivityView(View):
         """
         Get statistic of video and discussion activities by days.
         """
-        video_dates = []
-        video_activities = []
+        def no_group_qs(model_class):
+            return model_class.objects.filter(
+                course=course_key, day__range=(from_date, to_date)
+            ).order_by('day').values_list('day', 'total')
 
-        video_activities_data = list(VideoViewsByDay.objects.filter(
-            course=course_key,
-            day__range=(from_date, to_date)
-        ).order_by('day').values_list('day', 'total'))
+        # VideoViewsByDay is unique not for ('course', 'day'), but for ('course', 'day', 'video_block_id')
+        # so it's grouped by day and summed in query
+        video_views_qs = VideoViewsByDay.objects \
+            .filter(course=course_key, day__range=(from_date, to_date)) \
+            .order_by('day') \
+            .values_list('day') \
+            .annotate(total=Sum('total'))
 
-        for v_day, v_total in video_activities_data:
-            if v_day not in video_dates:
-                video_dates.append(v_day)
-                video_activities.append(v_total)
-            else:
-                video_activities[-1] += v_total
+        format_day = lambda fday: calendar.timegm(fday.timetuple()) * 1000
 
-        if from_date not in video_dates:
-            video_dates.insert(0, from_date)
-            video_activities.insert(0, 0)
+        def complete_data(qs):
+            out_list = []
+            prev_day = from_date - timedelta(days=1)
+            for day, total in qs:
 
-        if to_date - timedelta(1) not in video_dates:
-            video_dates.append(to_date - timedelta(1))
-            video_activities.append(0)
+                days_delta = (day - prev_day).days
+                if days_delta > 1:
+                    # at least one empty day between values - fill with zero day after previous value
+                    out_list.append((format_day(prev_day + timedelta(days=1)), 0))
+                    if days_delta > 2:
+                        # at least two day between values - fill with zero day before current value
+                        out_list.append((format_day(day - timedelta(days=1)), 0))
 
-        if to_date not in video_dates:
-            video_dates.append(to_date)
-            video_activities.append(0)
+                out_list.append((format_day(day), total))
+                prev_day = day
 
-        discussion_data = DiscussionActivityByDay.objects.filter(
-            course=course_key,
-            day__range=(from_date, to_date),
-        ).order_by('day').values('day', 'total')
+            days_delta = (to_date - prev_day).days
+            if days_delta > 1:
+                out_list.append((format_day(prev_day + timedelta(days=1)), 0))
+                if days_delta > 2:
+                    out_list.append((format_day(to_date), 0))
 
-        discussion_dates = []
-        discussion_activities = []
-        for d in discussion_data:
-            discussion_dates.append(d['day'])
-            discussion_activities.append(d['total'])
-
-        course_visits_data = CourseVisitsByDay.objects.filter(
-            course=course_key,
-            day__range=(from_date, to_date),
-        ).order_by('day').values('day', 'total')
-
-        course_dates = []
-        course_activities = []
-        for d in course_visits_data:
-            course_dates.append(d['day'])
-            course_activities.append(d['total'])
-
-        activities = video_activities + discussion_activities + course_activities
-        nticks_y = max(activities) if activities else 0
-        customize_yticks = True if nticks_y <= 3 else False  # y-axis
+            return out_list
 
         return {
-            'video_dates': video_dates,
-            'video_activities': video_activities,
-            'discussion_dates': discussion_dates,
-            'discussion_activities': discussion_activities,
-            'course_dates': course_dates,
-            'course_activities': course_activities,
-            'customize_yticks': customize_yticks,
-            'nticks_y': nticks_y,
+            'video_views': complete_data(video_views_qs),
+            'discussion_activities': complete_data(no_group_qs(DiscussionActivityByDay)),
+            'course_activities': complete_data(no_group_qs(CourseVisitsByDay))
         }
 
     def get_unit_visits(self, from_date, to_date, course_key):
@@ -168,8 +150,8 @@ class ActivityView(View):
         except InvalidKeyError:
             return HttpResponseBadRequest(_("Invalid course ID."))
 
-        from_date = datetime.fromtimestamp(from_timestamp).date()
-        to_date = datetime.fromtimestamp(to_timestamp).date()
+        from_date = datetime.utcfromtimestamp(from_timestamp).date()
+        to_date = datetime.utcfromtimestamp(to_timestamp).date()
 
         if slug == 'daily':
             activity = self.get_daily_activity_for_course(from_date, to_date, course_key)
@@ -178,7 +160,4 @@ class ActivityView(View):
         else:
             activity = {}
 
-        return JsonResponse(data={
-            'activity': activity
-
-        })
+        return JsonResponse(data=activity)

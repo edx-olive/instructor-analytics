@@ -105,3 +105,100 @@
   border-radius: 5px;
   margin: 40px 0 55px;
 }
+
+.activity-chart {
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 10px rgba(149, 149, 149, .2);
+  box-shadow: 0 0 10px rgba(149, 149, 149, .2);
+  padding: 70px 35px 35px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin: 40px 0 55px;
+}
+
+.activity-toggle-checkboxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.activity-toggle-checkboxes__label {
+  position: relative;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 0;
+  margin-right: 35px;
+}
+
+.activity-toggle-checkboxes__label:last-child {
+  margin-right: 0;
+}
+
+.activity-toggle-checkboxes__label input[type="checkbox"] {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.activity-toggle-checkboxes__label input[type="checkbox"]:focus + .label-text {
+  color: #c2c2c2;
+}
+
+.activity-toggle-checkboxes__label input[type="checkbox"] + .label-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font: 700 12px/20px "Exo 2.0", Arial, sans-serif;
+  color: #3f3f3f;
+  padding-left: 30px;
+}
+
+.activity-toggle-checkboxes__label input[type="checkbox"] + .label-text:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #c2c2c2;
+  border-radius: 5px;
+  transition: all 200ms ease;
+  box-sizing: border-box;
+}
+
+.activity-toggle-checkboxes__label input[type="checkbox"] + .label-text:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg height='18px' viewBox='0 -46 417.81333 417' width='18px' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m159.988281 318.582031c-3.988281 4.011719-9.429687 6.25-15.082031 6.25s-11.09375-2.238281-15.082031-6.25l-120.449219-120.46875c-12.5-12.5-12.5-32.769531 0-45.246093l15.082031-15.085938c12.503907-12.5 32.75-12.5 45.25 0l75.199219 75.203125 203.199219-203.203125c12.503906-12.5 32.769531-12.5 45.25 0l15.082031 15.085938c12.5 12.5 12.5 32.765624 0 45.246093zm0 0' fill='%233CAADA'/%3E%3C/svg%3E");
+  transition: all 200ms ease;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.activity-toggle-checkboxes__label input[type="checkbox"]:checked + .label-text:after {
+  opacity: 1;
+  visibility: visible;
+}

@@ -13,103 +13,175 @@ function ActivityTab(button, content) {
   var $tabContentDailyActivities = content.find('.js-item-content__activity_stats');
   var $loaderUnitVisits = content.find('.js-loader__unit-visits-stats');
   var $tabContentUnitVisits = content.find('.item-content__unit-visits-stats');
+  var $videoCheckbox = content.find('#series-video');
+  var $discussionCheckbox = content.find('#series-discussion');
+  var $visitsCheckbox = content.find('#series-visits');
 
   function renderDailyActivities(dailyActivities) {
-      $loaderDailyActivities.addClass('hidden');
-      $tabContentDailyActivities.removeClass('hidden');
+    $loaderDailyActivities.addClass('hidden');
+    $tabContentDailyActivities.removeClass('hidden');
 
-      function dataFixFunction(x) {
-        var result = new Date(x);
-        result.setHours(0);
-        result.setMinutes(0);
-        return result;
-      }
-
-      var videoActivities = {
-          x: dailyActivities.video_dates.map(dataFixFunction),
-          y: dailyActivities.video_activities,
-          name: django.gettext('Video'),
-          type: 'bar',
-          marker:{
-              color: '#568ecc'
-          }
-      };
-
-      var discussionActivities = {
-          x: dailyActivities.discussion_dates.map(dataFixFunction),
-          y: dailyActivities.discussion_activities,
-          name: django.gettext('Discussion'),
-          type: 'bar',
-          marker:{
-              color: '#50c156'
-          }
-      };
-
-      var courseActivities = {
-        x: dailyActivities.course_dates.map(dataFixFunction),
-        y: dailyActivities.course_activities,
+    var chartData = [{
+        name: django.gettext('Video'),
+        data: dailyActivities.video_views,
+        visible: $videoCheckbox.is(":checked"),
+        showInLegend: $videoCheckbox.is(":checked")
+    },{
+        name: django.gettext('Discussion'),
+        data: dailyActivities.discussion_activities,
+        visible: $discussionCheckbox.is(":checked"),
+        showInLegend: $discussionCheckbox.is(":checked")
+    },{
         name: django.gettext('Visit'),
-        type: 'bar',
-        marker:{
-            color: '#8e28c1'
+        data: dailyActivities.course_activities,
+        visible: $visitsCheckbox.is(":checked"),
+        showInLegend: $visitsCheckbox.is(":checked")
+    }];
+
+    var chartSetOpt = {
+        colors: [
+          '#3CAADA',
+          '#84C124',
+          '#9C75D9'
+        ],
+        chart: {
+            fontFamily: "'Exo 2.0', sans-serif"
         }
-      };
+    };
 
-      var stat = [videoActivities, discussionActivities, courseActivities];
+    Highcharts.setOptions(chartSetOpt);
 
-      var x_template = {
-        type: "date"
-      };
+    var chart = Highcharts.chart('activity-stats-plot', {
+        chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: ''
+        },
+        legend: {
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'top',
+            x: 0,
+            y: 0,
+            floating: true,
+            borderWidth: 0,
+            backgroundColor:
+              Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+        },
+        xAxis: {
+            type: 'datetime',
+            gridLineWidth: 1,
+            allowDecimals: false,
+            dateTimeLabelFormats: {
+                day: '%b %Y'
+            },
+            colors: ['#50c156', '#568ecc', '#8e28c1']
+        },
+        yAxis: {
+            title: {
+                text: ''
+            }
+        },
+        tooltip: {
+            shared: true,
+            valueSuffix: ' units'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.5
+            }
+        },
+        series: chartData,
+        dashStyle: 'longdash'
+    });
 
-      var y_template = {};
-
-      if (dailyActivities.customize_yticks) {
-        y_template["nticks"] = dailyActivities.nticks_y+1
-      }
-
-      var layout = {
-        barmode: 'group',
-        xaxis: x_template,
-        yaxis: y_template,
-        showlegend: false
-      };
-
-    Plotly.newPlot('activity-stats-plot', stat, layout, {displayModeBar: false});
+    function toggleSeriesCheckbox($checkbox, series_num) {
+        chart.series[series_num].update({
+            showInLegend: $checkbox.is(":checked"),
+            visible: $checkbox.is(":checked"),
+        });
+    }
+    $videoCheckbox.off('change');
+    $discussionCheckbox.off('change');
+    $visitsCheckbox.off('change');
+    $videoCheckbox.on('change', function(){toggleSeriesCheckbox($videoCheckbox, 0)});
+    $discussionCheckbox.on('change', function(){toggleSeriesCheckbox($discussionCheckbox, 1)});
+    $visitsCheckbox.on('change', function(){toggleSeriesCheckbox($visitsCheckbox, 2)});
   }
 
   function renderUnitVisits(unitVisits) {
     $loaderUnitVisits.addClass('hidden');
     $tabContentUnitVisits.removeClass('hidden');
-    var heightLayout = unitVisits.tickvals.length * 20;
 
-    var stat = {
-        type: 'bar',
-        orientation: 'h',
-        x: unitVisits.count_visits,
-        y: unitVisits.tickvals,
-        name: '',
-    };
+    // Highcharts
+    var chartValues = unitVisits.count_visits;
+    var chartText = unitVisits.ticktext;
 
-    var x_template = {};
+    var chartData = chartText.map(function(value, index) {
+        return [chartText[index], chartValues[index]];
+    });
 
-    if (Math.max(...unitVisits.count_visits) <= 5) {
-    x_template["nticks"] = Math.max(...unitVisits.count_visits)+1
-    }
-
-    var layout = {
-        showlegend: false,
-        height: heightLayout > 450 && heightLayout || 450,
-        xaxis: x_template,
-        yaxis: {
-            ticktext: unitVisits.ticktext,
-            tickvals: unitVisits.tickvals,
-            tickmode: 'array',
-            automargin: true,
-            autorange: true,
+    Highcharts.chart('activity-unit-visits-stats-plot', {
+        chart: {
+            type: 'bar',
+            events: {
+                load: function() {
+                    var categoryHeight = 22;
+                    this.update({
+                        chart: {
+                            height: categoryHeight * this.pointCount + (this.chartHeight - this.plotHeight)
+                        }
+                    })
+                }
+            }
         },
-    };
-
-    Plotly.newPlot('activity-unit-visits-stats-plot', [stat], layout, {displayModeBar: false});
+        title: {
+            text: ''
+        },
+        plotOptions: {
+            bar: {
+                pointWidth: 16,
+                borderRadius: 4
+            }
+        }, 
+        xAxis: {
+            type: 'category',
+            labels: {
+                style: {
+                    fontSize: '12px',
+                    color: '#3F3F3F'
+                }
+            },
+            lineColor: '#3CAADA',
+            lineWidth: 1,
+        },
+        credits: {
+            enabled: false
+        },
+        yAxis: {
+            allowDecimals: false,
+            endOnTick: false,
+            title: {
+                text: ''
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: '<b>{point.y:.1f}</b>'
+        },
+        series: [{
+            data: chartData,
+            dataLabels: {
+                enabled: false
+            }
+        }]
+    });
 
   }
 
@@ -131,7 +203,7 @@ function ActivityTab(button, content) {
           dataType: "json",
           traditional: true,
           success: function (data) {
-              renderDailyActivities(data.activity);
+              renderDailyActivities(data);
           },
           error: onError,
       });
@@ -143,7 +215,7 @@ function ActivityTab(button, content) {
           dataType: "json",
           traditional: true,
           success: function (data) {
-            renderUnitVisits(data.activity);
+            renderUnitVisits(data);
           },
           error: onError,
       });
