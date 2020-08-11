@@ -180,6 +180,7 @@ function ProblemTab(button, content) {
       $('.emails-list-button').on('click', function (ev) {
         ev.preventDefault();
         $(ev.currentTarget).parents('.block-emails-list').find(emailsSpan).toggleClass('hidden');
+        $(emailsSpan).toggleClass('not-showing');
       });
     }
 
@@ -227,13 +228,11 @@ function ProblemTab(button, content) {
                             style="width: ${(100 - yAxis.length) / yAxis.length}%; height: ${barHeight}"
                             data-attribute="${index}"
                         >
-                            <span>${correct[index]}</span>
                             <div class="correct-bar" style="height:${correctBar/2}%">
-                                
+                                <span>${correct[index]}</span> 
                             </div>
-                            <span class="second-num">${Math.abs(incorrect[index])}</span>
                             <div class="incorrect-bar" style="height:${incorrectBar/2}%">
-                                
+                                <span class="second-num">${Math.abs(incorrect[index])}</span>
                             </div>
                             <div class="plot-click-me">${django.gettext('DETAILS')}</div>
                         </li>
