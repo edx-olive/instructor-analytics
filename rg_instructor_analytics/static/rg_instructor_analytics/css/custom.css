@@ -202,3 +202,506 @@
   opacity: 1;
   visibility: visible;
 }
+
+/* Problems Tab */
+
+.problem-bg-wrapper,
+#problem-body #model_plot {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(149, 149, 149, .2);
+  border-radius: 5px;
+  padding: 40px;
+  box-sizing: border-box;
+  margin: 40px 0 60px;
+}
+
+#problem-body #model_plot {
+  border: 1px solid #efefef;
+  padding: 11px 46px;
+  box-shadow: none;
+  margin: 30px 0 0;
+}
+
+.plot-bar-attempts,
+.correct-bar {
+  background: #01cc9b;
+}
+
+.plot-bar-percent,
+.incorrect-bar {
+  background: #8f55a5;
+}
+
+.plot-bar-attempts,
+.plot-bar-percent {
+  border-radius: 2px;
+}
+
+.analytics-legend-item {
+  color: #3f3f3f;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.analytics-legend-holder__square .analytics-legend-item, 
+.activity-legend-holder__square .activity-legend-item {
+  margin: 0 50px;
+}
+
+.analytics-legend-holder__square .analytics-legend-item:before {
+  width: 15px;
+  height: 15px;
+}
+
+.analytics-legend-holder__square .analytics-legend-item:nth-child(1):before {
+  background: #01cc9b;
+}
+
+.analytics-legend-holder__square .analytics-legend-item:nth-child(2):before {
+  background: #8f55a5;
+}
+
+.plot-bar-vert .plot-click-me, 
+.plot-bar-vertical .plot-click-me {
+  border-radius: 10px;
+  border: 1px solid #3caada;
+  min-width: 79px;
+  color: #3caada;
+  box-sizing: border-box;
+}
+
+.plot-bar-vert .plot-click-me:hover, 
+.plot-bar-vertical .plot-click-me:hover {
+  color: #fff;
+  background: #3caada;
+}
+
+.plot-bar-vert:hover:before,
+#problems-stats-plot .plot-bar-vertical:hover:before {
+  border: 1px solid #3caada;
+  border-radius: 5px;
+  background: rgba(60, 170, 218, .1);
+  width: calc(100% + 9px);
+  top: 0;
+}
+
+#problems-stats-plot .plot-bar-vertical:hover:before {
+  width: 100%;
+}
+
+.analytics-legend-holder {
+  margin-bottom: 10px;
+}
+
+#problem-homeworks-stats-plot .plot-body {
+  background: linear-gradient(
+    to bottom,
+    #efefef,
+    #efefef 0.4%,
+    white 0.4%,
+    white 50%,
+    #efefef 50%,
+    #efefef 50.4%,
+    white 50.4%,
+    white 99.6%,
+    #959595 99.6%,
+    #959595 100%
+  );
+  position: relative;
+}
+
+#problem-homeworks-stats-plot .plot-body li {
+  margin-bottom: 2px !important;
+}
+
+#problem-homeworks-stats-plot .plot-body li:hover {
+  height: auto !important;
+}
+
+#problem-homeworks-stats-plot .plot-body:before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: 0;
+  background-color: #959595;
+  width: 1px;
+  height: calc(100% + 60px);
+}
+
+#problem-homeworks-stats-plot .y-axis-r {
+  right: 15px;
+}
+
+#problem-homeworks-stats-plot .y-axis-l {
+  left: 15px;
+}
+
+#problem-homeworks-stats-plot .x-axis .hw-xaxis {
+  text-transform: uppercase;
+}
+
+.plot-bar-value {
+  display: flex;
+}
+
+.plot-bar-value,
+#problems-stats-plot .plot-bar-vertical span {
+  text-shadow: 0 0 5px rgba(0, 0, 0, .5);
+}
+
+#problems-stats-plot .y-axis-l {
+  left: 15px;
+}
+
+.plot-bar-vert > div > span {
+  -webkit-transform: translate(0);
+  -ms-transform: translate(0);
+  transform: translate(0);
+}
+
+.instructor-dashboard-content-2 ul li,
+#problems-stats-plot .y-axis-l li div {
+  color: #3f3f3f;
+  font-size: 12px;
+}
+
+#problems-stats-plot .plot-bar-vertical {
+  margin-bottom: 0 !important;
+}
+
+#problems-stats-plot .plot-body {
+  background: linear-gradient(
+    to bottom,
+    #efefef,
+    #efefef 0.4%,
+    white 0.4%,
+    white 50%,
+    #959595 50%,
+    #959595 50.6%,
+    white 50.4%,
+    white 99.6%,
+    #efefef 99.7%,
+    #efefef 100%
+  );
+}
+
+#problems-stats-plot .plot-body .correct-bar,
+#problems-stats-plot .plot-body .incorrect-bar {
+  border-radius: 2px;
+  position: relative;
+}
+
+#problems-stats-plot .plot-bar-vertical .second-num {
+  top: 50%;
+}
+
+#problems-stats-plot .plot-bar-vertical span {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+#problem-question-plot .plot-name {
+  text-align: right;
+  padding-right: 10px;
+  font-size: 12px;
+  line-height: 17px;
+  color: #3f3f3f;
+}
+
+#problem-question-plot .plot-bar-holder {
+  background: #e2e2e2;
+  border-radius: 5px;
+  height: 27px;
+}
+
+#problem-question-plot .plot-bar {
+  background: #3caada;
+  border-radius: 5px;
+}
+
+#problem-question-plot .plot-value {
+  color: #202020;
+  font-size: 12px;
+  line-height: 27px;
+}
+
+#problem-question-plot .plot-row {
+  max-height: 27px;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+#problem-body .problem {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+#problem-body .problem .wrapper-problem-response {
+  max-width: 750px;
+}
+
+.wrapper-problem-response button {
+  border: 2px solid #3caada !important;
+  border-radius: 16px !important;
+  color: #3caada !important;
+  font-weight: 400 !important;
+  padding: 5px 45px 5px 20px !important;
+}
+
+.wrapper-problem-response button:hover,
+.wrapper-problem-response button:focus {
+  background-color: #3caada !important;
+  border: 2px solid #3caada !important;
+}
+
+.wrapper-problem-response button:before {
+  content: "\f107";
+  color: #3caada;
+  right: 15px;
+}
+
+.wrapper-problem-response button:hover:before,
+.wrapper-problem-response button:focus:before {
+  color: #fff;
+}
+
+.problem-emails-list .problem-emails-span .emails-list-button,
+.subsection-emails-list .subsection-emails-span .emails-list-button {
+  border: 0 !important;
+  text-transform: none !important;
+  color: #3caada !important;
+  position: relative;
+}
+
+.problem-emails-list .problem-emails-span .emails-list-button:after,
+.subsection-emails-list .subsection-emails-span .emails-list-button:after {
+  content: "\f107";
+  font-family: "FontAwesome";
+  color: #3caada;
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transition: all 200ms ease;
+}
+
+.problem-emails-list .problem-emails-span.not-showing .emails-list-button:after,
+.subsection-emails-list .subsection-emails-span.not-showing .emails-list-button:after {
+  -webkit-transform: translateY(-50%) scale(-1);
+  -ms-transform: translateY(-50%) scale(-1);
+  transform: translateY(-50%) scale(-1);
+}
+
+.problem-emails-list .problem-emails-span .emails-list-button:hover,
+.subsection-emails-list .subsection-emails-span .emails-list-button:hover {
+  background: none !important;
+  color: #0075b4 !important;
+}
+
+.problem-emails-list .problem-emails-span .emails-list-button:after:hover,
+.subsection-emails-list .subsection-emails-span .emails-list-button:after:hover {
+  color: #0075b4;
+}
+
+.emails-list-holder {
+  max-width: 750px;
+  border-radius: 15px;
+  border: 2px solid #3caada;
+  padding: 1px 15px;
+}
+
+.xmodule_display.xmodule_CapaModule div.problem .choicegroup label {
+  border: 1px solid #efefef !important;
+}
+
+.xmodule_display.xmodule_CapaModule div.problem .choicegroup .is-active label {
+  border-color: #3caada !important;
+}
+
+.modal-for-plot {
+  border-top: 1px solid #dfdfdf;
+  padding-top: 20px;
+}
+
+.top-title-holder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  border-bottom: 2px solid #c4e0f1;
+  padding-bottom: 7px;
+  margin-bottom: 35px;
+}
+
+.top-title-holder h1 {
+  margin-bottom: 0;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.course-select {
+  position: absolute;
+  top: 108px;
+  right: 25px;
+}
+
+.course-select .jqselect {
+  margin: 0;
+  width: 100% !important;
+  max-width: 310px;
+  border: 2px solid #3caada;
+  border-radius: 15px;
+}
+
+.course-select .jqselect .jq-selectbox__select {
+  padding: 3px 17px !important;
+}
+
+.course-select .jqselect .jq-selectbox__select:before {
+  top: 0 !important;
+}
+
+.course-select .jqselect .jq-selectbox__select:after {
+  bottom: 0 !important;
+}
+
+.instructor-dashboard-content-2 .instructor-nav {
+  border-bottom: 0;
+}
+
+.instructor-nav li button {
+  color: #3e3e3e;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.instructor-nav li button.active-section {
+  background: none !important;
+  color: #3caada !important;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn {
+  border-radius: 15px !important;
+  border: 2px solid #3caada !important;
+  min-width: 245px;
+  color: #3caada !important;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn:hover {
+  background-color: #3caada !important;
+  color: #fff !important;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn:hover:before {
+  border-bottom: 7px solid #fff;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn:hover:after {
+  border-top: 7px solid #fff;
+}
+
+.date-btn:before {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  border: 4px solid transparent;
+  border-bottom: 7px solid #3caada;
+  -webkit-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+
+.date-btn:after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  border: 4px solid transparent;
+  border-top: 7px solid #3caada;
+  -webkit-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+
+#instructor-analytics-dashboard-content .jqselect {
+  border: 2px solid #3caada !important;
+  min-width: 245px;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect .jq-selectbox__select {
+  padding: 7px 15px !important;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect .jq-selectbox__select:before {
+  top: 0;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect .jq-selectbox__select:after {
+  bottom: 0;
+}
+
+#instructor-analytics-dashboard-content .instructor-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+#instructor-analytics-dashboard-content .instructor-nav .jqselect {
+  width: 250px !important;
+  margin-bottom: 0 !important;
+}
+
+#instructor-analytics-dashboard-content .instructor-nav .jqselect .jq-selectbox__select {
+  padding: 8px 30px 8px 12px;
+}
+
+#instructor-analytics-dashboard-content .instructor-nav .jqselect .jq-selectbox__select .jq-selectbox__select-text {
+  height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn {
+  border-radius: 5px;
+  height: auto !important;
+  padding: 3px 30px 3px 15px !important;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select:before {
+  display: none;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect {
+  margin-bottom: 0;
+  padding: 0 !important;
+  border-radius: 15px !important;
+  height: auto !important;
+}
+
+#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect .jq-selectbox__select {
+  padding: 12px 20px;
+}
+
+.jqselect .jq-selectbox__select:before {
+  border-bottom: 7px solid #3caada !important;
+}
+
+.jqselect .jq-selectbox__select:after {
+  border-top: 7px solid #3caada !important;
+}
+
+.jqselect .jq-selectbox__select-text {
+  color: #00a2da;
+}
