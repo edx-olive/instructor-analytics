@@ -102,8 +102,19 @@ function FunnelTab(button, content) {
         }
       });
 
+      $('.js-emails-list-close').on('click', function () {
+        var $el = $(this).parents('.funnel-item');
+
+        $el.find('.emails-list').prop('hidden', true);
+        $el.find('.emails-list-button').text(gettext('Show emails')).addClass('show-emails-button');
+      });
+
       $('.emails-list').on('click', function (ev) {
         ev.stopPropagation();
+      });
+       
+      $('.emails-list').each(function() {
+        $(this).find('.emails-list-mails strong:not(:last-child)').after(', ');
       });
     }
 
@@ -152,24 +163,31 @@ function FunnelTab(button, content) {
                       '<span class="funnel-item-incoming"><%= incoming %></span>' +
                       '<span class="funnel-item-outgoing"><%= outcoming %></span>' +
                       '<%if (level < 2) {%>' +
-                      '<span class="funnel-item-outgoing input-checkbox">' +
-                          '<input type="checkbox" class="level-<%= level %>" id="level-<%= level %>-<%= blockId %>" name="funnel_send_email" <%if (studentEmails.length == 0) {%>disabled <%}%> value="<%= studentEmails %>">' +
-                          '<label for="level-<%= level %>-<%= blockId %>" class="funnel-checkbox-label"></label>' +
+                      '<span class="funnel-item-outgoing">' +
                           '<%if (studentEmails.length != 0) {%>' +
-                              '<button class="emails-list-button show-emails-button"><%- gettext("Show emails") %></button>' +
+                              '<div class="emails-list-button-holder">' +
+                                '<button class="emails-list-button show-emails-button"><%- gettext("Show emails") %></button>' +
+                              '</div>' +
                           '<%}%>' +
                       '</span>' +
                       '<%}%>' +
                       '<span class="funnel-item-name"><%= itemName %></span>' +
-                      '<span class="funnel-item-stuck">stuck: <%= stuck %></span>' +
+                      '<span class="funnel-item-stuck">stuck: <b><%= stuck %></b></span>' +
                   '</div>' +
                   '<%if (studentEmails.length != 0) {%>' +
                       '<div class="emails-list" hidden>' +
-                        '<span>' +
+                        '<button class="emails-list__close show-emails-button js-emails-list-close"></button>' +
+                        '<span class="emails-list-mails">' +
                         '<%for (var i = 0; i < studentEmails.length; i++) {%>' +
                             '<strong><%= studentEmails[i] %></strong>' +
                         '<%}%>' +
                         '</span>' +
+                        '<div class="input-checkbox">' +
+                            '<label for="level-<%= level %>-<%= blockId %>" class="funnel-checkbox-label">' +
+                                '<input type="checkbox" class="level-<%= level %>" id="level-<%= level %>-<%= blockId %>" name="funnel_send_email" <%if (studentEmails.length == 0) {%>disabled <%}%> value="<%= studentEmails %>">' +
+                                '<span class="label-text"><%- gettext("Add addresses to mailing list") %></span>' +
+                            '</label>' +
+                        '</div>' +
                       '</div>' +
                   '<%}%>' +
                   '<%= children %>' +
