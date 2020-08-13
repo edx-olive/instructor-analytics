@@ -84,8 +84,7 @@ class EnrollmentStatisticView(View):
                 if days_delta > 1:
                     day = prev_day + timedelta(days=1) if values_list else prev_day
                     values_list.append((format_day(day), 0))
-                    if days_delta > 2:
-                        values_list.append((format_day(end_day), 0))
+                values_list.append((format_day(end_day), 0))
 
         qs = EnrollmentByDay.objects.filter(
             course=course_key, day__range=(from_date, to_date)
