@@ -1,15 +1,18 @@
 """
 Module for celery tasks.
 """
-from collections import OrderedDict
-from datetime import datetime
 import json
 import logging
+from collections import OrderedDict
+from datetime import datetime, date
 
 from celery.schedules import crontab
 from celery.task import periodic_task, task
+from courseware.courses import get_course_by_id
+from courseware.models import StudentModule
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.core.exceptions import PermissionDenied
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
@@ -19,13 +22,13 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
-
-from courseware.courses import get_course_by_id
-from courseware.models import StudentModule
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
-from rg_instructor_analytics.models import GradeStatistic, LastGradeStatUpdate
 from student.models import CourseEnrollment
 from xmodule.modulestore.django import modulestore
+
+from rg_instructor_analytics.models import AgeStats, EducationStats, GradeStatistic, LastGradeStatUpdate, GenderStats, ResidenceStats
+from rg_instructor_analytics.utils import get_microsite_courses, get_courses_learners, aggregate_users_stats
 
 try:
     from openedx.core.release import RELEASE_LINE
@@ -195,3 +198,155 @@ def run_common_static_collection():
     Task for updating analytics data.
     """
     grade_collector_stat()
+
+
+cron_additional_info_tab_settings = {
+    'minute': '0',
+    'hour': '3',
+    'day_of_month': '*',
+    'day_of_week': '*',
+    'month_of_year': '*',
+}
+
+
+@periodic_task(run_every=crontab(**cron_additional_info_tab_settings))
+def collect_demographics():
+    """
+    Master task to run a bunch of worker tasks for different User stats collection.
+    """
+    collect_gender_stats()
+    collect_education_stats()
+    collect_age_stats()
+    collect_residence_stats()
+
+
+@task
+def collect_gender_stats():
+    # Create daily record for each Site:
+    for site in Site.objects.all():
+        courses_ids = get_microsite_courses(site)
+        users_ids = get_courses_learners(courses_ids)
+        stats = aggregate_users_stats(users_ids, 'gender')
+
+        GenderStats.objects.update_or_create(
+            site=site,
+            date=date.today(),
+            defaults={
+                'total': stats['total'],
+                'empty': stats['empty'],
+                'values': stats,
+            }
+        )
+
+    # Create aggregated daily record (system-wide):
+    all_courses_ids = CourseOverview.objects.values_list('id', flat=True)
+    users_ids = get_courses_learners(all_courses_ids)
+    stats = aggregate_users_stats(users_ids, 'gender')
+    GenderStats.objects.update_or_create(
+        date=date.today(),
+        site=None,
+        defaults={
+            'total': stats['total'],
+            'empty': stats['empty'],
+            'values': stats,
+        }
+    )
+
+
+@task
+def collect_education_stats():
+    # Create daily record for each Site:
+    for site in Site.objects.all():
+        courses_ids = get_microsite_courses(site)
+        users_ids = get_courses_learners(courses_ids)
+        stats = aggregate_users_stats(users_ids, 'level_of_education')
+
+        EducationStats.objects.update_or_create(
+            site=site,
+            date=date.today(),
+            defaults={
+                'total': stats['total'],
+                'empty': stats['empty'],
+                'values': stats,
+            }
+        )
+
+    # Create aggregated daily record (system-wide):
+    all_courses_ids = CourseOverview.objects.values_list('id', flat=True)
+    users_ids = get_courses_learners(all_courses_ids)
+    stats = aggregate_users_stats(users_ids, 'level_of_education')
+    EducationStats.objects.update_or_create(
+        date=date.today(),
+        site=None,
+        defaults={
+            'total': stats['total'],
+            'empty': stats['empty'],
+            'values': stats,
+        }
+    )
+
+
+@task
+def collect_age_stats():
+    # Create daily record for each Site:
+    for site in Site.objects.all():
+        courses_ids = get_microsite_courses(site)
+        users_ids = get_courses_learners(courses_ids)
+        stats = aggregate_users_stats(users_ids, 'year_of_birth')
+
+        AgeStats.objects.update_or_create(
+            site=site,
+            date=date.today(),
+            defaults={
+                'total': stats['total'],
+                'empty': stats['empty'],
+                'values': stats,
+            }
+        )
+
+    # Create aggregated daily record (system-wide):
+    all_courses_ids = CourseOverview.objects.values_list('id', flat=True)
+    users_ids = get_courses_learners(all_courses_ids)
+    stats = aggregate_users_stats(users_ids, 'year_of_birth')
+    AgeStats.objects.update_or_create(
+        date=date.today(),
+        site=None,
+        defaults={
+            'total': stats['total'],
+            'empty': stats['empty'],
+            'values': stats,
+        }
+    )
+
+
+@task
+def collect_residence_stats():
+    # Create daily record for each Site:
+    for site in Site.objects.all():
+        courses_ids = get_microsite_courses(site)
+        users_ids = get_courses_learners(courses_ids)
+        stats = aggregate_users_stats(users_ids, 'country')
+
+        ResidenceStats.objects.update_or_create(
+            site=site,
+            date=date.today(),
+            defaults={
+                'total': stats['total'],
+                'empty': stats['empty'],
+                'values': stats,
+            }
+        )
+
+    # Create aggregated daily record (system-wide):
+    all_courses_ids = CourseOverview.objects.values_list('id', flat=True)
+    users_ids = get_courses_learners(all_courses_ids)
+    stats = aggregate_users_stats(users_ids, 'country')
+    ResidenceStats.objects.update_or_create(
+        date=date.today(),
+        site=None,
+        defaults={
+            'total': stats['total'],
+            'empty': stats['empty'],
+            'values': stats,
+        }
+    )

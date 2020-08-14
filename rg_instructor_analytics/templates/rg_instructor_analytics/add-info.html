@@ -1,0 +1,17 @@
+<%page args="section_data" expression_filter="h"/>
+<%namespace name='static' file='/static_content.html'/>
+<%
+from django.utils.translation import ugettext as _
+%>
+
+<div class="tab-banner" hidden>
+  <h2 class="analytics-title">${_("Course has not started yet.")}</h2>
+</div>
+
+<div class="tab-content">
+  <div id="add-info-tab">Loading ...</div>
+</div>
+
+
+
+
