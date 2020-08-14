@@ -1,4 +1,4 @@
-$(function() {
+(function($) {
     'use strict';
     var CSS_INSTRUCTOR_CONTENT = 'instructor-dashboard-content-2';
     var $content = $('.' + CSS_INSTRUCTOR_CONTENT);
@@ -11,7 +11,8 @@ $(function() {
         'gradebook-btn': 'gradebook',
         'cohort-btn': 'cohort',
         'funnel-btn': 'funnel',
-        'suggestion-btn': 'suggestion'
+        'suggestion-btn': 'suggestion',
+        'add-info-btn': 'add-info',
     }
 
     var tabs = {
@@ -37,14 +38,19 @@ $(function() {
             $content.find('#section-funnel')),
         suggestion: SuggestionTab(
             $content.find('#suggestion-btn'),
-            $content.find('#section-suggestion'))
+            $content.find('#section-suggestion')),
+        // stub to satisfy old interface
+        'add-info': StubTab(
+            $content.find('#add-info-btn'),
+            $content.find('#section-add-info')
+        ),
     };
 
     var firstTab = $content.find('.instructor-nav').children().first();
     if (firstTab.length) {
         var tabId = firstTab.children()[0].id;
 
-        var tabHolder = new TabHolder(tabs, courseSelect.val());
+        var tabHolder = new TabHolder(tabs, courseSelect.val(), courseSelect);
         tabHolder.toggleToTab(tabNames[tabId]);
 
         courseSelect.change(function(item) {
@@ -56,4 +62,4 @@ $(function() {
         // stub function.
     };
 
-}).call(this);
+})(jQuery);

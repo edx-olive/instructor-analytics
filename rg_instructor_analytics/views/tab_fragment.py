@@ -7,6 +7,7 @@ from time import mktime
 
 from django.http import Http404
 from django.shortcuts import render_to_response
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.cache import cache_control
@@ -77,6 +78,13 @@ TABS = (
         'title': _('Suggestions'),
         'template': 'suggestion.html'
     },
+    {
+        'field': 'add_info',
+        'class': 'add-info',
+        'section': 'cohort',
+        'title': _('Additional Information'),
+        'template': 'add-info.html'
+    },
 )
 
 
@@ -92,33 +100,46 @@ def get_enroll_info(course):
     }
 
 
+def get_staff_courses():
+    """
+    For staff user we need return all available courses on platform.
+    """
+    courses = []
+    available_courses = CourseOverview.objects.all()
+    for course in available_courses:
+        try:
+            courses.append(get_course_by_id(course.id, depth=0))
+        except Http404:
+            continue
+
+    return courses
+
+
+def get_instructor_courses(user):
+    """
+    Find courses, where User has permissions as Instructor or Course Staff.
+    """
+    courses = {}
+    available_courses = CourseAccessRole.objects.filter(user=user, role__in=['instructor', 'staff'])
+    for record in available_courses:
+        try:
+            course = get_course_by_id(record.course_id, depth=0)
+            course_id = str(course.id)
+            courses[course_id] = course
+        except Http404:
+            continue
+
+    return courses.values()
+
+
 def get_available_courses(user):
     """
-    Return courses, available for the given user.
+    Return courses, available for the given User.
     """
-    result = []
-    # For staff user we need return all available courses on platform.
     if user.is_staff:
-        available_courses = CourseOverview.objects.all()
-        for course in available_courses:
-            try:
-                result.append(get_course_by_id(course.id, depth=0))
-            except Http404:
-                continue
-    # Return courses, where user has permission as instructor of staff
-    else:
-        available_courses = CourseAccessRole.objects.filter(user=user, role__in=['instructor', 'staff'])
-        exist_courses_id = []
-        for record in available_courses:
-            try:
-                course = get_course_by_id(record.course_id, depth=0)
-                course_id = str(course.id)
-                if course_id not in exist_courses_id:
-                    result.append(course)
-                    exist_courses_id.append(course_id)
-            except Http404:
-                continue
-    return result
+        return get_staff_courses()
+
+    return get_instructor_courses(user)
 
 
 def get_course_dates_info(course):
@@ -129,6 +150,15 @@ def get_course_dates_info(course):
         'course_start': mktime(course.start.timetuple()) if course.start else 'null',
         'course_is_started': False if course.start and course.start > timezone.now() else True
     }
+
+
+def make_api_path(tail_url_name, args):
+    """
+    Throws away the beginning part of API URL : e.g. <A/B/C> => <B/C>
+    """
+    root = reverse('instructor_analytics_dashboard', args=args)
+    tail = reverse(tail_url_name, args=args)
+    return tail.replace(root, '')
 
 
 @ensure_csrf_cookie
@@ -170,6 +200,15 @@ def instructor_analytics_dashboard(request, course_id):
         'enroll_info': json.dumps(enroll_info),
         'available_courses': available_courses,
         'course_dates_info': json.dumps(course_dates_info),
+        'api_urls': {
+            'add_info': {
+                'overall': make_api_path('api:additional-info-overall-stats', [course_id]),
+                'residence': make_api_path('api:additional-info-residence-stats', [course_id]),
+                'gender': reverse('api:additional-info-gender-stats', args=[course_id]),
+                'age': reverse('api:additional-info-age-stats', args=[course_id]),
+                'education': reverse('api:additional-info-education-stats', args=[course_id]),
+            }
+        },
     }
 
     return render_to_response('rg_instructor_analytics/instructor_analytics_fragment.html', context)
