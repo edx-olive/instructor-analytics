@@ -2,65 +2,76 @@
  * Learners age stats.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { ageStatsFetching } from './data/actions';
-import { Bar } from '@nivo/bar'
-import * as R from 'ramda';
+/* eslint-disable react-hooks/exhaustive-deps */
 
+import React, { useEffect } from "react";
+import * as R from "ramda";
+import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
+import { ageStatsFetching } from "./data/actions";
+import Empty from "./Empty";
+import BarChart from "./BarChart";
+import { usePrev } from "../utils";
 
-export class AgeStatsContainer extends React.Component {
-  componentDidMount() {
-    const { pullAgeStats } = this.props;
-    pullAgeStats();
-  }
+export const AgeStatsContainer = () => {
+  const { scopes, scope, course, site } = useSelector(state => state.scopes);
+  const ageStats = useSelector(state => state.ageStats);
+  const dispatch = useDispatch();
 
-  render() {
-    const { ageStats } = this.props;
-    //  Example: [ {'id': 'z', 'value': 20, 'abs_value': 1, 'label': 'Generation Z: 1995-2012'}, ]
+  const getScopeParams = scope => {
+    switch (scope) {
+      case scopes.course:
+        return { course_id: course };
+      case scopes.site:
+        return { site_id: site };
+      default:
+        return {};
+    }
+  };
 
-    const makeTooltip = item => (R.isNil(item.data['abs_value']) ? '–' : `${item.data['abs_value']} user(s)`);
-    return (
-      <Bar
-        data={ageStats}
-        width={600}
-        height={300}
-        margin={{ top: 20, right: 10, bottom: 20, left: 150 }}
-        layout={'horizontal'}
-        colors={'#268FCB'}
-        indexBy={'label'}
-        enableGridX={true}
-        gridXValues={[0, 20, 40, 60, 80, 100]}
-        enableGridY={false}
-        maxValue={100}
-        label={item => `${item.value}%`}
-        axisBottom={{tickSize: 5}}
-        axisLeft={{tickSize: 5}}
-        tooltip={makeTooltip}
-      />
-    )
-  }
-}
+  // NOTE: avoiding firing redundant initial API requests:
+  const prevSite = usePrev(site);
+  const prevCourse = usePrev(course);
 
-AgeStatsContainer.propTypes = {
-  ageStats: PropTypes.array.isRequired,
-  pullAgeStats: PropTypes.func.isRequired,
+  useEffect(
+    () => {
+      !R.isNil(scope) && dispatch(ageStatsFetching(getScopeParams(scope)));
+    },
+    [scope]
+  );
+
+  useEffect(
+    () => {
+      !R.isNil(site) &&
+        !R.isNil(prevSite) &&
+        dispatch(ageStatsFetching({ site_id: site }));
+    },
+    [site]
+  );
+
+  useEffect(
+    () => {
+      !R.isNil(course) &&
+        !R.isNil(prevCourse) &&
+        dispatch(ageStatsFetching({ course_id: course }));
+    },
+    [course]
+  );
+
+  const dataAbsentOrEmpty = stats =>
+    stats === "error" ||
+    (R.isEmpty(stats) || R.isEmpty(stats.data)) ||
+    R.equals(R.sum(R.pluck("value", stats.data)), 0);
+
+  return dataAbsentOrEmpty(ageStats) ? (
+    <Empty />
+  ) : (
+    <BarChart data={ageStats.data} />
+  );
 };
 
-AgeStatsContainer.defaultProps = {};
+AgeStatsContainer.propTypes = {
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
 
-const stateToProps = ({ ageStats }) => ({
-  ageStats,
-});
-
-const dispatchToProps = dispatch => ({
-  pullAgeStats: () => dispatch(ageStatsFetching()),
-});
-
-const ConnectedAgeStatsContainer = connect(
-  stateToProps,
-  dispatchToProps,
-)(AgeStatsContainer);
-
-export default ConnectedAgeStatsContainer;
+export default AgeStatsContainer;

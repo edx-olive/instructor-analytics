@@ -1,23 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Typography } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   heading: {
-    fontSize: '1rem',
+    fontSize: "1rem",
     fontWeight: 600,
-    textTransform: 'uppercase',
-    letterSpacing: '-1px',
-    marginBottom: '-8px',
+    textTransform: "uppercase",
+    letterSpacing: "-1px",
+    marginBottom: "-8px"
   },
   subheading: {
-    fontWeight: 600,
+    fontWeight: 600
   },
   text: {
-    fontWeight: 300,
+    fontWeight: 300
   },
-});
+  chart: {
+    marginTop: theme.spacing(4)
+  }
+}));
 
 export const Section = ({ heading, subheading, text, children }) => {
   const classes = useStyles();
@@ -38,7 +41,7 @@ export const Section = ({ heading, subheading, text, children }) => {
           {text}
         </Typography>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} className={classes.chart}>
         {children}
       </Grid>
     </Grid>
@@ -48,7 +51,7 @@ export const Section = ({ heading, subheading, text, children }) => {
 Section.propTypes = {
   heading: PropTypes.string,
   subheading: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.string
 };
 
 export default Section;
