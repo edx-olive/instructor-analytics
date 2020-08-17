@@ -5,6 +5,8 @@ import json
 import sys
 from time import mktime
 
+from django.contrib.sites.models import Site
+from django.db.models import F
 from django.http import Http404
 from django.shortcuts import render_to_response
 from django.urls import reverse
@@ -202,8 +204,9 @@ def instructor_analytics_dashboard(request, course_id):
         'course_dates_info': json.dumps(course_dates_info),
         'api_urls': {
             'add_info': {
-                'overall': make_api_path('api:additional-info-overall-stats', [course_id]),
-                'residence': make_api_path('api:additional-info-residence-stats', [course_id]),
+                'scopes': reverse('api:additional-info-scopes', args=[course_id]),
+                'overall': reverse('api:additional-info-overall-stats', args=[course_id]),
+                'geo': reverse('api:additional-info-geo-stats', args=[course_id]),
                 'gender': reverse('api:additional-info-gender-stats', args=[course_id]),
                 'age': reverse('api:additional-info-age-stats', args=[course_id]),
                 'education': reverse('api:additional-info-education-stats', args=[course_id]),

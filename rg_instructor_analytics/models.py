@@ -154,8 +154,8 @@ class EducationStats(models.Model):
     date = models.DateField(_("date"))
 
     class Meta(object):
-        verbose_name = _("education level statistics")
-        verbose_name_plural = _("education level statistics")
+        verbose_name = _("education statistics")
+        verbose_name_plural = _("education statistics")
         unique_together = ('site', 'date')
         ordering = ['date']
 
@@ -199,8 +199,8 @@ class AgeStats(models.Model):
     date = models.DateField(_("date"))
 
     class Meta(object):
-        verbose_name = _("year of birth statistics")
-        verbose_name_plural = _("year of birth statistics")
+        verbose_name = _("age statistics")
+        verbose_name_plural = _("age statistics")
         unique_together = ('site', 'date')
         ordering = ['date']
 
@@ -242,8 +242,8 @@ class ResidenceStats(models.Model):
     date = models.DateField(_("date"))
 
     class Meta(object):
-        verbose_name = _("country of residence statistics")
-        verbose_name_plural = _("country of residence statistics")
+        verbose_name = _("geo statistics")
+        verbose_name_plural = _("geo statistics")
         unique_together = ('site', 'date')
         ordering = ['date']
 

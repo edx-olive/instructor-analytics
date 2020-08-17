@@ -1,17 +1,15 @@
-import { createAction } from 'redux-api-middleware';
+import { createAction } from "redux-api-middleware";
 import {
   AGE_STATS_FAILURE,
   AGE_STATS_RECEIVED,
-  AGE_STATS_REQUEST,
-} from './actionTypes';
-import api from './api/endpoints';
-import { withAuth } from '../../../context';
+  AGE_STATS_REQUEST
+} from "./actionTypes";
+import { apiUrls, makeHeaders, withParams } from "../../../setupAPI";
 
-export const ageStatsFetching = () =>
+export const ageStatsFetching = params =>
   createAction({
-    endpoint: api.ageStats,
-    method: 'POST',
-    headers: withAuth({}),
-    body: JSON.stringify({ site_id: 1 }),
-    types: [AGE_STATS_REQUEST, AGE_STATS_RECEIVED, AGE_STATS_FAILURE],
+    endpoint: withParams(apiUrls.add_info.age, params),
+    method: "GET",
+    headers: makeHeaders(),
+    types: [AGE_STATS_REQUEST, AGE_STATS_RECEIVED, AGE_STATS_FAILURE]
   });

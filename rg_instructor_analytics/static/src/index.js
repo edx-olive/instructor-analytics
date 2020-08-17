@@ -1,17 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { Provider } from "react-redux";
+import { ThemeProvider } from "@material-ui/core/styles";
 import App from "./AdditionalInfoTab";
-import { CssBaseline } from "@material-ui/core";
-import store from "./AdditionalInfoTab/data/store";
-import Provider from "react-redux/es/components/Provider";
+
+import store from "./AdditionalInfoTab/data/setupStore";
+import "./index.css";
+import theme from "./setupTheme";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <CssBaseline />
-      <App />
-    </React.StrictMode>
-  </Provider>,
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>
+  </ThemeProvider>,
   document.getElementById("add-info-tab")
 );

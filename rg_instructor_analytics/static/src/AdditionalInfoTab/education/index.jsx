@@ -2,42 +2,73 @@
  * Learners education stats.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { educationStatsFetching } from './data/actions';
-import PieChart from './PieChart'
+/* eslint-disable react-hooks/exhaustive-deps */
 
-export class EducationStatsContainer extends React.Component {
-  componentDidMount() {
-    const { pullEducationStats } = this.props;
-    pullEducationStats();
-  }
+import React, { Fragment, useEffect } from "react";
+import * as R from "ramda";
+import { useDispatch, useSelector } from "react-redux";
+import { educationStatsFetching } from "./data/actions";
+import PieChart from "./PieChart";
+import Empty from "./Empty";
+import { usePrev } from "../utils";
 
-  render() {
-    const { educationStats } = this.props;
-    return <PieChart data={educationStats}/>
-  }
-}
+export const EducationStatsContainer = () => {
+  const { scopes, scope, course, site } = useSelector(state => state.scopes);
+  const educationStats = useSelector(state => state.educationStats);
+  const dispatch = useDispatch();
 
-EducationStatsContainer.propTypes = {
-  educationStats: PropTypes.array.isRequired,
-  pullEducationStats: PropTypes.func.isRequired,
+  const getScopeParams = scope => {
+    switch (scope) {
+      case scopes.course:
+        return { course_id: course };
+      case scopes.site:
+        return { site_id: site };
+      default:
+        return {};
+    }
+  };
+
+  // NOTE: avoiding firing redundant initial API requests:
+  const prevSite = usePrev(site);
+  const prevCourse = usePrev(course);
+
+  useEffect(
+    () => {
+      !R.isNil(scope) &&
+        dispatch(educationStatsFetching(getScopeParams(scope)));
+    },
+    [scope]
+  );
+
+  useEffect(
+    () => {
+      !R.isNil(site) &&
+        !R.isNil(prevSite) &&
+        dispatch(educationStatsFetching({ site_id: site }));
+    },
+    [site]
+  );
+
+  useEffect(
+    () => {
+      !R.isNil(course) &&
+        !R.isNil(prevCourse) &&
+        dispatch(educationStatsFetching({ course_id: course }));
+    },
+    [course]
+  );
+
+  return (
+    <Fragment>
+      {educationStats === "error" || R.isEmpty(educationStats.data) ? (
+        <Empty />
+      ) : (
+        <PieChart data={educationStats.data} />
+      )}
+    </Fragment>
+  );
 };
 
-EducationStatsContainer.defaultProps = {};
+EducationStatsContainer.propTypes = {};
 
-const stateToProps = ({ educationStats }) => ({
-  educationStats,
-});
-
-const dispatchToProps = dispatch => ({
-  pullEducationStats: () => dispatch(educationStatsFetching()),
-});
-
-const ConnectedEducationStatsContainer = connect(
-  stateToProps,
-  dispatchToProps,
-)(EducationStatsContainer);
-
-export default ConnectedEducationStatsContainer;
+export default EducationStatsContainer;

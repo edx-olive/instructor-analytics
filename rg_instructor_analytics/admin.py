@@ -46,30 +46,34 @@ class InstructorTabsConfigAdmin(admin.ModelAdmin):
         )
 
 
-class GenderStatsAdmin(admin.ModelAdmin):
-    list_display = ['site', 'total', 'empty']
-    date_hierarchy = 'date'
-
-
-class EducationStatsAdmin(admin.ModelAdmin):
-    list_display = ['site', 'total', 'empty']
-    date_hierarchy = 'date'
-
-
-class AgeStatsAdmin(admin.ModelAdmin):
-    list_display = ['site', 'total', 'empty']
-    date_hierarchy = 'date'
-
-
-class ResidenceStatsAdmin(admin.ModelAdmin):
-    list_display = ['site', 'total', 'empty']
-    date_hierarchy = 'date'
-
-
 admin.site.register(models.GradeStatistic, admin.ModelAdmin)
 admin.site.register(models.LastGradeStatUpdate, admin.ModelAdmin)
 admin.site.register(models.InstructorTabsConfig, InstructorTabsConfigAdmin)
-admin.site.register(models.GenderStats, GenderStatsAdmin)
-admin.site.register(models.EducationStats, EducationStatsAdmin)
-admin.site.register(models.AgeStats, AgeStatsAdmin)
-admin.site.register(models.ResidenceStats, ResidenceStatsAdmin)
+
+
+@admin.register(models.GenderStats)
+class GenderStatsAdmin(admin.ModelAdmin):
+    list_display = ['date', 'site', 'total', 'empty']
+    date_hierarchy = 'date'
+    list_filter = ['site']
+
+
+@admin.register(models.EducationStats)
+class EducationStatsAdmin(admin.ModelAdmin):
+    list_display = ['date', 'site', 'total', 'empty']
+    date_hierarchy = 'date'
+    list_filter = ['site']
+
+
+@admin.register(models.AgeStats)
+class AgeStatsAdmin(admin.ModelAdmin):
+    list_display = ['date', 'site', 'total', 'empty']
+    date_hierarchy = 'date'
+    list_filter = ['site']
+
+
+@admin.register(models.ResidenceStats)
+class ResidenceStatsAdmin(admin.ModelAdmin):
+    list_display = ['date', 'site', 'total', 'empty']
+    date_hierarchy = 'date'
+    list_filter = ['site']
