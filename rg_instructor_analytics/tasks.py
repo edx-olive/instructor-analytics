@@ -200,16 +200,19 @@ def run_common_static_collection():
     grade_collector_stat()
 
 
-cron_additional_info_tab_settings = {
-    'minute': '0',
-    'hour': '3',
-    'day_of_month': '*',
-    'day_of_week': '*',
-    'month_of_year': '*',
-}
+cron_demographics_settings = getattr(
+    settings, 'RG_ANALYTICS_DEMOGRAPHICS_STATS_UPDATE',
+    {
+        'minute': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_MINUTE', '0')),
+        'hour': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_HOUR', '*/6')),
+        'day_of_month': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_DOM', '*')),
+        'day_of_week': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_DOW', '*')),
+        'month_of_year': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_MONTH', '*')),
+    }
+)
 
 
-@periodic_task(run_every=crontab(**cron_additional_info_tab_settings))
+@periodic_task(run_every=crontab(**cron_demographics_settings))
 def collect_demographics():
     """
     Master task to run a bunch of worker tasks for different User stats collection.
@@ -217,7 +220,7 @@ def collect_demographics():
     collect_gender_stats()
     collect_education_stats()
     collect_age_stats()
-    collect_residence_stats()
+    collect_geo_stats()
 
 
 @task
@@ -320,7 +323,7 @@ def collect_age_stats():
 
 
 @task
-def collect_residence_stats():
+def collect_geo_stats():
     # Create daily record for each Site:
     for site in Site.objects.all():
         courses_ids = get_microsite_courses(site)

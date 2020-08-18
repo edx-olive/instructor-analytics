@@ -7,8 +7,7 @@ import {
   DATA_SCOPES_SITE_TOGGLED
 } from "./actionTypes";
 import { createAction } from "redux-api-middleware";
-import api from "./api/endpoints";
-import { withParams } from "../../../setupAPI";
+import { apiUrls, withParams } from "../../../setupAPI";
 
 export const scopeToggling = scope => ({
   type: DATA_SCOPES_SCOPE_TOGGLED,
@@ -27,7 +26,7 @@ export const courseToggling = course => ({
 
 export const scopesFetching = params =>
   createAction({
-    endpoint: withParams(api.scopes, params),
+    endpoint: withParams(apiUrls.add_info.scopes, params),
     method: "GET",
     headers: { "Content-Type": "application/json" },
     types: [DATA_SCOPES_REQUEST, DATA_SCOPES_RECEIVED, DATA_SCOPES_FAILURE]

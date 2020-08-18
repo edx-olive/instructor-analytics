@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { courseToggling, siteToggling } from "./data/actions";
 
 const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: 8
+  select: {
+    border: `2px solid ${theme.palette.primary.main}`,
+    padding: 14
   }
 }));
 
@@ -15,8 +16,9 @@ const Selector = ({ items, label }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { scopes, scope, course, site } = useSelector(state => state.scopes);
+
   return (
-    <FormControl fullWidth variant="outlined" className={classes.formControl}>
+    <FormControl fullWidth variant="outlined">
       <Select
         labelId="items-selector-label"
         id="items-selector"
@@ -29,6 +31,8 @@ const Selector = ({ items, label }) => {
           )
         }
         label={label}
+        autoFocus
+        classes={{ outlined: classes.select }}
       >
         {R.map(
           item => (

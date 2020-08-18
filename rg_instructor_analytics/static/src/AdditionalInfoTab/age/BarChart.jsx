@@ -22,7 +22,7 @@ export const BarChart = ({
       width={width}
       height={height}
       colors={colors || theme.palette.primary.main}
-      margin={{ top: 20, right: 10, bottom: 20, left: 150 }}
+      margin={{ top: 20, right: 10, bottom: 30, left: 150 }}
       layout="horizontal"
       indexBy="label"
       label={item => `${item.value}%`}
