@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
+import { gettext as _ } from "../../setupAPI";
 
 const useStyles = makeStyles({
   external: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
   }
 });
 
-export const Empty = ({ text = "no data available", height = 300 }) => {
+export const Empty = ({ text = _("no data available"), height = 300 }) => {
   const classes = useStyles();
 
   return (

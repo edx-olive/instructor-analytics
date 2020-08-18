@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
+import { gettext as _ } from "../../setupAPI";
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -19,10 +20,10 @@ export const AgeTooltip = ({ id, data = {} }) => {
   return (
     <Box className={classes.box}>
       <div>
-        <Typography className={classes.textBold}>{id}</Typography>
+        <Typography className={classes.textBold}>{data.label}</Typography>
       </div>
       <div>
-        <Typography component="span">{"Users: "}</Typography>
+        <Typography component="span">{_("Users: ")}</Typography>
         <Typography component="span" className={classes.textBold}>
           {data.abs_value}
         </Typography>

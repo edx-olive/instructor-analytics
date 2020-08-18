@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import * as R from "ramda";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
+import { gettext as _ } from "../../setupAPI";
 
 // eslint-disable-next-line
 const useStyles = makeStyles(theme => ({
@@ -17,7 +18,7 @@ export const TotalUsers = ({ value }) => {
   const formattedValue = value && value.toLocaleString("us-US");
   return R.isNil(formattedValue) ? null : (
     <Box className={classes.box}>
-      <Typography component="span">{"Total Users: "}</Typography>
+      <Typography component="span">{_("Total Users: ")}</Typography>
       <Typography component="span" className={classes.textBold}>
         {formattedValue}
       </Typography>
