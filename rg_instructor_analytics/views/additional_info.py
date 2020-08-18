@@ -7,7 +7,7 @@ import pycountry
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext as _
 from rest_framework.decorators import list_route
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
@@ -65,7 +65,7 @@ class AdditionalInfoViewSet(ViewSet):
     Users demographic stats.
     """
 
-    permission_classes = [InstructorPermission]
+    permission_classes = [IsAuthenticated, InstructorPermission]
 
     # TODO: add permission check: [Instructor | Superuser]
 

@@ -8,15 +8,12 @@ import * as PropTypes from "prop-types";
 // eslint-disable-next-line
 const useStyles = makeStyles(theme => ({
   activeBtn: {
-    backgroundColor: "#0075b4 !important",
-    color: "#fff !important",
-    transition: "0.2s",
-    boxShadow: "none !important",
-    textShadow: "none !important"
+    color: theme.palette.common.white
   }
 }));
 
 const Switch = ({ items, activeItem, size }) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const getVariant = item => (item === activeItem ? "contained" : "outlined");
 
@@ -25,6 +22,7 @@ const Switch = ({ items, activeItem, size }) => {
       size={size}
       color="primary"
       aria-label="large outlined primary button group"
+      disableElevation
     >
       {R.map(
         item => (
@@ -33,6 +31,7 @@ const Switch = ({ items, activeItem, size }) => {
             variant={getVariant(item)}
             component="span"
             onClick={() => dispatch(scopeToggling(item))}
+            classes={{ containedPrimary: classes.activeBtn }}
           >
             {item}
           </Button>

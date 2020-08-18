@@ -8,14 +8,15 @@ import { scopesFetching } from "./data/actions";
 
 export const ScopeSelector = () => {
   const dispatch = useDispatch();
+  const { scopes, roles, scope, role, sites, courses } = useSelector(
+    state => state.scopes
+  );
+
   useEffect(
     () => {
       dispatch(scopesFetching());
     },
     [dispatch]
-  );
-  const { scopes, roles, scope, role, sites, courses } = useSelector(
-    state => state.scopes
   );
 
   const getItems = scope => {

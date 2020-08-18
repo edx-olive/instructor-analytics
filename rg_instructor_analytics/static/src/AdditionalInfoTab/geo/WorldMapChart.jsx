@@ -37,6 +37,7 @@ export const WorldMapChart = ({
       projectionScale={130}
       domain={[min - 2 * (max - min), max + (max - min)]}
       projectionTranslation={[0.3, 0.7]}
+      projectionRotation={[ -10, 0, 0 ]}
       borderWidth={0.5}
       borderColor={borderColor || theme.palette.common.white}
       unknownColor={unknownColor || theme.customPalette.greeny}

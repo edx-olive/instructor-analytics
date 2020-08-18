@@ -7,11 +7,11 @@ import { createMuiTheme } from "@material-ui/core";
 
 export default createMuiTheme({
   customPalette: {
-    greeny: '#91CF96',
+    greeny: "#91CF96"
   },
   palette: {
     primary: {
-      main: "#45a2d6"
+      main: "#00a2da"
     },
     secondary: {
       main: "#f6706f"
