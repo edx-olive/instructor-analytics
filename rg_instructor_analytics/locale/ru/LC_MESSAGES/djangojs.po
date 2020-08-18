@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 15:05+0000\n"
+"POT-Creation-Date: 2020-08-18 13:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:31
+msgid "Video"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/activity-tab.js:41
+msgid "Discussion"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/activity-tab.js:51
+msgid "Visit"
+msgstr ""
 
 #: static/rg_instructor_analytics/js/enrollment-tab.js:42
 #: static/rg_instructor_analytics/js/enrollment-tab.js:62
@@ -70,8 +82,65 @@ msgstr ""
 msgid "Show Plot"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/problem-tab.js:528
-msgid "Hide Plot"
+#: static/rg_instructor_analytics/js/react-bundle.js:55443
+#: static/rg_instructor_analytics/js/react-bundle.js:58522
+#: static/rg_instructor_analytics/js/react-bundle.js:58533
+#: static/rg_instructor_analytics/js/react-bundle.js:59006
+#: static/src/AdditionalInfoTab/age/Empty.jsx:22
+#: static/src/AdditionalInfoTab/education/Empty.jsx:22
+#: static/src/AdditionalInfoTab/gender/Empty.jsx:22
+#: static/src/AdditionalInfoTab/geo/Empty.jsx:22
+msgid "no data available"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:55499
+#: static/rg_instructor_analytics/js/react-bundle.js:58517
+#: static/rg_instructor_analytics/js/react-bundle.js:58540
+#: static/rg_instructor_analytics/js/react-bundle.js:59008
+#: static/src/AdditionalInfoTab/age/AgeTooltip.jsx:26
+#: static/src/AdditionalInfoTab/education/EducationTooltip.jsx:26
+#: static/src/AdditionalInfoTab/gender/GenderTooltip.jsx:26
+#: static/src/AdditionalInfoTab/geo/MapTooltip.jsx:28
+msgid "Users: "
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/src/AdditionalInfoTab/index.jsx:19
+msgid "Country or region of residence"
+msgstr "Страна или регион проживания"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/src/AdditionalInfoTab/index.jsx:21
+#: static/src/AdditionalInfoTab/index.jsx:35
+#: static/src/AdditionalInfoTab/index.jsx:49
+#: static/src/AdditionalInfoTab/index.jsx:63
+msgid "Saepe possimus voluptatum aspernatur temporibus porro alias"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/src/AdditionalInfoTab/index.jsx:24
+#: static/src/AdditionalInfoTab/index.jsx:38
+#: static/src/AdditionalInfoTab/index.jsx:52
+#: static/src/AdditionalInfoTab/index.jsx:66
+msgid ""
+"Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos "
+"deleniti quasi vero, perferendis dolorem modi ullam accusantium inventore "
+"amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/src/AdditionalInfoTab/index.jsx:33
+msgid "Gender"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/src/AdditionalInfoTab/index.jsx:47
+msgid "Year of birth"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/src/AdditionalInfoTab/index.jsx:61
+msgid "Level of education"
 msgstr ""
 
 #: static/rg_instructor_analytics/js/suggestions-tab.js:20
@@ -80,28 +149,4 @@ msgstr ""
 
 #: static/rg_instructor_analytics/js/suggestions-tab.js:39
 msgid "Go to item"
-msgstr ""
-
-#: static/rg_instructor_analytics/js/problem-tab.js:22
-msgid "%(blockTitle)s Details"
-msgstr ""
-
-#: static/rg_instructor_analytics/js/problem-tab.js:27
-msgid "%(blockTitle)s statistics is based on submits of %(studentsEmailsLength)s student(s)"
-msgstr ""
-
-#: static/rg_instructor_analytics/js/problem-tab.js:39
-msgid "Nothing to show"
-msgstr ""
-
-#: static/rg_instructor_analytics/js/activity-tab.js:31
-msgid "Video"
-msgstr ""
-
-#: static/rg_instructor_analytics/js/activity-tab.js:41
-msgid "Discussion"
-msgstr ""
-
-#: static/rg_instructor_analytics/js/activity-tab.js:51
-msgid "Visit"
 msgstr ""

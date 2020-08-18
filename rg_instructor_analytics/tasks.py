@@ -200,14 +200,14 @@ def run_common_static_collection():
     grade_collector_stat()
 
 
-cron_demographics_settings = getattr(
-    settings, 'RG_ANALYTICS_DEMOGRAPHICS_STATS_UPDATE',
+cron_demographics_settings = settings.FEATURES.get(
+    'RG_ANALYTICS_DEMOGRAPHICS_SCHEDULE',
     {
-        'minute': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_MINUTE', '0')),
-        'hour': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_HOUR', '*/6')),
-        'day_of_month': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_DOM', '*')),
-        'day_of_week': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_DOW', '*')),
-        'month_of_year': str(settings.FEATURES.get('RG_ANALYTICS_DEMOGRAPHICS_CRON_MONTH', '*')),
+        'minute': '0',
+        'hour': '*/6',
+        'day_of_month': '*',
+        'day_of_week': '*',
+        'month_of_year': '*',
     }
 )
 

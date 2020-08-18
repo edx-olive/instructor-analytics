@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
+import { gettext as _ } from "../../setupAPI";
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -24,7 +25,7 @@ export const MapTooltip = ({ id, name, value, percent }) => {
         <Typography className={classes.textBold}>{name || id}</Typography>
       </div>
       <div>
-        <Typography component="span">{"Users: "}</Typography>
+        <Typography component="span">{_("Users: ")}</Typography>
         <Typography component="span" className={classes.textBold}>
           {formattedValue}
         </Typography>

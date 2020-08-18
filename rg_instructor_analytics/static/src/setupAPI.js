@@ -28,3 +28,7 @@ export const apiUrls = window.apiUrls || {
     scopes: `${baseApiUrl}${addInfoUrl}/scopes/`
   }
 };
+
+// I18N: OeX Mako templates context includes `django.gettext` tool:
+export const gettext =
+  (window.django && window.django.gettext) || (text => text);
