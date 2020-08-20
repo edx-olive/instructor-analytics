@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from django.db.models import Count
 from django.http import HttpResponseBadRequest, JsonResponse
 from django.utils.decorators import method_decorator
+from django.utils.timezone import make_aware
 from django.utils.translation import ugettext as _
 from django.views.generic import View
 from opaque_keys import InvalidKeyError
@@ -159,17 +160,14 @@ class ActivityView(View):
         :param course_id: (str) context course ID (from urlconf)
         """
         try:
-            from_timestamp = int(request.POST.get('from'))
-            to_timestamp = int(request.POST.get('to'))
+            from_date = request.POST.get('from') and make_aware(datetime.strptime(request.POST['from'], "%Y-%m-%d")).date()
+            to_date = request.POST.get('to') and make_aware(datetime.strptime(request.POST['to'], "%Y-%m-%d")).date()
             course_key = CourseKey.from_string(request.POST.get('course_id'))
 
         except (TypeError, ValueError):
             return HttpResponseBadRequest(_("Invalid date range."))
         except InvalidKeyError:
             return HttpResponseBadRequest(_("Invalid course ID."))
-
-        from_date = datetime.fromtimestamp(from_timestamp).date()
-        to_date = datetime.fromtimestamp(to_timestamp).date()
 
         if slug == 'daily':
             activity = self.get_daily_activity_for_course(from_date, to_date, course_key)
