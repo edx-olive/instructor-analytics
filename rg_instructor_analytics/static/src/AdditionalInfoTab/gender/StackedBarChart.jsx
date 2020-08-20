@@ -47,9 +47,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const StackedBarChart = ({ data = {}, absData = {} }) => {
+export const StackedBarChart = ({ data = {} }) => {
   const theme = useTheme();
   const classes = useStyles();
+
+  // Remove meta info & empty values
+  const cleanData = R.omit(["total", "unknown"], data);
+  const nonEmptyData = R.pickBy((v, k) => !R.equals(v.abs_value, 0), cleanData);
+
+  // Prepare data for chart:
+  const chartData = { id: "gender" };
+  R.forEach(key => {
+    chartData[nonEmptyData[key].label] = nonEmptyData[key].value;
+  }, R.keys(nonEmptyData));
 
   const legendConf = {
     dataFrom: "keys",
@@ -63,12 +73,17 @@ export const StackedBarChart = ({ data = {}, absData = {} }) => {
   };
 
   const makeLabels = item => `${item.value}%`;
-  const makeTooltip = ({ id, value }) => (
-    <GenderTooltip id={id} value={value} data={absData} />
+  const makeTooltip = ({ id, value, data }) => (
+    <GenderTooltip id={id} value={value} data={data} abs_data={nonEmptyData} />
   );
 
-  // NOTE: removing mandatory index key
-  const cleanData = R.omit(["id"], data);
+  // Pin colors according to categories:
+  const colors = {
+    m: theme.palette.primary.main,
+    f: theme.palette.secondary.main,
+    o: theme.palette.grey[500]
+  };
+  const getColors = cleanData => R.values(R.pick(R.keys(cleanData), colors));
 
   return (
     <Box className={classes.box}>
@@ -77,19 +92,15 @@ export const StackedBarChart = ({ data = {}, absData = {} }) => {
         <Grid item xs={10}>
           <div className={classes.wrapper}>
             <Bar
-              data={[data]}
-              keys={R.keys(cleanData)}
+              data={[chartData]}
+              keys={R.keys(chartData)}
               width={400}
               height={50}
               padding={0.1}
               margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
               layout="horizontal"
               enableGridX={false}
-              colors={[
-                theme.palette.primary.main,
-                theme.palette.grey[500],
-                theme.palette.secondary.main
-              ]}
+              colors={getColors(nonEmptyData)}
               borderRadius={2}
               innerPadding={1}
               label={makeLabels}
@@ -107,8 +118,7 @@ export const StackedBarChart = ({ data = {}, absData = {} }) => {
 };
 
 StackedBarChart.propTypes = {
-  data: PropTypes.object,
-  absData: PropTypes.object
+  data: PropTypes.object
 };
 
 export default StackedBarChart;

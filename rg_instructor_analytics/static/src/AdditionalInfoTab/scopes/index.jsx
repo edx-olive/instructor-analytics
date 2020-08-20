@@ -1,12 +1,20 @@
 import React, { useEffect } from "react";
-import { Container, Grid } from "@material-ui/core";
+import { Container, Grid, makeStyles } from "@material-ui/core";
 import * as R from "ramda";
 import Selector from "./Selector";
 import Switch from "./Switch";
 import { useDispatch, useSelector } from "react-redux";
 import { scopesFetching } from "./data/actions";
 
+const useStyles = makeStyles(theme => ({
+  container: {
+    minHeight: theme.spacing(10)
+  }
+}));
+
 export const ScopeSelector = () => {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const { scopes, roles, scope, role, sites, courses } = useSelector(
     state => state.scopes
@@ -31,7 +39,7 @@ export const ScopeSelector = () => {
   };
 
   return (
-    <Container>
+    <Container className={classes.container}>
       <Grid container spacing={1}>
         <Grid item xs={4} />
         <Grid item xs={4}>

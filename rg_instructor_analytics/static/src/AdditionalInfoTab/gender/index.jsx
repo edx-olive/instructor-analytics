@@ -59,8 +59,8 @@ export const GenderStatsContainer = () => {
 
   const dataAbsentOrEmpty = stats =>
     stats === "error" ||
-    R.isEmpty(stats.abs_data) ||
-    R.equals(R.sum(R.values(stats.abs_data)), 0);
+    R.equals(stats.total, 0) ||
+    R.equals(stats.total, stats.unknown);
 
   return (
     <Fragment>
@@ -68,8 +68,7 @@ export const GenderStatsContainer = () => {
         <Empty />
       ) : (
         <StackedBarChart
-          data={genderStats.rel_data}
-          absData={genderStats.abs_data}
+          data={genderStats.data}
         />
       )}
     </Fragment>

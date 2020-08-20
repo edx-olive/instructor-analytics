@@ -11,34 +11,12 @@ from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
-from rg_instructor_analytics.models import AgeStats, EducationStats, GenderStats, ResidenceStats
+from rg_instructor_analytics.models import (
+    AgeStats, EducationStats, GenderStats, ResidenceStats,
+    GENDER_CHOICES, GENERATION_CHOICES, LEVEL_OF_EDUCATION_CHOICES)
+from rg_instructor_analytics.utils import choices_value_by_key
 from rg_instructor_analytics.views.tab_fragment import get_available_courses
-
-# IDEA: make these categories configurable from admin site
-GENERATION_CHOICES = OrderedDict((
-    ('z', _("Generation Z: 1995-2012")),
-    ('m', _("Millenials: 1980-1994")),
-    ('x', _("Generation X: 1965-1979")),
-    ('b', _("Baby boomers: 1942-1964")),
-))
-
-LEVEL_OF_EDUCATION_CHOICES = {
-    'p': _("Academic degree"),
-    'm': _("Master's degree on specialty"),
-    'b': _("Undergraduate"),
-    'a': _("Incomplete higher education"),
-    'hs': _("The average"),
-    'jhs': _("Incomplete secondary"),
-    'el': _("Initial"),
-    'none': _("No formal education"),
-    'other': _("Other education"),
-}
-
-GENDER_CHOICES = {
-    'm': _("Male"),
-    'o': _("Other"),
-    'f': _("Female"),
-}
+from student.models import UserProfile
 
 
 class InstructorPermission(BasePermission):
@@ -67,19 +45,6 @@ class AdditionalInfoViewSet(ViewSet):
 
     permission_classes = [IsAuthenticated, InstructorPermission]
 
-    # TODO: add permission check: [Instructor | Superuser]
-
-    @list_route(methods=['post'], url_name='overall-stats')
-    def overall(self, request, course_id):
-        site_id = request.data.get('site_id')
-        course_id = request.data.get('course_id')
-        return Response({
-            'geo': self.get_geo_stats(site_id, course_id),
-            'gender': self.get_gender_stats(site_id, course_id),
-            'age': self.get_age_stats(site_id, course_id),
-            'education': self.get_education_stats(site_id, course_id),
-        })
-
     @list_route(methods=['get'], url_name='geo-stats')
     def geo(self, request, **kwargs):
         """
@@ -102,7 +67,7 @@ class AdditionalInfoViewSet(ViewSet):
         course_id = request.GET.get('course_id')
         data = self.get_geo_stats(site_id, course_id)
         if not data:
-            return Response([])
+            return Response({})
 
         total = data.pop('total', 0)
         empty = data.pop('empty', 0)
@@ -128,18 +93,24 @@ class AdditionalInfoViewSet(ViewSet):
 
         Example:
         {
-            "id": "gender",
-            "total": 220,
-            "unknown": 20,
-            "rel_data": {
-                "male": 60,
-                "female": 30,
-                "other": 10,
-            },
-            "abs_data": {
-                "male": 120,
-                "female": 60,
-                "other": 20,
+            "unknown": 1,
+            "total": 3,
+            "data": {
+                "m": {
+                    "abs_value": 0,
+                    "value": 0,
+                    "label": "male"
+                },
+                "o": {
+                    "abs_value": 0,
+                    "value": 0,
+                    "label": "other"
+                },
+                "f": {
+                    "abs_value": 2,
+                    "value": 100,
+                    "label": "female"
+                }
             }
         }
         """
@@ -147,7 +118,7 @@ class AdditionalInfoViewSet(ViewSet):
         course_id = request.GET.get('course_id')
         data = self.get_gender_stats(site_id, course_id)
         if not data:
-            return Response([])
+            return Response({})
 
         total = data.pop('total', 0)
         empty = data.pop('empty', 0)
@@ -157,13 +128,14 @@ class AdditionalInfoViewSet(ViewSet):
         gender_stats = {
             'total': total,
             'unknown': empty,
-            'rel_data': OrderedDict({'id': 'gender'}),
-            'abs_data': {label: data.get(gid, 0) for gid, label in OrderedDict(GENDER_CHOICES).items()},
+            'data': {
+                gid: {
+                    "label": label,
+                    "value": percentage_data.get(gid, 0),
+                    "abs_value": data.get(gid, 0)
+                } for gid, label in GENDER_CHOICES.items()
+            },
         }
-
-        rel_data = {label: percentage_data.get(gid, 0) for gid, label in OrderedDict(GENDER_CHOICES).items()}
-        gender_stats['rel_data'].update(rel_data)
-
         return Response(gender_stats)
 
     @list_route(methods=['get'], url_name='age-stats')
@@ -207,7 +179,7 @@ class AdditionalInfoViewSet(ViewSet):
         course_id = request.GET.get('course_id')
         data = self.get_age_stats(site_id, course_id)
         if not data:
-            return Response([])
+            return Response({})
 
         total = data.pop('total', 0)
         empty = data.pop('empty', 0)
@@ -265,7 +237,7 @@ class AdditionalInfoViewSet(ViewSet):
         course_id = request.GET.get('course_id')
         data = self.get_education_stats(site_id, course_id)
         if not data:
-            return Response([])
+            return Response({})
 
         total = data.pop('total', 0)
         empty = data.pop('empty', 0)
@@ -276,7 +248,10 @@ class AdditionalInfoViewSet(ViewSet):
             'empty': empty,
             'data': [{
                 'id': key,
-                'label': LEVEL_OF_EDUCATION_CHOICES[key],
+                'label': LEVEL_OF_EDUCATION_CHOICES.get(
+                    key,
+                    choices_value_by_key(UserProfile.LEVEL_OF_EDUCATION_CHOICES, key)
+                ),
                 'value': value,
                 'abs_value': data[key],
             } for key, value in normalized_data.items()]
@@ -381,11 +356,12 @@ class AdditionalInfoViewSet(ViewSet):
         """
         normalized_data = OrderedDict()
         if nonempty_total <= 0:
-            return OrderedDict()
+            return normalized_data
 
-        for key, val in data.items():
+        for key, value in data.items():
             try:
-                normalized_data[key] = int(round(float(val) / nonempty_total * 100.0))
+                # Calculate percent of all non-empty values:
+                normalized_data[key] = int(round(float(value) / nonempty_total * 100.0))
             except ValueError:
                 normalized_data[key] = 0
         return normalized_data
