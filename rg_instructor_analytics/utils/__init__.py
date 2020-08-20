@@ -21,6 +21,11 @@ def resource_string(path):
     return data.decode("utf8")
 
 
+def choices_value_by_key(choices, key):
+    result = filter(lambda c: c[0] == key, choices)
+    return result[0][1] if result else ''
+
+
 def get_microsite_courses(site):
     """
     Finds all Courses which are related to given Site.
@@ -47,19 +52,20 @@ def get_courses_learners(courses_ids):
     """
     Determine all Course learners.
     :param courses_ids: CourseOverview ids
-    :return: (list) User ids
+    :return: (set) User ids
     """
-    return (
+    user_ids = (
         CourseEnrollment.objects
-        .filter(course_id__in=courses_ids)
+        .filter(course_id__in=courses_ids, is_active=True)
         .values_list('user', flat=True)
     )
+    return set(user_ids) if user_ids else set()
 
 
 def aggregate_users_stats(users_ids, metrics):
     """
     Calculate aggregated stats on given users data sample.
-    :param users_ids: (list) User ids
+    :param users_ids: (set | list) User ids
     :param metrics: UserProfile field name
     :return: (dict)
     """

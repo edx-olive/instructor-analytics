@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-18 13:44+0000\n"
+"POT-Creation-Date: 2020-08-20 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,67 +32,131 @@ msgstr ""
 "ietekmēta sistēmas darbība. Var paiet nedaudz laika, līdz dati tiek "
 "atjaunināti."
 
-#: models.py:65
+#: models.py:23
+msgid "Generation Z: 1995-2012"
+msgstr ""
+
+#: models.py:24
+msgid "Millenials: 1980-1994"
+msgstr ""
+
+#: models.py:25
+msgid "Generation X: 1965-1979"
+msgstr ""
+
+#: models.py:26
+msgid "Baby boomers: 1942-1964"
+msgstr ""
+
+#: models.py:30
+msgid "Academic degree"
+msgstr ""
+
+#: models.py:31
+msgid "Master's degree on specialty"
+msgstr ""
+
+#: models.py:32
+msgid "Undergraduate"
+msgstr ""
+
+#: models.py:33
+msgid "Incomplete higher education"
+msgstr ""
+
+#: models.py:34
+msgid "The average"
+msgstr ""
+
+#: models.py:35
+msgid "Incomplete secondary"
+msgstr ""
+
+#: models.py:36
+msgid "Initial"
+msgstr ""
+
+#: models.py:37
+msgid "No formal education"
+msgstr ""
+
+#: models.py:38
+msgid "Other education"
+msgstr ""
+
+#: models.py:42
+msgid "Male"
+msgstr ""
+
+#: models.py:43
+msgid "Other"
+msgstr ""
+
+#: models.py:44
+msgid "Female"
+msgstr ""
+
+#: models.py:88
 msgid "Instructor"
 msgstr "Instruktors"
 
-#: models.py:66 views/tab_fragment.py:38
+#: models.py:89 views/tab_fragment.py:38
 msgid "Enrollment stats"
 msgstr "Reģistrēšanās statistika"
 
-#: models.py:67 views/tab_fragment.py:45
+#: models.py:90 views/tab_fragment.py:45
 msgid "Activities"
 msgstr "Aktivitātes"
 
-#: models.py:68 views/tab_fragment.py:52
+#: models.py:91 views/tab_fragment.py:52
 msgid "Problems"
 msgstr "Problēmas"
 
-#: models.py:69 views/tab_fragment.py:59
+#: models.py:92 views/tab_fragment.py:59
 msgid "Students' Info"
 msgstr "Studentu informācija"
 
-#: models.py:70 views/tab_fragment.py:66
+#: models.py:93 views/tab_fragment.py:66
 msgid "Clusters"
 msgstr "Kohortas"
 
-#: models.py:71 views/tab_fragment.py:73
+#: models.py:94 views/tab_fragment.py:73
 msgid "Progress Funnel"
 msgstr "Progresa piltuve"
 
-#: models.py:72 views/tab_fragment.py:80
+#: models.py:95 views/tab_fragment.py:80
 msgid "Suggestions"
 msgstr "Ieteikumi"
 
-#: models.py:73
+#: models.py:96
 msgid "Additional Info"
 msgstr ""
 
-#: models.py:108 models.py:151 models.py:196 models.py:239
+#: models.py:131 models.py:174 models.py:219 models.py:262
 msgid "total users"
 msgstr ""
 
-#: models.py:109 models.py:152 models.py:197 models.py:240
+#: models.py:132 models.py:175 models.py:220 models.py:263
 msgid "no data"
 msgstr ""
 
-#: models.py:111 models.py:154 models.py:199 models.py:242
+#: models.py:134 models.py:177 models.py:222 models.py:265
 msgid "date"
 msgstr ""
 
-#: models.py:114 models.py:115
+#: models.py:137 models.py:138
 msgid "gender statistics"
 msgstr ""
 
-#: models.py:157 models.py:158
+#: models.py:180 models.py:181
 msgid "education statistics"
 msgstr ""
 
-#: models.py:202 models.py:203
+#: models.py:225 models.py:226
 msgid "age statistics"
 msgstr ""
 
-#: models.py:245 models.py:246
+#: models.py:268 models.py:269
 msgid "geo statistics"
 msgstr ""
 
@@ -113,87 +177,23 @@ msgstr "Nederīgs kursa ID."
 msgid "Invalid date range."
 msgstr "Nederīgs datumu diapazons."
 
-#: views/additional_info.py:19
-msgid "Generation Z: 1995-2012"
-msgstr ""
-
-#: views/additional_info.py:20
-msgid "Millenials: 1980-1994"
-msgstr ""
-
-#: views/additional_info.py:21
-msgid "Generation X: 1965-1979"
-msgstr ""
-
-#: views/additional_info.py:22
-msgid "Baby boomers: 1942-1964"
-msgstr ""
-
-#: views/additional_info.py:26
-msgid "Academic degree"
-msgstr ""
-
-#: views/additional_info.py:27
-msgid "Master's degree on specialty"
-msgstr ""
-
-#: views/additional_info.py:28
-msgid "Undergraduate"
-msgstr ""
-
-#: views/additional_info.py:29
-msgid "Incomplete higher education"
-msgstr ""
-
-#: views/additional_info.py:30
-msgid "The average"
-msgstr ""
-
-#: views/additional_info.py:31
-msgid "Incomplete secondary"
-msgstr ""
-
-#: views/additional_info.py:32
-msgid "Initial"
-msgstr ""
-
-#: views/additional_info.py:33
-msgid "No formal education"
-msgstr ""
-
-#: views/additional_info.py:34
-msgid "Other education"
-msgstr ""
-
-#: views/additional_info.py:38
-msgid "Male"
-msgstr ""
-
-#: views/additional_info.py:39
-msgid "Other"
-msgstr ""
-
-#: views/additional_info.py:40
-msgid "Female"
-msgstr ""
-
-#: views/additional_info.py:289
+#: views/additional_info.py:264
 msgid "system"
 msgstr ""
 
-#: views/additional_info.py:290
+#: views/additional_info.py:265
 msgid "microsite"
 msgstr ""
 
-#: views/additional_info.py:291
+#: views/additional_info.py:266
 msgid "course"
 msgstr ""
 
-#: views/additional_info.py:295
+#: views/additional_info.py:270
 msgid "admin"
 msgstr ""
 
-#: views/additional_info.py:296
+#: views/additional_info.py:271
 #, fuzzy
 #| msgid "Instructor"
 msgid "instructor"
@@ -244,297 +244,365 @@ msgstr ""
 msgid "Additional Information"
 msgstr ""
 
-#~ msgid "Course has not started yet."
-#~ msgstr "Kurss vēl nav sācies."
-
-#~ msgid "Loading"
-#~ msgstr "Ielāde"
-
-#~ msgid "Video views count"
-#~ msgstr "Video skatījumu skaits"
-
-#~ msgid "Discussion activities count"
-#~ msgstr "Diskusiju aktivitāšu skaits"
-
-#~ msgid "Intensity of visits the course count"
-#~ msgstr "Kursa apmeklējumu intenstitāte"
-
-#~ msgid "Transition Pattern through Units"
-#~ msgstr "Aktivitāšu pārejas modelis"
-
-#~ msgid ""
-#~ "This graph indicates the amount of visits of each Unit and bring you the "
-#~ "whole perspective of what part of Course was the most difficult or "
-#~ "interesting for your Students."
-#~ msgstr ""
-#~ "Šis grafiks norāda katras vienības apmeklējumu skaitu un parādīs "
-#~ "perspektīvu par to, kura kursa daļa bija visgrūtākā vai interesantākā "
-#~ "jūsu studentiem."
-
-#~ msgid "Keep an eye on your students' progress"
-#~ msgstr "Sekojiet līdzi studentu progresam"
-
-#~ msgid ""
-#~ "This report constantly divides your students' progress in clusters: from "
-#~ "low-performing to high-performing groups. You can take action right away "
-#~ "- send appropriate email to clusters in couple of clicks."
-#~ msgstr ""
-#~ "Šī atskaite pastāvīgi sadala jūsu studentu progresu klasteros: no grupām "
-#~ "ar zemu sniegumu līdz ļoti veiksmīgām. Varat rīkoties uzreiz - nosūtiet "
-#~ "katram klasteriem atbilstošu e-pastu ar pāris klikšķiem."
-
-#~ msgid "Send Email"
-#~ msgstr "Nosūtīt e-pastu"
-
-#~ msgid ""
-#~ "Choose clusters you want to send emails to, create email and send. "
-#~ "Exactly that simple."
-#~ msgstr ""
-#~ "Izvēlieties klasterus, kuriem vēlaties sūtīt e-pastus, izveidojiet e-"
-#~ "pastu un nosūtiet. Tas ir tik vienkārši."
-
-#~ msgid "Subject: "
-#~ msgstr "Temats: "
-
-#~ msgid "(Maximum 128 characters)"
-#~ msgstr "(Ne vairāk kā 128 rakstzīmes)"
-
-#~ msgid "SEND EMAIL(S)"
-#~ msgstr "SŪTĪT E-PASTU(S)"
-
-#~ msgid "Email(s) sending failed"
-#~ msgstr "Neizdevās nosūtīt e-pastu(s)"
-
-#~ msgid "Message sent"
-#~ msgstr "Ziņa nosūtīta"
-
-#~ msgid "Required fields"
-#~ msgstr "Pieprasītie lauki"
-
-#~ msgid "This report shows the dynamics of the following metrics:"
-#~ msgstr "Šajā pārskatā parādīta šādu metriku dinamika:"
-
-#~ msgid "Enrollments: Number of students that enrolled in the course"
-#~ msgstr "Reģistrēšanās: Studentu skaits, kas reģistrējušies kursā"
-
-#~ msgid "Unenrollments: Number of students that unenrolled from the course"
-#~ msgstr "Izreģistrēšanās: Studentu skaits, kas izreģistrējušies no kursa"
-
-#~ msgid ""
-#~ "Total: Total number of students that are currently passing the course"
-#~ msgstr "Kopā: Kopējais studentu skaits, kas šobrīd kārto kursu"
-
-#~ msgid ""
-#~ "You can choose the predefined periods of time to see the dynamics (Last "
-#~ "Week, Last 2 Weeks, Last Month) or you can choose custom time period."
-#~ msgstr ""
-#~ "Varat izvēlēties iepriekš noteiktus laika periodus, lai redzētu dinamiku "
-#~ "(pagājušā nedēļa, pēdējās 2 nedēļas, pēdējais mēnesis), vai arī varat "
-#~ "izvēlēties citu laika periodu."
-
-#~ msgid "Enrollments"
-#~ msgstr "Reģistrēšanās"
-
-#~ msgid "Unenrollments"
-#~ msgstr "Izreģistrēšanās"
-
-#~ msgid "Total"
-#~ msgstr "Kopā"
-
-#~ msgid ""
-#~ "This report shows which stages of your course prevent students from "
-#~ "moving forward. "
-#~ msgstr ""
-#~ "Šis atskaite parāda, kuri kursa posmi traucē studentiem virzīties uz "
-#~ "priekšu."
-
-#~ msgid "By stages we mean the hierarchical parts of Open edX course:"
-#~ msgstr "Ar posmiem mēs domājam Open edX kursa hierarhiskās daļas"
-
-#~ msgid "Section"
-#~ msgstr "Segments"
-
-#~ msgid "Subsection"
-#~ msgstr "Apakšiedaļa"
-
-#~ msgid "Unit"
-#~ msgstr "Aktivitāte"
-
-#~ msgid ""
-#~ "See how many students entered each stage, how many passed to another one "
-#~ "and how many stuck."
-#~ msgstr ""
-#~ "Skatiet, cik studentu iekļuva katrā posmā, cik pārcēlās uz citu posmu un "
-#~ "cik iestrēga."
-
-#~ msgid "Click on each stage to see the breakdown by available sub-stages."
-#~ msgstr ""
-#~ "Noklikšķiniet uz katra posma, lai redzētu sadalījumu pēc pieejamajiem "
-#~ "apakšposmiem."
-
-#~ msgid ""
-#~ "Choose section or subsection with a checkbox. Email will be sent to all "
-#~ "the students who stuck there."
-#~ msgstr ""
-#~ "Izvēlieties sadaļu vai apakšiedaļu ar izvēles rūtiņu. Visiem studentiem, "
-#~ "kas tur iestrēguši, tiks nosūtīts e-pasts."
-
-#~ msgid ""
-#~ "This reports gives an overview of all students' progress in a simple "
-#~ "spreadsheet form."
-#~ msgstr ""
-#~ "Šī atskaite vienkāršā izklājlapas veidā sniedz  pārskatu par visiem "
-#~ "studentiem."
-
-#~ msgid ""
-#~ "Progress details of any student are available by clicking on the "
-#~ "corresponding row of the spreadsheet."
-#~ msgstr ""
-#~ "Informācija par jebkura studenta progresu ir pieejama, noklikšķinot  uz "
-#~ "atbilstošās izklājlapas rindas."
-
-#~ msgid "You can filter student list by using 'Search Student...' field."
-#~ msgstr ""
-#~ "Jūs varat filtrēt studentu sarakstu, izmantojot 'Meklēt studentu...' "
-#~ "lauku. "
-
-#~ msgid ""
-#~ "You can search by first name, last name or email (non-case-sensitive)."
-#~ msgstr ""
-#~ "Jūs varat meklēt pēc vārda, uzvārda vai e-pasta (nav reģistrjutīgs)."
-
-#~ msgid "Progress Graph"
-#~ msgstr "Progresa grafiks"
-
-#~ msgid ""
-#~ "This graph shows the current progress details for the selected student. "
-#~ "It contains progress on each Homework (blue columns) and total course "
-#~ "progress (red column)."
-#~ msgstr ""
-#~ "Šajā diagrammā parādīta progresa informācija par izvēlēto studentu. Tajā "
-#~ "ietverts katra mājasdarba progress (zilas kolonnas) un kopējais kursa "
-#~ "progress (sarkanā kolonna)."
-
-#~ msgid "Video Views"
-#~ msgstr "Video skatījumi"
-
-#~ msgid ""
-#~ "This graph indicates the amount of seconds Student watched each of the "
-#~ "course videos. Completed videos are indicated green."
-#~ msgstr ""
-#~ "Šis grafiks norāda sekunžu daudzumu, kuru students ir skatījies katrā "
-#~ "kursa video. Pabeigtie videoklipi tiek norādīti zaļā krāsā."
-
-#~ msgid "Discussion Activity"
-#~ msgstr "Diskusiju aktivitāte"
-
-#~ msgid ""
-#~ "This graphic indicates the amount of Student's activity in Discussions "
-#~ "including comments, responses, topics creation, and votes."
-#~ msgstr ""
-#~ "Šis grafiks norāda studenta aktivitātes līmeni diskusijās, ieskaitot  "
-#~ "komentārus, atbildes, tēmu izveidi un balsojumus."
-
-#~ msgid "Student Step"
-#~ msgstr "Studenta soļi"
-
-#~ msgid "Student's path through the course ."
-#~ msgstr "Studenta ceļš cauri kursam."
-
-#~ msgid "Instructor Analytics"
-#~ msgstr "Instruktoru Analītika"
-
-#~ msgid "Unfortunately, Analytics was disabled by admin."
-#~ msgstr "Diemžēl administrators ir atslēdzis analītiku."
-
-#~ msgid ""
-#~ "This report helps detect assessments that are most problematic for "
-#~ "students."
-#~ msgstr ""
-#~ "Šī atskaite palīdz noteikt novērtējumus, kas studentiem ir "
-#~ "visproblemātiskākie."
-
-#~ msgid ""
-#~ "Blue columns represent average count of attempts for all assessments in a "
-#~ "subsection."
-#~ msgstr ""
-#~ "Zilās kolonnas norāda visu apakšiedaļas novērtējumu vidējo mēģinājumu "
-#~ "skaitu. "
-
-#~ msgid ""
-#~ "Red columns represent average level of student's success in a subsection "
-#~ "(%)"
-#~ msgstr ""
-#~ "Sarkanās kolonnas norāda vidējo studentu sekmju līmeni apakšnodaļā (%)"
-
-#~ msgid ""
-#~ "Click on the area that represents a subsection (only subsections that "
-#~ "contain graded assessments are displayed) to get more detailed "
-#~ "information."
-#~ msgstr ""
-#~ "Lai iegūtu sīkāku informāciju, noklikšķiniet uz apgabalu, kas apzīmē "
-#~ "apakšiedaļu  (tiek parādītas tikai apakšsadaļas, kurās ir novērtējumi)."
-
-#~ msgid ""
-#~ "This level of the report indexes units from assessments success "
-#~ "perspective"
-#~ msgstr ""
-#~ "Šis atskaites līmenis attēlo vienības no veiksmīgu novērtējumu "
-#~ "perspektīvas"
-
-#~ msgid "Blue column = 100% if students gave correct answers with 1st attempt"
-#~ msgstr ""
-#~ "Zilā kolonna = 100%, ja studenti sniedza pareizas atbildes ar pirmo "
-#~ "mēģinājumu"
-
-#~ msgid ""
-#~ "Red column = 100% if students gave incorrect answers and used all the "
-#~ "attempts"
-#~ msgstr ""
-#~ "Sarkanā kolonna = 100%, ja studenti sniedza nepareizas atbildes un "
-#~ "izmantoja visus mēģinājumus"
-
-#~ msgid ""
-#~ "Click on the area that represents a unit to get detailed information."
-#~ msgstr ""
-#~ "Noklikšķiniet uz apgabala, kas apzīmē vienību, lai iegūtu sīkāku "
-#~ "informāciju"
-
-#~ msgid "Correct Answers, %"
-#~ msgstr "Pareizās atbildes, %"
-
-#~ msgid "Incorrect Answers, %"
-#~ msgstr "Nepareizās atbildes, %"
-
-#~ msgid "Computing"
-#~ msgstr "Rēķina"
-
-#~ msgid "Select period"
-#~ msgstr "Izvēlieties laika posmu"
-
-#~ msgid "From"
-#~ msgstr "No"
-
-#~ msgid "To"
-#~ msgstr "Līdz"
-
-#~ msgid "Apply"
-#~ msgstr "Piemērot"
-
-#~ msgid "Cancel"
-#~ msgstr "Atcelt"
-
-#~ msgid "Last Week"
-#~ msgstr "Pagājušā nedēļa"
-
-#~ msgid "Last 2 Weeks"
-#~ msgstr "Pēdējās 2 nedēļas"
-
-#~ msgid "Last Month"
-#~ msgstr "Pēdējais mēnesis"
-
-#~ msgid "Since Course Start"
-#~ msgstr "No kursa sākuma"
-
-#~ msgid "All Enrollments"
-#~ msgstr "Visas reģistrēšanās"
+#: templates/rg_instructor_analytics/activity.html
+#: templates/rg_instructor_analytics/cohort.html
+#: templates/rg_instructor_analytics/funnel.html
+#: templates/rg_instructor_analytics/gradebook.html
+#: templates/rg_instructor_analytics/problems.html
+msgid "Course has not started yet."
+msgstr "Kurss vēl nav sācies."
+
+#: templates/rg_instructor_analytics/activity.html
+#: templates/rg_instructor_analytics/cohort.html
+#: templates/rg_instructor_analytics/gradebook.html
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "Loading"
+msgstr "Ielāde"
+
+#: templates/rg_instructor_analytics/activity.html
+msgid "Video views count"
+msgstr "Video skatījumu skaits"
+
+#: templates/rg_instructor_analytics/activity.html
+msgid "Discussion activities count"
+msgstr "Diskusiju aktivitāšu skaits"
+
+#: templates/rg_instructor_analytics/activity.html
+msgid "Intensity of visits the course count"
+msgstr "Kursa apmeklējumu intenstitāte"
+
+#: templates/rg_instructor_analytics/activity.html
+msgid "Transition Pattern through Units"
+msgstr "Aktivitāšu pārejas modelis"
+
+#: templates/rg_instructor_analytics/activity.html
+msgid ""
+"This graph indicates the amount of visits of each Unit and bring you the "
+"whole perspective of what part of Course was the most difficult or "
+"interesting for your Students."
+msgstr ""
+"Šis grafiks norāda katras vienības apmeklējumu skaitu un "
+"parādīs perspektīvu par to, kura kursa daļa bija visgrūtākā "
+"vai interesantākā jūsu studentiem."
+
+#: templates/rg_instructor_analytics/cohort.html
+msgid "Keep an eye on your students' progress"
+msgstr "Sekojiet līdzi studentu progresam"
+
+#: templates/rg_instructor_analytics/cohort.html
+msgid ""
+"This report constantly divides your students' progress in clusters: "
+"from low-performing to high-performing groups. You can take action right "
+"away - send appropriate email to clusters in couple of clicks."
+msgstr ""
+"Šī atskaite pastāvīgi sadala jūsu studentu progresu klasteros: "
+"no grupām ar zemu sniegumu līdz ļoti veiksmīgām. Varat rīkoties uzreiz - "
+"nosūtiet katram klasteriem atbilstošu e-pastu ar pāris klikšķiem."
+
+#: templates/rg_instructor_analytics/cohort.html
+#: templates/rg_instructor_analytics/funnel.html
+msgid "Send Email"
+msgstr "Nosūtīt e-pastu"
+
+#: templates/rg_instructor_analytics/cohort.html
+msgid ""
+"Choose clusters you want to send emails to, create email and send. Exactly "
+"that simple."
+msgstr ""
+"Izvēlieties klasterus, kuriem vēlaties sūtīt e-pastus, izveidojiet e-pastu un nosūtiet. "
+"Tas ir tik vienkārši."
+
+#: templates/rg_instructor_analytics/cohort.html
+#: templates/rg_instructor_analytics/funnel.html
+msgid "Subject: "
+msgstr "Temats: "
+
+#: templates/rg_instructor_analytics/cohort.html
+#: templates/rg_instructor_analytics/funnel.html
+msgid "(Maximum 128 characters)"
+msgstr "(Ne vairāk kā 128 rakstzīmes)"
+
+#: templates/rg_instructor_analytics/cohort.html
+#: templates/rg_instructor_analytics/funnel.html
+msgid "SEND EMAIL(S)"
+msgstr "SŪTĪT E-PASTU(S)"
+
+#: templates/rg_instructor_analytics/cohort.html
+#: templates/rg_instructor_analytics/funnel.html
+msgid "Email(s) sending failed"
+msgstr "Neizdevās nosūtīt e-pastu(s)"
+
+#: templates/rg_instructor_analytics/cohort.html
+#: templates/rg_instructor_analytics/funnel.html
+msgid "Message sent"
+msgstr "Ziņa nosūtīta"
+
+#: templates/rg_instructor_analytics/cohort.html
+#: templates/rg_instructor_analytics/funnel.html
+msgid "Required fields"
+msgstr "Pieprasītie lauki"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html
+msgid "This report shows the dynamics of the following metrics:"
+msgstr "Šajā pārskatā parādīta šādu metriku dinamika:"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html
+msgid "Enrollments: Number of students that enrolled in the course"
+msgstr "Reģistrēšanās: Studentu skaits, kas reģistrējušies kursā"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html
+msgid "Unenrollments: Number of students that unenrolled from the course"
+msgstr "Izreģistrēšanās: Studentu skaits, kas izreģistrējušies no kursa"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html
+msgid "Total: Total number of students that are currently passing the course"
+msgstr "Kopā: Kopējais studentu skaits, kas šobrīd kārto kursu"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html
+msgid ""
+"You can choose the predefined periods of time to see the dynamics (Last "
+"Week, Last 2 Weeks, Last Month) or you can choose custom time period."
+msgstr ""
+"Varat izvēlēties iepriekš noteiktus laika periodus, lai redzētu dinamiku (pagājušā nedēļa, "
+"pēdējās 2 nedēļas, pēdējais mēnesis), vai arī varat izvēlēties citu laika periodu."
+
+#: templates/rg_instructor_analytics/enrollment_stats.html
+msgid "Enrollments"
+msgstr "Reģistrēšanās"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html
+msgid "Unenrollments"
+msgstr "Izreģistrēšanās"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html
+msgid "Total"
+msgstr "Kopā"
+
+#: templates/rg_instructor_analytics/funnel.html
+msgid ""
+"This report shows which stages of your course prevent students from moving "
+"forward. "
+msgstr ""
+"Šis atskaite parāda, kuri kursa posmi traucē "
+"studentiem virzīties uz priekšu."
+
+#: templates/rg_instructor_analytics/funnel.html
+msgid "By stages we mean the hierarchical parts of Open edX course:"
+msgstr "Ar posmiem mēs domājam Open edX kursa hierarhiskās daļas"
+
+#: templates/rg_instructor_analytics/funnel.html
+msgid "Section"
+msgstr "Segments"
+
+#: templates/rg_instructor_analytics/funnel.html
+msgid "Subsection"
+msgstr "Apakšiedaļa"
+
+#: templates/rg_instructor_analytics/funnel.html
+msgid "Unit"
+msgstr "Aktivitāte"
+
+#: templates/rg_instructor_analytics/funnel.html
+msgid ""
+"See how many students entered each stage, how many passed to another one and"
+" how many stuck."
+msgstr ""
+"Skatiet, cik studentu iekļuva katrā posmā, cik pārcēlās"
+" uz citu posmu un cik iestrēga."
+
+#: templates/rg_instructor_analytics/funnel.html
+msgid "Click on each stage to see the breakdown by available sub-stages."
+msgstr "Noklikšķiniet uz katra posma, lai redzētu sadalījumu pēc pieejamajiem apakšposmiem."
+
+#: templates/rg_instructor_analytics/funnel.html
+msgid ""
+"Choose section or subsection with a checkbox. Email will be sent to all the "
+"students who stuck there."
+msgstr ""
+"Izvēlieties sadaļu vai apakšiedaļu ar izvēles rūtiņu. Visiem "
+"studentiem, kas tur iestrēguši, tiks nosūtīts e-pasts."
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid ""
+"This reports gives an overview of all students' progress in a simple "
+"spreadsheet form."
+msgstr ""
+"Šī atskaite vienkāršā izklājlapas veidā sniedz  "
+"pārskatu par visiem studentiem."
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid ""
+"Progress details of any student are available by clicking on the "
+"corresponding row of the spreadsheet."
+msgstr ""
+"Informācija par jebkura studenta progresu ir pieejama, noklikšķinot  "
+"uz atbilstošās izklājlapas rindas."
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid ""
+"You can filter student list by using 'Search Student...' "
+"field."
+msgstr ""
+"Jūs varat filtrēt studentu sarakstu, izmantojot "
+"'Meklēt studentu...' lauku. "
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid "You can search by first name, last name or email (non-case-sensitive)."
+msgstr "Jūs varat meklēt pēc vārda, uzvārda vai e-pasta (nav reģistrjutīgs)."
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid "Progress Graph"
+msgstr "Progresa grafiks"
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid ""
+"This graph shows the current progress details for the selected student. It "
+"contains progress on each Homework (blue columns) and total course progress "
+"(red column)."
+msgstr ""
+"Šajā diagrammā parādīta progresa informācija par izvēlēto studentu. "
+"Tajā ietverts katra mājasdarba progress (zilas kolonnas) un "
+"kopējais kursa progress (sarkanā kolonna)."
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid "Video Views"
+msgstr "Video skatījumi"
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid ""
+"This graph indicates the amount of seconds Student watched each of the "
+"course videos. Completed videos are indicated green."
+msgstr ""
+"Šis grafiks norāda sekunžu daudzumu, kuru students ir skatījies katrā kursa video. "
+"Pabeigtie videoklipi tiek norādīti zaļā krāsā."
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid "Discussion Activity"
+msgstr "Diskusiju aktivitāte"
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid ""
+"This graphic indicates the amount of Student's activity in Discussions "
+"including comments, responses, topics creation, and votes."
+msgstr ""
+"Šis grafiks norāda studenta aktivitātes līmeni diskusijās, ieskaitot  "
+"komentārus, atbildes, tēmu izveidi un balsojumus."
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid "Student Step"
+msgstr "Studenta soļi"
+
+#: templates/rg_instructor_analytics/gradebook.html
+msgid "Student's path through the course ."
+msgstr "Studenta ceļš cauri kursam."
+
+#: templates/rg_instructor_analytics/instructor_analytics_fragment.html
+msgid "Instructor Analytics"
+msgstr "Instruktoru Analītika"
+
+#: templates/rg_instructor_analytics/instructor_analytics_fragment.html
+msgid "Unfortunately, Analytics was disabled by admin."
+msgstr "Diemžēl administrators ir atslēdzis analītiku."
+
+#: templates/rg_instructor_analytics/problems.html
+msgid ""
+"This report helps detect assessments that are most problematic for students."
+msgstr ""
+"Šī atskaite palīdz noteikt novērtējumus, kas studentiem ir visproblemātiskākie."
+
+#: templates/rg_instructor_analytics/problems.html
+msgid ""
+"Blue columns represent average count of attempts for all assessments in a "
+"subsection."
+msgstr ""
+"Zilās kolonnas norāda visu apakšiedaļas novērtējumu vidējo mēģinājumu skaitu. "
+
+#: templates/rg_instructor_analytics/problems.html
+msgid ""
+"Red columns represent average level of student's success in a "
+"subsection (%)"
+msgstr ""
+"Sarkanās kolonnas norāda vidējo studentu sekmju līmeni "
+"apakšnodaļā (%)"
+
+#: templates/rg_instructor_analytics/problems.html
+msgid ""
+"Click on the area that represents a subsection (only subsections that "
+"contain graded assessments are displayed) to get more detailed information."
+msgstr ""
+"Lai iegūtu sīkāku informāciju, noklikšķiniet uz apgabalu, kas apzīmē apakšiedaļu  "
+"(tiek parādītas tikai apakšsadaļas, kurās ir novērtējumi)."
+
+#: templates/rg_instructor_analytics/problems.html
+msgid ""
+"This level of the report indexes units from assessments success perspective"
+msgstr ""
+"Šis atskaites līmenis attēlo vienības no veiksmīgu novērtējumu perspektīvas"
+
+#: templates/rg_instructor_analytics/problems.html
+msgid "Blue column = 100% if students gave correct answers with 1st attempt"
+msgstr "Zilā kolonna = 100%, ja studenti sniedza pareizas atbildes ar pirmo mēģinājumu"
+
+#: templates/rg_instructor_analytics/problems.html
+msgid ""
+"Red column = 100% if students gave incorrect answers and used all the "
+"attempts"
+msgstr ""
+"Sarkanā kolonna = 100%, ja studenti sniedza nepareizas atbildes un "
+"izmantoja visus mēģinājumus"
+
+#: templates/rg_instructor_analytics/problems.html
+msgid "Click on the area that represents a unit to get detailed information."
+msgstr "Noklikšķiniet uz apgabala, kas apzīmē vienību, lai iegūtu sīkāku informāciju"
+
+#: templates/rg_instructor_analytics/problems.html
+msgid "Correct Answers, %"
+msgstr "Pareizās atbildes, %"
+
+#: templates/rg_instructor_analytics/problems.html
+msgid "Incorrect Answers, %"
+msgstr "Nepareizās atbildes, %"
+
+#: templates/rg_instructor_analytics/suggestion.html
+msgid "Computing"
+msgstr "Rēķina"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "Select period"
+msgstr "Izvēlieties laika posmu"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "From"
+msgstr "No"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "To"
+msgstr "Līdz"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "Apply"
+msgstr "Piemērot"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "Cancel"
+msgstr "Atcelt"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "Last Week"
+msgstr "Pagājušā nedēļa"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "Last 2 Weeks"
+msgstr "Pēdējās 2 nedēļas"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "Last Month"
+msgstr "Pēdējais mēnesis"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "Since Course Start"
+msgstr "No kursa sākuma"
+
+#: templates/rg_instructor_analytics/time-filter.html
+msgid "All Enrollments"
+msgstr "Visas reģistrēšanās"

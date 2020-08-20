@@ -8,7 +8,7 @@ import { courseToggling, siteToggling } from "./data/actions";
 const useStyles = makeStyles(theme => ({
   select: {
     border: `2px solid ${theme.palette.primary.main}`,
-    padding: 14
+    padding: 12
   }
 }));
 

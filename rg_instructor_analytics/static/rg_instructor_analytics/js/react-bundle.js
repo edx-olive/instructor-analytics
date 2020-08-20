@@ -5952,7 +5952,7 @@ var durationWeek = 6048e5;
 /* harmony import */ var lodash_isplainobject__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(155);
 /* harmony import */ var lodash_isplainobject__WEBPACK_IMPORTED_MODULE_42___default = /*#__PURE__*/__webpack_require__.n(lodash_isplainobject__WEBPACK_IMPORTED_MODULE_42__);
 /* harmony import */ var d3_scale__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(75);
-/* harmony import */ var d3_color__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(36);
+/* harmony import */ var d3_color__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(37);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(1);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_45___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_45__);
 /* harmony import */ var react_motion__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(7);
@@ -8079,7 +8079,7 @@ function projectionMutator(projectAt) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(55),
-    isObject = __webpack_require__(32);
+    isObject = __webpack_require__(33);
 /** `Object#toString` result references. */
 
 
@@ -10706,7 +10706,8 @@ var useQuantizeColorScaleLegendData = function useQuantizeColorScaleLegendData(_
 
 
 /***/ }),
-/* 32 */
+/* 32 */,
+/* 33 */
 /***/ (function(module, exports) {
 
 /**
@@ -10742,7 +10743,7 @@ function isObject(value) {
 module.exports = isObject;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports) {
 
 /**
@@ -10776,7 +10777,7 @@ function isObjectLike(value) {
 module.exports = isObjectLike;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var _regeneratorRuntime = __webpack_require__(289);
@@ -13902,7 +13903,7 @@ var _regeneratorRuntime = __webpack_require__(289);
 });
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13929,7 +13930,7 @@ function azimuthalInvert(angle) {
 }
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14291,7 +14292,6 @@ function hsl2rgb(h, m1, m2) {
 }
 
 /***/ }),
-/* 37 */,
 /* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -16530,7 +16530,7 @@ var renderGridLinesToCanvas = function renderGridLinesToCanvas(ctx, _ref3) {
 
 var baseGetTag = __webpack_require__(55),
     getPrototype = __webpack_require__(126),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /** `Object#toString` result references. */
 
 
@@ -16756,7 +16756,7 @@ __webpack_require__.d(__webpack_exports__, "a", function() { return /* binding *
 var define = __webpack_require__(53);
 
 // EXTERNAL MODULE: ./node_modules/d3-color/src/color.js
-var color = __webpack_require__(36);
+var color = __webpack_require__(37);
 
 // CONCATENATED MODULE: ./node_modules/d3-color/src/math.js
 var deg2rad = Math.PI / 180;
@@ -17682,7 +17682,7 @@ module.exports = isIndex;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(55),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /** `Object#toString` result references. */
 
 
@@ -18027,7 +18027,7 @@ Measure.propTypes.children = prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.f
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(55),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /** `Object#toString` result references. */
 
 
@@ -19323,7 +19323,7 @@ module.exports = copyArray;
 /* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(32);
+var isObject = __webpack_require__(33);
 /** Built-in value references. */
 
 
@@ -19363,7 +19363,7 @@ module.exports = baseCreate;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseIsArguments = __webpack_require__(329),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /** Used for built-in method references. */
 
 
@@ -19604,7 +19604,7 @@ module.exports = getTag;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseCreate = __webpack_require__(101),
-    isObject = __webpack_require__(32);
+    isObject = __webpack_require__(33);
 /**
  * Creates a function that produces an instance of `Ctor` regardless of
  * whether it was invoked as part of a `new` expression or by `call` or `apply`.
@@ -21598,7 +21598,7 @@ __webpack_require__.d(__webpack_exports__, "b", function() { return /* binding *
 // UNUSED EXPORTS: rgbBasisClosed
 
 // EXTERNAL MODULE: ./node_modules/d3-color/src/color.js
-var src_color = __webpack_require__(36);
+var src_color = __webpack_require__(37);
 
 // CONCATENATED MODULE: ./node_modules/d3-interpolate/src/basis.js
 function basis(t1, v0, v1, v2, v3) {
@@ -22468,7 +22468,7 @@ module.exports = cacheHas;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseIsEqualDeep = __webpack_require__(353),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /**
  * The base implementation of `_.isEqual` which supports partial comparisons
  * and tracks traversed objects.
@@ -24853,7 +24853,7 @@ module.exports = overArg;
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArrayLike = __webpack_require__(79),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /**
  * This method is like `_.isArrayLike` except that it also checks if `value`
  * is an object.
@@ -25057,7 +25057,7 @@ module.exports = shortOut;
 var eq = __webpack_require__(78),
     isArrayLike = __webpack_require__(79),
     isIndex = __webpack_require__(80),
-    isObject = __webpack_require__(32);
+    isObject = __webpack_require__(33);
 /**
  * Checks if the given arguments are from an iteratee call.
  *
@@ -25093,7 +25093,7 @@ module.exports = isIterateeCall;
 var assignValue = __webpack_require__(131),
     castPath = __webpack_require__(69),
     isIndex = __webpack_require__(80),
-    isObject = __webpack_require__(32),
+    isObject = __webpack_require__(33),
     toKey = __webpack_require__(70);
 /**
  * The base implementation of `_.set`.
@@ -26184,7 +26184,7 @@ module.exports = baseIteratee;
 /* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(32);
+var isObject = __webpack_require__(33);
 /**
  * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
  *
@@ -27697,7 +27697,7 @@ module.exports = merge;
 
 var baseGetTag = __webpack_require__(55),
     isArray = __webpack_require__(24),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /** `Object#toString` result references. */
 
 
@@ -40832,7 +40832,7 @@ var Stack = __webpack_require__(95),
     assignMergeValue = __webpack_require__(170),
     baseFor = __webpack_require__(172),
     baseMergeDeep = __webpack_require__(328),
-    isObject = __webpack_require__(32),
+    isObject = __webpack_require__(33),
     keysIn = __webpack_require__(105),
     safeGet = __webpack_require__(179);
 /**
@@ -41144,7 +41144,7 @@ module.exports = stackSet;
 
 var isFunction = __webpack_require__(23),
     isMasked = __webpack_require__(312),
-    isObject = __webpack_require__(32),
+    isObject = __webpack_require__(33),
     toSource = __webpack_require__(169);
 /**
  * Used to match `RegExp`
@@ -41688,7 +41688,7 @@ var assignMergeValue = __webpack_require__(170),
     isArrayLikeObject = __webpack_require__(178),
     isBuffer = __webpack_require__(103),
     isFunction = __webpack_require__(23),
-    isObject = __webpack_require__(32),
+    isObject = __webpack_require__(33),
     isPlainObject = __webpack_require__(47),
     isTypedArray = __webpack_require__(129),
     safeGet = __webpack_require__(179),
@@ -41773,7 +41773,7 @@ module.exports = baseMergeDeep;
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGetTag = __webpack_require__(55),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /** `Object#toString` result references. */
 
 
@@ -41821,7 +41821,7 @@ module.exports = stubFalse;
 
 var baseGetTag = __webpack_require__(55),
     isLength = __webpack_require__(128),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /** `Object#toString` result references. */
 
 
@@ -41936,7 +41936,7 @@ module.exports = baseTimes;
 /* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(32),
+var isObject = __webpack_require__(33),
     isPrototype = __webpack_require__(127),
     nativeKeysIn = __webpack_require__(335);
 /** Used for built-in method references. */
@@ -43591,7 +43591,7 @@ var LazyWrapper = __webpack_require__(144),
     LodashWrapper = __webpack_require__(205),
     baseLodash = __webpack_require__(145),
     isArray = __webpack_require__(24),
-    isObjectLike = __webpack_require__(33),
+    isObjectLike = __webpack_require__(34),
     wrapperClone = __webpack_require__(373);
 /** Used for built-in method references. */
 
@@ -44054,7 +44054,7 @@ module.exports = mergeData;
 /* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(32),
+var isObject = __webpack_require__(33),
     isSymbol = __webpack_require__(81);
 /** Used as references for various `Number` constants. */
 
@@ -44951,7 +44951,7 @@ var Stack = __webpack_require__(95),
     isArray = __webpack_require__(24),
     isBuffer = __webpack_require__(103),
     isMap = __webpack_require__(415),
-    isObject = __webpack_require__(32),
+    isObject = __webpack_require__(33),
     isSet = __webpack_require__(417),
     keys = __webpack_require__(82);
 /** Used to compose bitmasks for cloning. */
@@ -45410,7 +45410,7 @@ module.exports = isMap;
 /***/ (function(module, exports, __webpack_require__) {
 
 var getTag = __webpack_require__(107),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /** `Object#toString` result references. */
 
 
@@ -45466,7 +45466,7 @@ module.exports = isSet;
 /***/ (function(module, exports, __webpack_require__) {
 
 var getTag = __webpack_require__(107),
-    isObjectLike = __webpack_require__(33);
+    isObjectLike = __webpack_require__(34);
 /** `Object#toString` result references. */
 
 
@@ -54217,7 +54217,7 @@ var baseApiUrl="/courses/course-v1:edX+DemoX+Demo_Course/tab/instructor_analytic
 var apiUrls=window.apiUrls||{add_info:{gender:"".concat(baseApiUrl).concat(addInfoUrl,"/gender/"),education:"".concat(baseApiUrl).concat(addInfoUrl,"/education/"),age:"".concat(baseApiUrl).concat(addInfoUrl,"/age/"),geo:"".concat(baseApiUrl).concat(addInfoUrl,"/geo/"),scopes:"".concat(baseApiUrl).concat(addInfoUrl,"/scopes/")}};// I18N: OeX Mako templates context includes `django.gettext` tool:
 var gettext=window.django&&window.django.gettext||function(text){return text;};
 // EXTERNAL MODULE: ./node_modules/redux-api-middleware/lib/index.umd.js
-var index_umd = __webpack_require__(34);
+var index_umd = __webpack_require__(35);
 
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/gender/data/actionTypes.js
 var FEATURE='GENDER_STATS';var GENDER_STATS_REQUEST="".concat(FEATURE,":REQUEST");var GENDER_STATS_RECEIVED="".concat(FEATURE,":RECEIVED");var GENDER_STATS_FAILURE="".concat(FEATURE,":FAILURE");
@@ -54248,438 +54248,6 @@ var isNil = /*#__PURE__*/_curry1(function isNil(x) {
 });
 
 /* harmony default export */ var es_isNil = (isNil);
-// CONCATENATED MODULE: ./node_modules/ramda/es/add.js
-
-/**
- * Adds two values.
- *
- * @func
- * @memberOf R
- * @since v0.1.0
- * @category Math
- * @sig Number -> Number -> Number
- * @param {Number} a
- * @param {Number} b
- * @return {Number}
- * @see R.subtract
- * @example
- *
- *      R.add(2, 3);       //=>  5
- *      R.add(7)(10);      //=> 17
- */
-
-var add_add = /*#__PURE__*/_curry2(function add(a, b) {
-  return Number(a) + Number(b);
-});
-
-/* harmony default export */ var es_add = (add_add);
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_curry3.js
-
-
-
-/**
- * Optimized internal three-arity curry function.
- *
- * @private
- * @category Function
- * @param {Function} fn The function to curry.
- * @return {Function} The curried function.
- */
-
-function _curry3(fn) {
-  return function f3(a, b, c) {
-    switch (arguments.length) {
-      case 0:
-        return f3;
-
-      case 1:
-        return _isPlaceholder(a) ? f3 : _curry2(function (_b, _c) {
-          return fn(a, _b, _c);
-        });
-
-      case 2:
-        return _isPlaceholder(a) && _isPlaceholder(b) ? f3 : _isPlaceholder(a) ? _curry2(function (_a, _c) {
-          return fn(_a, b, _c);
-        }) : _isPlaceholder(b) ? _curry2(function (_b, _c) {
-          return fn(a, _b, _c);
-        }) : _curry1(function (_c) {
-          return fn(a, b, _c);
-        });
-
-      default:
-        return _isPlaceholder(a) && _isPlaceholder(b) && _isPlaceholder(c) ? f3 : _isPlaceholder(a) && _isPlaceholder(b) ? _curry2(function (_a, _b) {
-          return fn(_a, _b, c);
-        }) : _isPlaceholder(a) && _isPlaceholder(c) ? _curry2(function (_a, _c) {
-          return fn(_a, b, _c);
-        }) : _isPlaceholder(b) && _isPlaceholder(c) ? _curry2(function (_b, _c) {
-          return fn(a, _b, _c);
-        }) : _isPlaceholder(a) ? _curry1(function (_a) {
-          return fn(_a, b, c);
-        }) : _isPlaceholder(b) ? _curry1(function (_b) {
-          return fn(a, _b, c);
-        }) : _isPlaceholder(c) ? _curry1(function (_c) {
-          return fn(a, b, _c);
-        }) : fn(a, b, c);
-    }
-  };
-}
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isArrayLike.js
-
-
-
-/**
- * Tests whether or not an object is similar to an array.
- *
- * @private
- * @category Type
- * @category List
- * @sig * -> Boolean
- * @param {*} x The object to test.
- * @return {Boolean} `true` if `x` has a numeric length property and extreme indices defined; `false` otherwise.
- * @example
- *
- *      _isArrayLike([]); //=> true
- *      _isArrayLike(true); //=> false
- *      _isArrayLike({}); //=> false
- *      _isArrayLike({length: 10}); //=> false
- *      _isArrayLike({0: 'zero', 9: 'nine', length: 10}); //=> true
- */
-
-var _isArrayLike = /*#__PURE__*/_curry1(function isArrayLike(x) {
-  if (_isArray(x)) {
-    return true;
-  }
-
-  if (!x) {
-    return false;
-  }
-
-  if (typeof x !== 'object') {
-    return false;
-  }
-
-  if (_isString(x)) {
-    return false;
-  }
-
-  if (x.nodeType === 1) {
-    return !!x.length;
-  }
-
-  if (x.length === 0) {
-    return true;
-  }
-
-  if (x.length > 0) {
-    return x.hasOwnProperty(0) && x.hasOwnProperty(x.length - 1);
-  }
-
-  return false;
-});
-
-/* harmony default export */ var internal_isArrayLike = (_isArrayLike);
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xwrap.js
-var XWrap = /*#__PURE__*/function () {
-  function XWrap(fn) {
-    this.f = fn;
-  }
-
-  XWrap.prototype['@@transducer/init'] = function () {
-    throw new Error('init not implemented on XWrap');
-  };
-
-  XWrap.prototype['@@transducer/result'] = function (acc) {
-    return acc;
-  };
-
-  XWrap.prototype['@@transducer/step'] = function (acc, x) {
-    return this.f(acc, x);
-  };
-
-  return XWrap;
-}();
-
-function _xwrap(fn) {
-  return new XWrap(fn);
-}
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_arity.js
-function _arity(n, fn) {
-  /* eslint-disable no-unused-vars */
-  switch (n) {
-    case 0:
-      return function () {
-        return fn.apply(this, arguments);
-      };
-
-    case 1:
-      return function (a0) {
-        return fn.apply(this, arguments);
-      };
-
-    case 2:
-      return function (a0, a1) {
-        return fn.apply(this, arguments);
-      };
-
-    case 3:
-      return function (a0, a1, a2) {
-        return fn.apply(this, arguments);
-      };
-
-    case 4:
-      return function (a0, a1, a2, a3) {
-        return fn.apply(this, arguments);
-      };
-
-    case 5:
-      return function (a0, a1, a2, a3, a4) {
-        return fn.apply(this, arguments);
-      };
-
-    case 6:
-      return function (a0, a1, a2, a3, a4, a5) {
-        return fn.apply(this, arguments);
-      };
-
-    case 7:
-      return function (a0, a1, a2, a3, a4, a5, a6) {
-        return fn.apply(this, arguments);
-      };
-
-    case 8:
-      return function (a0, a1, a2, a3, a4, a5, a6, a7) {
-        return fn.apply(this, arguments);
-      };
-
-    case 9:
-      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8) {
-        return fn.apply(this, arguments);
-      };
-
-    case 10:
-      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
-        return fn.apply(this, arguments);
-      };
-
-    default:
-      throw new Error('First argument to _arity must be a non-negative integer no greater than ten');
-  }
-}
-// CONCATENATED MODULE: ./node_modules/ramda/es/bind.js
-
-
-/**
- * Creates a function that is bound to a context.
- * Note: `R.bind` does not provide the additional argument-binding capabilities of
- * [Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
- *
- * @func
- * @memberOf R
- * @since v0.6.0
- * @category Function
- * @category Object
- * @sig (* -> *) -> {*} -> (* -> *)
- * @param {Function} fn The function to bind to context
- * @param {Object} thisObj The context to bind `fn` to
- * @return {Function} A function that will execute in the context of `thisObj`.
- * @see R.partial
- * @example
- *
- *      const log = R.bind(console.log, console);
- *      R.pipe(R.assoc('a', 2), R.tap(log), R.assoc('a', 3))({a: 1}); //=> {a: 3}
- *      // logs {a: 2}
- * @symb R.bind(f, o)(a, b) = f.call(o, a, b)
- */
-
-var bind_bind = /*#__PURE__*/_curry2(function bind(fn, thisObj) {
-  return _arity(fn.length, function () {
-    return fn.apply(thisObj, arguments);
-  });
-});
-
-/* harmony default export */ var es_bind = (bind_bind);
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_reduce.js
-
-
-
-
-function _arrayReduce(xf, acc, list) {
-  var idx = 0;
-  var len = list.length;
-
-  while (idx < len) {
-    acc = xf['@@transducer/step'](acc, list[idx]);
-
-    if (acc && acc['@@transducer/reduced']) {
-      acc = acc['@@transducer/value'];
-      break;
-    }
-
-    idx += 1;
-  }
-
-  return xf['@@transducer/result'](acc);
-}
-
-function _iterableReduce(xf, acc, iter) {
-  var step = iter.next();
-
-  while (!step.done) {
-    acc = xf['@@transducer/step'](acc, step.value);
-
-    if (acc && acc['@@transducer/reduced']) {
-      acc = acc['@@transducer/value'];
-      break;
-    }
-
-    step = iter.next();
-  }
-
-  return xf['@@transducer/result'](acc);
-}
-
-function _methodReduce(xf, acc, obj, methodName) {
-  return xf['@@transducer/result'](obj[methodName](es_bind(xf['@@transducer/step'], xf), acc));
-}
-
-var symIterator = typeof Symbol !== 'undefined' ? Symbol.iterator : '@@iterator';
-function _reduce(fn, acc, list) {
-  if (typeof fn === 'function') {
-    fn = _xwrap(fn);
-  }
-
-  if (internal_isArrayLike(list)) {
-    return _arrayReduce(fn, acc, list);
-  }
-
-  if (typeof list['fantasy-land/reduce'] === 'function') {
-    return _methodReduce(fn, acc, list, 'fantasy-land/reduce');
-  }
-
-  if (list[symIterator] != null) {
-    return _iterableReduce(fn, acc, list[symIterator]());
-  }
-
-  if (typeof list.next === 'function') {
-    return _iterableReduce(fn, acc, list);
-  }
-
-  if (typeof list.reduce === 'function') {
-    return _methodReduce(fn, acc, list, 'reduce');
-  }
-
-  throw new TypeError('reduce: list must be array or iterable');
-}
-// CONCATENATED MODULE: ./node_modules/ramda/es/reduce.js
-
-
-/**
- * Returns a single item by iterating through the list, successively calling
- * the iterator function and passing it an accumulator value and the current
- * value from the array, and then passing the result to the next call.
- *
- * The iterator function receives two values: *(acc, value)*. It may use
- * [`R.reduced`](#reduced) to shortcut the iteration.
- *
- * The arguments' order of [`reduceRight`](#reduceRight)'s iterator function
- * is *(value, acc)*.
- *
- * Note: `R.reduce` does not skip deleted or unassigned indices (sparse
- * arrays), unlike the native `Array.prototype.reduce` method. For more details
- * on this behavior, see:
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Description
- *
- * Dispatches to the `reduce` method of the third argument, if present. When
- * doing so, it is up to the user to handle the [`R.reduced`](#reduced)
- * shortcuting, as this is not implemented by `reduce`.
- *
- * @func
- * @memberOf R
- * @since v0.1.0
- * @category List
- * @sig ((a, b) -> a) -> a -> [b] -> a
- * @param {Function} fn The iterator function. Receives two values, the accumulator and the
- *        current element from the array.
- * @param {*} acc The accumulator value.
- * @param {Array} list The list to iterate over.
- * @return {*} The final, accumulated value.
- * @see R.reduced, R.addIndex, R.reduceRight
- * @example
- *
- *      R.reduce(R.subtract, 0, [1, 2, 3, 4]) // => ((((0 - 1) - 2) - 3) - 4) = -10
- *      //          -               -10
- *      //         / \              / \
- *      //        -   4           -6   4
- *      //       / \              / \
- *      //      -   3   ==>     -3   3
- *      //     / \              / \
- *      //    -   2           -1   2
- *      //   / \              / \
- *      //  0   1            0   1
- *
- * @symb R.reduce(f, a, [b, c, d]) = f(f(f(a, b), c), d)
- */
-
-var reduce = /*#__PURE__*/_curry3(_reduce);
-
-/* harmony default export */ var es_reduce = (reduce);
-// CONCATENATED MODULE: ./node_modules/ramda/es/sum.js
-
-
-/**
- * Adds together all the elements of a list.
- *
- * @func
- * @memberOf R
- * @since v0.1.0
- * @category Math
- * @sig [Number] -> Number
- * @param {Array} list An array of numbers
- * @return {Number} The sum of all the numbers in the list.
- * @see R.reduce
- * @example
- *
- *      R.sum([2,4,6,8,100,1]); //=> 121
- */
-
-var sum_sum = /*#__PURE__*/es_reduce(es_add, 0);
-/* harmony default export */ var es_sum = (sum_sum);
-// CONCATENATED MODULE: ./node_modules/ramda/es/values.js
-
-
-/**
- * Returns a list of all the enumerable own properties of the supplied object.
- * Note that the order of the output array is not guaranteed across different
- * JS platforms.
- *
- * @func
- * @memberOf R
- * @since v0.1.0
- * @category Object
- * @sig {k: v} -> [v]
- * @param {Object} obj The object to extract values from
- * @return {Array} An array of the values of the object's own properties.
- * @see R.valuesIn, R.keys
- * @example
- *
- *      R.values({a: 1, b: 2, c: 3}); //=> [1, 2, 3]
- */
-
-var values_values = /*#__PURE__*/_curry1(function values(obj) {
-  var props = es_keys(obj);
-  var len = props.length;
-  var vals = [];
-  var idx = 0;
-
-  while (idx < len) {
-    vals[idx] = obj[props[idx]];
-    idx += 1;
-  }
-
-  return vals;
-});
-
-/* harmony default export */ var es_values = (values_values);
 // CONCATENATED MODULE: ./node_modules/@material-ui/core/esm/styles/makeStyles.js
 
 
@@ -55481,6 +55049,191 @@ var omit_omit = /*#__PURE__*/_curry2(function omit(names, obj) {
 });
 
 /* harmony default export */ var es_omit = (omit_omit);
+// CONCATENATED MODULE: ./node_modules/ramda/es/pickBy.js
+
+/**
+ * Returns a partial copy of an object containing only the keys that satisfy
+ * the supplied predicate.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Object
+ * @sig ((v, k) -> Boolean) -> {k: v} -> {k: v}
+ * @param {Function} pred A predicate to determine whether or not a key
+ *        should be included on the output object.
+ * @param {Object} obj The object to copy from
+ * @return {Object} A new object with only properties that satisfy `pred`
+ *         on it.
+ * @see R.pick, R.filter
+ * @example
+ *
+ *      const isUpperCase = (val, key) => key.toUpperCase() === key;
+ *      R.pickBy(isUpperCase, {a: 1, b: 2, A: 3, B: 4}); //=> {A: 3, B: 4}
+ */
+
+var pickBy = /*#__PURE__*/_curry2(function pickBy(test, obj) {
+  var result = {};
+
+  for (var prop in obj) {
+    if (test(obj[prop], prop, obj)) {
+      result[prop] = obj[prop];
+    }
+  }
+
+  return result;
+});
+
+/* harmony default export */ var es_pickBy = (pickBy);
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_checkForMethod.js
+
+/**
+ * This checks whether a function has a [methodname] function. If it isn't an
+ * array it will execute that function otherwise it will default to the ramda
+ * implementation.
+ *
+ * @private
+ * @param {Function} fn ramda implemtation
+ * @param {String} methodname property to check for a custom implementation
+ * @return {Object} Whatever the return value of the method is.
+ */
+
+function _checkForMethod(methodname, fn) {
+  return function () {
+    var length = arguments.length;
+
+    if (length === 0) {
+      return fn();
+    }
+
+    var obj = arguments[length - 1];
+    return _isArray(obj) || typeof obj[methodname] !== 'function' ? fn.apply(this, arguments) : obj[methodname].apply(obj, Array.prototype.slice.call(arguments, 0, length - 1));
+  };
+}
+// CONCATENATED MODULE: ./node_modules/ramda/es/forEach.js
+
+
+/**
+ * Iterate over an input `list`, calling a provided function `fn` for each
+ * element in the list.
+ *
+ * `fn` receives one argument: *(value)*.
+ *
+ * Note: `R.forEach` does not skip deleted or unassigned indices (sparse
+ * arrays), unlike the native `Array.prototype.forEach` method. For more
+ * details on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Description
+ *
+ * Also note that, unlike `Array.prototype.forEach`, Ramda's `forEach` returns
+ * the original array. In some libraries this function is named `each`.
+ *
+ * Dispatches to the `forEach` method of the second argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.1
+ * @category List
+ * @sig (a -> *) -> [a] -> [a]
+ * @param {Function} fn The function to invoke. Receives one argument, `value`.
+ * @param {Array} list The list to iterate over.
+ * @return {Array} The original list.
+ * @see R.addIndex
+ * @example
+ *
+ *      const printXPlusFive = x => console.log(x + 5);
+ *      R.forEach(printXPlusFive, [1, 2, 3]); //=> [1, 2, 3]
+ *      // logs 6
+ *      // logs 7
+ *      // logs 8
+ * @symb R.forEach(f, [a, b, c]) = [a, b, c]
+ */
+
+var forEach = /*#__PURE__*/_curry2( /*#__PURE__*/_checkForMethod('forEach', function forEach(fn, list) {
+  var len = list.length;
+  var idx = 0;
+
+  while (idx < len) {
+    fn(list[idx]);
+    idx += 1;
+  }
+
+  return list;
+}));
+
+/* harmony default export */ var es_forEach = (forEach);
+// CONCATENATED MODULE: ./node_modules/ramda/es/values.js
+
+
+/**
+ * Returns a list of all the enumerable own properties of the supplied object.
+ * Note that the order of the output array is not guaranteed across different
+ * JS platforms.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig {k: v} -> [v]
+ * @param {Object} obj The object to extract values from
+ * @return {Array} An array of the values of the object's own properties.
+ * @see R.valuesIn, R.keys
+ * @example
+ *
+ *      R.values({a: 1, b: 2, c: 3}); //=> [1, 2, 3]
+ */
+
+var values_values = /*#__PURE__*/_curry1(function values(obj) {
+  var props = es_keys(obj);
+  var len = props.length;
+  var vals = [];
+  var idx = 0;
+
+  while (idx < len) {
+    vals[idx] = obj[props[idx]];
+    idx += 1;
+  }
+
+  return vals;
+});
+
+/* harmony default export */ var es_values = (values_values);
+// CONCATENATED MODULE: ./node_modules/ramda/es/pick.js
+
+/**
+ * Returns a partial copy of an object containing only the keys specified. If
+ * the key does not exist, the property is ignored.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig [k] -> {k: v} -> {k: v}
+ * @param {Array} names an array of String property names to copy onto a new object
+ * @param {Object} obj The object to copy from
+ * @return {Object} A new object with only properties from `names` on it.
+ * @see R.omit, R.props
+ * @example
+ *
+ *      R.pick(['a', 'd'], {a: 1, b: 2, c: 3, d: 4}); //=> {a: 1, d: 4}
+ *      R.pick(['a', 'e', 'f'], {a: 1, b: 2, c: 3, d: 4}); //=> {a: 1}
+ */
+
+var pick = /*#__PURE__*/_curry2(function pick(names, obj) {
+  var result = {};
+  var idx = 0;
+
+  while (idx < names.length) {
+    if (names[idx] in obj) {
+      result[names[idx]] = obj[names[idx]];
+    }
+
+    idx += 1;
+  }
+
+  return result;
+});
+
+/* harmony default export */ var es_pick = (pick);
 // EXTERNAL MODULE: ./node_modules/@nivo/bar/dist/nivo-bar.esm.js
 var nivo_bar_esm = __webpack_require__(111);
 
@@ -55495,8 +55248,241 @@ function useTheme_useTheme() {
 
   return theme;
 }
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isTransformer.js
+function _isTransformer(obj) {
+  return obj != null && typeof obj['@@transducer/step'] === 'function';
+}
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_dispatchable.js
+
+
+/**
+ * Returns a function that dispatches with different strategies based on the
+ * object in list position (last argument). If it is an array, executes [fn].
+ * Otherwise, if it has a function with one of the given method names, it will
+ * execute that function (functor case). Otherwise, if it is a transformer,
+ * uses transducer [xf] to return a new transformer (transducer case).
+ * Otherwise, it will default to executing [fn].
+ *
+ * @private
+ * @param {Array} methodNames properties to check for a custom implementation
+ * @param {Function} xf transducer to initialize if object is transformer
+ * @param {Function} fn default ramda implementation
+ * @return {Function} A function that dispatches on object in list position
+ */
+
+function _dispatchable(methodNames, xf, fn) {
+  return function () {
+    if (arguments.length === 0) {
+      return fn();
+    }
+
+    var args = Array.prototype.slice.call(arguments, 0);
+    var obj = args.pop();
+
+    if (!_isArray(obj)) {
+      var idx = 0;
+
+      while (idx < methodNames.length) {
+        if (typeof obj[methodNames[idx]] === 'function') {
+          return obj[methodNames[idx]].apply(obj, args);
+        }
+
+        idx += 1;
+      }
+
+      if (_isTransformer(obj)) {
+        var transducer = xf.apply(null, args);
+        return transducer(obj);
+      }
+    }
+
+    return fn.apply(this, arguments);
+  };
+}
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_reduced.js
+function _reduced(x) {
+  return x && x['@@transducer/reduced'] ? x : {
+    '@@transducer/value': x,
+    '@@transducer/reduced': true
+  };
+}
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xfBase.js
+/* harmony default export */ var _xfBase = ({
+  init: function init() {
+    return this.xf['@@transducer/init']();
+  },
+  result: function result(_result) {
+    return this.xf['@@transducer/result'](_result);
+  }
+});
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xfind.js
+
+
+
+
+var _xfind_XFind = /*#__PURE__*/function () {
+  function XFind(f, xf) {
+    this.xf = xf;
+    this.f = f;
+    this.found = false;
+  }
+
+  XFind.prototype['@@transducer/init'] = _xfBase.init;
+
+  XFind.prototype['@@transducer/result'] = function (result) {
+    if (!this.found) {
+      result = this.xf['@@transducer/step'](result, void 0);
+    }
+
+    return this.xf['@@transducer/result'](result);
+  };
+
+  XFind.prototype['@@transducer/step'] = function (result, input) {
+    if (this.f(input)) {
+      this.found = true;
+      result = _reduced(this.xf['@@transducer/step'](result, input));
+    }
+
+    return result;
+  };
+
+  return XFind;
+}();
+
+var _xfind = /*#__PURE__*/_curry2(function _xfind(f, xf) {
+  return new _xfind_XFind(f, xf);
+});
+
+/* harmony default export */ var internal_xfind = (_xfind);
+// CONCATENATED MODULE: ./node_modules/ramda/es/find.js
+
+
+
+/**
+ * Returns the first element of the list which matches the predicate, or
+ * `undefined` if no element matches.
+ *
+ * Dispatches to the `find` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> a | undefined
+ * @param {Function} fn The predicate function used to determine if the element is the
+ *        desired one.
+ * @param {Array} list The array to consider.
+ * @return {Object} The element found, or `undefined`.
+ * @see R.transduce
+ * @example
+ *
+ *      const xs = [{a: 1}, {a: 2}, {a: 3}];
+ *      R.find(R.propEq('a', 2))(xs); //=> {a: 2}
+ *      R.find(R.propEq('a', 4))(xs); //=> undefined
+ */
+
+var find = /*#__PURE__*/_curry2( /*#__PURE__*/_dispatchable(['find'], internal_xfind, function find(fn, list) {
+  var idx = 0;
+  var len = list.length;
+
+  while (idx < len) {
+    if (fn(list[idx])) {
+      return list[idx];
+    }
+
+    idx += 1;
+  }
+}));
+
+/* harmony default export */ var es_find = (find);
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_curry3.js
+
+
+
+/**
+ * Optimized internal three-arity curry function.
+ *
+ * @private
+ * @category Function
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+
+function _curry3(fn) {
+  return function f3(a, b, c) {
+    switch (arguments.length) {
+      case 0:
+        return f3;
+
+      case 1:
+        return _isPlaceholder(a) ? f3 : _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        });
+
+      case 2:
+        return _isPlaceholder(a) && _isPlaceholder(b) ? f3 : _isPlaceholder(a) ? _curry2(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : _isPlaceholder(b) ? _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : _curry1(function (_c) {
+          return fn(a, b, _c);
+        });
+
+      default:
+        return _isPlaceholder(a) && _isPlaceholder(b) && _isPlaceholder(c) ? f3 : _isPlaceholder(a) && _isPlaceholder(b) ? _curry2(function (_a, _b) {
+          return fn(_a, _b, c);
+        }) : _isPlaceholder(a) && _isPlaceholder(c) ? _curry2(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : _isPlaceholder(b) && _isPlaceholder(c) ? _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : _isPlaceholder(a) ? _curry1(function (_a) {
+          return fn(_a, b, c);
+        }) : _isPlaceholder(b) ? _curry1(function (_b) {
+          return fn(a, _b, c);
+        }) : _isPlaceholder(c) ? _curry1(function (_c) {
+          return fn(a, b, _c);
+        }) : fn(a, b, c);
+    }
+  };
+}
+// CONCATENATED MODULE: ./node_modules/ramda/es/propEq.js
+
+
+/**
+ * Returns `true` if the specified object property is equal, in
+ * [`R.equals`](#equals) terms, to the given value; `false` otherwise.
+ * You can test multiple properties with [`R.whereEq`](#whereEq).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig String -> a -> Object -> Boolean
+ * @param {String} name
+ * @param {*} val
+ * @param {*} obj
+ * @return {Boolean}
+ * @see R.whereEq, R.propSatisfies, R.equals
+ * @example
+ *
+ *      const abby = {name: 'Abby', age: 7, hair: 'blond'};
+ *      const fred = {name: 'Fred', age: 12, hair: 'brown'};
+ *      const rusty = {name: 'Rusty', age: 10, hair: 'brown'};
+ *      const alois = {name: 'Alois', age: 15, disposition: 'surly'};
+ *      const kids = [abby, fred, rusty, alois];
+ *      const hasBrownHair = R.propEq('hair', 'brown');
+ *      R.filter(hasBrownHair, kids); //=> [fred, rusty]
+ */
+
+var propEq_propEq = /*#__PURE__*/_curry3(function propEq(name, val, obj) {
+  return es_equals(val, obj[name]);
+});
+
+/* harmony default export */ var es_propEq = (propEq_propEq);
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/gender/GenderTooltip.jsx
-var GenderTooltip_useStyles=styles_makeStyles(function(theme){return{box:{backgroundColor:theme.palette.common.white},textBold:{fontWeight:600}};});var GenderTooltip_GenderTooltip=function GenderTooltip(_ref){var id=_ref.id,value=_ref.value,_ref$data=_ref.data,data=_ref$data===void 0?{}:_ref$data;var classes=GenderTooltip_useStyles();var formattedPercent="".concat(value,"%");return/*#__PURE__*/react_default.a.createElement(Box_Box,{className:classes.box},/*#__PURE__*/react_default.a.createElement("div",null,/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{className:classes.textBold},id)),/*#__PURE__*/react_default.a.createElement("div",null,/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span"},gettext("Users: ")),/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span",className:classes.textBold},data[id]),/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span"}," | ",formattedPercent)));};/* harmony default export */ var gender_GenderTooltip = (GenderTooltip_GenderTooltip);
+var GenderTooltip_useStyles=styles_makeStyles(function(theme){return{box:{backgroundColor:theme.palette.common.white},textBold:{fontWeight:600}};});var GenderTooltip_GenderTooltip=function GenderTooltip(_ref){var id=_ref.id,value=_ref.value,_ref$data=_ref.data,data=_ref$data===void 0?{}:_ref$data,_ref$abs_data=_ref.abs_data,abs_data=_ref$abs_data===void 0?{}:_ref$abs_data;var classes=GenderTooltip_useStyles();var formattedPercent="".concat(value,"%");var targetValue=es_find(es_propEq("label",id))(es_values(abs_data));var absValue=targetValue.abs_value||"";return/*#__PURE__*/react_default.a.createElement(Box_Box,{className:classes.box},/*#__PURE__*/react_default.a.createElement("div",null,/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{className:classes.textBold},id)),/*#__PURE__*/react_default.a.createElement("div",null,/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span"},gettext("Users: ")),/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span",className:classes.textBold},absValue),/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span"}," | ",formattedPercent)));};/* harmony default export */ var gender_GenderTooltip = (GenderTooltip_GenderTooltip);
 // EXTERNAL MODULE: ./src/AdditionalInfoTab/gender/img/male.svg
 var male = __webpack_require__(235);
 var male_default = /*#__PURE__*/__webpack_require__.n(male);
@@ -55507,15 +55493,17 @@ var female_default = /*#__PURE__*/__webpack_require__.n(female);
 
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/gender/StackedBarChart.jsx
 var StackedBarChart_useStyles=styles_makeStyles(function(theme){return{box:{display:"flex",justifyContent:"center",marginTop:theme.spacing(10)},wrapper:{borderLeft:"2px solid ".concat(theme.palette.grey[500]),borderRight:"2px solid ".concat(theme.palette.grey[500]),width:"100%",minHeight:80,display:"flex",alignItems:"center",justifyContent:"center",// Chart legend:
-"& div svg":{overflow:"visible !important"},"& div svg g text":{textTransform:"uppercase !important",fontWeight:"600 !important",letterSpacing:"0px !important"}},labels:{fontWeight:600},male:{backgroundImage:"url(".concat(male_default.a,")"),backgroundRepeat:"no-repeat",backgroundPosition:"center"},female:{backgroundImage:"url(".concat(female_default.a,")"),backgroundRepeat:"no-repeat",backgroundPosition:"center"}};});var StackedBarChart_StackedBarChart=function StackedBarChart(_ref){var _ref$data=_ref.data,data=_ref$data===void 0?{}:_ref$data,_ref$absData=_ref.absData,absData=_ref$absData===void 0?{}:_ref$absData;var theme=useTheme_useTheme();var classes=StackedBarChart_useStyles();var legendConf={dataFrom:"keys",anchor:"bottom",direction:"row",itemWidth:150,itemHeight:40,itemDirection:"left-to-right",translateX:40,translateY:80};var makeLabels=function makeLabels(item){return"".concat(item.value,"%");};var makeTooltip=function makeTooltip(_ref2){var id=_ref2.id,value=_ref2.value;return/*#__PURE__*/react_default.a.createElement(gender_GenderTooltip,{id:id,value:value,data:absData});};// NOTE: removing mandatory index key
-var cleanData=es_omit(["id"],data);return/*#__PURE__*/react_default.a.createElement(Box_Box,{className:classes.box},/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{container:true,spacing:1},/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:1,className:classes.male}),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:10},/*#__PURE__*/react_default.a.createElement("div",{className:classes.wrapper},/*#__PURE__*/react_default.a.createElement(nivo_bar_esm["a" /* Bar */],{data:[data],keys:es_keys(cleanData),width:400,height:50,padding:0.1,margin:{top:0,right:0,bottom:0,left:0},layout:"horizontal",enableGridX:false,colors:[theme.palette.primary.main,theme.palette.grey[500],theme.palette.secondary.main],borderRadius:2,innerPadding:1,label:makeLabels,axisLeft:null,axisBottom:null,legends:[legendConf],tooltip:makeTooltip}))),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:1,className:classes.female})));};/* harmony default export */ var gender_StackedBarChart = (StackedBarChart_StackedBarChart);
+"& div svg":{overflow:"visible !important"},"& div svg g text":{textTransform:"uppercase !important",fontWeight:"600 !important",letterSpacing:"0px !important"}},labels:{fontWeight:600},male:{backgroundImage:"url(".concat(male_default.a,")"),backgroundRepeat:"no-repeat",backgroundPosition:"center"},female:{backgroundImage:"url(".concat(female_default.a,")"),backgroundRepeat:"no-repeat",backgroundPosition:"center"}};});var StackedBarChart_StackedBarChart=function StackedBarChart(_ref){var _ref$data=_ref.data,data=_ref$data===void 0?{}:_ref$data;var theme=useTheme_useTheme();var classes=StackedBarChart_useStyles();// Remove meta info & empty values
+var cleanData=es_omit(["total","unknown"],data);var nonEmptyData=es_pickBy(function(v,k){return!es_equals(v.abs_value,0);},cleanData);// Prepare data for chart:
+var chartData={id:"gender"};es_forEach(function(key){chartData[nonEmptyData[key].label]=nonEmptyData[key].value;},es_keys(nonEmptyData));var legendConf={dataFrom:"keys",anchor:"bottom",direction:"row",itemWidth:150,itemHeight:40,itemDirection:"left-to-right",translateX:40,translateY:80};var makeLabels=function makeLabels(item){return"".concat(item.value,"%");};var makeTooltip=function makeTooltip(_ref2){var id=_ref2.id,value=_ref2.value,data=_ref2.data;return/*#__PURE__*/react_default.a.createElement(gender_GenderTooltip,{id:id,value:value,data:data,abs_data:nonEmptyData});};// Pin colors according to categories:
+var colors={m:theme.palette.primary.main,f:theme.palette.secondary.main,o:theme.palette.grey[500]};var getColors=function getColors(cleanData){return es_values(es_pick(es_keys(cleanData),colors));};return/*#__PURE__*/react_default.a.createElement(Box_Box,{className:classes.box},/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{container:true,spacing:1},/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:1,className:classes.male}),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:10},/*#__PURE__*/react_default.a.createElement("div",{className:classes.wrapper},/*#__PURE__*/react_default.a.createElement(nivo_bar_esm["a" /* Bar */],{data:[chartData],keys:es_keys(chartData),width:400,height:50,padding:0.1,margin:{top:0,right:0,bottom:0,left:0},layout:"horizontal",enableGridX:false,colors:getColors(nonEmptyData),borderRadius:2,innerPadding:1,label:makeLabels,axisLeft:null,axisBottom:null,legends:[legendConf],tooltip:makeTooltip}))),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:1,className:classes.female})));};/* harmony default export */ var gender_StackedBarChart = (StackedBarChart_StackedBarChart);
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/utils.js
 var utils_usePrev=function usePrev(value){var ref=Object(react["useRef"])();Object(react["useEffect"])(function(){ref.current=value;});return ref.current;};
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/gender/index.jsx
 /**
  * Learners gender stats.
  */ /* eslint-disable react-hooks/exhaustive-deps */var gender_GenderStatsContainer=function GenderStatsContainer(){var _useSelector=useSelector_useSelector(function(state){return state.scopes;}),scopes=_useSelector.scopes,scope=_useSelector.scope,course=_useSelector.course,site=_useSelector.site;var genderStats=useSelector_useSelector(function(state){return state.genderStats;});var dispatch=useDispatch();var getScopeParams=function getScopeParams(scope){switch(scope){case scopes.course:return{course_id:course};case scopes.site:return{site_id:site};default:return{};}};// NOTE: avoiding firing redundant initial API requests:
-var prevSite=utils_usePrev(site);var prevCourse=utils_usePrev(course);Object(react["useEffect"])(function(){!es_isNil(scope)&&dispatch(actions_genderStatsFetching(getScopeParams(scope)));},[scope]);Object(react["useEffect"])(function(){!es_isNil(site)&&!es_isNil(prevSite)&&dispatch(actions_genderStatsFetching({site_id:site}));},[site]);Object(react["useEffect"])(function(){!es_isNil(course)&&!es_isNil(prevCourse)&&dispatch(actions_genderStatsFetching({course_id:course}));},[course]);var dataAbsentOrEmpty=function dataAbsentOrEmpty(stats){return stats==="error"||es_isEmpty(stats.abs_data)||es_equals(es_sum(es_values(stats.abs_data)),0);};return/*#__PURE__*/react_default.a.createElement(react["Fragment"],null,dataAbsentOrEmpty(genderStats)?/*#__PURE__*/react_default.a.createElement(gender_Empty,null):/*#__PURE__*/react_default.a.createElement(gender_StackedBarChart,{data:genderStats.rel_data,absData:genderStats.abs_data}));};/* harmony default export */ var gender = (gender_GenderStatsContainer);
+var prevSite=utils_usePrev(site);var prevCourse=utils_usePrev(course);Object(react["useEffect"])(function(){!es_isNil(scope)&&dispatch(actions_genderStatsFetching(getScopeParams(scope)));},[scope]);Object(react["useEffect"])(function(){!es_isNil(site)&&!es_isNil(prevSite)&&dispatch(actions_genderStatsFetching({site_id:site}));},[site]);Object(react["useEffect"])(function(){!es_isNil(course)&&!es_isNil(prevCourse)&&dispatch(actions_genderStatsFetching({course_id:course}));},[course]);var dataAbsentOrEmpty=function dataAbsentOrEmpty(stats){return stats==="error"||es_equals(stats.total,0)||es_equals(stats.total,stats.unknown);};return/*#__PURE__*/react_default.a.createElement(react["Fragment"],null,dataAbsentOrEmpty(genderStats)?/*#__PURE__*/react_default.a.createElement(gender_Empty,null):/*#__PURE__*/react_default.a.createElement(gender_StackedBarChart,{data:genderStats.data}));};/* harmony default export */ var gender = (gender_GenderStatsContainer);
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/education/data/actionTypes.js
 var actionTypes_FEATURE='EDUCATION_STATS';var EDUCATION_STATS_REQUEST="".concat(actionTypes_FEATURE,":REQUEST");var EDUCATION_STATS_RECEIVED="".concat(actionTypes_FEATURE,":RECEIVED");var EDUCATION_STATS_FAILURE="".concat(actionTypes_FEATURE,":FAILURE");
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/education/data/actions.js
@@ -58542,64 +58530,359 @@ var MapTooltip_useStyles=styles_makeStyles(function(theme){return{box:{backgroun
 var WorldMapChart_WorldMapChart=function WorldMapChart(_ref){var _ref$data=_ref.data,data=_ref$data===void 0?[]:_ref$data,_ref$min=_ref.min,min=_ref$min===void 0?0:_ref$min,_ref$max=_ref.max,max=_ref$max===void 0?100:_ref$max,_ref$width=_ref.width,width=_ref$width===void 0?1200:_ref$width,_ref$height=_ref.height,height=_ref$height===void 0?600:_ref$height,_ref$colors=_ref.colors,colors=_ref$colors===void 0?"blues":_ref$colors,borderColor=_ref.borderColor,unknownColor=_ref.unknownColor,rest=objectWithoutProperties_objectWithoutProperties(_ref,["data","min","max","width","height","colors","borderColor","unknownColor"]);var theme=useTheme_useTheme();var makeTooltip=function makeTooltip(_ref2){var feature=_ref2.feature;if(es_isNil(feature)||es_isNil(feature.data)){return null;}return/*#__PURE__*/react_default.a.createElement(MapTooltip_MapTooltip,feature.data);};return/*#__PURE__*/react_default.a.createElement(nivo_geo_esm["a" /* Choropleth */],Object.assign({data:data,features:world_countries,width:width,height:height,colors:colors,margin:{top:0,right:0,bottom:0,left:200},projectionScale:130,domain:[min-2*(max-min),max+(max-min)],projectionTranslation:[0.3,0.7],projectionRotation:[-10,0,0],borderWidth:0.5,borderColor:borderColor||theme.palette.common.white,unknownColor:unknownColor||theme.customPalette.greeny,label:function label(item){return item.properties.name;},tooltip:makeTooltip},rest));};/* harmony default export */ var geo_WorldMapChart = (WorldMapChart_WorldMapChart);
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/geo/TotalUsers.jsx
 // eslint-disable-next-line
-var TotalUsers_useStyles=styles_makeStyles(function(theme){return{box:{},textBold:{fontWeight:600}};});var TotalUsers_TotalUsers=function TotalUsers(_ref){var value=_ref.value;var classes=TotalUsers_useStyles();var formattedValue=value&&value.toLocaleString("us-US");return es_isNil(formattedValue)?null:/*#__PURE__*/react_default.a.createElement(Box_Box,{className:classes.box},/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span"},"Total Users: "),/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span",className:classes.textBold},formattedValue));};/* harmony default export */ var geo_TotalUsers = (TotalUsers_TotalUsers);
+var TotalUsers_useStyles=styles_makeStyles(function(theme){return{box:{},textBold:{fontWeight:600}};});var TotalUsers_TotalUsers=function TotalUsers(_ref){var value=_ref.value;var classes=TotalUsers_useStyles();var formattedValue=value&&value.toLocaleString("us-US");return es_isNil(formattedValue)?null:/*#__PURE__*/react_default.a.createElement(Box_Box,{className:classes.box},/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span"},gettext("Total Users: ")),/*#__PURE__*/react_default.a.createElement(esm_Typography_Typography,{component:"span",className:classes.textBold},formattedValue));};/* harmony default export */ var geo_TotalUsers = (TotalUsers_TotalUsers);
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/geo/index.jsx
 /**
  * Learners geo stats.
  */ /* eslint-disable react-hooks/exhaustive-deps */var geo_GeoStatsContainer=function GeoStatsContainer(){var _useSelector=useSelector_useSelector(function(state){return state.scopes;}),scopes=_useSelector.scopes,scope=_useSelector.scope,course=_useSelector.course,site=_useSelector.site;var geoStats=useSelector_useSelector(function(state){return state.geoStats;});var dispatch=useDispatch();var getScopeParams=function getScopeParams(scope){switch(scope){case scopes.course:return{course_id:course};case scopes.site:return{site_id:site};default:return{};}};// NOTE: avoiding firing redundant initial API requests:
 var prevSite=utils_usePrev(site);var prevCourse=utils_usePrev(course);Object(react["useEffect"])(function(){!es_isNil(scope)&&dispatch(actions_geoStatsFetching(getScopeParams(scope)));},[scope]);Object(react["useEffect"])(function(){!es_isNil(site)&&!es_isNil(prevSite)&&dispatch(actions_geoStatsFetching({site_id:site}));},[site]);Object(react["useEffect"])(function(){!es_isNil(course)&&!es_isNil(prevCourse)&&dispatch(actions_geoStatsFetching({course_id:course}));},[course]);// eslint-disable-next-line
 var customTooltip=function customTooltip(d){return"".concat(d.feature.properties.name,": ").concat(es_isNil(d.data)?"":d.data.value,"%");};return/*#__PURE__*/react_default.a.createElement(react["Fragment"],null,/*#__PURE__*/react_default.a.createElement(geo_TotalUsers,{value:geoStats.total}),geoStats==="error"||es_isEmpty(geoStats.data)?/*#__PURE__*/react_default.a.createElement(geo_Empty,{height:600}):/*#__PURE__*/react_default.a.createElement(geo_WorldMapChart,{data:geoStats.data,min:geoStats.min,max:geoStats.max}));};/* harmony default export */ var geo = (geo_GeoStatsContainer);
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isTransformer.js
-function _isTransformer(obj) {
-  return obj != null && typeof obj['@@transducer/step'] === 'function';
-}
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_dispatchable.js
+// CONCATENATED MODULE: ./node_modules/ramda/es/add.js
+
+/**
+ * Adds two values.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Math
+ * @sig Number -> Number -> Number
+ * @param {Number} a
+ * @param {Number} b
+ * @return {Number}
+ * @see R.subtract
+ * @example
+ *
+ *      R.add(2, 3);       //=>  5
+ *      R.add(7)(10);      //=> 17
+ */
+
+var add_add = /*#__PURE__*/_curry2(function add(a, b) {
+  return Number(a) + Number(b);
+});
+
+/* harmony default export */ var es_add = (add_add);
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_isArrayLike.js
+
 
 
 /**
- * Returns a function that dispatches with different strategies based on the
- * object in list position (last argument). If it is an array, executes [fn].
- * Otherwise, if it has a function with one of the given method names, it will
- * execute that function (functor case). Otherwise, if it is a transformer,
- * uses transducer [xf] to return a new transformer (transducer case).
- * Otherwise, it will default to executing [fn].
+ * Tests whether or not an object is similar to an array.
  *
  * @private
- * @param {Array} methodNames properties to check for a custom implementation
- * @param {Function} xf transducer to initialize if object is transformer
- * @param {Function} fn default ramda implementation
- * @return {Function} A function that dispatches on object in list position
+ * @category Type
+ * @category List
+ * @sig * -> Boolean
+ * @param {*} x The object to test.
+ * @return {Boolean} `true` if `x` has a numeric length property and extreme indices defined; `false` otherwise.
+ * @example
+ *
+ *      _isArrayLike([]); //=> true
+ *      _isArrayLike(true); //=> false
+ *      _isArrayLike({}); //=> false
+ *      _isArrayLike({length: 10}); //=> false
+ *      _isArrayLike({0: 'zero', 9: 'nine', length: 10}); //=> true
  */
 
-function _dispatchable(methodNames, xf, fn) {
-  return function () {
-    if (arguments.length === 0) {
-      return fn();
-    }
+var _isArrayLike = /*#__PURE__*/_curry1(function isArrayLike(x) {
+  if (_isArray(x)) {
+    return true;
+  }
 
-    var args = Array.prototype.slice.call(arguments, 0);
-    var obj = args.pop();
+  if (!x) {
+    return false;
+  }
 
-    if (!_isArray(obj)) {
-      var idx = 0;
+  if (typeof x !== 'object') {
+    return false;
+  }
 
-      while (idx < methodNames.length) {
-        if (typeof obj[methodNames[idx]] === 'function') {
-          return obj[methodNames[idx]].apply(obj, args);
-        }
+  if (_isString(x)) {
+    return false;
+  }
 
-        idx += 1;
-      }
+  if (x.nodeType === 1) {
+    return !!x.length;
+  }
 
-      if (_isTransformer(obj)) {
-        var transducer = xf.apply(null, args);
-        return transducer(obj);
-      }
-    }
+  if (x.length === 0) {
+    return true;
+  }
 
-    return fn.apply(this, arguments);
+  if (x.length > 0) {
+    return x.hasOwnProperty(0) && x.hasOwnProperty(x.length - 1);
+  }
+
+  return false;
+});
+
+/* harmony default export */ var internal_isArrayLike = (_isArrayLike);
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xwrap.js
+var XWrap = /*#__PURE__*/function () {
+  function XWrap(fn) {
+    this.f = fn;
+  }
+
+  XWrap.prototype['@@transducer/init'] = function () {
+    throw new Error('init not implemented on XWrap');
   };
+
+  XWrap.prototype['@@transducer/result'] = function (acc) {
+    return acc;
+  };
+
+  XWrap.prototype['@@transducer/step'] = function (acc, x) {
+    return this.f(acc, x);
+  };
+
+  return XWrap;
+}();
+
+function _xwrap(fn) {
+  return new XWrap(fn);
 }
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_arity.js
+function _arity(n, fn) {
+  /* eslint-disable no-unused-vars */
+  switch (n) {
+    case 0:
+      return function () {
+        return fn.apply(this, arguments);
+      };
+
+    case 1:
+      return function (a0) {
+        return fn.apply(this, arguments);
+      };
+
+    case 2:
+      return function (a0, a1) {
+        return fn.apply(this, arguments);
+      };
+
+    case 3:
+      return function (a0, a1, a2) {
+        return fn.apply(this, arguments);
+      };
+
+    case 4:
+      return function (a0, a1, a2, a3) {
+        return fn.apply(this, arguments);
+      };
+
+    case 5:
+      return function (a0, a1, a2, a3, a4) {
+        return fn.apply(this, arguments);
+      };
+
+    case 6:
+      return function (a0, a1, a2, a3, a4, a5) {
+        return fn.apply(this, arguments);
+      };
+
+    case 7:
+      return function (a0, a1, a2, a3, a4, a5, a6) {
+        return fn.apply(this, arguments);
+      };
+
+    case 8:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7) {
+        return fn.apply(this, arguments);
+      };
+
+    case 9:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        return fn.apply(this, arguments);
+      };
+
+    case 10:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+        return fn.apply(this, arguments);
+      };
+
+    default:
+      throw new Error('First argument to _arity must be a non-negative integer no greater than ten');
+  }
+}
+// CONCATENATED MODULE: ./node_modules/ramda/es/bind.js
+
+
+/**
+ * Creates a function that is bound to a context.
+ * Note: `R.bind` does not provide the additional argument-binding capabilities of
+ * [Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.6.0
+ * @category Function
+ * @category Object
+ * @sig (* -> *) -> {*} -> (* -> *)
+ * @param {Function} fn The function to bind to context
+ * @param {Object} thisObj The context to bind `fn` to
+ * @return {Function} A function that will execute in the context of `thisObj`.
+ * @see R.partial
+ * @example
+ *
+ *      const log = R.bind(console.log, console);
+ *      R.pipe(R.assoc('a', 2), R.tap(log), R.assoc('a', 3))({a: 1}); //=> {a: 3}
+ *      // logs {a: 2}
+ * @symb R.bind(f, o)(a, b) = f.call(o, a, b)
+ */
+
+var bind_bind = /*#__PURE__*/_curry2(function bind(fn, thisObj) {
+  return _arity(fn.length, function () {
+    return fn.apply(thisObj, arguments);
+  });
+});
+
+/* harmony default export */ var es_bind = (bind_bind);
+// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_reduce.js
+
+
+
+
+function _arrayReduce(xf, acc, list) {
+  var idx = 0;
+  var len = list.length;
+
+  while (idx < len) {
+    acc = xf['@@transducer/step'](acc, list[idx]);
+
+    if (acc && acc['@@transducer/reduced']) {
+      acc = acc['@@transducer/value'];
+      break;
+    }
+
+    idx += 1;
+  }
+
+  return xf['@@transducer/result'](acc);
+}
+
+function _iterableReduce(xf, acc, iter) {
+  var step = iter.next();
+
+  while (!step.done) {
+    acc = xf['@@transducer/step'](acc, step.value);
+
+    if (acc && acc['@@transducer/reduced']) {
+      acc = acc['@@transducer/value'];
+      break;
+    }
+
+    step = iter.next();
+  }
+
+  return xf['@@transducer/result'](acc);
+}
+
+function _methodReduce(xf, acc, obj, methodName) {
+  return xf['@@transducer/result'](obj[methodName](es_bind(xf['@@transducer/step'], xf), acc));
+}
+
+var symIterator = typeof Symbol !== 'undefined' ? Symbol.iterator : '@@iterator';
+function _reduce(fn, acc, list) {
+  if (typeof fn === 'function') {
+    fn = _xwrap(fn);
+  }
+
+  if (internal_isArrayLike(list)) {
+    return _arrayReduce(fn, acc, list);
+  }
+
+  if (typeof list['fantasy-land/reduce'] === 'function') {
+    return _methodReduce(fn, acc, list, 'fantasy-land/reduce');
+  }
+
+  if (list[symIterator] != null) {
+    return _iterableReduce(fn, acc, list[symIterator]());
+  }
+
+  if (typeof list.next === 'function') {
+    return _iterableReduce(fn, acc, list);
+  }
+
+  if (typeof list.reduce === 'function') {
+    return _methodReduce(fn, acc, list, 'reduce');
+  }
+
+  throw new TypeError('reduce: list must be array or iterable');
+}
+// CONCATENATED MODULE: ./node_modules/ramda/es/reduce.js
+
+
+/**
+ * Returns a single item by iterating through the list, successively calling
+ * the iterator function and passing it an accumulator value and the current
+ * value from the array, and then passing the result to the next call.
+ *
+ * The iterator function receives two values: *(acc, value)*. It may use
+ * [`R.reduced`](#reduced) to shortcut the iteration.
+ *
+ * The arguments' order of [`reduceRight`](#reduceRight)'s iterator function
+ * is *(value, acc)*.
+ *
+ * Note: `R.reduce` does not skip deleted or unassigned indices (sparse
+ * arrays), unlike the native `Array.prototype.reduce` method. For more details
+ * on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Description
+ *
+ * Dispatches to the `reduce` method of the third argument, if present. When
+ * doing so, it is up to the user to handle the [`R.reduced`](#reduced)
+ * shortcuting, as this is not implemented by `reduce`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig ((a, b) -> a) -> a -> [b] -> a
+ * @param {Function} fn The iterator function. Receives two values, the accumulator and the
+ *        current element from the array.
+ * @param {*} acc The accumulator value.
+ * @param {Array} list The list to iterate over.
+ * @return {*} The final, accumulated value.
+ * @see R.reduced, R.addIndex, R.reduceRight
+ * @example
+ *
+ *      R.reduce(R.subtract, 0, [1, 2, 3, 4]) // => ((((0 - 1) - 2) - 3) - 4) = -10
+ *      //          -               -10
+ *      //         / \              / \
+ *      //        -   4           -6   4
+ *      //       / \              / \
+ *      //      -   3   ==>     -3   3
+ *      //     / \              / \
+ *      //    -   2           -1   2
+ *      //   / \              / \
+ *      //  0   1            0   1
+ *
+ * @symb R.reduce(f, a, [b, c, d]) = f(f(f(a, b), c), d)
+ */
+
+var reduce = /*#__PURE__*/_curry3(_reduce);
+
+/* harmony default export */ var es_reduce = (reduce);
+// CONCATENATED MODULE: ./node_modules/ramda/es/sum.js
+
+
+/**
+ * Adds together all the elements of a list.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Math
+ * @sig [Number] -> Number
+ * @param {Array} list An array of numbers
+ * @return {Number} The sum of all the numbers in the list.
+ * @see R.reduce
+ * @example
+ *
+ *      R.sum([2,4,6,8,100,1]); //=> 121
+ */
+
+var sum_sum = /*#__PURE__*/es_reduce(es_add, 0);
+/* harmony default export */ var es_sum = (sum_sum);
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_map.js
 function _map(fn, functor) {
   var idx = 0;
@@ -58613,15 +58896,6 @@ function _map(fn, functor) {
 
   return result;
 }
-// CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xfBase.js
-/* harmony default export */ var _xfBase = ({
-  init: function init() {
-    return this.xf['@@transducer/init']();
-  },
-  result: function result(_result) {
-    return this.xf['@@transducer/result'](_result);
-  }
-});
 // CONCATENATED MODULE: ./node_modules/ramda/es/internal/_xmap.js
 
 
@@ -65208,7 +65482,7 @@ var scopes_data_actionTypes_FEATURE='DATA_SCOPES';var DATA_SCOPES_SCOPE_TOGGLED=
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/scopes/data/actions.js
 var actions_scopeToggling=function scopeToggling(scope){return{type:DATA_SCOPES_SCOPE_TOGGLED,payload:scope};};var actions_siteToggling=function siteToggling(site){return{type:DATA_SCOPES_SITE_TOGGLED,payload:site};};var actions_courseToggling=function courseToggling(course){return{type:DATA_SCOPES_COURSE_TOGGLED,payload:course};};var actions_scopesFetching=function scopesFetching(params){return Object(index_umd["createAction"])({endpoint:setupAPI_withParams(apiUrls.add_info.scopes,params),method:"GET",headers:{"Content-Type":"application/json"},types:[DATA_SCOPES_REQUEST,DATA_SCOPES_RECEIVED,DATA_SCOPES_FAILURE]});};
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/scopes/Selector.jsx
-var Selector_useStyles=makeStyles(function(theme){return{select:{border:"2px solid ".concat(theme.palette.primary.main),padding:14}};});var Selector_Selector=function Selector(_ref){var items=_ref.items,label=_ref.label;var classes=Selector_useStyles();var dispatch=useDispatch();var _useSelector=useSelector_useSelector(function(state){return state.scopes;}),scopes=_useSelector.scopes,scope=_useSelector.scope,course=_useSelector.course,site=_useSelector.site;return/*#__PURE__*/react_default.a.createElement(esm_FormControl_FormControl,{fullWidth:true,variant:"outlined"},/*#__PURE__*/react_default.a.createElement(esm_Select_Select,{labelId:"items-selector-label",id:"items-selector",value:scope===scopes.course?course:site,onChange:function onChange(evt){return dispatch(scope===scopes.course?actions_courseToggling(evt.target.value):actions_siteToggling(evt.target.value));},label:label,autoFocus:true,classes:{outlined:classes.select}},es_map(function(item){return/*#__PURE__*/react_default.a.createElement(esm_MenuItem_MenuItem,{key:item.id,value:item.id},item.name);},items)));};/* harmony default export */ var scopes_Selector = (Selector_Selector);
+var Selector_useStyles=makeStyles(function(theme){return{select:{border:"2px solid ".concat(theme.palette.primary.main),padding:12}};});var Selector_Selector=function Selector(_ref){var items=_ref.items,label=_ref.label;var classes=Selector_useStyles();var dispatch=useDispatch();var _useSelector=useSelector_useSelector(function(state){return state.scopes;}),scopes=_useSelector.scopes,scope=_useSelector.scope,course=_useSelector.course,site=_useSelector.site;return/*#__PURE__*/react_default.a.createElement(esm_FormControl_FormControl,{fullWidth:true,variant:"outlined"},/*#__PURE__*/react_default.a.createElement(esm_Select_Select,{labelId:"items-selector-label",id:"items-selector",value:scope===scopes.course?course:site,onChange:function onChange(evt){return dispatch(scope===scopes.course?actions_courseToggling(evt.target.value):actions_siteToggling(evt.target.value));},label:label,autoFocus:true,classes:{outlined:classes.select}},es_map(function(item){return/*#__PURE__*/react_default.a.createElement(esm_MenuItem_MenuItem,{key:item.id,value:item.id},item.name);},items)));};/* harmony default export */ var scopes_Selector = (Selector_Selector);
 // CONCATENATED MODULE: ./node_modules/@material-ui/core/esm/Button/Button.js
 
 
@@ -65789,7 +66063,7 @@ var ButtonGroup_ButtonGroup = /*#__PURE__*/react["forwardRef"](function ButtonGr
 // eslint-disable-next-line
 var Switch_useStyles=styles_makeStyles(function(theme){return{activeBtn:{color:theme.palette.common.white}};});var Switch_Switch=function Switch(_ref){var items=_ref.items,activeItem=_ref.activeItem,size=_ref.size;var classes=Switch_useStyles();var dispatch=useDispatch();var getVariant=function getVariant(item){return item===activeItem?"contained":"outlined";};return/*#__PURE__*/react_default.a.createElement(esm_ButtonGroup_ButtonGroup,{size:size,color:"primary","aria-label":"large outlined primary button group",disableElevation:true},es_map(function(item){return/*#__PURE__*/react_default.a.createElement(esm_Button_Button,{key:item,variant:getVariant(item),component:"span",onClick:function onClick(){return dispatch(actions_scopeToggling(item));},classes:{containedPrimary:classes.activeBtn}},item);},items));};/* harmony default export */ var scopes_Switch = (Switch_Switch);
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/scopes/index.jsx
-var scopes_ScopeSelector=function ScopeSelector(){var dispatch=useDispatch();var _useSelector=useSelector_useSelector(function(state){return state.scopes;}),scopes=_useSelector.scopes,roles=_useSelector.roles,scope=_useSelector.scope,role=_useSelector.role,sites=_useSelector.sites,courses=_useSelector.courses;Object(react["useEffect"])(function(){dispatch(actions_scopesFetching());},[dispatch]);var getItems=function getItems(scope){switch(scope){case scopes.site:return sites;case scopes.course:return courses;default:return[];}};return/*#__PURE__*/react_default.a.createElement(esm_Container_Container,null,/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{container:true,spacing:1},/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:4}),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:4},scope!==scopes.system&&/*#__PURE__*/react_default.a.createElement(scopes_Selector,{items:getItems(scope)})),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:4,align:"right"},role===roles.admin&&scope&&/*#__PURE__*/react_default.a.createElement(scopes_Switch,{items:es_values(scopes).sort(),activeItem:scope}))));};/* harmony default export */ var AdditionalInfoTab_scopes = (scopes_ScopeSelector);
+var scopes_useStyles=styles_makeStyles(function(theme){return{container:{minHeight:theme.spacing(10)}};});var scopes_ScopeSelector=function ScopeSelector(){var classes=scopes_useStyles();var dispatch=useDispatch();var _useSelector=useSelector_useSelector(function(state){return state.scopes;}),scopes=_useSelector.scopes,roles=_useSelector.roles,scope=_useSelector.scope,role=_useSelector.role,sites=_useSelector.sites,courses=_useSelector.courses;Object(react["useEffect"])(function(){dispatch(actions_scopesFetching());},[dispatch]);var getItems=function getItems(scope){switch(scope){case scopes.site:return sites;case scopes.course:return courses;default:return[];}};return/*#__PURE__*/react_default.a.createElement(esm_Container_Container,{className:classes.container},/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{container:true,spacing:1},/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:4}),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:4},scope!==scopes.system&&/*#__PURE__*/react_default.a.createElement(scopes_Selector,{items:getItems(scope)})),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:4,align:"right"},role===roles.admin&&scope&&/*#__PURE__*/react_default.a.createElement(scopes_Switch,{items:es_values(scopes).sort(),activeItem:scope}))));};/* harmony default export */ var AdditionalInfoTab_scopes = (scopes_ScopeSelector);
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/index.jsx
 var AdditionalInfoTab_AdditionalInfoTab=function AdditionalInfoTab(){return/*#__PURE__*/react_default.a.createElement(esm_Container_Container,null,/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{container:true,spacing:4,justify:"flex-end"},/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:12},/*#__PURE__*/react_default.a.createElement(AdditionalInfoTab_scopes,null)),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:12},/*#__PURE__*/react_default.a.createElement(AdditionalInfoTab_Section,{heading:gettext("Country or region of residence"),subheading:gettext("Saepe possimus voluptatum aspernatur temporibus porro alias"),text:gettext("Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos deleniti quasi vero,"+" perferendis dolorem modi ullam accusantium inventore amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?")},/*#__PURE__*/react_default.a.createElement(geo,null))),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:6},/*#__PURE__*/react_default.a.createElement(AdditionalInfoTab_Section,{heading:gettext("Gender"),subheading:gettext("Saepe possimus voluptatum aspernatur temporibus porro alias"),text:gettext("Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos deleniti quasi vero,"+" perferendis dolorem modi ullam accusantium inventore amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?")},/*#__PURE__*/react_default.a.createElement(gender,null))),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:6},/*#__PURE__*/react_default.a.createElement(AdditionalInfoTab_Section,{heading:gettext("Year of birth"),subheading:gettext("Saepe possimus voluptatum aspernatur temporibus porro alias"),text:gettext("Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos deleniti quasi vero,"+" perferendis dolorem modi ullam accusantium inventore amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?")},/*#__PURE__*/react_default.a.createElement(age,null))),/*#__PURE__*/react_default.a.createElement(esm_Grid_Grid,{item:true,xs:12},/*#__PURE__*/react_default.a.createElement(AdditionalInfoTab_Section,{heading:gettext("Level of education"),subheading:gettext("Saepe possimus voluptatum aspernatur temporibus porro alias"),text:gettext("Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos deleniti quasi vero,"+" perferendis dolorem modi ullam accusantium inventore amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?")},/*#__PURE__*/react_default.a.createElement(education,null)))));};/* harmony default export */ var src_AdditionalInfoTab = (AdditionalInfoTab_AdditionalInfoTab);
 // CONCATENATED MODULE: ./src/AdditionalInfoTab/gender/data/reducers.js
@@ -65917,7 +66191,7 @@ react_dom_default.a.render(/*#__PURE__*/react_default.a.createElement(ThemeProvi
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var d3_color__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(36);
+/* harmony import */ var d3_color__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(37);
 
 var c = Object(d3_color__WEBPACK_IMPORTED_MODULE_0__[/* rgb */ "f"])(),
     pi_1_3 = Math.PI / 3,
@@ -65938,7 +66212,7 @@ var c = Object(d3_color__WEBPACK_IMPORTED_MODULE_0__[/* rgb */ "f"])(),
 "use strict";
 /* unused harmony export azimuthalEqualAreaRaw */
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(35);
+/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36);
 /* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22);
 
 
@@ -65960,7 +66234,7 @@ azimuthalEqualAreaRaw.invert = Object(_azimuthal_js__WEBPACK_IMPORTED_MODULE_1__
 "use strict";
 /* unused harmony export azimuthalEquidistantRaw */
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(35);
+/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36);
 /* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22);
 
 
@@ -65982,7 +66256,7 @@ azimuthalEquidistantRaw.invert = Object(_azimuthal_js__WEBPACK_IMPORTED_MODULE_1
 "use strict";
 /* unused harmony export gnomonicRaw */
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(35);
+/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36);
 /* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22);
 
 
@@ -66004,7 +66278,7 @@ gnomonicRaw.invert = Object(_azimuthal_js__WEBPACK_IMPORTED_MODULE_1__[/* azimut
 "use strict";
 /* unused harmony export orthographicRaw */
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(35);
+/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36);
 /* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22);
 
 
@@ -66024,7 +66298,7 @@ orthographicRaw.invert = Object(_azimuthal_js__WEBPACK_IMPORTED_MODULE_1__[/* az
 "use strict";
 /* unused harmony export stereographicRaw */
 /* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(35);
+/* harmony import */ var _azimuthal_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36);
 /* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22);
 
 
@@ -67435,7 +67709,7 @@ var utcYears = utcYear.range;
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/d3-color/src/color.js
-var color = __webpack_require__(36);
+var color = __webpack_require__(37);
 
 // EXTERNAL MODULE: ./node_modules/d3-interpolate/src/rgb.js + 2 modules
 var rgb = __webpack_require__(114);

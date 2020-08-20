@@ -3,23 +3,46 @@ Models of the rg analytics.
 """
 import collections
 import logging
-from datetime import date
 
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from jsonfield.fields import JSONField
-from model_utils.models import TimeStampedModel
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
-
 from openedx.core.djangoapps.xmodule_django.models import CourseKeyField
 
 from rg_instructor_analytics.utils import get_courses_learners, aggregate_users_stats
 from student.models import CourseEnrollment
 
 log = logging.getLogger(__name__)
+
+# IDEA: make these categories configurable from admin site
+GENERATION_CHOICES = collections.OrderedDict((
+    ('z', _("Generation Z: 1995-2012")),
+    ('m', _("Millenials: 1980-1994")),
+    ('x', _("Generation X: 1965-1979")),
+    ('b', _("Baby boomers: 1942-1964")),
+))
+
+LEVEL_OF_EDUCATION_CHOICES = collections.OrderedDict({
+    'p': _("Academic degree"),
+    'm': _("Master's degree on specialty"),
+    'b': _("Undergraduate"),
+    'a': _("Incomplete higher education"),
+    'hs': _("The average"),
+    'jhs': _("Incomplete secondary"),
+    'el': _("Initial"),
+    'none': _("No formal education"),
+    'other': _("Other education"),
+})
+
+GENDER_CHOICES = collections.OrderedDict({
+    'm': _("Male"),
+    'o': _("Other"),
+    'f': _("Female"),
+})
 
 
 class GradeStatistic(models.Model):

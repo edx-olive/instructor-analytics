@@ -3,11 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-18 13:47+0000\n"
+"POT-Creation-Date: 2020-08-20 16:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,10 +79,10 @@ msgstr ""
 msgid "Show Plot"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/react-bundle.js:55443
-#: static/rg_instructor_analytics/js/react-bundle.js:58522
-#: static/rg_instructor_analytics/js/react-bundle.js:58533
-#: static/rg_instructor_analytics/js/react-bundle.js:59006
+#: static/rg_instructor_analytics/js/react-bundle.js:55011
+#: static/rg_instructor_analytics/js/react-bundle.js:58510
+#: static/rg_instructor_analytics/js/react-bundle.js:58521
+#: static/rg_instructor_analytics/js/react-bundle.js:59280
 #: static/src/AdditionalInfoTab/age/Empty.jsx:22
 #: static/src/AdditionalInfoTab/education/Empty.jsx:22
 #: static/src/AdditionalInfoTab/gender/Empty.jsx:22
@@ -89,23 +90,28 @@ msgstr ""
 msgid "no data available"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/react-bundle.js:55499
-#: static/rg_instructor_analytics/js/react-bundle.js:58517
-#: static/rg_instructor_analytics/js/react-bundle.js:58540
-#: static/rg_instructor_analytics/js/react-bundle.js:59008
+#: static/rg_instructor_analytics/js/react-bundle.js:55485
+#: static/rg_instructor_analytics/js/react-bundle.js:58505
+#: static/rg_instructor_analytics/js/react-bundle.js:58528
+#: static/rg_instructor_analytics/js/react-bundle.js:59282
 #: static/src/AdditionalInfoTab/age/AgeTooltip.jsx:26
 #: static/src/AdditionalInfoTab/education/EducationTooltip.jsx:26
-#: static/src/AdditionalInfoTab/gender/GenderTooltip.jsx:26
+#: static/src/AdditionalInfoTab/gender/GenderTooltip.jsx:30
 #: static/src/AdditionalInfoTab/geo/MapTooltip.jsx:28
 msgid "Users: "
 msgstr ""
 
-#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/rg_instructor_analytics/js/react-bundle.js:58533
+#: static/src/AdditionalInfoTab/geo/TotalUsers.jsx:21
+msgid "Total Users: "
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
 #: static/src/AdditionalInfoTab/index.jsx:19
 msgid "Country or region of residence"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
 #: static/src/AdditionalInfoTab/index.jsx:21
 #: static/src/AdditionalInfoTab/index.jsx:35
 #: static/src/AdditionalInfoTab/index.jsx:49
@@ -113,7 +119,7 @@ msgstr ""
 msgid "Saepe possimus voluptatum aspernatur temporibus porro alias"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
 #: static/src/AdditionalInfoTab/index.jsx:24
 #: static/src/AdditionalInfoTab/index.jsx:38
 #: static/src/AdditionalInfoTab/index.jsx:52
@@ -124,17 +130,17 @@ msgid ""
 "amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
 #: static/src/AdditionalInfoTab/index.jsx:33
 msgid "Gender"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
 #: static/src/AdditionalInfoTab/index.jsx:47
 msgid "Year of birth"
 msgstr ""
 
-#: static/rg_instructor_analytics/js/react-bundle.js:65794
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
 #: static/src/AdditionalInfoTab/index.jsx:61
 msgid "Level of education"
 msgstr ""
