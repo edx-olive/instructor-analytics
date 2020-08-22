@@ -724,8 +724,10 @@
   background-image: linear-gradient(90deg, rgba(62, 62, 62, .5), rgba(62, 62, 62, .5) 45%, transparent 45%, transparent 100%);
   background-size: 6px 1px;
   width: 21px;
-  height: 1px;
+  height: 100%;
   top: 50%;
+  background-repeat-y: no-repeat;
+  background-position: center center;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -771,6 +773,27 @@
   min-height: 100%;
   margin-bottom: 5px;
   display: flex;
+}
+
+.funnel-item.funnel-item-0,
+.funnel-item.funnel-item-1 {
+  position: relative;
+}
+
+.funnel-item.funnel-item-0:after,
+.funnel-item.funnel-item-1:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -100px;
+  width: 100px;
+  height: 100%;
+  z-index: -1;
+}
+
+.funnel-item .funnel-item-content:hover .emails-list-button-holder {
+  opacity: 1;
+  visibility: visible;
 }
 
 .funnel-item-0 .funnel-item-incoming {
@@ -986,6 +1009,9 @@
   position: absolute;
   top: -15px;
   left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 200ms ease;
 }
 
 .funnel-item-1 .emails-list-button-holder {
@@ -1081,3 +1107,5 @@ button.funnel-send-email-btn:focus {
 .funnel-item-0 > .emails-list span {
   border: 0;
 }
+
+
