@@ -3,7 +3,7 @@ Problems sub-tab module.
 """
 import csv
 from abc import ABCMeta, abstractmethod
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from itertools import chain
 import json
 
