@@ -106,6 +106,155 @@
   margin: 40px 0 55px;
 }
 
+.dropdown-content {
+  min-width: 420px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(149, 149, 149, .3);
+  background-color: #fff;
+  padding: 30px 40px 40px !important;
+}
+
+.dropdown-content.show {
+  z-index: 101;
+}
+
+.date-range-picker {
+  margin: 0 0 0 20px !important;
+  min-width: 225px;
+  border: 2px solid #3caada !important;
+  border-radius: 15px !important;
+  height: 30px !important;
+}
+
+.dropdown-content label {
+  color: #3f3f3f;
+  line-height: 30px !important;
+}
+
+.date-range-picker-holder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.date-range-picker-holder {
+  margin-top: 20px;
+}
+
+.date-range-picker-btn {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  border-radius: 17px !important;
+  background-color: #3caada !important;
+  color: #fff !important;
+  margin: 0 11px 0 0 !important;
+}
+
+.enroll-buttons-holder .js-datepicker-dropdown button {
+  border: 2px solid #3caada !important;
+  margin: 0 11px 0 0 !important;
+  font-weight: 400;
+  padding: 6px 14px 4px 14px;
+}
+
+.enroll-buttons-holder .js-datepicker-dropdown button:last-child {
+  margin-right: 0 !important;
+}
+
+.enroll-buttons-holder .js-datepicker-dropdown button:hover {
+  border: 2px solid #568ecc !important;
+}
+
+.daterangepicker {
+  border: 0 !important;
+  box-shadow: 0px 10px 10px rgba(0, 0 , 0, .3);
+  border-radius: 5px;
+}
+
+.daterangepicker:before,
+.daterangepicker:after {
+  display: none !important;
+}
+
+.daterangepicker .calendar-table {
+  border: 0 !important;
+  background: none !important;
+}
+
+.daterangepicker .calendar-table:after {
+  content: "";
+  position: absolute;
+  background-color: #dadada;
+  border-radius: 5px 5px 0 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  z-index: -1;
+}
+
+.daterangepicker .calendar-table .next span,
+.daterangepicker .calendar-table .prev span {
+  border-color: #fff !important;
+}
+
+.daterangepicker .calendar-table th.next,
+.daterangepicker .calendar-table th.prev {
+  position: relative;
+}
+
+.daterangepicker .calendar-table th.next:before,
+.daterangepicker .calendar-table th.prev:before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 3px;
+  left: 5px;
+  border-radius: 50%;
+  background-color: #3caada;
+}
+
+.daterangepicker .calendar-table th.next:before {
+  left: 8px;
+}
+
+.daterangepicker .calendar-table th.next:hover,
+.daterangepicker .calendar-table th.prev:hover {
+  background: none;
+}
+
+.daterangepicker .calendar-table th {
+  padding-bottom: 10px;
+}
+
+.daterangepicker .calendar-table td {
+  background-color: #fafafa;
+  color: #3f3f3f;
+  border: 2px solid #fff !important;
+  box-sizing: border-box;
+}
+
+.daterangepicker td.off,
+.daterangepicker td.off.in-range,
+.daterangepicker td.off.start-date,
+.daterangepicker td.off.end-date {
+  background-color: #fafafa;
+  color: #bcbcbc;
+}
+
+.daterangepicker td.active,
+.daterangepicker td.active:hover {
+  background-color: #3caada !important;
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .8);
+}
+
+.daterangepicker td.in-range {
+  background-color: rgba(60, 170, 218, .25);
+}
+
 .activity-chart {
   background-color: #fff;
   -webkit-box-shadow: 0 0 10px rgba(149, 149, 149, .2);

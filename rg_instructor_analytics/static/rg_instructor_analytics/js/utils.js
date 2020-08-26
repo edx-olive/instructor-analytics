@@ -3,9 +3,14 @@
  * @param content - tab content
  * @param action - fn to trigger
  */
+
+function getCookie(name) {
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  if (match) return match[2];
+}
+
 function TimeFilter(content, action) {
   var filter = this;
-  var pickerDateFormat = $.datepicker.ISO_8601;  // 'yy-mm-dd' => 2018-02-02
   var momentDateFormat = 'YYYY-MM-DD';           // 2018-02-02
   var $selectPeriodBtn = content.find(".js-datepicker-btn");
   var periodDiv = content.find(".js-datepicker-dropdown");
@@ -14,25 +19,7 @@ function TimeFilter(content, action) {
   this.firstEnrollDate = null;
   this.courseStartDate = null;
 
-  this.$fromDatePicker = content.find(".js-from-datepicker")
-    .datepicker({
-      maxDate: moment().format(momentDateFormat),
-      dateFormat: pickerDateFormat,
-      onSelect: function(dateStr) {
-        filter.$toDatePicker.datepicker("option", "minDate", dateStr);
-        filter.startDate = moment(dateStr);
-      }
-    });
-  this.$toDatePicker = content.find(".js-to-datepicker")
-    .datepicker({
-      maxDate: moment().format(momentDateFormat),
-      dateFormat: pickerDateFormat,
-      onSelect: function(dateStr) {
-        filter.$fromDatePicker.datepicker("option", "maxDate", dateStr);
-        filter.endDate = moment(dateStr);
-      }
-    });
-
+  moment.locale(getCookie('openedx-language-preference'));
   /**
    * Rerender date range selector.
    */
@@ -50,7 +37,7 @@ function TimeFilter(content, action) {
       set: function(val) {
         if (moment.isMoment(val) && val <= moment()) {  // do not set if Course starts in the Future
           this._startDate = val;
-          this.$fromDatePicker.datepicker("setDate", val.format(momentDateFormat));
+          this.$dateRangePicker.data("daterangepicker").setStartDate(val.format(momentDateFormat));
           if (this.endDate) {
             this.updateStatPeriod();
           }
@@ -64,7 +51,7 @@ function TimeFilter(content, action) {
       set: function(val) {
         if (moment.isMoment(val)) {
           this._endDate = val;
-          this.$toDatePicker.datepicker("setDate", val.format(momentDateFormat));
+          this.$dateRangePicker.data("daterangepicker").setEndDate(val.format(momentDateFormat));
           if (this.startDate) {
             this.updateStatPeriod();
           }
@@ -153,13 +140,11 @@ function TimeFilter(content, action) {
   };
 
   this.setMinDate = function () {
-    filter.$fromDatePicker.datepicker("option", "minDate", filter.minDate.format(momentDateFormat));
-    filter.$toDatePicker.datepicker("option", "minDate", filter.startDate.format(momentDateFormat));
+    filter.$dateRangePicker.data("daterangepicker").setStartDate(filter.startDate);
   };
 
   this.updateDates = function () {
-    filter.$toDatePicker.datepicker("option", "minDate", filter.startDate.format(momentDateFormat));
-    filter.$fromDatePicker.datepicker("option", "maxDate", filter.endDate.format(momentDateFormat));
+    filter.$dateRangePicker.data("daterangepicker").setEndDate(filter.endDate);
   };
 
   this.getStartEndDates = function () {
@@ -177,6 +162,22 @@ function TimeFilter(content, action) {
     filter.minDate = minDate;
     filter.firstEnrollDate = firstEnrollDate;
     filter.setDisable();
+
+    this.$dateRangePicker = content.find(".js-date-range-picker")
+    .daterangepicker({
+      opens: "right",
+      autoApply: true,
+      drops: "auto",
+      minDate: minDate,
+      maxDate: new Date(),
+      locale: {
+        format: momentDateFormat,
+        monthNames: moment.months()
+      }
+    }, function(startDate, endDate, label) {
+      filter.startDate = startDate;
+      filter.endDate = endDate;
+    });
 
     // Select 'Last Week' time interval if possible, otherwise
     // select 'All Enrollments' for enrollments tab or 'Since Course Start' for other tabs
