@@ -10,15 +10,13 @@ from django.utils.translation import ugettext as _
     </div>
     <div class="js-datepicker-dropdown dropdown-content">
         <div>
-            <label for="${active_tab}-from">${_("From")}</label>
-            <input type="text" id="${active_tab}-from" name="from" class="js-from-datepicker">
-            <label for="${active_tab}-to">${_("To")}</label>
-            <input type="text" id="${active_tab}-to" name="to" class="js-to-datepicker">
+            <label for="${active_tab}-from">${_("Select a period")}</label>
+            <input type="text" id="${active_tab}-from" name="from" class="js-date-range-picker date-range-picker">
         </div>
         <div class="spacing"></div>
-        <div>
-            <button class="js-date-apply-btn">${_("Apply")}</button>
-            <button class="js-date-cancel-btn">${_("Cancel")}</button>
+        <div class="date-range-picker-holder">
+            <button class="js-date-apply-btn date-range-picker-btn">${_("Apply")}</button>
+            <button class="js-date-cancel-btn date-range-picker-btn">${_("Cancel")}</button>
         </div>
     </div>
     <div class="custom-select">
