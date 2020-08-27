@@ -875,7 +875,7 @@
   width: 21px;
   height: 100%;
   top: 50%;
-  background-repeat-y: no-repeat;
+  background-repeat: repeat-x;
   background-position: center center;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
