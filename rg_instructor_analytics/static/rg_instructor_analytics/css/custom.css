@@ -699,28 +699,9 @@
 
 .course-select {
   position: absolute;
-  top: 108px;
+  top: 110px;
   right: 25px;
-}
-
-.course-select .jqselect {
-  margin: 0;
-  width: 100% !important;
-  max-width: 310px;
-  border: 2px solid #3caada;
-  border-radius: 15px;
-}
-
-.course-select .jqselect .jq-selectbox__select {
-  padding: 3px 17px !important;
-}
-
-.course-select .jqselect .jq-selectbox__select:before {
-  top: 0 !important;
-}
-
-.course-select .jqselect .jq-selectbox__select:after {
-  bottom: 0 !important;
+  height: 30px !important;
 }
 
 .instructor-dashboard-content-2 .instructor-nav {
@@ -739,11 +720,19 @@
   color: #3caada !important;
 }
 
+#instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn-holder {
+  height: 30px;
+}
+
 #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn {
   border-radius: 15px !important;
   border: 2px solid #3caada !important;
   min-width: 245px;
   color: #3caada !important;
+  padding: 3px 30px 3px 15px !important;
+  height: 100% !important;
+  font-weight: 500;
+  line-height: 20px;
 }
 
 #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn:hover {
@@ -759,45 +748,93 @@
   border-top: 7px solid #fff;
 }
 
-.date-btn:before {
-  content: "";
-  position: absolute;
-  right: 10px;
-  top: 5px;
-  border: 4px solid transparent;
+body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .select2 {
+  max-width: 245px;
+  border-radius: 15px !important;
+}
+
+body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .select2 .select2-selection {
+  padding: 7px 20px;
+}
+
+body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .select2 .select2-selection:before {
+  top: 0;
   border-bottom: 7px solid #3caada;
-  -webkit-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
-  transition: all 200ms ease;
 }
 
-.date-btn:after {
-  content: "";
-  position: absolute;
-  right: 10px;
+body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .select2 .select2-selection:after {
   bottom: 0;
-  border: 4px solid transparent;
   border-top: 7px solid #3caada;
-  -webkit-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
-  transition: all 200ms ease;
 }
 
-#instructor-analytics-dashboard-content .jqselect {
+body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .select2 .select2-selection__rendered {
+  color: #3caada;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.enroll-buttons-holder .custom-select {
+  height: 30px;
+}
+
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li select,
+.enroll-buttons-holder .custom-select .filter-dropdown {
+  border-radius: 15px !important;
+  height: 30px !important;
   border: 2px solid #3caada !important;
   min-width: 245px;
+  color: #3f3f3f !important;
+  padding: 3px 30px 3px 15px !important;
+  font-weight: 500;
+  background: none !important;
+  line-height: 20px;
 }
 
-#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect .jq-selectbox__select {
-  padding: 7px 15px !important;
+.enroll-buttons-holder .custom-select .filter-dropdown {
+  color: #3caada !important;
+  height: auto !important;
 }
 
-#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect .jq-selectbox__select:before {
-  top: 0;
+.date-btn:before,
+.date-btn:after,
+.enroll-buttons-holder .custom-select:before,
+.enroll-buttons-holder .custom-select:after,
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:before,
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  border: 4px solid transparent;
+  -webkit-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
 }
 
-#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect .jq-selectbox__select:after {
+.date-btn:before,
+.enroll-buttons-holder .custom-select:before,
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:before {
+  top: 5px;
+  border-bottom: 7px solid #3caada;
+}
+
+.date-btn:after,
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:after {
   bottom: 0;
+  border-top: 7px solid #3caada;
+}
+
+.enroll-buttons-holder .custom-select:before {
+  top: 7px;
+}
+
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:before {
+  top: 2px;
+}
+
+.enroll-buttons-holder .custom-select:after,
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:after {
+  bottom: 2px;
+  border-top: 7px solid #3caada;
 }
 
 #instructor-analytics-dashboard-content .instructor-nav {
@@ -805,54 +842,6 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 12px;
-}
-
-#instructor-analytics-dashboard-content .instructor-nav .jqselect {
-  width: 250px !important;
-  margin-bottom: 0 !important;
-}
-
-#instructor-analytics-dashboard-content .instructor-nav .jqselect .jq-selectbox__select {
-  padding: 8px 30px 8px 12px;
-}
-
-#instructor-analytics-dashboard-content .instructor-nav .jqselect .jq-selectbox__select .jq-selectbox__select-text {
-  height: 20px;
-  line-height: 20px;
-  overflow: hidden;
-}
-
-#instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn {
-  border-radius: 5px;
-  height: auto !important;
-  padding: 3px 30px 3px 15px !important;
-}
-
-#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select:before {
-  display: none;
-}
-
-#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect {
-  margin-bottom: 0;
-  padding: 0 !important;
-  border-radius: 15px !important;
-  height: auto !important;
-}
-
-#instructor-analytics-dashboard-content .enroll-buttons-holder .custom-select .jqselect .jq-selectbox__select {
-  padding: 12px 20px;
-}
-
-.jqselect .jq-selectbox__select:before {
-  border-bottom: 7px solid #3caada !important;
-}
-
-.jqselect .jq-selectbox__select:after {
-  border-top: 7px solid #3caada !important;
-}
-
-.jqselect .jq-selectbox__select-text {
-  color: #00a2da;
 }
 
 /* Progress Funnel */
@@ -1257,4 +1246,31 @@ button.funnel-send-email-btn:focus {
   border: 0;
 }
 
+/* Select customization */
 
+/* TODO! remove !important after moving styles from theme to the analytics */
+
+#instructor-analytics-dashboard-content .instructor-nav .select2 {
+  width: 310px !important;
+  border-radius: 15px;
+  height: 30px;
+}
+
+#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection {
+  padding: 0 30px 0 20px !important;
+}
+
+#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection .select2-selection__rendered {
+  height: 28px !important;
+  line-height: 28px !important;
+}
+
+#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection:before {
+  top: 0 !important;
+  border-bottom: 7px solid #3caada !important;
+}
+
+#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection:after {
+  bottom: 2px !important;
+  border-top: 7px solid #3caada !important;
+}
