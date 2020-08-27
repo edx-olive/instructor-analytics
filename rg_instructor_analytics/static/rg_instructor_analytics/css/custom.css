@@ -1031,6 +1031,10 @@
   background-size: 11px 11px;
 }
 
+.funnel-item .emails-list span {
+  box-sizing: border-box;
+}
+
 .funnel-item .emails-list span strong {
   display: inline-block;
 }
