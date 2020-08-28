@@ -96,9 +96,10 @@ for microsite configurations use this flag for enable/disable tab: `ENABLE_RG_IN
 ## Unit tests
 All tests could be run only in local.
 
-##### For run unit test follow the next steps:
-* Ensure that the source placed in one of the edx-platform subdirectory.
-* cd rg_instructor_analytics
-* sh ./test_tool/run_test.sh
+#### For run unit test follow the next steps:
+from project root directory
+* install requirements from requirements_test.txt.
+* run ```export PYTHONPATH=$(pwd):$PYTHONPATH```
+* run ```pytest rg_instructor_analytics/tests -s -v -c rg_instructor_analytics/pytest.ini```
 
 DevOps: https://raccoongang.atlassian.net/wiki/spaces/tech/pages/1237057564/RG+Analytics+2.0+installation+manual
