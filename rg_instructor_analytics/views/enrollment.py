@@ -54,8 +54,8 @@ class EnrollmentStatisticView(View):
         enroll_list = []
         unenroll_list = []
         total_list = []
-        prev_enroll_day = from_date
-        prev_unenroll_day = from_date
+        prev_enroll_day = from_date - timedelta(days=1)  # to start completion with from_date
+        prev_unenroll_day = from_date - timedelta(days=1)
         prev_total_day = from_date
 
         format_day = lambda fday: calendar.timegm(fday.timetuple()) * 1000
@@ -67,17 +67,23 @@ class EnrollmentStatisticView(View):
             return qs if qs else 0
 
         def check_and_complete(day, prev_day, value, values_list):
-            if value or day == from_date or day == to_date:  # allow zero value if it is start or end point of chart
+            if value:
                 days_delta = (day - prev_day).days
                 if days_delta > 1:
                     # at least one empty day between values - fill with zero day after previous value
                     values_list.append((format_day(prev_day + timedelta(days=1)), 0))
-                    if days_delta > 2 and day != to_date:
+                    if days_delta > 2:
                         # at least two days between values - fill with zero day before current value
                         values_list.append((format_day(day - timedelta(days=1)), 0))
                 values_list.append((format_day(day), value))
                 return day
             return prev_day  # not changed if value is 0
+
+        def check_and_complete_end(end_day, prev_day, values_list):
+            if end_day != prev_day:
+                if (end_day - prev_day).days > 1:
+                    values_list.append((format_day(prev_day + timedelta(days=1)), 0))
+                values_list.append((format_day(end_day), 0))
 
         raw_data = deque(EnrollmentByDay.objects.filter(
             course=course_key, day__range=(from_date, to_date)
@@ -91,10 +97,6 @@ class EnrollmentStatisticView(View):
         elif raw_data[0][3] == 0:  # try to get value for start point of 'total' if it is zero
             raw_data[0][3] = get_prev_total_value()
 
-        # end chart with to_date
-        if raw_data[-1][0] != to_date:
-            raw_data.append((to_date, 0, 0, raw_data[-1][3]))
-
         for day, enrolled, unenrolled, total in raw_data:
             prev_enroll_day = check_and_complete(day, prev_enroll_day, enrolled, enroll_list)
             prev_unenroll_day = check_and_complete(day, prev_unenroll_day, unenrolled, unenroll_list)
@@ -104,6 +106,12 @@ class EnrollmentStatisticView(View):
                 total_list.append((format_day(day - timedelta(days=1)), total_list[-1][1]))
             total_list.append((format_day(day), total))
             prev_total_day = day
+
+        # complete end points
+        check_and_complete_end(to_date, prev_enroll_day, enroll_list)
+        check_and_complete_end(to_date, prev_unenroll_day, unenroll_list)
+        if prev_total_day and prev_total_day != to_date:
+            total_list.append((format_day(to_date), total_list[-1][1]))
 
         return {
             'enrolls': enroll_list, 'unenrolls': unenroll_list, 'totals': total_list
