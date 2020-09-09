@@ -18,11 +18,11 @@ export const AdditionalInfoTab = () => (
         <Section
           heading={_("Country or region of residence")}
           subheading={_(
-            "Saepe possimus voluptatum aspernatur temporibus porro alias"
+            "Where the learners are based"
           )}
           text={_(
-            "Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos deleniti quasi vero," +
-              " perferendis dolorem modi ullam accusantium inventore amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?"
+            "The learners are distributed on the virtual map according to their location." +
+              " The countries are highlighted accordingly. By hovering over a location, one can see the detailed information"
           )}
         >
           <ResidenceStats />
@@ -32,11 +32,10 @@ export const AdditionalInfoTab = () => (
         <Section
           heading={_("Gender")}
           subheading={_(
-            "Saepe possimus voluptatum aspernatur temporibus porro alias"
+            "The gender structure of the learners"
           )}
           text={_(
-            "Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos deleniti quasi vero," +
-              " perferendis dolorem modi ullam accusantium inventore amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?"
+              "The graph shows the distribution of the learners by gender"
           )}
         >
           <GenderStats />
@@ -46,11 +45,10 @@ export const AdditionalInfoTab = () => (
         <Section
           heading={_("Year of birth")}
           subheading={_(
-            "Saepe possimus voluptatum aspernatur temporibus porro alias"
+            "Distribution of the learners by generation"
           )}
           text={_(
-            "Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos deleniti quasi vero," +
-              " perferendis dolorem modi ullam accusantium inventore amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?"
+              "This graph shows which share of the community is occupied by which generation"
           )}
         >
           <AgeStats />
@@ -59,13 +57,6 @@ export const AdditionalInfoTab = () => (
       <Grid item xs={12}>
         <Section
           heading={_("Level of education")}
-          subheading={_(
-            "Saepe possimus voluptatum aspernatur temporibus porro alias"
-          )}
-          text={_(
-            "Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos deleniti quasi vero," +
-              " perferendis dolorem modi ullam accusantium inventore amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?"
-          )}
         >
           <EducationStats />
         </Section>
