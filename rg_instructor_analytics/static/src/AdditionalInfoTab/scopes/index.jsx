@@ -41,16 +41,16 @@ export const ScopeSelector = () => {
   return (
     <Container className={classes.container}>
       <Grid container spacing={1}>
-        <Grid item xs={4} />
         <Grid item xs={4}>
-          {scope !== scopes.system && <Selector items={getItems(scope)} />}
-        </Grid>
-        <Grid item xs={4} align="right">
           {role === roles.admin &&
             (scope && (
               <Switch items={R.values(scopes).sort()} activeItem={scope} />
             ))}
         </Grid>
+        <Grid item xs={4}>
+          {scope !== scopes.system && <Selector items={getItems(scope)} />}
+        </Grid>
+        <Grid item xs={4} />
       </Grid>
     </Container>
   );
