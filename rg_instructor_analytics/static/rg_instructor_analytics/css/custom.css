@@ -1002,6 +1002,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   font-size: 14px;
   line-height: 15px;
   border: 0;
+  overflow: visible;
 }
 
 .funnel-item .input-checkbox input[type="checkbox"] + .label-text:before {
