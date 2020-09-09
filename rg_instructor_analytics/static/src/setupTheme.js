@@ -16,5 +16,13 @@ export default createMuiTheme({
     secondary: {
       main: "#f6706f"
     }
-  }
+  },
+  typography: {
+    fontFamily: [
+      'Exo',
+      'Roboto',
+      '"Helvetica Neue"',
+      'sans-serif',
+    ].join(','),
+  },
 });

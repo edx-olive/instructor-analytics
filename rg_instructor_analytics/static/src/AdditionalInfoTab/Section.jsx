@@ -5,17 +5,28 @@ import { Grid, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   heading: {
-    fontSize: "1rem",
+    fontSize: "18px",
     fontWeight: 600,
     textTransform: "uppercase",
-    letterSpacing: "-1px",
-    marginBottom: "-8px"
+    letterSpacing: "0px",
+    marginBottom: "-8px",
+    textAlign: "left",
+    opacity: 1,
+    color: "#3E3E3E",
   },
   subheading: {
-    fontWeight: 600
+    fontSize: "18px",
+    textAlign: "left",
+    fontWeight: 600,
+    color: "#3E3E3E",
+    letterSpacing: "0px",
   },
   text: {
-    fontWeight: 300
+    fontSize: "16px",
+    textAlign: "left",
+    fontWeight: 300,
+    color: "#3E3E3E",
+    letterSpacing: "0px",
   },
   chart: {
     marginTop: theme.spacing(4)
