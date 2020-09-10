@@ -11,12 +11,14 @@ const useStyles = makeStyles(theme => ({
   box: {
     display: "flex",
     justifyContent: "center",
-    marginTop: theme.spacing(10)
+    marginTop: theme.spacing(10),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
   },
   wrapper: {
     borderLeft: `2px solid ${theme.palette.grey[500]}`,
     borderRight: `2px solid ${theme.palette.grey[500]}`,
-    width: "100%",
+    width: theme.spacing(40.25),
     minHeight: 80,
     display: "flex",
     alignItems: "center",
@@ -27,9 +29,13 @@ const useStyles = makeStyles(theme => ({
       overflow: "visible !important"
     },
     "& div svg g text": {
-      textTransform: "uppercase !important",
+      textTransform: "capitalize !important",
       fontWeight: "600 !important",
-      letterSpacing: "0px !important"
+      letterSpacing: "0px !important",
+      fontFamily: "Exo !important",
+      fontSize: "12px !important",
+      color: "#3F3F3F",
+      opacity: 1,
     }
   },
   labels: {
@@ -65,11 +71,11 @@ export const StackedBarChart = ({ data = {} }) => {
     dataFrom: "keys",
     anchor: "bottom",
     direction: "row",
-    itemWidth: 150,
+    itemWidth: theme.spacing(16),
     itemHeight: 40,
     itemDirection: "left-to-right",
-    translateX: 40,
-    translateY: 80
+    translateX: 30,
+    translateY: 80,
   };
 
   const makeLabels = item => `${item.value}%`;
@@ -88,22 +94,23 @@ export const StackedBarChart = ({ data = {} }) => {
   return (
     <Box className={classes.box}>
       <Grid container spacing={1}>
-        <Grid item xs={1} className={classes.male} />
-        <Grid item xs={10}>
+        <Grid item xs={2} className={classes.male} />
+        <Grid item xs={8}>
           <div className={classes.wrapper}>
             <Bar
               data={[chartData]}
               keys={R.keys(chartData)}
-              width={400}
+              width={theme.spacing(40)}
               height={50}
               padding={0.1}
               margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
               layout="horizontal"
               enableGridX={false}
               colors={getColors(nonEmptyData)}
-              borderRadius={2}
+              borderRadius={4}
               innerPadding={1}
               label={makeLabels}
+              labelFormat={d => <tspan y={ -15 }>{ d }</tspan>}
               axisLeft={null}
               axisBottom={null}
               legends={[legendConf]}
@@ -111,7 +118,7 @@ export const StackedBarChart = ({ data = {} }) => {
             />
           </div>
         </Grid>
-        <Grid item xs={1} className={classes.female} />
+        <Grid item xs={2} className={classes.female} />
       </Grid>
     </Box>
   );
