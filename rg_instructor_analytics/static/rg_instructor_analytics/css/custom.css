@@ -735,7 +735,7 @@
   color: #3caada !important;
   padding: 3px 30px 3px 15px !important;
   height: 100% !important;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 20px;
 }
 
@@ -789,7 +789,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   min-width: 245px;
   color: #3f3f3f !important;
   padding: 3px 30px 3px 15px !important;
-  font-weight: 500;
+  font-weight: 600;
   background: none !important;
   line-height: 20px;
 }
