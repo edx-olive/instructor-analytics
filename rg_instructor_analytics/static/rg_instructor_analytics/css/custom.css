@@ -782,7 +782,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 }
 
 .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li select,
-.enroll-buttons-holder .custom-select .filter-dropdown {
+.enroll-buttons-holder .custom-select select.filter-dropdown {
   border-radius: 15px !important;
   height: 30px !important;
   border: 2px solid #3caada !important;
@@ -794,7 +794,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   line-height: 20px;
 }
 
-.enroll-buttons-holder .custom-select .filter-dropdown {
+.enroll-buttons-holder .custom-select select.filter-dropdown {
   color: #3caada !important;
   height: auto !important;
 }
