@@ -21,7 +21,7 @@ log = logging.getLogger(__name__)
 # IDEA: make these categories configurable from admin site
 GENERATION_CHOICES = collections.OrderedDict((
     ('z', _("Generation Z: 1995-2012")),
-    ('m', _("Millenials: 1980-1994")),
+    ('m', _("Millennials: 1980-1994")),
     ('x', _("Generation X: 1965-1979")),
     ('b', _("Baby boomers: 1942-1964")),
 ))

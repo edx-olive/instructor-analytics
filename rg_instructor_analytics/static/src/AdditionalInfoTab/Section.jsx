@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 300,
     color: "#3E3E3E",
     letterSpacing: "0px",
+    lineHeight: "26px",
   },
   chart: {
     marginTop: theme.spacing(4)
