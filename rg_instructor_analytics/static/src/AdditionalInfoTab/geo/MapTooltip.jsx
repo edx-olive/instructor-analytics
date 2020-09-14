@@ -6,12 +6,27 @@ import { gettext as _ } from "../../setupAPI";
 
 const useStyles = makeStyles(theme => ({
   box: {
-    backgroundColor: theme.palette.common.white,
+    background: "#FFFFFF 0% 0% no-repeat padding-box",
     padding: 4,
-    boxShadow: "1px 1px 1px 2px gray"
+    boxShadow: "0px 0px 10px #00000033;",
+    borderRadius: 5,
+    opacity: 1,
   },
   textBold: {
-    fontWeight: 600
+    fontWeight: 600,
+    fontSize: 14,
+    fontFamily: "Exo",
+    letterSpacing: 0,
+    color: "#3F3F3F",
+    opacity: 1
+  },
+  textNormal: {
+    fontWeight: 300,
+    fontSize: 14,
+    fontFamily: "Exo",
+    letterSpacing: 0,
+    color: "#3F3F3F",
+    opacity: 1
   }
 }));
 
@@ -25,13 +40,9 @@ export const MapTooltip = ({ id, name, value, percent }) => {
         <Typography className={classes.textBold}>{name || id}</Typography>
       </div>
       <div>
-        <Typography component="span">{_("Users: ")}</Typography>
+        <Typography component="span" className={classes.textNormal}>{_("Users: ")}</Typography>
         <Typography component="span" className={classes.textBold}>
           {formattedValue}
-        </Typography>
-        <Typography component="span">
-          {" | "}
-          {formattedPercent}
         </Typography>
       </div>
     </Box>
