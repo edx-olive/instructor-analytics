@@ -977,19 +977,18 @@ body .disc-list {
     border-top: none !important;
 }
 .instructor-nav li button {
-    color: #568ecc;
+    color: #313131;
     font-size: 15px;
     border-bottom: none !important;
     padding: 10px 15px !important;
 }
 .instructor-nav li button:hover {
-    color: #000;
+    color: #02a1da;
     background: none !important;
     text-decoration: none !important;
 }
 .instructor-nav li button.active-section {
-    background: #f1f1f1 !important;
-    border-bottom-color: #f1f1f1 !important;
+    color: #02a1da !important;
 }
 .instructor-nav li:last-child {
     float: right;
