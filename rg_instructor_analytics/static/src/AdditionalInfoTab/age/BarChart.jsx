@@ -6,6 +6,9 @@ import AgeTooltip from "./AgeTooltip";
 
 const useStyles = makeStyles(theme => ({
   wrapper: {
+    "& div svg": {
+      overflow: "visible !important"
+    },
   },
   axisLabel: {
     fill: '#3F3F3F',
