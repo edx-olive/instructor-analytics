@@ -76,10 +76,9 @@ function ProblemTab(button, content) {
                 let percent = correctAnswer[index] * 100;
                 let barHeight = 'auto';
 
-                if (!percent && !attempts) {
-                    barHeight = 0;
-                }
-                
+                if (!percent && !attempts) barHeight = 0;
+                if (isNaN(attempts)) attempts = 0;
+
                 bars += `
                         <li
                             class="plot-bar-vert"
@@ -119,7 +118,11 @@ function ProblemTab(button, content) {
             // build left 'Y' axis
             axis = '';
             countAttempts.forEach((item) => {
-                axis += `<li>${item.toFixed(1)}</li>`
+                if (isFinite(item)) {
+                    axis += `<li>${item.toFixed(1)}</li>`
+                } else {
+                    axis += '<li>0.0</li>'
+                }
             });
             axis = `<ul class="y-axis-l">${axis}</ul>`;
             bars += axis;
