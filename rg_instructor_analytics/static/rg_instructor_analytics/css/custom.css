@@ -337,6 +337,30 @@ ul.disc-list .analytics-title-text {
 
 /* Problems Tab */
 
+.problem p,
+.xmodule_display.xmodule_CapaModule div.problem .choicegroup legend, 
+.xmodule_display.xmodule_CapaModule div.problem .choicegroup legend + .question-description,
+.xmodule_display.xmodule_CapaModule .problem .imageinput+div p, 
+.xmodule_display.xmodule_CapaModule .problem .wrapper-problem-response p,
+body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .choicegroup legend+.question-description,
+body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .problem-group-label+.question-description,
+.xmodule_display.xmodule_CapaModule div.problem .problem-group-label,
+#problem-body .wrapper-problem-response button:before {
+  font-size: 16px !important;
+}
+
+body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .choicegroup legend + .question-description {
+  color: #3f3f3f !important;
+}
+
+#problem-body .wrapper-problem-response button {
+  font-weight: 700 !important;
+  margin-left: 0 !important;
+  padding: 6px 42px 6px 32px !important;
+  font-size: 12px;
+}
+
+.problem-bg-wrapper,
 #problem-body #model_plot {
   margin: 40px 0 60px;
 }
