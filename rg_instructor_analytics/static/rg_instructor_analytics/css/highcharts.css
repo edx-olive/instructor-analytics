@@ -1,12 +1,14 @@
 .highcharts-figure,
-.highcharts-data-table table {
+.highcharts-data-table table,
+.modal-for-plot,
+.plot-container {
   min-width: 310px;
   max-width: 100%;
   margin: 1em auto;
   background-color: #fff;
-  -webkit-box-shadow: 0 0 10px rgba(149, 149, 149, .2);
-  box-shadow: 0 0 10px rgba(149, 149, 149, .2);
-  padding: 70px 35px 35px;
+  -webkit-box-shadow: 0 0 10px rgba(149, 149, 149, .1);
+  box-shadow: 0 0 10px rgba(149, 149, 149, .1);
+  padding: 40px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 5px;
