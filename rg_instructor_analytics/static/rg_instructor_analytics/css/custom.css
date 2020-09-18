@@ -1211,26 +1211,35 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   text-transform: none !important;
 }
 
-#funnel-email-subject {
+#funnel-email-subject,
+#email-subject {
   border: 1px solid #626262;
   border-radius: 15px;
   max-width: 361px;
   height: 30px;
 }
 
-#funnel-form-email .richText {
+#funnel-form-email .richText,
+#section-cohort .richText {
   margin: 40px 0;
 }
 
-#funnel-form-email .richText .fa {
+#funnel-form-email .richText .fa,
+#section-cohort .richText .fa {
   color: #12478a;
 }
 
-#funnel-form-email {
+.richText .richText-toolbar ul li a {
+  border-color: #e5e5e5 !important;
+}
+
+#funnel-form-email,
+#cohort-form {
   margin-top: 20px;
 }
 
-#funnel-form-email label {
+#funnel-form-email label,
+#cohort-form label {
   font-weight: 700;
   font-size: 12px;
 }
@@ -1246,18 +1255,53 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   font-weight: 300;
 }
 
-button.funnel-send-email-btn {
+#cohort-check-list li input[type="checkbox"] + label:before {
+  margin-top: 0;
+  width: 18px;
+  height: 15px;
+}
+
+#cohort-check-list li input[type="checkbox"]:checked + label:before {
+  background: url("../images/check_box_checked.svg");
+}
+
+#cohort-check-list li {
+  margin-bottom: 12px;
+}
+
+#cohort-check-list li input[type="checkbox"] + label {
+  font-weight: 400;
+  line-height: 16px;
+}
+
+#cohort-check-list .emails-list-button {
+  color: #3caada !important;
+  font-weight: 700;
+}
+
+button.funnel-send-email-btn,
+#cohort-send-email-btn {
   background-color: #3caada !important;
   border-radius: 17px !important;
   color: #fff !important;
   border: 2px solid transparent !important;
-  padding: 5px 22px !important;
-  font-weight: 400;
+  padding: 7px 22px !important;
+  font-weight: 700;
+  font-size: 12px !important;
+  line-height: initial;
+  height: auto;
+}
+
+#cohort-send-email-btn {
+  margin: 7px 0 0 !important;
 }
 
 button.funnel-send-email-btn:hover,
-button.funnel-send-email-btn:focus {
+button.funnel-send-email-btn:focus,
+#cohort-send-email-btn:hover,
+#cohort-send-email-btn:focus {
   background: rgba(60, 170, 218, .7) !important;
+  border: 2px solid transparent !important;
 }
 
 .funnel-item .emails-list {
