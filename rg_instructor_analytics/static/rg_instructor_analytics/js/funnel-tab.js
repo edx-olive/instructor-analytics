@@ -103,10 +103,12 @@ function FunnelTab(button, content) {
       });
 
       $('.js-emails-list-close').on('click', function () {
-        var $el = $(this).parents('.funnel-item');
-
-        $el.find('.emails-list').prop('hidden', true);
-        $el.find('.emails-list-button').text(gettext('Show emails')).addClass('show-emails-button');
+        var $el = $(this).parent();
+    
+        $el.prop('hidden', true)
+          .parent().find('.emails-list-button')
+          .text(gettext('Show emails'))
+          .addClass('show-emails-button');
       });
 
       $('.emails-list').on('click', function (ev) {

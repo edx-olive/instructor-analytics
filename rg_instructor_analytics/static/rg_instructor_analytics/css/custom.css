@@ -1027,6 +1027,8 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 
 .funnel-item .emails-list span {
   box-sizing: border-box;
+  text-align: left;
+  padding: 6px 20px;
 }
 
 .funnel-item .emails-list span strong {
@@ -1249,6 +1251,10 @@ button.funnel-send-email-btn:focus {
   background-image: url("../images/close.svg") !important;
   background-color: transparent !important;
   opacity: .7;
+}
+
+.funnel-item.funnel-item-1 button.emails-list__close {
+  top: 18px;
 }
 
 .funnel-item-0 > .emails-list span {
