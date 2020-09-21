@@ -573,6 +573,7 @@ ul.disc-list .analytics-title-text {
   padding: 0;
   border: 0;
   border-radius: 0;
+  margin-top: 3px;
 }
 
 .wrapper-problem-response {
@@ -581,6 +582,10 @@ ul.disc-list .analytics-title-text {
 
 #problem-body .problem .wrapper-problem-response {
   max-width: 750px;
+}
+
+.xmodule_display.xmodule_CapaModule div.problem-progress {
+  display: block;
 }
 
 .wrapper-problem-response button {
@@ -606,6 +611,11 @@ ul.disc-list .analytics-title-text {
 .wrapper-problem-response button:hover:before,
 .wrapper-problem-response button:focus:before {
   color: #fff;
+}
+
+.problem-emails-list .block-emails-list,
+.subsection-emails-list .block-emails-list {
+  margin-bottom: 35px;
 }
 
 .problem-emails-list .problem-emails-span .emails-list-button,
@@ -1199,6 +1209,11 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 #funnel-form-email label {
   font-weight: 700;
   font-size: 12px;
+}
+
+.analytics-title,
+.hd.hd-3.problem-header {
+  margin-bottom: 0;
 }
 
 .analytics-title-text {
