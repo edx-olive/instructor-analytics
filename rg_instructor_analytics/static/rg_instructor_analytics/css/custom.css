@@ -270,12 +270,17 @@ ul.disc-list .analytics-title-text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font: 700 12px/20px "Exo 2.0", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 20px;
   color: #3f3f3f;
   padding-left: 30px;
 }
 
-.activity-toggle-checkboxes__label input[type="checkbox"] + .label-text:before,
+.activity-toggle-checkboxes__label input[type="checkbox"] + .label-text {
+  line-height: 15px;
+}
+
 .enrollment-toggle-btns__label input[type="radio"] + .label-text:before {
   content: "";
   position: absolute;
@@ -300,15 +305,13 @@ ul.disc-list .analytics-title-text {
   top: 0;
   left: 4px;
   width: 18px;
-  height: 18px;
-  transition: all 200ms ease;
+  height: 15px;
+  width: 18px;
+  height: 15px;
+  background-image: url("../images/check_box.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
   box-sizing: border-box;
-  opacity: 0;
-  visibility: hidden;
-}
-
-.activity-toggle-checkboxes__label input[type="checkbox"] + .label-text:after {
-  background-image: url("data:image/svg+xml,%3Csvg height='18px' viewBox='0 -46 417.81333 417' width='18px' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m159.988281 318.582031c-3.988281 4.011719-9.429687 6.25-15.082031 6.25s-11.09375-2.238281-15.082031-6.25l-120.449219-120.46875c-12.5-12.5-12.5-32.769531 0-45.246093l15.082031-15.085938c12.503907-12.5 32.75-12.5 45.25 0l75.199219 75.203125 203.199219-203.203125c12.503906-12.5 32.769531-12.5 45.25 0l15.082031 15.085938c12.5 12.5 12.5 32.765624 0 45.246093zm0 0' fill='%233CAADA'/%3E%3C/svg%3E");
 }
 
 .enrollment-toggle-btns__label input[type="radio"] + .label-text:after {
@@ -318,12 +321,18 @@ ul.disc-list .analytics-title-text {
   height: 10px;
   background-color: #3caada;
   border-radius: 50%;
+  background-image: none;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .enrollment-toggle-btns__label input[type="radio"]:checked + .label-text:after,
 .activity-toggle-checkboxes__label input[type="checkbox"]:checked + .label-text:after {
   opacity: 1;
   visibility: visible;
+}
+.activity-toggle-checkboxes__label input[type="checkbox"]:checked + .label-text:after {
+  background-image: url("../images/check_box_checked.svg");
 }
 
 /* Problems Tab */
