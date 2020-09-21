@@ -2,6 +2,20 @@ ul.disc-list .analytics-title-text {
   font-size: 16px;
   color: #3e3e3e;
 }
+ 
+.container {
+  max-width: 1140px;
+}
+
+.container > div {
+  background: #fafafa;
+  border-color: #fff;
+  border-radius: 20px;
+}
+
+.instructor-dashboard-content-2 {
+  padding: 23px 60px 80px !important;
+}
 
 .enrollment-toggle-btns {
   margin-top: 25px;
@@ -98,17 +112,6 @@ ul.disc-list .analytics-title-text {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-.chart-backgrond {
-  background-color: #fff;
-  -webkit-box-shadow: 0 0 10px rgba(149, 149, 149, .2);
-  box-shadow: 0 0 10px rgba(149, 149, 149, .2);
-  padding: 70px 35px 35px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-radius: 5px;
-  margin: 40px 0 55px;
 }
 
 .dropdown-content {
@@ -268,15 +271,13 @@ ul.disc-list .analytics-title-text {
   text-shadow: 0 1px 2px rgba(0, 0, 0, .8);
 }
 
-.activity-chart {
-  background-color: #fff;
-  -webkit-box-shadow: 0 0 10px rgba(149, 149, 149, .2);
-  box-shadow: 0 0 10px rgba(149, 149, 149, .2);
-  padding: 70px 35px 35px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-radius: 5px;
+.activity-chart,
+.chart-backgrond {
   margin: 40px 0 55px;
+}
+
+.chart-backgrond {
+  padding-top: 70px;
 }
 
 .activity-toggle-checkboxes {
@@ -367,14 +368,16 @@ ul.disc-list .analytics-title-text {
 
 /* Problems Tab */
 
-.problem-bg-wrapper,
 #problem-body #model_plot {
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(149, 149, 149, .2);
-  border-radius: 5px;
-  padding: 40px;
-  box-sizing: border-box;
   margin: 40px 0 60px;
+}
+
+.highcharts-problems-stats {
+  padding-bottom: 20px;
+}
+
+.problem-bg-wrapper {
+  margin-bottom: 60px;
 }
 
 #problem-body #model_plot {
@@ -382,6 +385,10 @@ ul.disc-list .analytics-title-text {
   padding: 11px 46px;
   box-shadow: none;
   margin: 30px 0 0;
+}
+
+#problem-body .problem > div {
+  background: #fafafa;
 }
 
 .plot-bar-attempts,
@@ -599,6 +606,10 @@ ul.disc-list .analytics-title-text {
   border-radius: 0;
 }
 
+.wrapper-problem-response {
+  margin-bottom: 0;
+}
+
 #problem-body .problem .wrapper-problem-response {
   max-width: 750px;
 }
@@ -713,7 +724,7 @@ ul.disc-list .analytics-title-text {
 .course-select {
   position: absolute;
   top: 110px;
-  right: 25px;
+  right: 60px;
   height: 30px !important;
 }
 
@@ -724,8 +735,9 @@ ul.disc-list .analytics-title-text {
 .instructor-nav li button {
   color: #3e3e3e;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
+  padding: 10px 13px !important;
 }
 
 .instructor-nav li button.active-section {
@@ -851,10 +863,17 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 }
 
 #instructor-analytics-dashboard-content .instructor-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
-  justify-content: space-between;
-  padding-bottom: 12px;
+  justify-content: flex-start;
+  -webkit-box-pack: start !important;
+  -ms-flex-pack: start !important;
+  justify-content: flex-start !important;
+  margin-left: -15px;
 }
 
 /* Progress Funnel */
