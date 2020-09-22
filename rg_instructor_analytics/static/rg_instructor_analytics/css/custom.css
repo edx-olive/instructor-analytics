@@ -757,15 +757,22 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   border: 2px solid #3caada !important;
   min-width: 245px;
   color: #3caada !important;
-  padding: 3px 30px 3px 15px !important;
   height: 100% !important;
   font-weight: 600;
   line-height: 20px;
 }
 
+body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn {
+  padding: 3px 30px 3px 15px !important;
+}
+
 #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn:hover {
   background-color: #3caada !important;
   color: #fff !important;
+}
+
+.enroll-buttons-holder .custom-select:before {
+  display: none;
 }
 
 #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn:hover:before {
@@ -805,8 +812,13 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   height: 30px;
 }
 
+.enroll-buttons-holder .custom-select:before {
+  display: none;
+}
+
 .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li select,
-.enroll-buttons-holder .custom-select select.filter-dropdown {
+.enroll-buttons-holder .custom-select select.filter-dropdown,
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .units-sort-order {
   border-radius: 15px !important;
   height: 30px !important;
   border: 2px solid #3caada !important;
@@ -814,21 +826,20 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   color: #3f3f3f !important;
   padding: 3px 30px 3px 15px !important;
   font-weight: 600;
-  background: none !important;
+  background: url("../images/sort.svg") right 10px center no-repeat !important;
+  background-size: 8px 22px !important;
   line-height: 20px;
+  cursor: pointer;
 }
 
-.enroll-buttons-holder .custom-select select.filter-dropdown {
+.enroll-buttons-holder .custom-select select.filter-dropdown,
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .units-sort-order {
   color: #3caada !important;
   height: auto !important;
 }
 
 .date-btn:before,
-.date-btn:after,
-.enroll-buttons-holder .custom-select:before,
-.enroll-buttons-holder .custom-select:after,
-.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:before,
-.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:after {
+.date-btn:after {
   content: "";
   position: absolute;
   right: 10px;
@@ -838,30 +849,13 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   transition: all 200ms ease;
 }
 
-.date-btn:before,
-.enroll-buttons-holder .custom-select:before,
-.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:before {
+.date-btn:before {
   top: 5px;
   border-bottom: 7px solid #3caada;
 }
 
-.date-btn:after,
-.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:after {
+.date-btn:after {
   bottom: 0;
-  border-top: 7px solid #3caada;
-}
-
-.enroll-buttons-holder .custom-select:before {
-  top: 7px;
-}
-
-.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:before {
-  top: 2px;
-}
-
-.enroll-buttons-holder .custom-select:after,
-.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:after {
-  bottom: 2px;
   border-top: 7px solid #3caada;
 }
 
@@ -1377,7 +1371,12 @@ button.funnel-send-email-btn:focus,
 
 /* Select customization */
 
-/* TODO! remove !important after moving styles from theme to the analytics */
+.select2 .select2-selection__rendered {
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 #instructor-analytics-dashboard-content .instructor-nav .select2 {
   width: 310px !important;
@@ -1385,21 +1384,70 @@ button.funnel-send-email-btn:focus,
   height: 30px;
 }
 
-#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection {
+#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection,
+.units-sort-order-container .select2 .select2-selection {
   padding: 0 30px 0 20px !important;
 }
 
-#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection .select2-selection__rendered {
+#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection .select2-selection__rendered,
+.units-sort-order-container .select2 .select2-selection .select2-selection__rendered {
   height: 28px !important;
   line-height: 28px !important;
 }
 
-#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection:before {
+#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection:before,
+.units-sort-order-container .select2 .select2-selection:before {
   top: 0 !important;
   border-bottom: 7px solid #3caada !important;
 }
 
-#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection:after {
+#instructor-analytics-dashboard-content .instructor-nav .select2 .select2-selection:after,
+.units-sort-order-container .select2 .select2-selection:after {
   bottom: 2px !important;
   border-top: 7px solid #3caada !important;
+}
+
+/* Activity filters */
+
+.count-limit-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.count-limit-container a {
+  border-radius: 15px;
+  border: 1px solid #3e3e3e;
+  display: block;
+  margin-right: 10px;
+  padding: 0 15px;
+  color: #3e3e3e !important;
+}
+
+.count-limit-container a.selected-limit,
+.count-limit-container a:hover,
+.count-limit-container a:focus {
+  background-color: #3caada;
+  color: #fff !important;
+  border-color: #3caada;
+}
+
+.count-limit-container a:last-child {
+  margin-right: 0;
+}
+
+.units-sort-order-container {
+  position: relative;
+  margin-top: 40px;
+  max-width: 245px;
+}
+
+.units-sort-order-container .select2 {
+  border-radius: 15px;
+  margin: 0;
+  height: 30px;
 }

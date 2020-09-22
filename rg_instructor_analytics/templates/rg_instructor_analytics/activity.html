@@ -50,8 +50,21 @@
                 ${_("This graph indicates the amount of visits of each Unit and bring you the whole perspective "
                 "of what part of Course was the most difficult or interesting for your Students.")}
             </span>
-            <figure class="highcharts-figure activity-chart">
-                <div class="units-chart" id="activity-unit-visits-stats-plot"></div>
+            <div class="units-sort-order-container">
+                <select class="units-sort-order filter-dropdown">
+                    <option value="sequence_order">${_("Sort by sequence order")}</option>
+                    <option value="highest">${_("Sort by visits from highest to lowest")}</option>
+                    <option value="lowest">${_("Sort by visits from lowest to highest")}</option>
+                </select>
+            </div>
+            <figure class="highcharts-figure activity-chart units-chart">
+                <div id="activity-unit-visits-stats-plot"></div>
+                <div class="count-limit-container">
+                    <a href="" id="limit-10" data-limit="10" class="selected-limit">${_("10 Units")}</a>
+                    <a href="" id="limit-20" data-limit="20">${_("20 Units")}</a>
+                    <a href="" id="limit-50" data-limit="50">${_("50 Units")}</a>
+                    <a href="" id="limit-all" data-limit="all">${_("All Units")}</a>
+                </div>
             </figure>
         </div>
     </div>
