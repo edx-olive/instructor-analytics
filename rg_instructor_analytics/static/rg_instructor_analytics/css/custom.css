@@ -1,8 +1,30 @@
+ul.disc-list {
+  padding: 0;
+  list-style: none;
+}
+
 ul.disc-list .analytics-title-text {
   font-size: 16px;
   color: #3e3e3e;
+  margin-bottom: 0;
+  position: relative;
+  padding-left: 20px;
 }
- 
+
+ul.disc-list .analytics-title-text:before {
+  content: "";
+  background-color: #3e3e3e;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 .container {
   max-width: 1140px;
 }
@@ -713,8 +735,12 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   -ms-flex-pack: justify;
   justify-content: space-between;
   border-bottom: 2px solid #c4e0f1;
-  padding-bottom: 7px;
-  margin-bottom: 40px;
+  padding-bottom: 4px;
+  margin-bottom: 34px;
+}
+
+.idash-section .analytics-title {
+  margin-bottom: 3px;
 }
 
 .top-title-holder h1 {
@@ -726,8 +752,9 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 
 .course-select {
   position: absolute;
-  top: 110px;
+  top: 98px;
   right: 60px;
+  width: 310px;
   height: 30px !important;
 }
 
@@ -750,6 +777,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 
 #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn-holder {
   height: 30px;
+  margin-right: 30px;
 }
 
 #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn {
@@ -760,6 +788,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   height: 100% !important;
   font-weight: 600;
   line-height: 20px;
+  margin-left: 0 !important;
 }
 
 body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn {
@@ -829,6 +858,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   background: url("../images/sort.svg") right 10px center no-repeat !important;
   background-size: 8px 22px !important;
   line-height: 20px;
+  width: 100%;
   cursor: pointer;
 }
 
