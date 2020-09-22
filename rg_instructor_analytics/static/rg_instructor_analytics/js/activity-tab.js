@@ -17,6 +17,10 @@ function ActivityTab(button, content) {
   var $discussionCheckbox = content.find('#series-discussion');
   var $visitsCheckbox = content.find('#series-visits');
 
+  var unitsBySequenceOrder = null;
+  var unitsOrder = 'sequence_order';
+  var unitsCount = 10;
+
   function renderDailyActivities(dailyActivities) {
     $loaderDailyActivities.addClass('hidden');
     $tabContentDailyActivities.removeClass('hidden');
@@ -113,9 +117,75 @@ function ActivityTab(button, content) {
     $visitsCheckbox.on('change', function(){toggleSeriesCheckbox($visitsCheckbox, 2)});
   }
 
-  function renderUnitVisits(unitVisits) {
+  function changeUnitsOrder(){
+    unitsOrder = $(this).val();
+    renderUnitVisits();
+  }
+
+  function changeUnitsCountLimit(event){
+    event.preventDefault();
+    var $limiter = $(this);
+    if (! $limiter.hasClass("selected-limit")) {
+        $(".count-limit-container>a.selected-limit").removeClass("selected-limit");
+        $limiter.addClass("selected-limit");
+        unitsCount = this.dataset.limit;
+        renderUnitVisits();
+    }
+  }
+
+  $(".count-limit-container").children().on('click', changeUnitsCountLimit);
+  $("select.units-sort-order").on('change', changeUnitsOrder);
+
+  function initUnitVisits(unitVisits){
+    unitsBySequenceOrder = unitVisits;
+
+    renderUnitVisits();
+  }
+
+  function getOrderedUnitVisits() {
+    if(unitsOrder == 'sequence_order'){
+      return unitsBySequenceOrder;
+    }
+    var exchangeCondition = unitsOrder == 'highest'? function (a, b) {return a < b}: function(a, b) {return b < a};
+
+    var countVisits = unitsBySequenceOrder.count_visits.slice();
+    var ticktext = unitsBySequenceOrder.ticktext.slice();
+
+    var len = countVisits.length;
+    var swapped;
+    do {
+        swapped = false;
+        for (var i = 0; i < len; i++) {
+            if (exchangeCondition(countVisits[i], countVisits[i + 1])) {
+                var tmp = countVisits[i];
+                countVisits[i] = countVisits[i + 1];
+                countVisits[i + 1] = tmp;
+                tmp = ticktext[i];
+                ticktext[i] = ticktext[i + 1];
+                ticktext[i + 1] = tmp;
+                swapped = true;
+            }
+        }
+    } while (swapped);
+
+    return {count_visits: countVisits, ticktext: ticktext};
+  }
+
+  function getCountLimitedUnitVisits(orderedUnitVisits) {
+    if (unitsCount == 'all') {
+      return orderedUnitVisits;
+    }
+    return {
+      count_visits: orderedUnitVisits.count_visits.slice(0, unitsCount),
+      ticktext: orderedUnitVisits.ticktext.slice(0, unitsCount)
+    }
+  }
+
+  function renderUnitVisits() {
     $loaderUnitVisits.addClass('hidden');
     $tabContentUnitVisits.removeClass('hidden');
+
+    var unitVisits = getCountLimitedUnitVisits(getOrderedUnitVisits());
 
     // Highcharts
     var chartValues = unitVisits.count_visits;
@@ -215,7 +285,7 @@ function ActivityTab(button, content) {
           dataType: "json",
           traditional: true,
           success: function (data) {
-            renderUnitVisits(data);
+            initUnitVisits(data);
           },
           error: onError,
       });
