@@ -884,6 +884,10 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   margin-bottom: 60px;
 }
 
+.funnel-item-0 {
+  margin-bottom: 0;
+}
+
 .funnel-item-0:before,
 .funnel-item-1:before {
   content: "";
@@ -1020,7 +1024,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 }
 
 .funnel-item .input-checkbox {
-  padding: 20px 0;
+  padding: 10px 0;
   margin: 0 20px;
   border-top: 1px solid rgba(60, 171, 218, .8);
   -webkit-box-sizing: border-box;
@@ -1036,17 +1040,18 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  margin-bottom: 0;
 }
 
 .funnel-item .input-checkbox input[type="checkbox"] {
-  position: absolute; 
-  overflow: hidden; 
-  clip: rect(0 0 0 0); 
-  height: 1px; 
-  width: 1px; 
-  margin: -1px; 
-  padding: 0; 
-  border: 0;  
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
 
 .funnel-item .input-checkbox input[type="checkbox"] + .label-text {
@@ -1060,6 +1065,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   line-height: 15px;
   border: 0;
   overflow: visible;
+  color: #3e3e3e;
 }
 
 .funnel-item .input-checkbox input[type="checkbox"] + .label-text:before {
@@ -1069,9 +1075,9 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   left: 0;
   width: 15px;
   height: 15px;
-  background-color: #0888c0;
-  box-shadow: inset 0 4px 10px rgba(60, 182, 181, .15);
-  border-radius: 4px;
+  background-color: #fff;
+  border: 2px solid #3caada;
+  border-radius: 2px;
   box-sizing: border-box;
 }
 
