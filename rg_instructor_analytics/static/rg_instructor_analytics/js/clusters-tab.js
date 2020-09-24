@@ -132,7 +132,7 @@ function CohortTab(button, content) {
                         colors: pieColors,
                         dataLabels: {
                             enabled: true,
-                            color: '#3F3F3F',
+                            color: '#3e3e3e',
                             style: {
                                 fontSize: '12px',
                                 fontWeight: 'normal'

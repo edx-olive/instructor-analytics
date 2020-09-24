@@ -2,7 +2,7 @@ ul.disc-list .analytics-title-text {
   font-size: 16px;
   color: #3e3e3e;
 }
- 
+
 .container {
   max-width: 1140px;
 }
@@ -25,7 +25,7 @@ ul.disc-list .analytics-title-text {
   background-color: transparent;
   border: 0;
   font: 700 12px/16px "Exo 2.0", Arial, sans-serif;
-  color: #3f3f3f !important;
+  color: #3e3e3e !important;
 }
 
 .enrollment-toggle-btns__label {
@@ -78,7 +78,7 @@ ul.disc-list .analytics-title-text {
 }
 
 .dropdown-content label {
-  color: #3f3f3f;
+  color: #3e3e3e;
   line-height: 30px !important;
 }
 
@@ -186,7 +186,7 @@ ul.disc-list .analytics-title-text {
 
 .daterangepicker .calendar-table td {
   background-color: #fafafa;
-  color: #3f3f3f;
+  color: #3e3e3e;
   border: 2px solid #fff !important;
   box-sizing: border-box;
 }
@@ -196,7 +196,7 @@ ul.disc-list .analytics-title-text {
 .daterangepicker td.off.in-range, 
 .daterangepicker td.off.start-date {
   background-color: #fafafa;
-  color: #3f3f3f;
+  color: #3e3e3e;
 }
 
 .daterangepicker td.disabled {
@@ -273,7 +273,7 @@ ul.disc-list .analytics-title-text {
   font-size: 12px;
   font-weight: 700;
   line-height: 20px;
-  color: #3f3f3f;
+  color: #3e3e3e;
   padding-left: 30px;
 }
 
@@ -344,13 +344,13 @@ ul.disc-list .analytics-title-text {
 .xmodule_display.xmodule_CapaModule .problem .wrapper-problem-response p,
 body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .choicegroup legend+.question-description,
 body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .problem-group-label+.question-description,
-.xmodule_display.xmodule_CapaModule div.problem .problem-group-label,
-#problem-body .wrapper-problem-response button:before {
+.xmodule_display.xmodule_CapaModule div.problem .problem-group-label {
   font-size: 16px !important;
+  color: #3e3e3e;
 }
 
 body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .choicegroup legend + .question-description {
-  color: #3f3f3f !important;
+  color: #3e3e3e !important;
 }
 
 #problem-body .wrapper-problem-response button {
@@ -400,7 +400,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 }
 
 .analytics-legend-item {
-  color: #3f3f3f;
+  color: #3e3e3e;
   font-size: 12px;
   line-height: 15px;
 }
@@ -523,7 +523,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 
 .instructor-dashboard-content-2 ul li,
 #problems-stats-plot .y-axis-l li div {
-  color: #3f3f3f;
+  color: #3e3e3e;
   font-size: 12px;
 }
 
@@ -567,7 +567,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   padding-right: 10px;
   font-size: 12px;
   line-height: 17px;
-  color: #3f3f3f;
+  color: #3e3e3e;
 }
 
 #problem-question-plot .plot-bar-holder {
@@ -582,7 +582,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 }
 
 #problem-question-plot .plot-value {
-  color: #202020;
+  color: #3e3e3e;
   font-size: 12px;
   line-height: 27px;
 }
@@ -602,6 +602,10 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 
 .wrapper-problem-response {
   margin-bottom: 0;
+}
+
+.wrapper-problem-response select {
+  color: #3e3e3e !important;
 }
 
 #problem-body .problem .wrapper-problem-response {
@@ -630,6 +634,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   content: "\f107";
   color: #3caada;
   right: 15px;
+  font-size: 16px;
 }
 
 .wrapper-problem-response button:hover:before,
@@ -640,6 +645,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 .problem-emails-list .block-emails-list,
 .subsection-emails-list .block-emails-list {
   margin-bottom: 35px;
+  color: #3e3e3e;
 }
 
 .problem-emails-list .problem-emails-span .emails-list-button,
@@ -691,6 +697,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 
 .xmodule_display.xmodule_CapaModule div.problem .choicegroup label {
   border: 1px solid #efefef !important;
+  color: #3e3e3e;
 }
 
 .xmodule_display.xmodule_CapaModule div.problem .choicegroup .is-active label {
@@ -722,6 +729,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   font-size: 1.2em;
   text-transform: uppercase;
   font-weight: 700;
+  color: #3e3e3e;
 }
 
 .course-select {
@@ -823,7 +831,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   height: 30px !important;
   border: 2px solid #3caada !important;
   min-width: 245px;
-  color: #3f3f3f !important;
+  color: #3e3e3e !important;
   padding: 3px 30px 3px 15px !important;
   font-weight: 600;
   background: url("../images/sort.svg") right 10px center no-repeat !important;
@@ -1142,6 +1150,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   line-height: 18px;
   overflow: hidden;
   word-wrap: break-word;
+  color: #3e3e3e;
 }
 
 .funnel-item-1 > .funnel-item-content:before {
@@ -1164,6 +1173,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   font-weight: 600;
   font-size: 14px;
   z-index: 1;
+  color: #3e3e3e;
 }
 
 .funnel-item-1 .funnel-item-incoming, 
@@ -1188,6 +1198,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 
 .funnel-item-2 > .funnel-item-content > .funnel-item-name {
   word-wrap: break-word;
+  color: #3e3e3e;
 }
 
 .funnel-item-content:before {
@@ -1268,17 +1279,20 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 #cohort-form label {
   font-weight: 700;
   font-size: 12px;
+  color: #3e3e3e;
 }
 
 .analytics-title,
 .hd.hd-3.problem-header {
   margin-bottom: 0;
+  color: #3e3e3e;
 }
 
 .analytics-title-text {
   font-size: 16px;
   line-height: 26px;
   font-weight: 300;
+  color: #3e3e3e;
 }
 
 #cohort-check-list li input[type="checkbox"] + label:before {
@@ -1298,6 +1312,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 #cohort-check-list li input[type="checkbox"] + label {
   font-weight: 400;
   line-height: 16px;
+  color: #3e3e3e;
 }
 
 #cohort-check-list .emails-list-button {
