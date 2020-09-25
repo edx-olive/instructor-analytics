@@ -39,6 +39,10 @@ ul.disc-list .analytics-title-text:before {
   padding: 23px 60px 80px !important;
 }
 
+.analytics-main-wrapper {
+  padding: 0 !important;
+}
+
 .enrollment-toggle-btns {
   margin-top: 25px;
 }
@@ -241,6 +245,11 @@ ul.disc-list .analytics-title-text:before {
   margin: 40px 0 55px;
 }
 
+.enrollment-chart,
+.activity-chart {
+  margin-bottom: 0;
+}
+
 .chart-backgrond {
   padding-top: 70px;
 }
@@ -380,6 +389,10 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   margin-left: 0 !important;
   padding: 6px 42px 6px 32px !important;
   font-size: 12px;
+}
+
+.analytics-main-wrapper .wrap-instructor-info {
+  display: none;
 }
 
 .problem-bg-wrapper,
@@ -624,6 +637,8 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 
 .wrapper-problem-response {
   margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .wrapper-problem-response select {
@@ -909,6 +924,19 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   -ms-flex-pack: start !important;
   justify-content: flex-start !important;
   margin-left: -15px;
+  padding: 23px 60px 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.idash-section {
+  padding: 0 60px 80px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#section-enrollment-stats {
+  padding-bottom: 67px;
 }
 
 /* Progress Funnel */
@@ -1085,7 +1113,8 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   margin-bottom: 0;
 }
 
-.funnel-item .input-checkbox input[type="checkbox"] {
+.funnel-item .input-checkbox input[type="checkbox"],
+#problem-body .action {
   position: absolute;
   overflow: hidden;
   clip: rect(0 0 0 0);
