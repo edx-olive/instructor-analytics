@@ -33,6 +33,7 @@ ul.disc-list .analytics-title-text:before {
   background: #fafafa;
   border-color: #fff;
   border-radius: 20px;
+  box-shadow: none;
 }
 
 .instructor-dashboard-content-2 {
@@ -246,7 +247,7 @@ ul.disc-list .analytics-title-text:before {
 }
 
 .enrollment-chart,
-.activity-chart {
+.units-chart {
   margin-bottom: 0;
 }
 
@@ -380,6 +381,10 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   color: #3e3e3e;
 }
 
+body.view-instructor_analytics #content {
+  margin-bottom: 102px;
+}
+
 body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .choicegroup legend + .question-description {
   color: #3e3e3e !important;
 }
@@ -395,7 +400,6 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   display: none;
 }
 
-.problem-bg-wrapper,
 #problem-body #model_plot {
   margin: 40px 0 60px;
 }
@@ -405,7 +409,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 }
 
 .problem-bg-wrapper {
-  margin-bottom: 60px;
+  margin: 40px 0 0;
 }
 
 #problem-body #model_plot {
@@ -679,6 +683,17 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   color: #fff;
 }
 
+.subsection-emails-list,
+.problem-emails-list {
+  margin-top: 60px;
+  display: none;
+}
+
+.subsection-emails-list.is-visible,
+.problem-emails-list.is-visible {
+  display: block;
+}
+
 .problem-emails-list .block-emails-list,
 .subsection-emails-list .block-emails-list {
   margin-bottom: 35px;
@@ -923,20 +938,19 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   -webkit-box-pack: start !important;
   -ms-flex-pack: start !important;
   justify-content: flex-start !important;
-  margin-left: -15px;
   padding: 23px 60px 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+#instructor-analytics-dashboard-content .instructor-nav .nav-item:first-child {
+  margin-left: -15px;
 }
 
 .idash-section {
   padding: 0 60px 80px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-#section-enrollment-stats {
-  padding-bottom: 67px;
 }
 
 /* Progress Funnel */
