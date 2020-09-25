@@ -54,6 +54,9 @@ function EnrollmentTab(button, content) {
               y: 0,
               floating: true,
               borderWidth: 0,
+              itemStyle: {
+                color: '#3e3e3e'
+              },
               backgroundColor:
                   Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
             },
@@ -67,7 +70,7 @@ function EnrollmentTab(button, content) {
               labels: {
                 enabled: true,
                 style: {
-                  color: '#3F3F3F',
+                  color: '#3e3e3e',
                   fontSize: '12px'
                 }
               }
@@ -76,11 +79,19 @@ function EnrollmentTab(button, content) {
               title: {
                 text: ''
               },
-              allowDecimals: false
+              allowDecimals: false,
+              labels: {
+                style: {
+                  color: '#3e3e3e'
+                }
+              }
             },
             tooltip: {
               shared: true,
-              valueSuffix: ' users'
+              valueSuffix: ' users',
+              style: {
+                color: '#3e3e3e'
+              }
             },
             credits: {
               enabled: false

@@ -70,6 +70,9 @@ function ActivityTab(button, content) {
             y: 0,
             floating: true,
             borderWidth: 0,
+            itemStyle: {
+                color: '#3e3e3e'
+            },
             backgroundColor:
               Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
         },
@@ -80,14 +83,27 @@ function ActivityTab(button, content) {
             dateTimeLabelFormats: {
                 day: '%b %Y'
             },
+            labels: {
+                style: {
+                  color: '#3e3e3e'
+                }
+            },
             colors: ['#50c156', '#568ecc', '#8e28c1']
         },
         yAxis: {
             title: {
                 text: ''
+            },
+            labels: {
+                style: {
+                  color: '#3e3e3e'
+                }
             }
         },
         tooltip: {
+            style: {
+                color: '#3e3e3e'
+            },
             shared: true,
             valueSuffix: ' units'
         },
@@ -223,7 +239,7 @@ function ActivityTab(button, content) {
             labels: {
                 style: {
                     fontSize: '12px',
-                    color: '#3F3F3F'
+                    color: '#3e3e3e'
                 }
             },
             lineColor: '#3CAADA',
@@ -237,6 +253,11 @@ function ActivityTab(button, content) {
             endOnTick: false,
             title: {
                 text: ''
+            },
+            labels: {
+                style: {
+                  color: '#3e3e3e'
+                }
             }
         },
         legend: {
