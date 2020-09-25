@@ -1008,6 +1008,10 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   display: flex;
 }
 
+.funnel-item-0:first-child > .funnel-item-content {
+  margin-top: 0;
+}
+
 .funnel-item.funnel-item-0,
 .funnel-item.funnel-item-1 {
   position: relative;
