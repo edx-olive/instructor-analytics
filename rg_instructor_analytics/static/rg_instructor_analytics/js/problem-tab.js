@@ -50,8 +50,8 @@ function ProblemTab(button, content) {
     * Homework`s stats drawer
     */
     function updateHomeWork() {
-        $subsectionEmailList.empty();
-        $problemEmailList.empty();
+        $subsectionEmailList.removeClass('is-visible').empty();
+        $problemEmailList.removeClass('is-visible').empty();
         $problemStatsPlot.empty();
         $homework.empty();
         problemDetail.empty();
@@ -211,7 +211,7 @@ function ProblemTab(button, content) {
             $problemEmailList.empty();
             $subsectionEmailList.empty();
 
-            $subsectionEmailList.append(_.template($emailTemplate)({
+            $subsectionEmailList.addClass('is-visible').append(_.template($emailTemplate)({
                 studentsEmails: studentsEmails,
                 blockName: 'subsection',
                 blockTitle: gettext('Subsection')
@@ -337,7 +337,7 @@ function ProblemTab(button, content) {
         function onSuccess(response) {
             var studentsEmails = response.students_emails;
             $problemEmailList.empty();
-            $problemEmailList.append(_.template($emailTemplate)({
+            $problemEmailList.addClass('is-visible').append(_.template($emailTemplate)({
                 studentsEmails: studentsEmails,
                 blockName: 'problem',
                 blockTitle: gettext('Problem')
