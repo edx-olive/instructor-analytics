@@ -1371,11 +1371,16 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   color: #3e3e3e;
 }
 
+.analytics-title {
+  font-weight: 700;
+}
+
 .analytics-title-text {
   font-size: 16px;
   line-height: 26px;
   font-weight: 300;
   color: #3e3e3e;
+  margin-bottom: 0;
 }
 
 #cohort-check-list li input[type="checkbox"] + label:before {
@@ -1589,4 +1594,116 @@ button.funnel-send-email-btn:focus,
 .suggestion-item button.suggestion-button:hover {
   background-color: #3caada !important;
   color: #fff;
+}
+
+/* Students info */
+
+.gradebook-table-cell {
+  padding: 6px 5px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.gradebook-table-cell:first-child a {
+  padding: 6px 15px;
+}
+
+#gradebook_table_header .gradebook-table-cell {
+  background-color: #dbdbdb;
+}
+
+#gradebook_table_header .gradebook-table-cell:nth-child(2) {
+  border-radius: 5px 0 0 0;
+}
+
+#gradebook_table_header .gradebook-table-cell:last-child {
+  border-radius: 0 5px 0 0;
+}
+
+#gradebook_table_header input[type="search"] {
+  border: 2px solid #3caada;
+  border-radius: 5px;
+}
+
+.gradebook-table-row:first-child .gradebook-table-cell:first-child {
+  border-radius: 5px 0px 0px 0px;
+}
+
+.gradebook-table-row:last-child .gradebook-table-cell:last-child {
+  border-radius: 0 0 5px 0;
+}
+
+.gradebook-table-row:last-child .gradebook-table-cell:first-child {
+  border-radius: 0 0 0 5px;
+}
+
+.gradebook-table-cell,
+.gradebook-table-cell a {
+  color: #3e3e3e !important;
+}
+
+.gradebook-table-row.active .gradebook-table-cell, 
+.gradebook-table-row.active .gradebook-table-cell a {
+  background-color: #3caada;
+  color: #fff !important;
+}
+
+.last-student-visit-banner {
+  background: none;
+  border: 1px solid #3caada;
+  border-radius: 5px;
+  color: #3e3e3e;
+  font-weight: 400 !important;
+  margin: 20px 0 0;
+}
+
+.last-student-visit-banner:not([hidden]) {
+  display: inline-block;
+}
+
+.grade-table-wrapper {
+  float: none;
+  padding-top: 0;
+}
+
+#gradebook-stats-plot .highcharts-point:last-child {
+  fill: #8f55a5;
+  stroke: #8f55a5;
+}
+
+.highcharts-figure.is-hidden {
+  display: none;
+}
+
+.grade-table-container {
+  margin: 33px 0 0;
+}
+
+.gradebook-student-step-container {
+  margin-bottom: 0;
+  padding-top: 0;
+}
+
+.gradebook-student-step-plot {
+  margin-bottom: 0;
+}
+
+.gradebook-student-step-container .plot-container {
+  box-shadow: none;
+}
+
+.gradebook-plot {
+  padding-top: 60px;
+}
+
+.gradebook-video-plot,
+.gradebook-discussion-plot,
+.gradebook-plot {
+  margin-bottom: 58px;
+}
+
+.gradebook-plot .highcharts-figure,
+.gradebook-discussion-plot .highcharts-figure,
+.gradebook-video-plot .highcharts-figure {
+  margin-bottom: 0;
 }
