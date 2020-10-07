@@ -20,6 +20,8 @@ function GradebookTab(button, content) {
     var $loaderStudentStep = $('.gradebook-student-step-plot .loader');
     var $studentStepPlot = $('#gradebook-student-step-stats-plot');
     var $lastVisitInfo = $('.js-last-student-visit');
+    var plotContainerClass = '.js-plot-container';
+    var chartsClass = '.js-highchart-figure';
 
     greadebookTab.studentsTable = content.find('#student_table_body');
     greadebookTab.gradebookTableHeader = content.find('#gradebook_table_header');
@@ -33,7 +35,7 @@ function GradebookTab(button, content) {
             $tabBanner.prop('hidden', true);
             $tabContent.prop('hidden', false);
             $tabSubtitle.addClass('hidden');
-            $tabSubtitleText.addClass('hidden');
+            $tabSubtitleText.addClass('hidden').parent(plotContainerClass).prop('hidden', true);
             updateData();
         } else {
             $tabBanner.prop('hidden', false);
@@ -82,68 +84,180 @@ function GradebookTab(button, content) {
     }
 
     function renderDiscussionActivity(data, userName) {
-        var stat = {
-            y: data.activity_count,
-            x: data.thread_names,
-            type: 'bar',
-            marker:{
-                color: '#568ecc'
-            },
-        };
-
-        var y_template = {
-        };
+        var chartNames = data.thread_names;
+        var chartValues = data.activity_count;
+        var y_template = {};
+        var chartData = chartNames.map(function(value, index) {
+            return [chartNames[index], chartValues[index]];
+        });
 
         if (Math.max(...data.activity_count) <= 5) {
             y_template["nticks"] = Math.max(...data.activity_count)+1
-        }
+        }        
 
-        var layout = {
-            title: userName,
-            showlegend: false,
-            xaxis: {
-                tickangle: -90,
+        Highcharts.setOptions({
+            colors: ['#3caada'],
+            chart: {
+                type: 'bar',
+                events: {
+                    load: function() {
+                        var categoryHeight = 56;
+                        this.update({
+                            chart: {
+                                height: categoryHeight * this.pointCount + (this.chartHeight - this.plotHeight)
+                            }
+                        })
+                    }
+                }
+            }
+        });
+
+        Highcharts.chart('gradebook-discussion-stats-plot', {
+            data: {
+                table: 'datatable'
             },
-            yaxis: y_template,
-        };
+            title: {
+                text: ''
+            },
+            credits: {
+                enabled: false
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                        color: '#3e3e3e'
+                    }
+                },
+                lineColor: '#959595',
+                lineWidth: 2,
+                angle: -90,
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: ''
+                },
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                        color: '#3e3e3e'
+                    }
+                },
+            },
+            plotOptions: {
+                bar: {
+                    pointWidth: 35,
+                    borderRadius: 2
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '<b>{point.y:.1f}</b>'
+            },
+            series: [{
+                data: chartData,
+                dataLabels: {
+                    enabled: false
+                }
+            }]
+        });
 
-        Plotly.newPlot('gradebook-discussion-stats-plot', [stat], layout, {displayModeBar: false});
         $loaderDiscussion.addClass('hidden');
-
+        $(plotContainerClass).find(chartsClass).prop('hidden', false);
     }
 
     function renderVideoActivity(data, userName) {
         var colorVideoArray = data.videos_completed.map(function (isCompleted) {
-            return isCompleted ? '#50c156' : '#568ecc';
+            return isCompleted ? '#01cc9b' : '#8f55a5';
         });
-
-        var stat = {
-            y: data.videos_time,
-            x: data.videos_names,
-            type: 'bar',
-            marker:{
-                color: colorVideoArray
-            },
-        };
-
-        var y_template = {
-        };
+        var chartNames = data.videos_names;
+        var chartValues = data.videos_time;
+        var y_template = {};
+        var chartData = chartNames.map(function(value, index) {
+            return [chartNames[index], chartValues[index]];
+        });
 
         if (Math.max(...data.videos_time) <= 5) {
             y_template["nticks"] = Math.max(...data.videos_time)+1
         }
 
-        var layout = {
-            title: userName,
-            showlegend: false,
-            xaxis: {
-                tickangle: -90,
-            },
-            yaxis: y_template,
-        };
+        Highcharts.setOptions({
+            colors: colorVideoArray,
+            chart: {
+                type: 'bar',
+                events: {
+                    load: function() {
+                        var categoryHeight = 56;
+                        this.update({
+                            chart: {
+                                height: categoryHeight * this.pointCount + (this.chartHeight - this.plotHeight)
+                            }
+                        })
+                    }
+                }
+            }
+        });
 
-        Plotly.newPlot('gradebook-video-stats-plot', [stat], layout, {displayModeBar: false});
+        Highcharts.chart('gradebook-video-stats-plot', {
+            data: {
+                table: 'datatable'
+            },
+            title: {
+                text: ''
+            },
+            credits: {
+                enabled: false
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                        color: '#3e3e3e'
+                    }
+                },
+                lineColor: '#959595',
+                lineWidth: 2,
+                angle: -90,
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                },
+                labels: {
+                    style: {
+                        fontSize: '12px',
+                        color: '#3e3e3e'
+                    }
+                },
+            },
+            plotOptions: {
+                bar: {
+                    pointWidth: 35,
+                    borderRadius: 2,
+                    colorByPoint: true
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '<b>{point.y:.1f}</b>'
+            },
+            series: [{
+                data: chartData,
+                dataLabels: {
+                    enabled: false
+                }
+            }]
+        });
+
         $loaderVideo.addClass('hidden');
+        $(plotContainerClass).find(chartsClass).prop('hidden', false);
     }
 
     function getDiscussionActivity(studentPosition) {
@@ -197,7 +311,8 @@ function GradebookTab(button, content) {
             mode: 'lines+markers',
             name: '',
             marker: {
-                size: 8
+                size: 8,
+                color: '#01cc9b'
             },
             line: {
                 dash: 'solid',
@@ -205,17 +320,25 @@ function GradebookTab(button, content) {
             }
         };
 
-        var x_template = {
-        };
+
+        var x_template = {};
 
         if (Math.max(...data.steps) <= 5) {
             x_template["nticks"] = Math.max(...data.steps)+1
         }
 
         var layout = {
-            title: userName,
+            title: {
+                text: django.gettext("Student:") + ' <b>' + userName + '</b>',
+                x: 0,
+                font: {
+                    size: '16px',
+                    color: '#3e3e3e'
+                }
+            },
             showlegend: false,
             height: heightLayout > 450 && heightLayout || 450,
+            width: 940,
             xaxis: x_template,
             yaxis: {
                 ticktext: data.ticktext,
@@ -226,8 +349,11 @@ function GradebookTab(button, content) {
             },
         };
 
+        var data = [stat];
+
         Plotly.newPlot('gradebook-student-step-stats-plot', [defaultStat, stat], layout, {displayModeBar: false});
         $loaderStudentStep.addClass('hidden');
+        $(plotContainerClass).find(chartsClass).prop('hidden', false);
     }
 
     function getStudentStep(studentPosition) {
@@ -363,16 +489,18 @@ function GradebookTab(button, content) {
         $(greadebookTab.gradebookTableBody).on('click', function (evt) {
             var colorArray = greadebookTab.examNames.map(function (item, idx, arr) {
                 if (idx === arr.length - 1) {
-                    return '#c14f84';
+                    return '#8f55a5';
                 }
-                return '#568ecc';
+                return '#01cc9b';
             });
+
+            $(chartsClass).prop('hidden', true);
 
             var studentsGrades = [];
             var studentPosition = evt.target.dataset['position'];
             var stat;
             var lastVisit = greadebookTab.studentInfo[studentPosition]['last_visit'];
-            $lastVisitInfo.prop('hidden', false).html(gettext('Date of the last Course visit:') + ' ' + lastVisit);
+            $lastVisitInfo.prop('hidden', false).html(gettext('Date of the last Course visit:') + ' <b>' + lastVisit + '</b>');
 
             getDiscussionActivity(studentPosition);
             getVideoActivity(studentPosition);
@@ -386,28 +514,87 @@ function GradebookTab(button, content) {
             }
 
             stat = {
-                y: studentsGrades,
                 x: greadebookTab.examNames,
-                type: 'bar',
-                marker:{
-                    color: colorArray
-                },
-                width: 0.6,
+                y: studentsGrades,
             };
-            var data = [stat];
+            
+            var chartNames = stat.x;
+            var chartValues = stat.y;
+            var CHART_HEIGHT = 271;
 
-            var layout = {
-                title: greadebookTab.studentExamValues[evt.target.dataset['position']].username,
-                showlegend: false,
-                xaxis: {domain: [0, 0.97]},
-            };
+            var chartData = chartNames.map(function(value, index) {
+                return [chartNames[index], chartValues[index]];
+            });
+
+            Highcharts.setOptions({
+                colors: colorArray,
+                chart: {
+                    type: 'column',
+                    height: CHART_HEIGHT,
+                    events: {
+                        load: function() {
+                            this.update({
+                                chart: {
+                                    height: CHART_HEIGHT
+                                }
+                            })
+                        }
+                    }
+                }
+            });
+
+            Highcharts.chart('gradebook-stats-plot', {
+                data: {
+                    table: 'datatable'
+                },
+                title: {
+                    text: ''
+                },
+                credits: {
+                    enabled: false
+                },
+                xAxis: {
+                    type: 'category',
+                    labels: {
+                        style: {
+                            fontSize: '12px',
+                            color: '#3e3e3e'
+                        }
+                    },
+                    lineColor: '#959595',
+                    lineWidth: 2,
+                },
+                yAxis: {
+                    title: {
+                        text: ''
+                    },
+                    labels: {
+                        style: {
+                            fontSize: '12px',
+                            color: '#3e3e3e'
+                        }
+                    },
+                },
+                legend: {
+                    enabled: false
+                },
+                tooltip: {
+                    pointFormat: '<b>{point.y:.1f}</b>'
+                },
+                series: [{
+                    data: chartData,
+                    dataLabels: {
+                        enabled: false
+                    },
+                    borderRadius: 2,
+                }]
+            });
 
             $('.gradebook-table-row').removeClass('active');
             $(evt.target).closest('.gradebook-table-row').toggleClass('active');
             $tabSubtitle.removeClass('hidden');
-            $tabSubtitleText.removeClass('hidden');
+            $tabSubtitleText.removeClass('hidden').parent(plotContainerClass).prop('hidden', false);
 
-            Plotly.newPlot('gradebook-stats-plot', data, layout, {displayModeBar: false});
         })
     }
 

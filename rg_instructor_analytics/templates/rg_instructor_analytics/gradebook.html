@@ -22,60 +22,69 @@ from django.utils.translation import ugettext as _
         ${_("You can filter student list by using 'Search Student...' field.")}
         ${_("You can search by first name, last name or email (non-case-sensitive).")}
     </span>
-    <div class="grades grade-table-wrapper" >
-        <div class="grade-table">
-            <div class="gradebook-table-row" id="gradebook_table_header"></div>
-            <div id="gb-loader" class="loader hidden">
-                ${_("Loading")}
-                <img src="/static/rg_instructor_analytics/images/ajax-loader.gif" alt="loader">
-            </div>
-            <div id="gradebook_table_body">
+    <figure class="highcharts-figure grade-table-container">
+        <div class="grades grade-table-wrapper">
+            <div class="grade-table">
+                <div class="gradebook-table-row" id="gradebook_table_header"></div>
+                <div id="gb-loader" class="loader hidden">
+                    ${_("Loading")}
+                    <img src="/static/rg_instructor_analytics/images/ajax-loader.gif" alt="loader">
+                </div>
+                <div id="gradebook_table_body"></div>
             </div>
         </div>
-    </div>
-
-    <div class="gradebook-plot">
         <h4 class="last-student-visit-banner js-last-student-visit" hidden></h4>
+    </figure>
+
+    <div class="gradebook-plot js-plot-container">
         <h2 class="analytics-title js-analytics-subtitle hidden">${_("Progress Graph")}</h2>
         <span class="analytics-title-text js-analytics-subtitle-text hidden">
             ${_("This graph shows the current progress details for the selected student. "
             "It contains progress on each Homework (blue columns) and total course progress (red column).")}
         </span>
-        <div id="gradebook-stats-plot"></div>
+        <figure class="highcharts-figure">
+            <div id="gradebook-stats-plot"></div>
+        </figure>
     </div>
 
-    <div class="gradebook-video-plot">
+    <div class="gradebook-video-plot js-plot-container">
         <h2 class="analytics-title js-analytics-subtitle hidden">${_("Video Views")}</h2>
         <span class="analytics-title-text js-analytics-subtitle-text hidden">
             ${_("This graph indicates the amount of seconds Student watched each of the course videos. Completed "
             "videos are indicated green.")}
         </span>
-        <div id="gradebook-video-stats-plot"></div>
+        <figure class="highcharts-figure js-highchart-figure">
+            <div id="gradebook-video-stats-plot"></div>
+        </figure>
         <div class="loader hidden">
             ${_("Loading")}
             <img src="/static/rg_instructor_analytics/images/ajax-loader.gif" alt="loader">
         </div>
     </div>
 
-    <div class="gradebook-discussion-plot">
+    <div class="gradebook-discussion-plot js-plot-container">
         <h2 class="analytics-title js-analytics-subtitle hidden">${_("Discussion Activity")}</h2>
         <span class="analytics-title-text js-analytics-subtitle-text hidden">
             ${_("This graphic indicates the amount of Student's activity in Discussions including "
             "comments, responses, topics creation, and votes.")}
         </span>
-        <div id="gradebook-discussion-stats-plot"></div>
+        <figure class="highcharts-figure js-highchart-figure">
+            <div id="gradebook-discussion-stats-plot"></div>
+        </figure>
         <div class="loader hidden">
             ${_("Loading")}
             <img src="/static/rg_instructor_analytics/images/ajax-loader.gif" alt="loader">
         </div>
     </div>
 
-    <div class="gradebook-student-step-plot">
+    <div class="gradebook-student-step-plot js-plot-container">
         <h2 class="analytics-title js-analytics-subtitle hidden">${_("Student Step")}</h2>
         <span class="analytics-title-text js-analytics-subtitle-text hidden">
             ${_("Student's path through the course .")}
         </span>
-        <div id="gradebook-student-step-stats-plot"></div>
+        <figure class="highcharts-figure gradebook-student-step-container js-highchart-figure">
+            <div id="gradebook-student-step-stats-plot"></div>
+        </figure>
         <div class="loader hidden">
             ${_("Loading")}
             <img src="/static/rg_instructor_analytics/images/ajax-loader.gif" alt="loader">
