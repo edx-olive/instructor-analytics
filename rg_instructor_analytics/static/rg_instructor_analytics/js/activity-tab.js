@@ -16,6 +16,8 @@ function ActivityTab(button, content) {
   var $videoCheckbox = content.find('#series-video');
   var $discussionCheckbox = content.find('#series-discussion');
   var $visitsCheckbox = content.find('#series-visits');
+  var defaultColor = '#3e3e3e';
+  var defaultFontSize = '12px';
 
   var unitsBySequenceOrder = null;
   var unitsOrder = 'sequence_order';
@@ -71,7 +73,7 @@ function ActivityTab(button, content) {
             floating: true,
             borderWidth: 0,
             itemStyle: {
-                color: '#3e3e3e'
+                color: defaultColor
             },
             backgroundColor:
               Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
@@ -85,7 +87,8 @@ function ActivityTab(button, content) {
             },
             labels: {
                 style: {
-                  color: '#3e3e3e'
+                  color: defaultColor,
+                  fontSize: defaultFontSize
                 }
             },
             colors: ['#50c156', '#568ecc', '#8e28c1']
@@ -96,13 +99,14 @@ function ActivityTab(button, content) {
             },
             labels: {
                 style: {
-                  color: '#3e3e3e'
+                  color: defaultColor,
+                  fontSize: defaultFontSize
                 }
             }
         },
         tooltip: {
             style: {
-                color: '#3e3e3e'
+                color: defaultColor
             },
             shared: true,
             valueSuffix: ' units'
@@ -238,8 +242,8 @@ function ActivityTab(button, content) {
             type: 'category',
             labels: {
                 style: {
-                    fontSize: '12px',
-                    color: '#3e3e3e'
+                    fontSize: defaultFontSize,
+                    color: defaultColor
                 }
             },
             lineColor: '#3CAADA',
@@ -256,7 +260,8 @@ function ActivityTab(button, content) {
             },
             labels: {
                 style: {
-                  color: '#3e3e3e'
+                  color: defaultColor,
+                  fontSize: defaultFontSize
                 }
             }
         },

@@ -6,6 +6,8 @@
 function EnrollmentTab(button, content) {
   var enrollTab = new Tab(button, content);
   var timeFilter = new TimeFilter(content, updateEnrolls);
+  var defaultColor = '#3e3e3e';
+  var defaultFontSize = '12px';
 
   /**
    * Send ajax to server side according selected date range and redraw plot
@@ -55,7 +57,7 @@ function EnrollmentTab(button, content) {
               floating: true,
               borderWidth: 0,
               itemStyle: {
-                color: '#3e3e3e'
+                color: defaultColor
               },
               backgroundColor:
                   Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
@@ -70,8 +72,8 @@ function EnrollmentTab(button, content) {
               labels: {
                 enabled: true,
                 style: {
-                  color: '#3e3e3e',
-                  fontSize: '12px'
+                  color: defaultColor,
+                  fontSize: defaultFontSize
                 }
               }
             },
@@ -82,7 +84,8 @@ function EnrollmentTab(button, content) {
               allowDecimals: false,
               labels: {
                 style: {
-                  color: '#3e3e3e'
+                  color: defaultColor,
+                  fontSize: defaultFontSize
                 }
               }
             },
@@ -90,7 +93,7 @@ function EnrollmentTab(button, content) {
               shared: true,
               valueSuffix: ' users',
               style: {
-                color: '#3e3e3e'
+                color: defaultColor
               }
             },
             credits: {
