@@ -22,6 +22,8 @@ function GradebookTab(button, content) {
     var $lastVisitInfo = $('.js-last-student-visit');
     var plotContainerClass = '.js-plot-container';
     var chartsClass = '.js-highchart-figure';
+    var defaultColor = '#3e3e3e';
+    var defaultFontSize = '12px';
 
     greadebookTab.studentsTable = content.find('#student_table_body');
     greadebookTab.gradebookTableHeader = content.find('#gradebook_table_header');
@@ -126,8 +128,8 @@ function GradebookTab(button, content) {
                 type: 'category',
                 labels: {
                     style: {
-                        fontSize: '12px',
-                        color: '#3e3e3e'
+                        fontSize: defaultFontSize,
+                        color: defaultColor
                     }
                 },
                 lineColor: '#959595',
@@ -141,8 +143,8 @@ function GradebookTab(button, content) {
                 },
                 labels: {
                     style: {
-                        fontSize: '12px',
-                        color: '#3e3e3e'
+                        fontSize: defaultFontSize,
+                        color: defaultColor
                     }
                 },
             },
@@ -216,8 +218,8 @@ function GradebookTab(button, content) {
                 type: 'category',
                 labels: {
                     style: {
-                        fontSize: '12px',
-                        color: '#3e3e3e'
+                        fontSize: defaultFontSize,
+                        color: defaultColor
                     }
                 },
                 lineColor: '#959595',
@@ -230,8 +232,8 @@ function GradebookTab(button, content) {
                 },
                 labels: {
                     style: {
-                        fontSize: '12px',
-                        color: '#3e3e3e'
+                        fontSize: defaultFontSize,
+                        color: defaultColor
                     }
                 },
             },
@@ -333,7 +335,7 @@ function GradebookTab(button, content) {
                 x: 0,
                 font: {
                     size: '16px',
-                    color: '#3e3e3e'
+                    color: defaultColor
                 }
             },
             showlegend: false,
@@ -557,8 +559,8 @@ function GradebookTab(button, content) {
                     type: 'category',
                     labels: {
                         style: {
-                            fontSize: '12px',
-                            color: '#3e3e3e'
+                            fontSize: defaultFontSize,
+                            color: defaultColor
                         }
                     },
                     lineColor: '#959595',
@@ -570,8 +572,8 @@ function GradebookTab(button, content) {
                     },
                     labels: {
                         style: {
-                            fontSize: '12px',
-                            color: '#3e3e3e'
+                            fontSize: defaultFontSize,
+                            color: defaultColor
                         }
                     },
                 },
