@@ -905,6 +905,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   line-height: 20px;
   width: 100%;
   cursor: pointer;
+  font-size: 16px !important;
 }
 
 .enroll-buttons-holder .custom-select select.filter-dropdown,
