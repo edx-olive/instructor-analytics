@@ -45,3 +45,10 @@ function Tab(button, content) {
         tab.locationToOpen = location;
     }
 }
+
+// FIXME: temp dirty hack for React tabs:
+var StubTab = function(button, content) {
+  var dumbTab = new Tab(button, content);
+  dumbTab.loadTabData = function() {};
+  return dumbTab;
+};

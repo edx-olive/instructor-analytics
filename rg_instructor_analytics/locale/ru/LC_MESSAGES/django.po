@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 15:04+0000\n"
+"POT-Creation-Date: 2020-08-20 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,36 +30,132 @@ msgid ""
 "activity. It might take a little time before data is updated."
 msgstr ""
 
-#: models.py:53
+#: models.py:23
+msgid "Generation Z: 1995-2012"
+msgstr ""
+
+#: models.py:24
+msgid "Millenials: 1980-1994"
+msgstr ""
+
+#: models.py:25
+msgid "Generation X: 1965-1979"
+msgstr ""
+
+#: models.py:26
+msgid "Baby boomers: 1942-1964"
+msgstr ""
+
+#: models.py:30
+msgid "Academic degree"
+msgstr ""
+
+#: models.py:31
+msgid "Master's degree on specialty"
+msgstr ""
+
+#: models.py:32
+msgid "Undergraduate"
+msgstr ""
+
+#: models.py:33
+msgid "Incomplete higher education"
+msgstr ""
+
+#: models.py:34
+msgid "The average"
+msgstr ""
+
+#: models.py:35
+msgid "Incomplete secondary"
+msgstr ""
+
+#: models.py:36
+msgid "Initial"
+msgstr ""
+
+#: models.py:37
+msgid "No formal education"
+msgstr ""
+
+#: models.py:38
+msgid "Other education"
+msgstr ""
+
+#: models.py:42
+msgid "Male"
+msgstr ""
+
+#: models.py:43
+msgid "Other"
+msgstr ""
+
+#: models.py:44
+msgid "Female"
+msgstr ""
+
+#: models.py:88
 msgid "Instructor"
 msgstr ""
 
-#: models.py:54 views/tab_fragment.py:35
+#: models.py:89 views/tab_fragment.py:38
 msgid "Enrollment stats"
 msgstr ""
 
-#: models.py:55 views/tab_fragment.py:42
+#: models.py:90 views/tab_fragment.py:45
 msgid "Activities"
 msgstr ""
 
-#: models.py:56 views/tab_fragment.py:49
+#: models.py:91 views/tab_fragment.py:52
 msgid "Problems"
 msgstr ""
 
-#: models.py:57 views/tab_fragment.py:56
+#: models.py:92 views/tab_fragment.py:59
 msgid "Students' Info"
 msgstr ""
 
-#: models.py:58 views/tab_fragment.py:63
+#: models.py:93 views/tab_fragment.py:66
 msgid "Clusters"
 msgstr ""
 
-#: models.py:59 views/tab_fragment.py:70
+#: models.py:94 views/tab_fragment.py:73
 msgid "Progress Funnel"
 msgstr ""
 
-#: models.py:60 views/tab_fragment.py:77
+#: models.py:95 views/tab_fragment.py:80
 msgid "Suggestions"
+msgstr ""
+
+#: models.py:96
+msgid "Additional Info"
+msgstr ""
+
+#: models.py:131 models.py:174 models.py:219 models.py:262
+msgid "total users"
+msgstr ""
+
+#: models.py:132 models.py:175 models.py:220 models.py:263
+msgid "no data"
+msgstr ""
+
+#: models.py:134 models.py:177 models.py:222 models.py:265
+msgid "date"
+msgstr ""
+
+#: models.py:137 models.py:138
+msgid "gender statistics"
+msgstr ""
+
+#: models.py:180 models.py:181
+msgid "education statistics"
+msgstr ""
+
+#: models.py:225 models.py:226
+msgid "age statistics"
+msgstr ""
+
+#: models.py:268 models.py:269
+msgid "geo statistics"
 msgstr ""
 
 #: plugins.py:20
@@ -69,14 +165,34 @@ msgstr ""
 #: utils/decorators.py:43 views/activity.py:169 views/cohort.py:41
 #: views/enrollment.py:165 views/funnel.py:93 views/gradebook.py:51
 #: views/gradebook.py:119 views/gradebook.py:186 views/gradebook.py:248
-#: views/problem.py:74 views/problem.py:197 views/problem.py:386
-#: views/problem.py:427 views/suggestion.py:213
+#: views/problem.py:74 views/problem.py:197 views/problem.py:392
+#: views/problem.py:433 views/suggestion.py:214
 msgid "Invalid course ID."
 msgstr ""
 
 #: views/activity.py:167 views/enrollment.py:163 views/funnel.py:91
-#: views/problem.py:72 views/problem.py:195 views/problem.py:425
+#: views/problem.py:72 views/problem.py:195 views/problem.py:431
 msgid "Invalid date range."
+msgstr ""
+
+#: views/additional_info.py:264
+msgid "system"
+msgstr ""
+
+#: views/additional_info.py:265
+msgid "microsite"
+msgstr ""
+
+#: views/additional_info.py:266
+msgid "course"
+msgstr ""
+
+#: views/additional_info.py:270
+msgid "admin"
+msgstr ""
+
+#: views/additional_info.py:271
+msgid "instructor"
 msgstr ""
 
 #: views/cohort.py:63
@@ -99,8 +215,25 @@ msgstr ""
 msgid "Invalid username."
 msgstr ""
 
-#: views/problem.py:384
+#: views/problem.py:390
 msgid "Invalid `answerMap` (JSON parsing error)."
+msgstr ""
+
+#: views/suggestion.py:131
+#, python-format
+msgid ""
+"Take a look at \"{}\" - the number of students that stuck there is "
+"{:01.0f}% higher than average."
+msgstr ""
+
+#: views/suggestion.py:176
+msgid ""
+"Take a look at \"{}\": there is too high avg attempts number and too low "
+"value of the mean success rate."
+msgstr ""
+
+#: views/tab_fragment.py:87
+msgid "Additional Information"
 msgstr ""
 
 #: templates/rg_instructor_analytics/activity.html:8
@@ -431,12 +564,4 @@ msgstr ""
 
 #: templates/rg_instructor_analytics/time-filter.html:31
 msgid "All Enrollments"
-msgstr ""
-
-#: views/suggestion.py
-msgid "Take a look at \"{}\" - the number of students that stuck there is {:01.0f}% higher than average."
-msgstr ""
-
-#: views/suggestion.py
-msgid "Take a look at \"{}\": there is too high avg attempts number and too low value of the mean success rate."
 msgstr ""

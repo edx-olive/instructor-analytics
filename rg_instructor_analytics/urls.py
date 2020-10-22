@@ -1,7 +1,8 @@
 """
 Url config file.
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
+from rest_framework.routers import SimpleRouter
 
 from rg_instructor_analytics.views.activity import ActivityView
 from rg_instructor_analytics.views.cohort import CohortSendMessage, CohortView
@@ -14,7 +15,14 @@ from rg_instructor_analytics.views.problem import (
     ProblemDetailView, ProblemHomeWorkStatisticView, ProblemQuestionView, ProblemsStatisticView, ProblemStudentDataView
 )
 from rg_instructor_analytics.views.suggestion import SuggestionView
+from rg_instructor_analytics.views import AdditionalInfoViewSet
 from rg_instructor_analytics.views.tab_fragment import instructor_analytics_dashboard
+
+router = SimpleRouter()
+
+# Additional Info tab:
+router.register('additional-info', AdditionalInfoViewSet, base_name='additional-info')
+
 
 urlpatterns = [
     # Enrollment stats tab:
@@ -66,6 +74,9 @@ urlpatterns = [
 
     # Suggestions tab:
     url(r'^api/suggestion/$', SuggestionView.as_view(), name='suggestion'),
+
+    # DRF based URLs:
+    url(r'^api/', include(router.urls, namespace='api')),
 
     url(r'^$', instructor_analytics_dashboard, name='instructor_analytics_dashboard'),
 ]

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 15:05+0000\n"
+"POT-Creation-Date: 2020-08-20 16:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:31
+msgid "Video"
+msgstr "Video"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:41
+msgid "Discussion"
+msgstr "Diskusija"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:51
+msgid "Visit"
+msgstr "Vizīte"
 
 #: static/rg_instructor_analytics/js/enrollment-tab.js:42
 #: static/rg_instructor_analytics/js/enrollment-tab.js:62
@@ -52,7 +64,7 @@ msgstr "Meklēt studentus"
 msgid "Date of the last Course visit:"
 msgstr "Datums, kad pēdējo reizi apmeklēts kurss:"
 
-#: static/rg_instructor_analytics/js/problem-tab.js:91
+#: static/rg_instructor_analytics/js/problem-tab.js:96
 msgid "DETAILS"
 msgstr "APRAKSTS"
 
@@ -69,9 +81,71 @@ msgstr "Problēma"
 msgid "Show Plot"
 msgstr "Parādīt izklājumu"
 
-#: static/rg_instructor_analytics/js/problem-tab.js:528
-msgid "Hide Plot"
-msgstr "Slēpt izklājumu"
+#: static/rg_instructor_analytics/js/react-bundle.js:55011
+#: static/rg_instructor_analytics/js/react-bundle.js:58510
+#: static/rg_instructor_analytics/js/react-bundle.js:58521
+#: static/rg_instructor_analytics/js/react-bundle.js:59280
+#: static/src/AdditionalInfoTab/age/Empty.jsx:22
+#: static/src/AdditionalInfoTab/education/Empty.jsx:22
+#: static/src/AdditionalInfoTab/gender/Empty.jsx:22
+#: static/src/AdditionalInfoTab/geo/Empty.jsx:22
+msgid "no data available"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:55485
+#: static/rg_instructor_analytics/js/react-bundle.js:58505
+#: static/rg_instructor_analytics/js/react-bundle.js:58528
+#: static/rg_instructor_analytics/js/react-bundle.js:59282
+#: static/src/AdditionalInfoTab/age/AgeTooltip.jsx:26
+#: static/src/AdditionalInfoTab/education/EducationTooltip.jsx:26
+#: static/src/AdditionalInfoTab/gender/GenderTooltip.jsx:30
+#: static/src/AdditionalInfoTab/geo/MapTooltip.jsx:28
+msgid "Users: "
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:58533
+#: static/src/AdditionalInfoTab/geo/TotalUsers.jsx:21
+msgid "Total Users: "
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
+#: static/src/AdditionalInfoTab/index.jsx:19
+msgid "Country or region of residence"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
+#: static/src/AdditionalInfoTab/index.jsx:21
+#: static/src/AdditionalInfoTab/index.jsx:35
+#: static/src/AdditionalInfoTab/index.jsx:49
+#: static/src/AdditionalInfoTab/index.jsx:63
+msgid "Saepe possimus voluptatum aspernatur temporibus porro alias"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
+#: static/src/AdditionalInfoTab/index.jsx:24
+#: static/src/AdditionalInfoTab/index.jsx:38
+#: static/src/AdditionalInfoTab/index.jsx:52
+#: static/src/AdditionalInfoTab/index.jsx:66
+msgid ""
+"Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos "
+"deleniti quasi vero, perferendis dolorem modi ullam accusantium inventore "
+"amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
+#: static/src/AdditionalInfoTab/index.jsx:33
+msgid "Gender"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
+#: static/src/AdditionalInfoTab/index.jsx:47
+msgid "Year of birth"
+msgstr ""
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068
+#: static/src/AdditionalInfoTab/index.jsx:61
+msgid "Level of education"
+msgstr ""
 
 #: static/rg_instructor_analytics/js/suggestions-tab.js:20
 msgid "No suggestions so far."
@@ -81,29 +155,21 @@ msgstr "Pagaidām nav ierosinājumu."
 msgid "Go to item"
 msgstr "Aiziet uz vienumu"
 
-#: static/rg_instructor_analytics/js/problem-tab.js:22
-msgid "%(blockTitle)s Details"
-msgstr "%(blockTitle)s detaļas"
+#~ msgid "Hide Plot"
+#~ msgstr "Slēpt izklājumu"
 
-#: static/rg_instructor_analytics/js/problem-tab.js:27
-msgid "%(blockTitle)s statistics is based on submits of %(studentsEmailsLength)s student(s)"
-msgstr "%(blockTitle)s statistika, kas veidota no %(studentsEmailsLength)s studnetu pieteikumiem"
+#~ msgid "%(blockTitle)s Details"
+#~ msgstr "%(blockTitle)s detaļas"
 
-#: static/rg_instructor_analytics/js/problem-tab.js:39
-msgid "Nothing to show"
-msgstr "Nav nekā, ko parādīt"
+#~ msgid ""
+#~ "%(blockTitle)s statistics is based on submits of %(studentsEmailsLength)s "
+#~ "student(s)"
+#~ msgstr ""
+#~ "%(blockTitle)s statistika, kas veidota no %(studentsEmailsLength)s "
+#~ "studnetu pieteikumiem"
 
-#: static/rg_instructor_analytics/js/activity-tab.js:31
-msgid "Video"
-msgstr "Video"
-
-#: static/rg_instructor_analytics/js/activity-tab.js:41
-msgid "Discussion"
-msgstr "Diskusija"
-
-#: static/rg_instructor_analytics/js/activity-tab.js:51
-msgid "Visit"
-msgstr "Vizīte"
+#~ msgid "Nothing to show"
+#~ msgstr "Nav nekā, ko parādīt"
 
 #: static/rg_instructor_analytics/js/clusters-tab.js:123
 msgid "Percent:"
