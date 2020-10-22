@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 15:05+0000\n"
+"POT-Creation-Date: 2020-08-20 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,93 +19,230 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: admin.py
+#: admin.py:20
 msgid "Tabs"
 msgstr "Cilnes"
 
-#: admin.py
+#: admin.py:23
 msgid ""
 "Enabling additional tabs requires extra traffic, and might affect system "
 "activity. It might take a little time before data is updated."
 msgstr ""
-"Iespējojot papildu cilnes nepieciešama papildu datplūsma, un varētu tikt ietekmēta "
-"sistēmas darbība. Var paiet nedaudz laika, līdz dati tiek atjaunināti."
+"Iespējojot papildu cilnes nepieciešama papildu datplūsma, un varētu tikt "
+"ietekmēta sistēmas darbība. Var paiet nedaudz laika, līdz dati tiek "
+"atjaunināti."
 
-#: models.py
+#: models.py:23
+msgid "Generation Z: 1995-2012"
+msgstr ""
+
+#: models.py:24
+msgid "Millenials: 1980-1994"
+msgstr ""
+
+#: models.py:25
+msgid "Generation X: 1965-1979"
+msgstr ""
+
+#: models.py:26
+msgid "Baby boomers: 1942-1964"
+msgstr ""
+
+#: models.py:30
+msgid "Academic degree"
+msgstr ""
+
+#: models.py:31
+msgid "Master's degree on specialty"
+msgstr ""
+
+#: models.py:32
+msgid "Undergraduate"
+msgstr ""
+
+#: models.py:33
+msgid "Incomplete higher education"
+msgstr ""
+
+#: models.py:34
+msgid "The average"
+msgstr ""
+
+#: models.py:35
+msgid "Incomplete secondary"
+msgstr ""
+
+#: models.py:36
+msgid "Initial"
+msgstr ""
+
+#: models.py:37
+msgid "No formal education"
+msgstr ""
+
+#: models.py:38
+msgid "Other education"
+msgstr ""
+
+#: models.py:42
+msgid "Male"
+msgstr ""
+
+#: models.py:43
+msgid "Other"
+msgstr ""
+
+#: models.py:44
+msgid "Female"
+msgstr ""
+
+#: models.py:88
 msgid "Instructor"
 msgstr "Instruktors"
 
-#: models.py views/tab_fragment.py
-#: templates/rg_instructor_analytics/enrollment_stats.html
+#: models.py:89 views/tab_fragment.py:38
 msgid "Enrollment stats"
 msgstr "Reģistrēšanās statistika"
 
-#: models.py views/tab_fragment.py
-#: templates/rg_instructor_analytics/activity.html
+#: models.py:90 views/tab_fragment.py:45
 msgid "Activities"
 msgstr "Aktivitātes"
 
-#: models.py views/tab_fragment.py
-#: templates/rg_instructor_analytics/problems.html
+#: models.py:91 views/tab_fragment.py:52
 msgid "Problems"
 msgstr "Problēmas"
 
-#: models.py views/tab_fragment.py
-#: templates/rg_instructor_analytics/gradebook.html
+#: models.py:92 views/tab_fragment.py:59
 msgid "Students' Info"
 msgstr "Studentu informācija"
 
-#: models.py views/tab_fragment.py
-#: templates/rg_instructor_analytics/cohort.html
+#: models.py:93 views/tab_fragment.py:66
 msgid "Clusters"
 msgstr "Kohortas"
 
-#: models.py views/tab_fragment.py
-#: templates/rg_instructor_analytics/funnel.html
+#: models.py:94 views/tab_fragment.py:73
 msgid "Progress Funnel"
 msgstr "Progresa piltuve"
 
-#: models.py views/tab_fragment.py
-#: templates/rg_instructor_analytics/suggestion.html
+#: models.py:95 views/tab_fragment.py:80
 msgid "Suggestions"
 msgstr "Ieteikumi"
 
-#: plugins.py
+#: models.py:96
+msgid "Additional Info"
+msgstr ""
+
+#: models.py:131 models.py:174 models.py:219 models.py:262
+msgid "total users"
+msgstr ""
+
+#: models.py:132 models.py:175 models.py:220 models.py:263
+msgid "no data"
+msgstr ""
+
+#: models.py:134 models.py:177 models.py:222 models.py:265
+msgid "date"
+msgstr ""
+
+#: models.py:137 models.py:138
+msgid "gender statistics"
+msgstr ""
+
+#: models.py:180 models.py:181
+msgid "education statistics"
+msgstr ""
+
+#: models.py:225 models.py:226
+msgid "age statistics"
+msgstr ""
+
+#: models.py:268 models.py:269
+msgid "geo statistics"
+msgstr ""
+
+#: plugins.py:20
 msgid "Instructor analytics"
 msgstr "Instruktoru analītika"
 
-#: utils/decorators.py views/activity.py views/cohort.py views/enrollment.py
-#: views/funnel.py views/gradebook.py views/problem.py views/suggestion.py
+#: utils/decorators.py:43 views/activity.py:169 views/cohort.py:41
+#: views/enrollment.py:165 views/funnel.py:93 views/gradebook.py:51
+#: views/gradebook.py:119 views/gradebook.py:186 views/gradebook.py:248
+#: views/problem.py:74 views/problem.py:197 views/problem.py:392
+#: views/problem.py:433 views/suggestion.py:214
 msgid "Invalid course ID."
 msgstr "Nederīgs kursa ID."
 
-#: views/activity.py views/enrollment.py views/funnel.py views/problem.py
+#: views/activity.py:167 views/enrollment.py:163 views/funnel.py:91
+#: views/problem.py:72 views/problem.py:195 views/problem.py:431
 msgid "Invalid date range."
 msgstr "Nederīgs datumu diapazons."
 
-#: views/cohort.py
+#: views/additional_info.py:264
+msgid "system"
+msgstr ""
+
+#: views/additional_info.py:265
+msgid "microsite"
+msgstr ""
+
+#: views/additional_info.py:266
+msgid "course"
+msgstr ""
+
+#: views/additional_info.py:270
+msgid "admin"
+msgstr ""
+
+#: views/additional_info.py:271
+#, fuzzy
+#| msgid "Instructor"
+msgid "instructor"
+msgstr "Instruktors"
+
+#: views/cohort.py:63
 msgid "zero progress"
 msgstr "nav progresa"
 
-#: views/cohort.py
+#: views/cohort.py:66
 msgid "from {} % to {} %"
 msgstr "no {} % līdz {} %"
 
-#: views/cohort.py
+#: views/cohort.py:176
 msgid "Not all field are filled."
 msgstr "Nav aizpildīti visi lauki."
 
-#: views/enrollment.py
+#: views/enrollment.py:161
 msgid "`from`, `to`, `course_id` are the must."
 msgstr "`no`, `līdz`, `kursa ID` ir obligāts."
 
-#: views/gradebook.py
+#: views/gradebook.py:113 views/gradebook.py:180 views/gradebook.py:242
 msgid "Invalid username."
 msgstr "Nederīgs lietotājvārds"
 
-#: views/problem.py
+#: views/problem.py:390
 msgid "Invalid `answerMap` (JSON parsing error)."
 msgstr "Nepareizs `answerMap` (JSON apstrādes kļūda)."
+
+#: views/suggestion.py:131
+#, python-format
+msgid ""
+"Take a look at \"{}\" - the number of students that stuck there is "
+"{:01.0f}% higher than average."
+msgstr ""
+"Apskaties \"{}\" - studentu skaits, kas ir iestrēguši šeit ir {:01.0f}% un "
+"tas ir lielāks kā vidēji."
+
+#: views/suggestion.py:176
+msgid ""
+"Take a look at \"{}\": there is too high avg attempts number and too low "
+"value of the mean success rate."
+msgstr ""
+"Apskaties \"{}\": šo ieskaiti atkārtoti kārto ļoti daudzas reizes un tam ir "
+"ļoti zems sekmīgi aizpildīto skaits."
+
+#: views/tab_fragment.py:87
+msgid "Additional Information"
+msgstr ""
 
 #: templates/rg_instructor_analytics/activity.html
 #: templates/rg_instructor_analytics/cohort.html
@@ -469,11 +606,3 @@ msgstr "No kursa sākuma"
 #: templates/rg_instructor_analytics/time-filter.html
 msgid "All Enrollments"
 msgstr "Visas reģistrēšanās"
-
-#: views/suggestion.py
-msgid "Take a look at \"{}\" - the number of students that stuck there is {:01.0f}% higher than average."
-msgstr "Apskaties \"{}\" - studentu skaits, kas ir iestrēguši šeit ir {:01.0f}% un tas ir lielāks kā vidēji."
-
-#: views/suggestion.py
-msgid "Take a look at \"{}\": there is too high avg attempts number and too low value of the mean success rate."
-msgstr "Apskaties \"{}\": šo ieskaiti atkārtoti kārto ļoti daudzas reizes un tam ir ļoti zems sekmīgi aizpildīto skaits."

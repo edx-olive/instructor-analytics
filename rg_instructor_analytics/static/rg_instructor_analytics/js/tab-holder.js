@@ -1,4 +1,4 @@
-function TabHolder(tabs, course) {
+function TabHolder(tabs, course, coursesSwitch) {
     var holder = this;
     
     this.tabs = tabs;
@@ -32,6 +32,13 @@ function TabHolder(tabs, course) {
         for (var tabName in tabs) {
             if (tabs.hasOwnProperty(tabName)) {
                 tabs[tabName].setActive(tabName === tab);
+            }
+            
+            // FIXME: temp dirty hack for React tabs:
+            if (tab === 'add-info') {
+                coursesSwitch.parent().hide()
+            } else {
+                coursesSwitch.parent().show()
             }
         }
     };

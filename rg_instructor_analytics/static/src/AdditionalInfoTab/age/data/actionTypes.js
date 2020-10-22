@@ -1,0 +1,5 @@
+export const FEATURE = 'AGE_STATS';
+
+export const AGE_STATS_REQUEST = `${FEATURE}:REQUEST`;
+export const AGE_STATS_RECEIVED = `${FEATURE}:RECEIVED`;
+export const AGE_STATS_FAILURE = `${FEATURE}:FAILURE`;

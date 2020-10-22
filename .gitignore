@@ -103,3 +103,5 @@ notes
 .idea/
 
 sonar-project.properties
+
+node_modules/

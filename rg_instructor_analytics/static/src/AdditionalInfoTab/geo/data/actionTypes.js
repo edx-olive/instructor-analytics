@@ -1,0 +1,5 @@
+export const FEATURE = 'GEO_STATS';
+
+export const GEO_STATS_REQUEST = `${FEATURE}:REQUEST`;
+export const GEO_STATS_RECEIVED = `${FEATURE}:RECEIVED`;
+export const GEO_STATS_FAILURE = `${FEATURE}:FAILURE`;
