@@ -54,7 +54,6 @@ class ActivityView(View):
             out_list = []
             prev_day = from_date - timedelta(days=1)
             for day, total in qs:
-
                 days_delta = (day - prev_day).days
                 if days_delta > 1:
                     # at least one empty day between values - fill with zero day after previous value
@@ -66,11 +65,10 @@ class ActivityView(View):
                 out_list.append((format_day(day), total))
                 prev_day = day
 
-            days_delta = (to_date - prev_day).days
-            if days_delta > 1:
-                out_list.append((format_day(prev_day + timedelta(days=1)), 0))
-                if days_delta > 2:
-                    out_list.append((format_day(to_date), 0))
+            if to_date != prev_day:
+                if (to_date - prev_day).days > 1:
+                    out_list.append((format_day(prev_day + timedelta(days=1)), 0))
+                out_list.append((format_day(to_date), 0))
 
             return out_list
 
