@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   wrapper: {
     borderLeft: `2px solid ${theme.palette.grey[500]}`,
     borderRight: `2px solid ${theme.palette.grey[500]}`,
-    width: theme.spacing(40.25),
+    width: theme.spacing(36),
     minHeight: 80,
     display: "flex",
     alignItems: "center",
@@ -100,7 +100,7 @@ export const StackedBarChart = ({ data = {} }) => {
             <Bar
               data={[chartData]}
               keys={R.keys(chartData)}
-              width={theme.spacing(40)}
+              width={theme.spacing(36)}
               height={50}
               padding={0.1}
               margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
