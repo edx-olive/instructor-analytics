@@ -16,6 +16,8 @@ from rg_instructor_analytics.models import (
     GENDER_CHOICES, GENERATION_CHOICES, LEVEL_OF_EDUCATION_CHOICES)
 from rg_instructor_analytics.utils import choices_value_by_key
 from rg_instructor_analytics.views.tab_fragment import get_available_courses
+from rg_instructor_analytics.mock_data import apply_data_mocker, AdditionalInfoGeoDataMocker, \
+    AdditionalInfoGenderDataMocker, AdditionalInfoAgeDataMocker, AdditionalInfoEducationDataMocker
 from student.models import UserProfile
 
 
@@ -46,6 +48,7 @@ class AdditionalInfoViewSet(ViewSet):
     permission_classes = [IsAuthenticated, InstructorPermission]
 
     @list_route(methods=['get'], url_name='geo-stats')
+    @apply_data_mocker(AdditionalInfoGeoDataMocker)
     def geo(self, request, **kwargs):
         """
         `Country or region of residense` stats endpoint.
@@ -87,6 +90,7 @@ class AdditionalInfoViewSet(ViewSet):
         return Response(geo_stats)
 
     @list_route(methods=['get'], url_name='gender-stats')
+    @apply_data_mocker(AdditionalInfoGenderDataMocker)
     def gender(self, request, **kwargs):
         """
         `Gender` stats endpoint.
@@ -139,6 +143,7 @@ class AdditionalInfoViewSet(ViewSet):
         return Response(gender_stats)
 
     @list_route(methods=['get'], url_name='age-stats')
+    @apply_data_mocker(AdditionalInfoAgeDataMocker)
     def age(self, request, **kwargs):
         """
         `Year of Birth` stats endpoint.
@@ -199,6 +204,7 @@ class AdditionalInfoViewSet(ViewSet):
         return Response(age_stats)
 
     @list_route(methods=['get'], url_name='education-stats')
+    @apply_data_mocker(AdditionalInfoEducationDataMocker)
     def education(self, request, **kwargs):
         """
         `Level of Education` stats endpoint.

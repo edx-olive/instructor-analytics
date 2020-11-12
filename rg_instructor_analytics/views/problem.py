@@ -19,6 +19,8 @@ from courseware.courses import get_course_by_id
 from courseware.models import StudentModule
 from courseware.module_render import xblock_view
 from rg_instructor_analytics.utils.decorators import instructor_access_required
+from rg_instructor_analytics.mock_data import apply_data_mocker, ProblemsLvl1DataMocker, ProblemsLvl2DataMocker, \
+    ProblemsLvl3DataMocker
 
 QUESTION_SELECT_TYPE = 'select'
 QUESTION_MULTI_SELECT_TYPE = 'multySelect'
@@ -77,6 +79,7 @@ class ProblemHomeWorkStatisticView(View):
             data=self.get_homework_stat(course_key, from_date, to_date)
         )
 
+    @apply_data_mocker(ProblemsLvl1DataMocker)
     def get_homework_stat(self, course_key, from_date=None, to_date=None):
         """
         Aggregate students' attemps/grade info for given course.
@@ -177,6 +180,7 @@ class ProblemsStatisticView(View):
         """
         return super(ProblemsStatisticView, self).dispatch(*args, **kwargs)
 
+    @apply_data_mocker(ProblemsLvl2DataMocker)
     def post(self, request, course_id):
         """
         POST request handler.
@@ -362,6 +366,7 @@ class ProblemQuestionView(View):
     """
 
     @method_decorator(instructor_access_required)
+    @apply_data_mocker(ProblemsLvl3DataMocker)
     def dispatch(self, *args, **kwargs):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.

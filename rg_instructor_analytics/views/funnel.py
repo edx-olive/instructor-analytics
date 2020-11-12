@@ -17,6 +17,7 @@ from courseware.courses import get_course_by_id
 from courseware.models import StudentModule
 from rg_instructor_analytics import tasks
 from rg_instructor_analytics.utils.decorators import instructor_access_required
+from rg_instructor_analytics.mock_data import apply_data_mocker, FunnelsDataMocker
 from student.models import CourseEnrollment
 
 try:
@@ -72,6 +73,7 @@ class GradeFunnelView(View):
         """
         return super(GradeFunnelView, self).dispatch(*args, **kwargs)
 
+    @apply_data_mocker(FunnelsDataMocker)
     def post(self, request, course_id):
         """
         POST request handler.

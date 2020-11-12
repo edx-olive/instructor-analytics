@@ -14,6 +14,7 @@ from student.models import CourseEnrollment
 from rg_instructor_analytics import tasks
 from rg_instructor_analytics.models import GradeStatistic
 from rg_instructor_analytics.utils.decorators import instructor_access_required
+from rg_instructor_analytics.mock_data import apply_data_mocker, CohortsDataMocker
 
 
 class CohortView(View):
@@ -28,6 +29,7 @@ class CohortView(View):
         """
         return super(CohortView, self).dispatch(*args, **kwargs)
 
+    @apply_data_mocker(CohortsDataMocker)
     def post(self, request, course_id):
         """
         POST request handler.

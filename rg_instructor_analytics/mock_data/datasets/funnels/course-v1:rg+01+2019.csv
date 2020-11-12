@@ -1,0 +1,21 @@
+Section,Subsection,Unit,In,Out,Stuck
+Basic Open edX Features,Available Content Types,Video Content Examples,7055,6975,80
+Basic Open edX Features,Available Content Types,Google Document Example,6975,6971,4
+Basic Open edX Features,Available Content Types,Image Explorer,6971,6969,2
+Basic Open edX Features,Available Content Types,PDF,6969,6964,5
+Basic Open edX Features,Available Content Types,iFrame Example,6964,6961,3
+Basic Open edX Features,Available Content Types,Scorm Example,6961,6921,40
+Basic Open edX Features,Available Content Types,H5P Content,6921,6921,0
+Basic Open edX Features,Available Content Types,Calendar + Quizzes,6921,6799,122
+Basic Open edX Features,Social Features,Discussion,6799,6787,12
+Basic Open edX Features,Social Features,Survey Example,6787,6766,21
+Basic Open edX Features,Social Features,Poll Example,6766,6730,36
+Basic Open edX Features,Social Features,Feedback Gathering,6730,6722,8
+Basic Open edX Features,Social Features,Online Lecture/Conference,6722,6710,12
+Basic Open edX Features,Assessment Types,Single/Multiple Choice,6710,6546,164
+Basic Open edX Features,Assessment Types,Free Text Response,6546,6479,67
+Basic Open edX Features,Assessment Types,Staff Graded Assignments,6479,6435,44
+Basic Open edX Features,Assessment Types,Numerical Input,6435,6423,12
+Basic Open edX Features,Assessment Types,Math Expression Assessment,6423,6401,22
+Experimental Tools,Video/Audio Recording,Video Recording,6401,6347,54
+Experimental Tools,Formulas (LaTex),Tests with formulas,6347,6341,6

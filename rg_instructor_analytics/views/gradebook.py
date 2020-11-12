@@ -19,6 +19,8 @@ import django_comment_client.utils as utils
 from lms.djangoapps.courseware.courses import get_course_by_id
 from rg_instructor_analytics.models import GradeStatistic
 from rg_instructor_analytics.utils.decorators import instructor_access_required
+from rg_instructor_analytics.mock_data import apply_data_mocker, StudentsInfoGradebookDataMocker, \
+    StudentsInfoVideoViewsDataMocker, StudentsInfoDiscussionsDataMocker, StudentsInfoStudentStepDataMocker
 
 
 class GradebookView(View):
@@ -36,6 +38,7 @@ class GradebookView(View):
         return super(GradebookView, self).dispatch(*args, **kwargs)
 
     @staticmethod
+    @apply_data_mocker(StudentsInfoGradebookDataMocker)
     def post(request, course_id):
         """
         POST request handler.
@@ -101,6 +104,7 @@ class VideoView(View):
         return super(VideoView, self).dispatch(*args, **kwargs)
 
     @staticmethod
+    @apply_data_mocker(StudentsInfoVideoViewsDataMocker)
     def post(request, course_id):
         """
         POST request handler.
@@ -168,6 +172,7 @@ class DiscussionActivityView(View):
         return super(DiscussionActivityView, self).dispatch(*args, **kwargs)
 
     @staticmethod
+    @apply_data_mocker(StudentsInfoDiscussionsDataMocker)
     def post(request, course_id):
         """
         POST request handler.
@@ -230,6 +235,7 @@ class StudentStepView(View):
         return super(StudentStepView, self).dispatch(*args, **kwargs)
 
     @staticmethod
+    @apply_data_mocker(StudentsInfoStudentStepDataMocker)
     def post(request, course_id):
         """
         POST request handler.

@@ -17,6 +17,7 @@ from rg_instructor_analytics_log_collector.models import (
 
 from lms.djangoapps.courseware.courses import get_course_by_id
 from rg_instructor_analytics.utils.decorators import instructor_access_required
+from rg_instructor_analytics.mock_data import apply_data_mocker, ActivitiesDailyDataMocker, UnitVisitsDataMocker
 
 
 class ActivityView(View):
@@ -31,6 +32,7 @@ class ActivityView(View):
         """
         return super(ActivityView, self).dispatch(*args, **kwargs)
 
+    @apply_data_mocker(ActivitiesDailyDataMocker)
     def get_daily_activity_for_course(self, from_date, to_date, course_key):
         """
         Get statistic of video and discussion activities by days.
@@ -78,6 +80,7 @@ class ActivityView(View):
             'course_activities': complete_data(no_group_qs(CourseVisitsByDay))
         }
 
+    @apply_data_mocker(UnitVisitsDataMocker)
     def get_unit_visits(self, from_date, to_date, course_key):
         """
         Get statistic of visiting units.
