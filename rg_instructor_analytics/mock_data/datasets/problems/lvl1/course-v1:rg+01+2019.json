@@ -1,0 +1,40 @@
+{
+   "correct_answer":[
+      0.64,
+      0.94,
+      0.87
+   ],
+   "attempts":[
+      3.2,
+      1.2,
+      2.4
+   ],
+   "problems":[
+      [
+         "block-v1:rg+01+2019+type@problem+block@5882ac03229c443e82f3c51d191134e2",
+         "block-v1:rg+01+2019+type@problem+block@b731dc3aeced4f1782e630366a7f6201",
+         "block-v1:rg+01+2019+type@problem+block@bb5b65a6380c4a9c9b3049a70f34f8f4"
+      ],
+      [
+         "block-v1:rg+01+2019+type@problem+block@606ecef5360a46188f24021006a90890",
+         "block-v1:rg+01+2019+type@problem+block@9007b10b310748c6b0674d9fe25a0d44",
+         "block-v1:rg+01+2019+type@problem+block@90d4b6e11eee426d9825c3cba8b2a9a4"
+      ],
+      [
+         "block-v1:rg+01+2019+type@problem+block@775309fd182a483daecf826f89ee8f21",
+         "block-v1:rg+01+2019+type@problem+block@3c66356f2b984cb3879ecaea764512f5",
+         "block-v1:rg+01+2019+type@problem+block@cad36d1762294e2988d586d8a097f598",
+         "block-v1:rg+01+2019+type@problem+block@bc500e6503354bf5996e68fa1252df0b"
+      ]
+   ],
+   "names":[
+      "Available Content Types",
+      "Social Features",
+      "Assessment Types"
+   ],
+   "subsection_id":[
+      "block-v1:rg+01+2019+type@sequential+block@2bb9a69a3228413ab11bf65ddc85f153",
+      "block-v1:rg+01+2019+type@sequential+block@5d56bd3885fe4bea9979c5d7df178434",
+      "block-v1:rg+01+2019+type@sequential+block@44acc09b562f48bf89925ecaed6cf663"
+   ]
+}
