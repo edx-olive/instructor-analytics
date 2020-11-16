@@ -39,7 +39,8 @@ function EnrollmentTab(button, content) {
             type: 'areaspline',
             style: {
               fontFamily: "'Open Sans', sans-serif"
-            }
+            },
+            marginTop: 40,
           }
         });
 
