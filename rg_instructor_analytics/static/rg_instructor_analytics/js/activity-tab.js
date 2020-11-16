@@ -59,7 +59,8 @@ function ActivityTab(button, content) {
 
     var chart = Highcharts.chart('activity-stats-plot', {
         chart: {
-            type: 'areaspline'
+            type: 'areaspline',
+            marginTop: 40,
         },
         title: {
             text: ''
@@ -77,6 +78,7 @@ function ActivityTab(button, content) {
             },
             backgroundColor:
               Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
+
         },
         xAxis: {
             type: 'datetime',
@@ -109,7 +111,6 @@ function ActivityTab(button, content) {
                 color: defaultColor
             },
             shared: true,
-            valueSuffix: ' units'
         },
         credits: {
             enabled: false
