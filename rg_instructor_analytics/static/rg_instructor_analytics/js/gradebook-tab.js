@@ -24,6 +24,8 @@ function GradebookTab(button, content) {
     var chartsClass = '.js-highchart-figure';
     var defaultColor = '#3e3e3e';
     var defaultFontSize = '12px';
+    var isRtl = $('body').hasClass('rtl');
+    var MAX_UNIT_TEXT_LENGTH = 50;
 
     greadebookTab.studentsTable = content.find('#student_table_body');
     greadebookTab.gradebookTableHeader = content.find('#gradebook_table_header');
@@ -307,6 +309,18 @@ function GradebookTab(button, content) {
             y: data.tickvals
         };
 
+        function truncateLongUnitText(array) {
+            var result = array.map(function(item) {
+                var truncate = item.substring(0, MAX_UNIT_TEXT_LENGTH);
+                if (item.length > MAX_UNIT_TEXT_LENGTH) {
+                    item = isRtl ? '...' + truncate : truncate + '...';
+                }
+                return item;
+            });
+
+            return result;
+        };
+
         var stat = {
             x: data.steps,
             y: data.units,
@@ -343,7 +357,7 @@ function GradebookTab(button, content) {
             width: 940,
             xaxis: x_template,
             yaxis: {
-                ticktext: data.ticktext,
+                ticktext: truncateLongUnitText(data.ticktext),
                 tickvals: data.tickvals,
                 tickmode: 'array',
                 automargin: true,
