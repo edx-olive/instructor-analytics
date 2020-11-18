@@ -2,10 +2,10 @@
   "!NOTE": "For questions with different answers with same texts, first 'o' letter is replaced with the cyrillic character to make key unique; ? should we fix the issue or assume that answers shouldn't have the same text",
   "block-v1:rg+01+2019+type@problem+block@5882ac03229c443e82f3c51d191134e2": {
     "stats": {
-      "an incorrect answer": 510,
-      "a correct answer": 3059,
-      "a cоrrect answer":  1020,
-      "an incоrrect answer":  510
+      "an incorrect answer": 3059,
+      "a correct answer": 510,
+      "a cоrrect answer": 510,
+      "an incоrrect answer": 1020
     },
     "type": "bar",
     "description": "Available Content Types / A Quick Test: Checkboxes"
@@ -32,26 +32,28 @@
   "block-v1:rg+01+2019+type@problem+block@606ecef5360a46188f24021006a90890":
   {
     "stats": {
-      "an incorrect answer": 3569,
-      "a correct answer": 1530,
-      "a cоrrect answer":  1530,
-      "a incоrrect answer":  3569
+      "an incorrect answer": 1530,
+      "a correct answer": 3569,
+      "a cоrrect answer": 3569,
+      "a incоrrect answer": 1530
     },
     "type": "bar",
     "description": "Social Features / Checkboxes"
   },
   "block-v1:rg+01+2019+type@problem+block@9007b10b310748c6b0674d9fe25a0d44": {
     "stats": {
-      "an incorrect answer": 0,
-      "the correct answer": 1
+      "an incorrect answer": 2550,
+      "the correct answer": 1530,
+      "an incоrrect answer": 1020
     },
     "type": "bar",
     "description": "Social Features / Multiple Choice"
   },
   "block-v1:rg+01+2019+type@problem+block@90d4b6e11eee426d9825c3cba8b2a9a4": {
     "stats": {
-      "an incorrect answer": 0,
-      "the correct answer": 1
+      "an incorrect answer": 1020,
+      "the correct answer": 2550,
+      "an incоrrect answer": 1530
     },
     "type": "bar",
     "description": "Social Features / Dropdown"
@@ -59,10 +61,10 @@
 
   "block-v1:rg+01+2019+type@problem+block@775309fd182a483daecf826f89ee8f21": {
     "stats": {
-      "VR Dragons": 1530,
       "Video": 510,
-      "Google Document": 2550,
-      "Online Recording Studio": 510,
+      "VR Dragons": 510,
+      "Online Recording Studio": 1530,
+      "Google Document": 510,
       "Something new": 2550,
       "Another Correct answer": 510
     },
