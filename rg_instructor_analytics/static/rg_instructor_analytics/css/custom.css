@@ -1727,3 +1727,7 @@ button.funnel-send-email-btn:focus,
 .gradebook-video-plot .highcharts-figure {
   margin-bottom: 0;
 }
+
+.wrapper-course-material .course-material {
+  max-width: 1170px;
+}
