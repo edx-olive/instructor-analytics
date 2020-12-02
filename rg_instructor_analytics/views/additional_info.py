@@ -4,6 +4,7 @@ Additional Info tab API endpoint.
 from collections import OrderedDict
 
 import pycountry
+import six
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext as _
 from rest_framework.decorators import list_route
@@ -80,13 +81,23 @@ class AdditionalInfoViewSet(ViewSet):
             'unknown': empty,
             'min': 100,
             'max': 200,
-            'data': [{
-                'id': pycountry.countries.get(alpha2=key).alpha3,
-                'name': _(pycountry.countries.get(alpha2=key).name),
+            'data': []
+        }
+        if six.PY2:
+            alpha2 = 'alpha2'
+            alpha3 = 'alpha3'
+        else:
+            alpha2 = 'alpha_2'
+            alpha3 = 'alpha_3'
+
+        for key, value in percentage_data.items():
+            country = pycountry.countries.get(**{alpha2: key})
+            geo_stats['data'].append({
+                'id': getattr(country, alpha3),
+                'name': _(country.name),
                 'percent': value,
                 'value': data[key],
-            } for key, value in percentage_data.items()]
-        }
+            })
         return Response(geo_stats)
 
     @list_route(methods=['get'], url_name='gender-stats')

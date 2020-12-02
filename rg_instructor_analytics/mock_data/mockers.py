@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 import json
 import logging
 import os
+import six
 
 from django.http.response import JsonResponse
 from django.utils.translation import ugettext as _
@@ -151,7 +152,7 @@ class ActivitiesDailyDataMocker(BaseDataMocker):
 class UnitVisitsDataMocker(BaseDataMocker):
     mock_dataset = os.path.join('activities', 'unit_visits')
     _mocker_keys = _get_mocker_keys(mock_dataset)
-    _dtype = 'S'
+    _dtype = str
 
     @property
     def data_key(self):
@@ -194,7 +195,7 @@ class ProblemsLvl1DataMocker(BaseDataMocker):
 class ProblemsLvl2DataMocker(BaseDataMocker):
     mock_dataset = os.path.join('problems', 'lvl2')
     _mocker_keys = _get_mocker_keys(mock_dataset)
-    _dtype = 'S'
+    _dtype = str
 
     def get_mocked_data(self):
         raw_data = self._load_dataset_from_csv()
@@ -230,7 +231,7 @@ class ProblemsLvl3DataMocker(BaseDataMocker):
 class CohortsDataMocker(BaseDataMocker):
     mock_dataset = 'cohorts'
     _mocker_keys = _get_mocker_keys(mock_dataset)
-    _dtype = 'S'
+    _dtype = str
 
     def get_mocked_data(self):
         raw_data = self._load_dataset_from_csv()
@@ -259,7 +260,7 @@ class CohortsDataMocker(BaseDataMocker):
 class FunnelsDataMocker(BaseDataMocker):
     mock_dataset = 'funnels'
     _mocker_keys = _get_mocker_keys(mock_dataset)
-    _dtype = 'S'
+    _dtype = str
 
     def get_mocked_data(self):
         raw_data = self._load_dataset_from_csv()
@@ -320,13 +321,14 @@ class FunnelsDataMocker(BaseDataMocker):
                 subsection for subsection in mock_funnels[section]['children'].values()
             ]
 
-        return JsonResponse(data={"courses_structure": mock_funnels.values()})
+        data = mock_funnels.values() if six.PY2 else list(mock_funnels.values())
+        return JsonResponse(data={"courses_structure": data})
 
 
 class StudentsInfoGradebookDataMocker(BaseDataMocker):
     mock_dataset = os.path.join('students_info', 'gradebook')
     _mocker_keys = _get_mocker_keys(mock_dataset)
-    _dtype = 'S'
+    _dtype = str
 
     def get_mocked_data(self):
         raw_data = self._load_dataset_from_csv()
@@ -353,7 +355,7 @@ class StudentsInfoGradebookDataMocker(BaseDataMocker):
 class StudentsInfoVideoViewsDataMocker(BaseDataMocker):
     mock_dataset = os.path.join('students_info', 'video_views')
     _mocker_keys = _get_mocker_keys(mock_dataset)
-    _dtype = "S"
+    _dtype = str
 
     def get_mocked_data(self):
         raw_data = self._load_dataset_from_csv()
@@ -381,7 +383,7 @@ class StudentsInfoVideoViewsDataMocker(BaseDataMocker):
 class StudentsInfoDiscussionsDataMocker(BaseDataMocker):
     mock_dataset = os.path.join('students_info', 'discussions')
     _mocker_keys = _get_mocker_keys(mock_dataset)
-    _dtype = "S"
+    _dtype = str
 
     def get_mocked_data(self):
         raw_data = self._load_dataset_from_csv()
@@ -430,7 +432,7 @@ class StudentsInfoStudentStepDataMocker(BaseDataMocker):
 class AditionalInfoDataMocker(BaseDataMocker):
     mock_dataset = 'additional_information'
     _mocker_keys = _get_mocker_keys(mock_dataset)
-    _dtype = 'S'
+    _dtype = str
 
 
 class AdditionalInfoGeoDataMocker(AditionalInfoDataMocker):
@@ -443,8 +445,9 @@ class AdditionalInfoGeoDataMocker(AditionalInfoDataMocker):
         countries = []
         for key in countries_counter:
             try:
+                country = pycountry.countries.get(name=key)
                 countries.append({
-                    'id': pycountry.countries.get(name=key).alpha3,
+                    'id': country.alpha3 if hasattr(country, 'alpha3') else country.alpha_3,
                     'name': key,
                     'percent': int(round(countries_counter[key] * 100.0 / total)),
                     'value': countries_counter[key],

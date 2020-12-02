@@ -51,7 +51,7 @@ class GradeStatistic(models.Model):
     """
 
     course_id = CourseKeyField(max_length=255, db_index=True)
-    student = models.ForeignKey(User)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
     exam_info = models.TextField()
     # Represent total grade in range from 0 to 1; [0; 1]
     total = models.FloatField()
@@ -85,7 +85,7 @@ class InstructorTabsConfig(models.Model):
     Model for configuring instructor analytics tabs.
     """
 
-    user = models.OneToOneField(User, verbose_name=_('Instructor'))
+    user = models.OneToOneField(User, verbose_name=_('Instructor'), on_delete=models.CASCADE)
     enrollment_stats = models.BooleanField(default=True, verbose_name=_('Enrollment stats'))
     activities = models.BooleanField(default=True, verbose_name=_('Activities'))
     problems = models.BooleanField(default=True, verbose_name=_('Problems'))
