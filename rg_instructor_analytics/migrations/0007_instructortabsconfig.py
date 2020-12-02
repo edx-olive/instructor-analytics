@@ -24,7 +24,8 @@ class Migration(migrations.Migration):
                 ('clusters', models.BooleanField(default=True, verbose_name='Clusters')),
                 ('progress_funnel', models.BooleanField(default=True, verbose_name='Progress Funnel')),
                 ('suggestions', models.BooleanField(default=True, verbose_name='Suggestions')),
-                ('user', models.OneToOneField(verbose_name='Instructor', to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(verbose_name='Instructor', to=settings.AUTH_USER_MODEL,
+                                              on_delete=models.deletion.CASCADE)),
             ],
         ),
     ]

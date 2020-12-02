@@ -2,13 +2,13 @@
 Util package.
 """
 import os
+import six
 
 import pkg_resources
 from django.db.models import Count
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 
 from student.models import CourseEnrollment, UserProfile
-
 
 def resource_string(path):
     """
@@ -23,6 +23,8 @@ def resource_string(path):
 
 def choices_value_by_key(choices, key):
     result = filter(lambda c: c[0] == key, choices)
+    if six.PY3:
+        result = list(result)
     return result[0][1] if result else ''
 
 

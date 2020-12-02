@@ -5,11 +5,11 @@ import json
 import logging
 from collections import OrderedDict
 from datetime import datetime, date
+import six
 
 from celery.schedules import crontab
 from celery.task import periodic_task, task
 from courseware.courses import get_course_by_id
-from courseware.models import StudentModule
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
@@ -29,16 +29,7 @@ from xmodule.modulestore.django import modulestore
 
 from rg_instructor_analytics.models import AgeStats, EducationStats, GradeStatistic, LastGradeStatUpdate, GenderStats, ResidenceStats
 from rg_instructor_analytics.utils import get_microsite_courses, get_courses_learners, aggregate_users_stats
-
-try:
-    from openedx.core.release import RELEASE_LINE
-except ImportError:
-    RELEASE_LINE = 'ficus'
-
-if RELEASE_LINE == 'ficus' or RELEASE_LINE == 'ginkgo':
-    from rg_instructor_analytics.utils import ginkgo_ficus_specific as specific
-else:
-    from rg_instructor_analytics.utils import hawthorn_specific as specific
+from rg_instructor_analytics.utils.compatibility_imports import specific, StudentModule
 
 
 HAWTHORN = False
@@ -160,7 +151,13 @@ def grade_collector_stat():
     users_by_course = get_items_for_grade_update()
 
     collected_stat = []
-    for course_string_id, users in users_by_course.iteritems():
+
+    if six.PY2:
+        items = users_by_course.iteritems()
+    else:
+        items = users_by_course.items()
+
+    for course_string_id, users in items:
         try:
             course_key = CourseKey.from_string(str(course_string_id))
             course = get_course_by_id(course_key, depth=0)

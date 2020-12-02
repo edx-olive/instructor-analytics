@@ -14,20 +14,32 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import ensure_csrf_cookie
-from instructor.views.api import require_level
 from opaque_keys.edx.keys import CourseKey
 from rg_instructor_analytics_log_collector.models import EnrollmentByDay
+import six
 from util.views import ensure_valid_course_key
 
 from courseware.courses import get_course_by_id
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from rg_instructor_analytics.models import InstructorTabsConfig
+from rg_instructor_analytics.utils.compatibility_imports import RELEASE_LINE
 from student.models import CourseAccessRole
+
+
+if RELEASE_LINE == 'juniper':
+    from lms.djangoapps.instructor.views.api import require_course_permission
+    from lms.djangoapps.instructor import permissions
+    can_access = require_course_permission(permissions.CAN_RESEARCH)
+else:
+    from lms.djangoapps.instructor.views.api import require_level
+    can_access = require_level('staff')
+
 
 # NOTE(flying-pi) reload(sys) is used for restore method `setdefaultencoding`,
 # which set flag PYTHONIOENCODING to utf8.
-reload(sys)
-sys.setdefaultencoding('utf8')
+if six.PY2:
+    reload(sys)
+    sys.setdefaultencoding('utf8')
 
 
 TABS = (
@@ -166,7 +178,7 @@ def make_api_path(tail_url_name, args):
 @ensure_csrf_cookie
 @cache_control(no_cache=True, no_store=True, must_revalidate=True)
 @ensure_valid_course_key
-@require_level('staff')
+@can_access
 def instructor_analytics_dashboard(request, course_id):
     """
     Display the instructor dashboard for a course.
