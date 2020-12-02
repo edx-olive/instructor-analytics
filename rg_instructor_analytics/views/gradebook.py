@@ -3,6 +3,7 @@ Gradebook sub-tab module.
 """
 from collections import OrderedDict
 import json
+import six
 
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -15,9 +16,9 @@ from opaque_keys.edx.keys import CourseKey
 from rg_instructor_analytics_log_collector.models import DiscussionActivity, LastCourseVisitByUser, StudentStepCourse, \
     VideoViewsByUser
 
-import django_comment_client.utils as utils
 from lms.djangoapps.courseware.courses import get_course_by_id
 from rg_instructor_analytics.models import GradeStatistic
+from rg_instructor_analytics.utils.compatibility_imports import comment_utils
 from rg_instructor_analytics.utils.decorators import instructor_access_required
 from rg_instructor_analytics.mock_data import apply_data_mocker, StudentsInfoGradebookDataMocker, \
     StudentsInfoVideoViewsDataMocker, StudentsInfoDiscussionsDataMocker, StudentsInfoStudentStepDataMocker
@@ -193,7 +194,7 @@ class DiscussionActivityView(View):
         thread_names = []
         activity_count = []
 
-        category_map = utils.get_discussion_category_map(course, user)
+        category_map = comment_utils.get_discussion_category_map(course, user)
 
         discussion_activities = DiscussionActivity.objects.filter(
             user_id=user.id,
@@ -281,6 +282,8 @@ class StudentStepView(View):
                 units.append(target)
 
         steps = range(len(units))
+        if six.PY3:
+            steps = list(steps)
         x_default = [None] * len(tickvals)
         return JsonResponse(
             data={

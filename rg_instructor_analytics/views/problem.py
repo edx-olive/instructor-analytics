@@ -16,24 +16,16 @@ from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
 from courseware.courses import get_course_by_id
-from courseware.models import StudentModule
 from courseware.module_render import xblock_view
+from rg_instructor_analytics.utils.compatibility_imports import StudentModule
 from rg_instructor_analytics.utils.decorators import instructor_access_required
+from rg_instructor_analytics.utils.compatibility_imports import specific
 from rg_instructor_analytics.mock_data import apply_data_mocker, ProblemsLvl1DataMocker, ProblemsLvl2DataMocker, \
     ProblemsLvl3DataMocker
 
 QUESTION_SELECT_TYPE = 'select'
 QUESTION_MULTI_SELECT_TYPE = 'multySelect'
 
-try:
-    from openedx.core.release import RELEASE_LINE
-except ImportError:
-    RELEASE_LINE = 'ficus'
-
-if RELEASE_LINE == 'ficus' or RELEASE_LINE == 'ginkgo':
-    from rg_instructor_analytics.utils import ginkgo_ficus_specific as specific
-else:
-    from rg_instructor_analytics.utils import hawthorn_specific as specific
 
 
 class ProblemHomeWorkStatisticView(View):
@@ -116,7 +108,7 @@ class ProblemHomeWorkStatisticView(View):
                 stats['attempts'].append(0)
                 stats['problems'].append([])
                 stats['names'].append(subsection.display_name)
-                stats['subsection_id'].append(subsection.location.to_deprecated_string())
+                stats['subsection_id'].append(specific.get_block_str(subsection))
 
                 problems_in_hw = 0
 

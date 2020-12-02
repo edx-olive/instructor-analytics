@@ -5,6 +5,7 @@ from collections import OrderedDict
 import logging
 
 import pycountry
+import six
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext as _
 from rest_framework.decorators import list_route
@@ -79,15 +80,28 @@ class AdditionalInfoViewSet(ViewSet):
         empty = data.pop('empty', 0)
         percentage_data = self.normalize(data, total - empty)
 
-        countries = []
+        geo_stats = {
+            'total': total,
+            'unknown': empty,
+            'min': 100,
+            'max': 200,
+            'data': []
+        }
+        if six.PY2:
+            alpha2 = 'alpha2'
+            alpha3 = 'alpha3'
+        else:
+            alpha2 = 'alpha_2'
+            alpha3 = 'alpha_3'
+        
         for key, value in percentage_data.items():
             # TODO: Revise the possibility of recalculation "percentage_data"
             # taking into account not empty but failed users.
             # Maybe add failed users to the empty
             try:
-                country = pycountry.countries.get(alpha2=key)
-                countries.append({
-                    'id': country.alpha3,
+                country = pycountry.countries.get(**{alpha2: key})
+                geo_stats['data'].append({
+                    'id': getattr(country, alpha3),
                     'name': _(country.name),
                     'percent': value,
                     'value': data[key],
@@ -97,13 +111,6 @@ class AdditionalInfoViewSet(ViewSet):
                 # for example "XK" - Kosovo
                 logger.info("Can't get code for country with alpha2 '{}'".format(key))
 
-        geo_stats = {
-            'total': total,
-            'unknown': empty,
-            'min': 100,
-            'max': 200,
-            'data': countries
-        }
         return Response(geo_stats)
 
     @list_route(methods=['get'], url_name='gender-stats')

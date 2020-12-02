@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('course_id', openedx.core.djangoapps.xmodule_django.models.CourseKeyField(max_length=255, db_index=True)),
                 ('last_update', models.DateTimeField(db_index=True)),
                 ('state', models.BooleanField()),
-                ('student', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('student', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.deletion.CASCADE)),
             ],
         ),
         migrations.CreateModel(

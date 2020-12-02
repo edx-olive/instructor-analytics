@@ -14,6 +14,8 @@ The major changes between ginkgo and hawthorn releases, which affect the app are
  - StudentModule model: module_state_key was changed from LocationKeyField to UsageKeyField
 """
 
+from rg_instructor_analytics.utils.ginkgo_ficus_specific import get_block_str, get_course_key
+
 
 def get_problem_id(xblock):
     """
