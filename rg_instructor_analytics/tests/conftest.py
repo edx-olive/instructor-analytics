@@ -20,6 +20,9 @@ def mock_non_installed_edx_packages(request):
     sys.modules['openedx.core'] = MagicMock()
     sys.modules['openedx.core.djangoapps'] = MagicMock()
     sys.modules['openedx.core.djangoapps.xmodule_django'] = MagicMock()
+    sys.modules['openedx.core.djangoapps.content'] = MagicMock()
+    sys.modules['openedx.core.djangoapps.content.course_overviews'] = MagicMock()
+    sys.modules['openedx.core.djangoapps.content.course_overviews.models'] = MagicMock()
     import opaque_keys.edx.django.models  # to get from sys.modules
     sys.modules['openedx.core.djangoapps.xmodule_django.models'] = sys.modules['opaque_keys.edx.django.models']
 
@@ -28,8 +31,24 @@ def mock_non_installed_edx_packages(request):
     sys.modules['courseware.access'] = MagicMock()
     sys.modules['courseware.courses'] = MagicMock()
 
+    sys.modules['student'] = MagicMock()
+    sys.modules['student.models'] = MagicMock()
+
+    sys.modules['instructor'] = MagicMock()
+    sys.modules['instructor.views'] = MagicMock()
+    sys.modules['instructor.views.api'] = MagicMock()
+
+    sys.modules['util'] = MagicMock()
+    sys.modules['util.views'] = MagicMock()
+
     # rg_instructor_analytics_log_collector app could be loaded only after previous mocking
-    settings.INSTALLED_APPS += ('rg_instructor_analytics_log_collector', )
+    settings.INSTALLED_APPS += (
+        'rg_instructor_analytics_log_collector',
+        'rg_instructor_analytics',
+        'django.contrib.sites',
+        'django.contrib.contenttypes',
+        'django.contrib.auth'
+    )
     # reset app_configs, the dictionary with the configuration of loaded apps
     apps.app_configs = OrderedDict()
     # set ready to false so that populate will work

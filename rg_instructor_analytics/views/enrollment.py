@@ -96,9 +96,6 @@ class EnrollmentStatisticView(View):
         if not raw_data or raw_data[0][0] != from_date:
             raw_data.appendleft([from_date, 0, 0, get_prev_total_value()])
 
-        elif raw_data[0][3] == 0:  # try to get value for start point of 'total' if it is zero
-            raw_data[0][3] = get_prev_total_value()
-
         for day, enrolled, unenrolled, total in raw_data:
             prev_enroll_day = check_and_complete(day, prev_enroll_day, enrolled, enroll_list)
             prev_unenroll_day = check_and_complete(day, prev_unenroll_day, unenrolled, unenroll_list)
