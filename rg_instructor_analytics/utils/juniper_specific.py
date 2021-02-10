@@ -17,6 +17,9 @@ def get_problem_str(problem_id):
 
 def get_block_str(block):
     """
+    Convert block location to string.
 
+    :praram block: block usage key
+    :return: block location string
     """
     return str(block.location)
