@@ -4,7 +4,7 @@ except ImportError:
     RELEASE_LINE = 'ficus'
 
 
-if RELEASE_LINE == 'juniper':
+if RELEASE_LINE in ('juniper', 'koa'):
     import lms.djangoapps.discussion.django_comment_client.utils as comment_utils
     from lms.djangoapps.courseware.models import StudentModule
 else:
