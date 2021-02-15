@@ -1,0 +1,41 @@
+[
+  {
+    "site_id": "site_1",
+    "course_key": "activity_test_1",
+    "stored_data": {
+      "total": 6,
+      "UA": 1,
+      "empty": 5
+    }
+  },
+  {
+    "site_id": "site_1",
+    "course_key": "activity_test_1",
+    "stored_data": {
+      "total": 6,
+      "UA": 1,
+      "empty": 5
+    }
+  },
+  {
+    "site_id": "site_1",
+    "course_key": "activity_test_1",
+    "stored_data": {
+      "total": 6,
+      "UA": 1,
+      "empty": 5
+    }
+  },
+  {
+    "site_id": "site_1",
+    "course_key": "activity_test_1",
+    "stored_data": {
+      "total": 6,
+      "XK": 1,
+      "UA": 1,
+      "DE": 1,
+      "IT": 1,
+      "empty": 2
+    }
+  }
+]

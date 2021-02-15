@@ -167,3 +167,31 @@ def test_activity_daily_post_call(entry, mocker):
     assert response.status_code == 200
     _check_response_data({'course_activities', 'video_views', 'discussion_activities'},
         json.loads(response.content), entry['expected_output'], course_key)
+
+
+@pytest.mark.parametrize(
+    "entry",
+    load_params_from_json('rg_instructor_analytics/tests/resources/country_dataset.json'),
+)
+def test_geo_get_call(entry, mocker):
+    """
+    Verify standard post flow.
+    """
+    from rg_instructor_analytics.views.additional_info import AdditionalInfoViewSet
+
+    course_key = entry['course_key']
+    site_id = entry['site_id']
+    mocker.patch('rg_instructor_analytics.views.additional_info.AdditionalInfoViewSet.get_geo_stats', return_value=entry['stored_data'])
+
+    mocker.patch('rg_instructor_analytics.utils.decorators.has_access', return_value=True)
+    mocker.patch('rest_framework.permissions.IsAuthenticated', return_value=True)
+
+    request_data = {'course_key': course_key, 'site_id': site_id, 'course_id': course_key}
+    request = RequestFactory().get(
+        '/courses/{}/tab/instructor_analytics/api/additional-info/geo/'.format(course_key), request_data
+    )
+    request.user = MagicMock(is_active=True)
+
+    response = AdditionalInfoViewSet.as_view({'get': 'geo'})(request, course_id=course_key)
+
+    assert response.status_code == 200
