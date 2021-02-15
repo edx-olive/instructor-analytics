@@ -2,6 +2,7 @@
 Additional Info tab API endpoint.
 """
 from collections import OrderedDict
+import logging
 
 import pycountry
 from django.contrib.sites.models import Site
@@ -19,6 +20,8 @@ from rg_instructor_analytics.views.tab_fragment import get_available_courses
 from rg_instructor_analytics.mock_data import apply_data_mocker, AdditionalInfoGeoDataMocker, \
     AdditionalInfoGenderDataMocker, AdditionalInfoAgeDataMocker, AdditionalInfoEducationDataMocker
 from student.models import UserProfile
+
+logger = logging.getLogger(__name__)
 
 
 class InstructorPermission(BasePermission):
@@ -75,17 +78,31 @@ class AdditionalInfoViewSet(ViewSet):
         total = data.pop('total', 0)
         empty = data.pop('empty', 0)
         percentage_data = self.normalize(data, total - empty)
+
+        countries = []
+        for key, value in percentage_data.items():
+            # TODO: Revise the possibility of recalculation "percentage_data"
+            # taking into account not empty but failed users.
+            # Maybe add failed users to the empty
+            try:
+                country = pycountry.countries.get(alpha2=key)
+                countries.append({
+                    'id': country.alpha3,
+                    'name': _(country.name),
+                    'percent': value,
+                    'value': data[key],
+                })
+            except KeyError:
+                # some key alpha2 does not exist in pycountry.countries
+                # for example "XK" - Kosovo
+                logger.info("Can't get code for country with alpha2 '{}'".format(key))
+
         geo_stats = {
             'total': total,
             'unknown': empty,
             'min': 100,
             'max': 200,
-            'data': [{
-                'id': pycountry.countries.get(alpha2=key).alpha3,
-                'name': _(pycountry.countries.get(alpha2=key).name),
-                'percent': value,
-                'value': data[key],
-            } for key, value in percentage_data.items()]
+            'data': countries
         }
         return Response(geo_stats)
 

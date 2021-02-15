@@ -7,7 +7,7 @@ pytest-django==3.7.0
 pytest-cov==2.8.1
 pytest-mock==2.0.0
 django-mock-queries==2.1.5
-pycountry==19.8.18
+pycountry==1.2.0
 jsonfield==2.0.2
 numpy==1.16.5
 -e git+git@gitlab.raccoongang.com:rg-developers/instructor-analytics-log-collector.git@v2.3.0#egg=rg_instructor_analytics_log_collector
