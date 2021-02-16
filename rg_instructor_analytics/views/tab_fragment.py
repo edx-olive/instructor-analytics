@@ -26,7 +26,7 @@ from rg_instructor_analytics.utils.compatibility_imports import RELEASE_LINE
 from student.models import CourseAccessRole
 
 
-if RELEASE_LINE == 'juniper':
+if RELEASE_LINE in ('juniper', 'koa'):
     from lms.djangoapps.instructor.views.api import require_course_permission
     from lms.djangoapps.instructor import permissions
     can_access = require_course_permission(permissions.CAN_RESEARCH)
