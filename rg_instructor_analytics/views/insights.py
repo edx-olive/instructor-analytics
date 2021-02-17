@@ -32,7 +32,7 @@ from lms.djangoapps.instructor_task.models import ReportStore
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 from rg_instructor_analytics.utils.mixins import InstructorRequiredMixin
-from rg_instructor_analytics.utils.helpers import get_all_orgs_by_selected_sites
+from rg_instructor_analytics.utils.helpers import get_all_orgs_by_selected_sites, SGA_SITES
 from rg_instructor_analytics_log_collector.models import EnrollmentByDay
 from student.models import CourseEnrollment
 
@@ -121,7 +121,7 @@ class InsightsStatisticView(InstructorRequiredMixin, View):
                 "count_pages": paginator.num_pages,
                 "current_page": page + 1,
                 "microsites": list(microsites),
-                "ms_selected": int(ms_selected or '0'),
+                "ms_selected": ms_selected if ms_selected == SGA_SITES else int(ms_selected or '0'),
             },
             status=200,
             content_type='application/json',

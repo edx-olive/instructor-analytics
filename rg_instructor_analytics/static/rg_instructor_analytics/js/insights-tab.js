@@ -21,7 +21,7 @@ function InsightsTab(button, content) {
 
     sitesSelector.on('change', function () {
         var selectedMicrositeSelector = sitesSelector.children("option:selected");
-        selectedMicrositeId = parseInt(selectedMicrositeSelector.val()) || undefined;
+        selectedMicrositeId = parseInt(selectedMicrositeSelector.val()) || selectedMicrositeSelector.val()
         InsightsTab.loadTabData(1, null, null, selectedMicrositeId);
     });
 
@@ -116,11 +116,13 @@ function InsightsTab(button, content) {
     }
 
     function renderSitesSelector(sites, selected) {
-        let selector = "<option value=''>All courses</option>";
+        let options =
+          `<option value=''>${django.gettext("All courses")}</option>
+           <option value='sga_sites' ${'sga_sites' === selected ? 'selected' : ''}>${django.gettext("SGA All Courses")}</option>`;
         for (let i = 0; i < sites.length; i++) {
-            selector += `<option value=${sites[i]['id']} ${sites[i]['id'] === selected ? 'selected' : ''}>${sites[i]['name']}</option>`
+            options += `<option value=${sites[i]['id']} ${sites[i]['id'] === selected ? 'selected' : ''}>${sites[i]['name']}</option>`
         }
-        return selector;
+        return options;
     }
 
     function renderPagination(count, current) {
