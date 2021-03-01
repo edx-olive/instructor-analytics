@@ -1,7 +1,7 @@
 """
 Module for celery tasks.
 """
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from datetime import datetime
 import json
 import logging
@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
-from django.db.models import F
+from django.db.models import F, Subquery
 from django.http.response import Http404
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -23,9 +23,10 @@ from opaque_keys.edx.keys import CourseKey
 from courseware.courses import get_course_by_id
 from courseware.models import StudentModule
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
-from rg_instructor_analytics.models import GradeStatistic, LastGradeStatUpdate
 from student.models import CourseEnrollment
 from xmodule.modulestore.django import modulestore
+from rg_instructor_analytics.models import GradeStatistic, LastGradeStatUpdate
+from rg_instructor_analytics.utils.constants import NON_GRADED_MODULE_TYPES
 
 try:
     from openedx.core.release import RELEASE_LINE
@@ -48,6 +49,7 @@ except ImportError:
     except ImportError:
         # Hawthorn release:
         from lms.djangoapps.grades.course_grade_factory import CourseGradeFactory
+
         HAWTHORN = True
 
 log = logging.getLogger(__name__)
@@ -78,46 +80,34 @@ def get_items_for_grade_update():
     # otherwise - generate diff, based on the student activity.
     if last_update_info:
         items_for_update = list(
-            StudentModule.objects
-            .filter(module_type__exact='problem', modified__gt=last_update_info.last_update)
+            StudentModule.objects.filter(
+                modified__gt=last_update_info.last_update,
+                student__id__in=Subquery(CourseEnrollment.objects.values('user__id')),
+            )
+            .exclude(module_type__in=NON_GRADED_MODULE_TYPES)
             .values('student__id', 'course_id')
             .order_by('student__id', 'course_id')
             .distinct()
         )
         items_for_update += list(
-            CourseEnrollment.objects
-            .filter(created__gt=last_update_info.last_update)
+            CourseEnrollment.objects.filter(created__gt=last_update_info.last_update)
             .values('user__id', 'course_id')
             .annotate(student__id=F('user__id'))
             .values('student__id', 'course_id')
             .distinct()
         )
-        # Remove records for students who never enrolled
-        for item in items_for_update:
-            try:
-                course_key = specific.get_course_key(item['course_id'])
-            except InvalidKeyError:
-                continue
-            enrolled_by_course = CourseEnrollment.objects.filter(
-                course_id=course_key
-            ).values_list('user__id', flat=True)
-            if item['student__id'] not in enrolled_by_course:
-                items_for_update.remove(item)
-
     else:
         items_for_update = (
-            CourseEnrollment.objects
-            .values('user__id', 'course_id')
+            CourseEnrollment.objects.values('user__id', 'course_id')
             .annotate(student__id=F('user__id'))
             .values('student__id', 'course_id')
             .distinct()
         )
 
-    users_by_course = {}
+    users_by_course = defaultdict(list)
     for item in items_for_update:
-        if item['course_id'] not in users_by_course:
-            users_by_course[item['course_id']] = []
         users_by_course[item['course_id']].append(item['student__id'])
+
     return users_by_course
 
 
@@ -136,14 +126,15 @@ def get_grade_summary(user_id, course):
 
 
 cron_grade_settings = getattr(
-    settings, 'RG_ANALYTICS_GRADE_STAT_UPDATE',
+    settings,
+    'RG_ANALYTICS_GRADE_STAT_UPDATE',
     {
         'minute': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_MINUTE', '0')),
         'hour': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_HOUR', '*/6')),
         'day_of_month': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_DOM', '*')),
         'day_of_week': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_DOW', '*')),
         'month_of_year': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_MONTH', '*')),
-    }
+    },
 )
 
 
@@ -153,7 +144,7 @@ def grade_collector_stat():
     Task for update user grades.
     """
     this_update_date = datetime.now()
-    logging.info('Task grade_collector_stat started at {}'.format(this_update_date))
+    log.info('Task grade_collector_stat started at {}'.format(this_update_date))
     users_by_course = get_items_for_grade_update()
 
     collected_stat = []
@@ -177,7 +168,7 @@ def grade_collector_stat():
                 collected_stat.append(
                     (
                         {'course_id': course_key, 'student_id': user},
-                        {'exam_info': json.dumps(exam_info), 'total': grades['percent']}
+                        {'exam_info': json.dumps(exam_info), 'total': grades['percent']},
                     )
                 )
 
