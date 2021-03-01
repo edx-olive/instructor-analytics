@@ -3,7 +3,7 @@ Manage.py command for updating old grades/ not synced
 """
 import json
 import logging
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from datetime import datetime
 
 from django.conf import settings
@@ -19,8 +19,12 @@ from courseware.courses import get_course_by_id
 from courseware.models import StudentModule
 from lms.djangoapps.grades.course_grade_factory import CourseGradeFactory
 from rg_instructor_analytics.models import GradeStatistic, LastGradeStatUpdate
+from rg_instructor_analytics.utils.constants import NON_GRADED_MODULE_TYPES
 from student.models import CourseEnrollment
 from xmodule.modulestore.django import modulestore
+
+
+log = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -37,7 +41,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('course_id', nargs='*', help='Sync/Update grades for courses.')
 
-
     def handle(self, *args, **options):
         """
         Handle command.
@@ -48,35 +51,32 @@ class Command(BaseCommand):
             course_keys = [CourseKey.from_string(arg) for arg in options['course_id']]
 
         if not course_keys:
-            logging.fatal('No courses specified.')
+            log.fatal('No courses specified.')
             return
 
         this_update_date = datetime.now()
-        logging.info('Sync grades started at {}'.format(this_update_date))
+        log.info('Sync grades started at {}'.format(this_update_date))
 
         items_for_update = []
         for course_key in course_keys:
             items_for_update += list(
-                StudentModule.objects
-                    .filter(module_type__exact='problem', course_id__exact=course_key)
-                    .values('student__id', 'course_id')
-                    .order_by('student__id', 'course_id')
-                    .distinct()
+                StudentModule.objects.filter(course_id__exact=course_key)
+                .exclude(module_type__in=NON_GRADED_MODULE_TYPES)
+                .values('student__id', 'course_id')
+                .order_by('student__id', 'course_id')
+                .distinct()
             )
 
             items_for_update += list(
-                CourseEnrollment.objects
-                    .filter(course_id__exact=course_key)
-                    .values('user__id', 'course_id')
-                    .annotate(student__id=F('user__id'))
-                    .values('student__id', 'course_id')
-                    .distinct()
+                CourseEnrollment.objects.filter(course_id__exact=course_key)
+                .values('user__id', 'course_id')
+                .annotate(student__id=F('user__id'))
+                .values('student__id', 'course_id')
+                .distinct()
             )
 
-        users_by_course = {}
+        users_by_course = defaultdict(list)
         for item in items_for_update:
-            if item['course_id'] not in users_by_course:
-                users_by_course[item['course_id']] = []
             users_by_course[item['course_id']].append(item['student__id'])
 
         collected_stat = []
@@ -100,7 +100,7 @@ class Command(BaseCommand):
                     collected_stat.append(
                         (
                             {'course_id': course_key, 'student_id': user},
-                            {'exam_info': json.dumps(exam_info), 'total': grades['percent']}
+                            {'exam_info': json.dumps(exam_info), 'total': grades['percent']},
                         )
                     )
 
