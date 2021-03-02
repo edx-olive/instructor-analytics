@@ -57,7 +57,7 @@ def send_email(subject, message, students):
     html_content = render_to_string('rg_instructor_analytics/send_email.html', context)
     text_content = strip_tags(html_content)
     from_address = configuration_helpers.get_value('email_from_address', settings.DEFAULT_FROM_EMAIL)
-    msg = EmailMultiAlternatives(subject, text_content, from_address, students)
+    msg = EmailMultiAlternatives(subject, text_content, from_address, [], bcc=students)
     msg.encoding = 'UTF-8'
     msg.attach_alternative(html_content, "text/html")
     msg.send(fail_silently=False)
