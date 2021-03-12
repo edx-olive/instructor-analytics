@@ -93,7 +93,7 @@ class AdditionalInfoViewSet(ViewSet):
         else:
             alpha2 = 'alpha_2'
             alpha3 = 'alpha_3'
-        
+
         for key, value in percentage_data.items():
             # TODO: Revise the possibility of recalculation "percentage_data"
             # taking into account not empty but failed users.
@@ -106,7 +106,7 @@ class AdditionalInfoViewSet(ViewSet):
                     'percent': value,
                     'value': data[key],
                 })
-            except KeyError:
+            except (KeyError, AttributeError):
                 # some key alpha2 does not exist in pycountry.countries
                 # for example "XK" - Kosovo
                 logger.info("Can't get code for country with alpha2 '{}'".format(key))
