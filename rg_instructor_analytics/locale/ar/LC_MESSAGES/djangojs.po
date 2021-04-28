@@ -1,0 +1,128 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
+"X-Generator: Poedit 2.4.1\n"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:42
+#: static/rg_instructor_analytics/js/enrollment-tab.js:62
+msgid "Total"
+msgstr "المجموع"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:51
+msgid "Enrollments/Unenrollments"
+msgstr "التسجيلات/إلغاءات التسجيل"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:78
+msgid "Enrollments"
+msgstr "التسجيلات"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:93
+msgid "Unenrollments"
+msgstr "إلغاءات التسجيل"
+
+#: static/rg_instructor_analytics/js/funnel-tab.js:95
+msgid "Hide emails"
+msgstr "إخفاء البريد الإلكتروني"
+
+#: static/rg_instructor_analytics/js/funnel-tab.js:99
+msgid "Show emails"
+msgstr "إظهار البريد الإلكتروني"
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:283
+msgid "Search students"
+msgstr "البحث عن الطلاب"
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:375
+msgid "Date of the last Course visit:"
+msgstr "تاريخ زيارة آخر مساق:"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:96
+msgid "DETAILS"
+msgstr "تفاصيل"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:213
+msgid "Subsection"
+msgstr "القسم الفرعي"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:341
+msgid "Problem"
+msgstr "مشكلة"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:521
+#: static/rg_instructor_analytics/js/problem-tab.js:540
+msgid "Show Plot"
+msgstr "عرض الرسم"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:528
+msgid "Hide Plot"
+msgstr "إخفاء الرسم"
+
+#: static/rg_instructor_analytics/js/suggestions-tab.js:20
+msgid "No suggestions so far."
+msgstr "لا يوجد اقتراحات حتى الآن."
+
+#: static/rg_instructor_analytics/js/suggestions-tab.js:39
+msgid "Go to item"
+msgstr "انتقل إلى العنصر"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:22
+msgid "%(blockTitle)s Details"
+msgstr "تفاصيل %(blockTitle)s"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:27
+msgid ""
+"%(blockTitle)s statistics is based on submits of %(studentsEmailsLength)s "
+"student(s)"
+msgstr ""
+"إحصاءات %(blockTitle)s مبنية على التقديمات من قبل %(studentsEmailsLength)s "
+"طالب"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:39
+msgid "Nothing to show"
+msgstr "لا يوجد شيء لإظهاره"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:31
+msgid "Video"
+msgstr "فيديو"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:41
+msgid "Discussion"
+msgstr "نقاش"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:51
+msgid "Visit"
+msgstr "زيارة"
+
+#: static/rg_instructor_analytics/js/clusters-tab.js:123
+msgid "Percent:"
+msgstr "بالمئة:"
+
+#: static/rg_instructor_analytics/js/clusters-tab.js:123
+msgid "Percent"
+msgstr "بالمئة"
+
+# Need to aply gettext syntax in the source file
+#: static/rg_instructor_analytics/js/funnel-tab.js:175
+msgid "stuck: "
+msgstr "عالق: "
+
+# Need to aply gettext syntax in the source file
+#: static/rg_instructor_analytics/js/enrollment-tab.js:83
+msgid " users"
+msgstr " مستخدمين"
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:339
+msgid "Unenroll"
+msgstr "إلغاء التسجيل"
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:282
+msgid "total"
+msgstr "المجموع"
