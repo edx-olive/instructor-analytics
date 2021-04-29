@@ -45,3 +45,13 @@ def get_course_key(course_id):
     :return: CourseKey object
     """
     return CourseKey.from_string(course_id)
+
+
+def get_block_str(block):
+    """
+    Convert block location to string.
+
+    :praram block: block usage key
+    :return: block location string
+    """
+    return block.location.to_deprecated_string()

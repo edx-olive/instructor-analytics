@@ -14,21 +14,12 @@ from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
 from courseware.courses import get_course_by_id
-from courseware.models import StudentModule
+from rg_instructor_analytics.utils.compatibility_imports import StudentModule
 from rg_instructor_analytics import tasks
 from rg_instructor_analytics.utils.decorators import instructor_access_required
+from rg_instructor_analytics.utils.compatibility_imports import specific
 from rg_instructor_analytics.mock_data import apply_data_mocker, FunnelsDataMocker
 from student.models import CourseEnrollment
-
-try:
-    from openedx.core.release import RELEASE_LINE
-except ImportError:
-    RELEASE_LINE = 'ficus'
-
-if RELEASE_LINE == 'ficus' or RELEASE_LINE == 'ginkgo':
-    from rg_instructor_analytics.utils import ginkgo_ficus_specific as specific
-else:
-    from rg_instructor_analytics.utils import hawthorn_specific as specific
 
 
 IGNORED_ENROLLMENT_MODES = []
@@ -41,7 +32,7 @@ def course_element_info(element, level):
     return {
         'level': level,
         'name': element.display_name,
-        'id': element.location.to_deprecated_string(),
+        'id': specific.get_block_str(element),
         'student_count': 0,
         'student_emails': [],
         'student_count_in': 0,
