@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('course_id', openedx.core.djangoapps.xmodule_django.models.CourseKeyField(max_length=255, db_index=True)),
                 ('exam_info', models.TextField()),
                 ('total', models.IntegerField()),
-                ('student', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('student', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.deletion.CASCADE)),
             ],
         ),
         migrations.CreateModel(

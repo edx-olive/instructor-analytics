@@ -2,9 +2,11 @@
 Suggestions tab module.
 """
 from abc import ABCMeta, abstractmethod
-from itertools import izip
+import six
+from six.moves import zip
 
 from django.http import HttpResponseBadRequest
+from django.http.response import JsonResponse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views.generic import View
@@ -13,7 +15,6 @@ from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
 from course_modes.models import CourseMode
-from django_comment_client.utils import JsonResponse
 from rg_instructor_analytics.utils.decorators import instructor_access_required
 from rg_instructor_analytics.views.funnel import GradeFunnelView
 from rg_instructor_analytics.views.problem import ProblemHomeWorkStatisticView
@@ -164,9 +165,11 @@ class ProblemSuggestion(BaseSuggestion):
         """
         problem_stat = ProblemHomeWorkStatisticView().get_homework_stat(course_key)
         problem_stat['success'] = map(
-            lambda (grade, attempts): attempts and grade / attempts,
-            izip(problem_stat['correct_answer'], problem_stat['attempts'])
+            lambda args: args[0] and args[1] / args[0],  # where args[1] is grade, args[0] is attempts
+            zip(problem_stat['correct_answer'], problem_stat['attempts'])
         )
+        if six.PY3:
+            problem_stat['success'] = list(problem_stat['success'])
 
         problems = np.array(problem_stat['success'])
         problems = problems[np.nonzero(problems)]

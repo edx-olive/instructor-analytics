@@ -76,7 +76,7 @@ urlpatterns = [
     url(r'^api/suggestion/$', SuggestionView.as_view(), name='suggestion'),
 
     # DRF based URLs:
-    url(r'^api/', include(router.urls, namespace='api')),
+    url(r'^api/', include((router.urls, 'api'), namespace='api')),
 
     url(r'^$', instructor_analytics_dashboard, name='instructor_analytics_dashboard'),
 ]
