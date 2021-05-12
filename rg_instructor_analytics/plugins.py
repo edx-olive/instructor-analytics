@@ -5,8 +5,8 @@ from django.conf import settings
 from django.core.files.storage import get_storage_class
 from django.utils.translation import ugettext_noop
 
-from courseware.access import has_access
-from courseware.tabs import CourseTab
+from lms.djangoapps.courseware.access import has_access
+from lms.djangoapps.courseware.tabs import CourseTab
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 
 

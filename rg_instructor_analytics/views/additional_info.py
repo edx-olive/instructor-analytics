@@ -4,22 +4,33 @@ Additional Info tab API endpoint.
 from collections import OrderedDict
 import logging
 
-import pycountry
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext as _
+import pycountry
 from rest_framework.decorators import list_route
 from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
+from common.djangoapps.student.models import UserProfile
+from rg_instructor_analytics.mock_data import (
+    AdditionalInfoAgeDataMocker,
+    AdditionalInfoEducationDataMocker,
+    AdditionalInfoGenderDataMocker,
+    AdditionalInfoGeoDataMocker,
+    apply_data_mocker,
+)
 from rg_instructor_analytics.models import (
-    AgeStats, EducationStats, GenderStats, ResidenceStats,
-    GENDER_CHOICES, GENERATION_CHOICES, LEVEL_OF_EDUCATION_CHOICES)
+    AgeStats,
+    EducationStats,
+    GENDER_CHOICES,
+    GenderStats,
+    GENERATION_CHOICES,
+    LEVEL_OF_EDUCATION_CHOICES,
+    ResidenceStats,
+)
 from rg_instructor_analytics.utils import choices_value_by_key
 from rg_instructor_analytics.views.tab_fragment import get_available_courses
-from rg_instructor_analytics.mock_data import apply_data_mocker, AdditionalInfoGeoDataMocker, \
-    AdditionalInfoGenderDataMocker, AdditionalInfoAgeDataMocker, AdditionalInfoEducationDataMocker
-from student.models import UserProfile
 
 logger = logging.getLogger(__name__)
 
@@ -314,6 +325,7 @@ class AdditionalInfoViewSet(ViewSet):
     def get_geo_stats(self, site_id=None, course_id=None):
         """
         Make corresponding scope (Course | Site | system-wide) country of geo stats.
+
         :param site_id: (int)
         :param course_id: (str)
         :return: (dict)
@@ -329,6 +341,7 @@ class AdditionalInfoViewSet(ViewSet):
     def get_gender_stats(self, site_id=None, course_id=None):
         """
         Make corresponding scope (Course | Site | system-wide) gender stats.
+
         :param site_id: (int)
         :param course_id: (str)
         :return: (dict)
@@ -344,6 +357,7 @@ class AdditionalInfoViewSet(ViewSet):
     def get_age_stats(self, site_id=None, course_id=None):
         """
         Make corresponding scope (Course | Site | system-wide) year of birth stats.
+
         :param site_id: (int)
         :param course_id: (str)
         :return: (dict)
@@ -359,6 +373,7 @@ class AdditionalInfoViewSet(ViewSet):
     def get_education_stats(self, site_id=None, course_id=None):
         """
         Make corresponding scope (Course | Site | system-wide) level of education stats.
+
         :param site_id: (int)
         :param course_id: (str)
         :return: (dict)
@@ -393,7 +408,7 @@ class AdditionalInfoViewSet(ViewSet):
 
     def clusterize_by_generations(self, data):
         """
-        Get number of users by generation, given numbers of users by year of birth
+        Get number of users by generation, given numbers of users by year of birth.
         """
         result = OrderedDict.fromkeys(GENERATION_CHOICES.keys(), 0)
         for key, val in data.items():

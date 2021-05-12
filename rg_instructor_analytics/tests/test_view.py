@@ -2,14 +2,15 @@
 Tests for enrollment view.
 """
 import calendar
-import json
 from datetime import datetime
+import json
 import sys
 
 from django.test import RequestFactory
-from django_mock_queries.query import MockSet, MockModel
+from django_mock_queries.query import MockModel, MockSet
 from mock import MagicMock
 import pytest
+
 from .utils import load_params_from_json
 
 
@@ -37,12 +38,12 @@ def _setup_mock_db_data(data_source, mocker, course_key, data):
 
 def _check_response_data(expected_sections, response_data, expected_data, course_key):
     """
-    Split response checking by parts to simplify mismatch detection if test fails
+    Split response checking by parts to simplify mismatch detection if test fails.
     """
     for section in expected_sections:
         for i in range(len(response_data[section])):
             data_line = response_data[section][i]
-            data_line[0] = _date_timestamp_to_human_readable_string(data_line[0]/1000)
+            data_line[0] = _date_timestamp_to_human_readable_string(data_line[0] / 1000)
             assert data_line == expected_data[section][i], "{}, {}".format(course_key, section)
 
         # check there is no missed expected points
@@ -129,10 +130,18 @@ def test_activity_daily_post_call(entry, mocker):
     course_key = entry['course_key']
     _setup_mock_db_data('rg_instructor_analytics.views.activity.CourseVisitsByDay.objects',
                         mocker, course_key, entry['stored_data']['course_activities'])
-    mock_video_dataset = _setup_mock_db_data('rg_instructor_analytics.views.activity.VideoViewsByDay.objects',
-                        mocker, course_key, entry['stored_data']['video_views'])
-    _setup_mock_db_data('rg_instructor_analytics.views.activity.DiscussionActivityByDay.objects',
-                        mocker, course_key, entry['stored_data']['discussion_activities'])
+    mock_video_dataset = _setup_mock_db_data(
+        'rg_instructor_analytics.views.activity.VideoViewsByDay.objects',
+        mocker,
+        course_key,
+        entry['stored_data']['video_views']
+    )
+    _setup_mock_db_data(
+        'rg_instructor_analytics.views.activity.DiscussionActivityByDay.objects',
+        mocker,
+        course_key,
+        entry['stored_data']['discussion_activities']
+    )
 
     mocker.patch('rg_instructor_analytics.utils.decorators.has_access', return_value=True)
     mocker.patch('rg_instructor_analytics.views.activity.CourseKey.from_string', return_value=course_key)
@@ -143,8 +152,8 @@ def test_activity_daily_post_call(entry, mocker):
     def mock_annotate_count_video_id(*args, **kwargs):
         qs = mock_video_dataset.filter(
             course=course_key,
-            day__range=(datetime.utcfromtimestamp(from_date).date(), datetime.utcfromtimestamp(to_date).date())) \
-            .values_list('day', 'total')
+            day__range=(datetime.utcfromtimestamp(from_date).date(), datetime.utcfromtimestamp(to_date).date())
+        ).values_list('day', 'total')
 
         res = dict()
         for day, total in qs:
@@ -165,8 +174,12 @@ def test_activity_daily_post_call(entry, mocker):
     response = ActivityView.as_view()(request, course_id=course_key, slug='daily')
 
     assert response.status_code == 200
-    _check_response_data({'course_activities', 'video_views', 'discussion_activities'},
-        json.loads(response.content), entry['expected_output'], course_key)
+    _check_response_data(
+        {'course_activities', 'video_views', 'discussion_activities'},
+        json.loads(response.content),
+        entry['expected_output'],
+        course_key
+    )
 
 
 @pytest.mark.parametrize(
@@ -181,7 +194,10 @@ def test_geo_get_call(entry, mocker):
 
     course_key = entry['course_key']
     site_id = entry['site_id']
-    mocker.patch('rg_instructor_analytics.views.additional_info.AdditionalInfoViewSet.get_geo_stats', return_value=entry['stored_data'])
+    mocker.patch(
+        'rg_instructor_analytics.views.additional_info.AdditionalInfoViewSet.get_geo_stats',
+        return_value=entry['stored_data']
+    )
 
     mocker.patch('rg_instructor_analytics.utils.decorators.has_access', return_value=True)
     mocker.patch('rest_framework.permissions.IsAuthenticated', return_value=True)

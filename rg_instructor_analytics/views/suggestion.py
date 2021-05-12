@@ -12,7 +12,7 @@ import numpy as np
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
-from course_modes.models import CourseMode
+from common.djangoapps.course_modes.models import CourseMode
 from rg_instructor_analytics.utils.decorators import instructor_access_required
 from rg_instructor_analytics.views.funnel import GradeFunnelView
 from rg_instructor_analytics.views.problem import ProblemHomeWorkStatisticView

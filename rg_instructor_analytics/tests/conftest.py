@@ -3,7 +3,6 @@ import sys
 
 from django.apps import apps
 from django.conf import settings
-
 from mock import MagicMock
 import pytest
 
@@ -19,24 +18,25 @@ def _mock_non_installed_modules(*modules_list):
 
 @pytest.fixture(scope="session", autouse=True)
 def prepare_app_to_tests(request):
-    """Break out dependencies from edx-platform"""
+    """
+    Break out dependencies from edx-platform.
+    """
     _mock_non_installed_modules(
+        'common.djangoapps.student.models',
+        'common.djangoapps.util.views',
+        'lms.djangoapps.courseware.access',
+        'lms.djangoapps.courseware.courses',
+        'lms.djangoapps.courseware.models',
+        'lms.djangoapps.django_comment_client.utils',
+        'lms.djangoapps.instructor.views.api',
         'openedx.core.djangoapps.xmodule_django',
         'openedx.core.djangoapps.content.course_overviews.models',
-        'courseware.access',
-        'courseware.courses',
-        'courseware.models',
-        'student.models',
-        'instructor.views.api',
-        'util.views',
-        'lms.djangoapps.django_comment_client.utils',
-        'lms.djangoapps.instructor.views.api'
     )
     # TODO: rewrite rg_instructor_analytics_log_collector with CourseKeyField from opaque_keys and remove keys mocking
     # For CourseKeyField class
     # openedx.core.djangoapps.xmodule_django.models.CourseKeyField
     # is wrapper around opaque_keys.edx.django.models.CourseKeyField with deprecation warning
-    import opaque_keys.edx.django.models  # to get from sys.modules
+    import opaque_keys.edx.django.models  # noqa: F401 to get from sys.modules
     sys.modules['openedx.core.djangoapps.xmodule_django.models'] = sys.modules['opaque_keys.edx.django.models']
 
     # rg_instructor_analytics_log_collector app could be loaded only after previous mocking
@@ -45,7 +45,7 @@ def prepare_app_to_tests(request):
         'rg_instructor_analytics',
         'django.contrib.sites',
         'django.contrib.contenttypes',
-        'django.contrib.auth'
+        'django.contrib.auth',
     )
     # reset app_configs, the dictionary with the configuration of loaded apps
     apps.app_configs = OrderedDict()

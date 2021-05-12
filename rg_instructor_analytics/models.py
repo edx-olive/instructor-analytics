@@ -11,10 +11,10 @@ from django.utils.translation import ugettext_lazy as _
 from jsonfield.fields import JSONField
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
-from openedx.core.djangoapps.xmodule_django.models import CourseKeyField
 
-from rg_instructor_analytics.utils import get_courses_learners, aggregate_users_stats
-from student.models import CourseEnrollment
+from common.djangoapps.student.models import CourseEnrollment
+from openedx.core.djangoapps.xmodule_django.models import CourseKeyField
+from rg_instructor_analytics.utils import aggregate_users_stats, get_courses_learners
 
 log = logging.getLogger(__name__)
 
@@ -126,6 +126,7 @@ class GenderStats(models.Model):
     """
     Model for collecting gender statistics per Site.
     """
+
     site = models.ForeignKey(Site, related_name='gender_stats', on_delete=models.CASCADE,
                              db_index=True, null=True, blank=True)
     total = models.PositiveIntegerField(verbose_name=_("total users"), default=0)
@@ -133,7 +134,7 @@ class GenderStats(models.Model):
     values = JSONField(null=False, blank=True, load_kwargs={'object_pairs_hook': collections.OrderedDict})
     date = models.DateField(_("date"))
 
-    class Meta():
+    class Meta:
         verbose_name = _("gender statistics")
         verbose_name_plural = _("gender statistics")
         unique_together = ('site', 'date')
@@ -169,6 +170,7 @@ class EducationStats(models.Model):
     """
     Model for collecting users' education level statistics per Site.
     """
+
     site = models.ForeignKey(Site, related_name='education_stats', on_delete=models.CASCADE,
                              db_index=True, null=True, blank=True)
     total = models.PositiveIntegerField(verbose_name=_("total users"), default=0)
@@ -176,7 +178,7 @@ class EducationStats(models.Model):
     values = JSONField(null=False, blank=True, load_kwargs={'object_pairs_hook': collections.OrderedDict})
     date = models.DateField(_("date"))
 
-    class Meta():
+    class Meta:
         verbose_name = _("education statistics")
         verbose_name_plural = _("education statistics")
         unique_together = ('site', 'date')
@@ -214,6 +216,7 @@ class AgeStats(models.Model):
     """
     Model for collecting users' year of birth statistics per Site.
     """
+
     site = models.ForeignKey(Site, related_name='age_stats', on_delete=models.CASCADE,
                              db_index=True, null=True, blank=True)
     total = models.PositiveIntegerField(verbose_name=_("total users"), default=0)
@@ -221,7 +224,7 @@ class AgeStats(models.Model):
     values = JSONField(null=False, blank=True, load_kwargs={'object_pairs_hook': collections.OrderedDict})
     date = models.DateField(_("date"))
 
-    class Meta():
+    class Meta:
         verbose_name = _("age statistics")
         verbose_name_plural = _("age statistics")
         unique_together = ('site', 'date')
@@ -257,6 +260,7 @@ class ResidenceStats(models.Model):
     """
     Model for collecting users' country of residence statistics per Site.
     """
+
     site = models.ForeignKey(Site, related_name='residence_stats', on_delete=models.CASCADE,
                              db_index=True, null=True, blank=True)
     total = models.PositiveIntegerField(verbose_name=_("total users"), default=0)
@@ -264,7 +268,7 @@ class ResidenceStats(models.Model):
     values = JSONField(null=False, blank=True, load_kwargs={'object_pairs_hook': collections.OrderedDict})
     date = models.DateField(_("date"))
 
-    class Meta():
+    class Meta:
         verbose_name = _("geo statistics")
         verbose_name_plural = _("geo statistics")
         unique_together = ('site', 'date')

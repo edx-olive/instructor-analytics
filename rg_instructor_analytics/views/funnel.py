@@ -13,13 +13,13 @@ from django.views.generic import View
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
-from courseware.courses import get_course_by_id
+from common.djangoapps.student.models import CourseEnrollment
+from lms.djangoapps.courseware.courses import get_course_by_id
 from lms.djangoapps.courseware.models import StudentModule
 from rg_instructor_analytics import tasks
-from rg_instructor_analytics.utils.decorators import instructor_access_required
-from rg_instructor_analytics.utils import juniper_specific as specific
 from rg_instructor_analytics.mock_data import apply_data_mocker, FunnelsDataMocker
-from student.models import CourseEnrollment
+from rg_instructor_analytics.utils import juniper_specific as specific
+from rg_instructor_analytics.utils.decorators import instructor_access_required
 
 
 IGNORED_ENROLLMENT_MODES = []

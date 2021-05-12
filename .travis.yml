@@ -3,6 +3,6 @@ os:
 sudo: false
 language: python
 python:
-- "2.7"
+- "3.8"
 install: pip install --upgrade tox-travis setuptools
 script: tox

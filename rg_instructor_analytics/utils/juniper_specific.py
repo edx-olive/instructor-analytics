@@ -1,5 +1,5 @@
 """
-Remove usages of opaque_key's from_deprecated_string and to_deprecated_string
+Remove usages of opaque_key's from_deprecated_string and to_deprecated_string.
 """
 
 

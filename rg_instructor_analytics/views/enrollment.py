@@ -15,8 +15,8 @@ from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 from rg_instructor_analytics_log_collector.models import EnrollmentByDay
 
-from rg_instructor_analytics.utils.decorators import instructor_access_required
 from rg_instructor_analytics.mock_data import apply_data_mocker, EnrollmentsDataMocker
+from rg_instructor_analytics.utils.decorators import instructor_access_required
 
 JS_URL = '{static_url}rg_instructor_analytics/js/'.format(static_url=settings.STATIC_URL)
 CSS_URL = '{static_url}rg_instructor_analytics/css/'.format(static_url=settings.STATIC_URL)
@@ -60,7 +60,8 @@ class EnrollmentStatisticView(View):
         prev_unenroll_day = from_date - timedelta(days=1)
         prev_total_day = from_date
 
-        format_day = lambda fday: calendar.timegm(fday.timetuple()) * 1000
+        def format_day(fday):
+            return calendar.timegm(fday.timetuple()) * 1000
 
         def get_prev_total_value():
             qs = EnrollmentByDay.objects.filter(

@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+
 from rg_instructor_analytics.tasks import collect_demographics as collect_demographics_task
 
 

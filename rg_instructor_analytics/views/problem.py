@@ -15,17 +15,20 @@ from django.views.generic import View
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
-from courseware.courses import get_course_by_id
-from courseware.module_render import xblock_view
+from lms.djangoapps.courseware.courses import get_course_by_id
 from lms.djangoapps.courseware.models import StudentModule
-from rg_instructor_analytics.utils.decorators import instructor_access_required
+from lms.djangoapps.courseware.module_render import xblock_view
+from rg_instructor_analytics.mock_data import (
+    apply_data_mocker,
+    ProblemsLvl1DataMocker,
+    ProblemsLvl2DataMocker,
+    ProblemsLvl3DataMocker,
+)
 from rg_instructor_analytics.utils import juniper_specific as specific
-from rg_instructor_analytics.mock_data import apply_data_mocker, ProblemsLvl1DataMocker, ProblemsLvl2DataMocker, \
-    ProblemsLvl3DataMocker
+from rg_instructor_analytics.utils.decorators import instructor_access_required
 
 QUESTION_SELECT_TYPE = 'select'
 QUESTION_MULTI_SELECT_TYPE = 'multySelect'
-
 
 
 class ProblemHomeWorkStatisticView(View):

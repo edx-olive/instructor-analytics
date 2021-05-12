@@ -13,14 +13,14 @@ from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import ensure_csrf_cookie
 from opaque_keys.edx.keys import CourseKey
 from rg_instructor_analytics_log_collector.models import EnrollmentByDay
-from util.views import ensure_valid_course_key
 
-from courseware.courses import get_course_by_id
+from common.djangoapps.student.models import CourseAccessRole
+from common.djangoapps.util.views import ensure_valid_course_key
+from lms.djangoapps.courseware.courses import get_course_by_id
+from lms.djangoapps.instructor import permissions
+from lms.djangoapps.instructor.views.api import require_course_permission
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from rg_instructor_analytics.models import InstructorTabsConfig
-from student.models import CourseAccessRole
-from lms.djangoapps.instructor.views.api import require_course_permission
-from lms.djangoapps.instructor import permissions
 
 
 can_access = require_course_permission(permissions.CAN_RESEARCH)
@@ -152,7 +152,7 @@ def get_course_dates_info(course):
 
 def make_api_path(tail_url_name, args):
     """
-    Throws away the beginning part of API URL : e.g. <A/B/C> => <B/C>
+    Throws away the beginning part of API URL : e.g. <A/B/C> => <B/C>.
     """
     root = reverse('instructor_analytics_dashboard', args=args)
     tail = reverse(tail_url_name, args=args)

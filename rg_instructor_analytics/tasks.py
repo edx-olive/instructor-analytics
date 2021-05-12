@@ -1,10 +1,10 @@
 """
 Module for celery tasks.
 """
+from collections import OrderedDict
+from datetime import date, datetime
 import json
 import logging
-from collections import OrderedDict
-from datetime import datetime, date
 
 from celery.schedules import crontab
 from celery.task import periodic_task, task
@@ -21,19 +21,18 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
-from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
-from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
-from student.models import CourseEnrollment
 from xmodule.modulestore.django import modulestore
 
+from common.djangoapps.student.models import CourseEnrollment
 from lms.djangoapps.courseware.models import StudentModule
-from rg_instructor_analytics.models import AgeStats, EducationStats, GradeStatistic, LastGradeStatUpdate, GenderStats, ResidenceStats
-from rg_instructor_analytics.utils import get_microsite_courses, get_courses_learners, aggregate_users_stats
-from rg_instructor_analytics.utils import juniper_specific as specific
-
-
-
 from lms.djangoapps.grades.course_grade_factory import CourseGradeFactory
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
+from rg_instructor_analytics.models import (
+    AgeStats, EducationStats, GenderStats, GradeStatistic, LastGradeStatUpdate, ResidenceStats
+)
+from rg_instructor_analytics.utils import aggregate_users_stats, get_courses_learners, get_microsite_courses
+from rg_instructor_analytics.utils import juniper_specific as specific
 
 log = logging.getLogger(__name__)
 DEFAULT_DATE_TIME = datetime(2000, 1, 1, 0, 0)
