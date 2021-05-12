@@ -26,22 +26,14 @@ from openedx.core.djangoapps.site_configuration import helpers as configuration_
 from student.models import CourseEnrollment
 from xmodule.modulestore.django import modulestore
 
+from lms.djangoapps.courseware.models import StudentModule
 from rg_instructor_analytics.models import AgeStats, EducationStats, GradeStatistic, LastGradeStatUpdate, GenderStats, ResidenceStats
 from rg_instructor_analytics.utils import get_microsite_courses, get_courses_learners, aggregate_users_stats
-from rg_instructor_analytics.utils.compatibility_imports import specific, StudentModule
+from rg_instructor_analytics.utils import juniper_specific as specific
 
 
-HAWTHORN = False
 
-try:
-    from lms.djangoapps.grades.new.course_grade_factory import CourseGradeFactory
-except ImportError:
-    try:
-        from lms.djangoapps.grades.new.course_grade import CourseGradeFactory
-    except ImportError:
-        # Hawthorn release:
-        from lms.djangoapps.grades.course_grade_factory import CourseGradeFactory
-        HAWTHORN = True
+from lms.djangoapps.grades.course_grade_factory import CourseGradeFactory
 
 log = logging.getLogger(__name__)
 DEFAULT_DATE_TIME = datetime(2000, 1, 1, 0, 0)
@@ -119,11 +111,7 @@ def get_grade_summary(user_id, course):
     Return the grade for the given student in the addressed course.
     """
     try:
-        if HAWTHORN:
-            grade_summary = CourseGradeFactory().read(User.objects.all().filter(id=user_id).first(), course).summary
-        else:
-            grade_summary = CourseGradeFactory().create(User.objects.all().filter(id=user_id).first(), course).summary
-        return grade_summary
+        return CourseGradeFactory().read(User.objects.all().filter(id=user_id).first(), course).summary
     except PermissionDenied:
         return None
 

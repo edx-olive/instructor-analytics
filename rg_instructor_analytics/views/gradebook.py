@@ -16,8 +16,8 @@ from rg_instructor_analytics_log_collector.models import DiscussionActivity, Las
     VideoViewsByUser
 
 from lms.djangoapps.courseware.courses import get_course_by_id
+from lms.djangoapps.discussion.django_comment_client import utils as comment_utils
 from rg_instructor_analytics.models import GradeStatistic
-from rg_instructor_analytics.utils.compatibility_imports import comment_utils
 from rg_instructor_analytics.utils.decorators import instructor_access_required
 from rg_instructor_analytics.mock_data import apply_data_mocker, StudentsInfoGradebookDataMocker, \
     StudentsInfoVideoViewsDataMocker, StudentsInfoDiscussionsDataMocker, StudentsInfoStudentStepDataMocker
