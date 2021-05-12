@@ -1,13 +1,13 @@
 # CI and tests requirements
 Django==2.2.18
-path.py==8.2.1
-edx-opaque-keys>=0.4.0,<1.0.0
-pytest==4.6.11
-pytest-django==3.7.0
+path.py==12.5.0
+edx-opaque-keys==2.1.0
+pytest==5.3.5
+pytest-django==3.8.0
 pytest-cov==2.8.1
-pytest-mock==2.0.0
-django-mock-queries==2.1.5
+pytest-mock==3.6.1
+django-mock-queries==2.1.6
 pycountry==20.7.3
-jsonfield==2.0.2
+jsonfield==3.1.0
 numpy==1.20.3
 -e git+git@gitlab.raccoongang.com:rg-developers/instructor-analytics-log-collector.git@v2.3.0#egg=rg_instructor_analytics_log_collector

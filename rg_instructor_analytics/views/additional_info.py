@@ -7,7 +7,7 @@ import logging
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext as _
 import pycountry
-from rest_framework.decorators import list_route
+from rest_framework.decorators import action
 from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
@@ -61,7 +61,7 @@ class AdditionalInfoViewSet(ViewSet):
 
     permission_classes = [IsAuthenticated, InstructorPermission]
 
-    @list_route(methods=['get'], url_name='geo-stats')
+    @action(detail=False, methods=['get'], url_name='geo-stats')
     @apply_data_mocker(AdditionalInfoGeoDataMocker)
     def geo(self, request, **kwargs):
         """
@@ -119,7 +119,7 @@ class AdditionalInfoViewSet(ViewSet):
 
         return Response(geo_stats)
 
-    @list_route(methods=['get'], url_name='gender-stats')
+    @action(detail=False, methods=['get'], url_name='gender-stats')
     @apply_data_mocker(AdditionalInfoGenderDataMocker)
     def gender(self, request, **kwargs):
         """
@@ -172,7 +172,7 @@ class AdditionalInfoViewSet(ViewSet):
         }
         return Response(gender_stats)
 
-    @list_route(methods=['get'], url_name='age-stats')
+    @action(detail=False, methods=['get'], url_name='age-stats')
     @apply_data_mocker(AdditionalInfoAgeDataMocker)
     def age(self, request, **kwargs):
         """
@@ -233,7 +233,7 @@ class AdditionalInfoViewSet(ViewSet):
         }
         return Response(age_stats)
 
-    @list_route(methods=['get'], url_name='education-stats')
+    @action(detail=False, methods=['get'], url_name='education-stats')
     @apply_data_mocker(AdditionalInfoEducationDataMocker)
     def education(self, request, **kwargs):
         """
@@ -294,7 +294,7 @@ class AdditionalInfoViewSet(ViewSet):
         }
         return Response(edu_stats)
 
-    @list_route(methods=['get'], url_name='scopes')
+    @action(detail=False, methods=['get'], url_name='scopes')
     def scopes(self, request, **kwargs):
         scopes = OrderedDict({
             'system': _("system"),
