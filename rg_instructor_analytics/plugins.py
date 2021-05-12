@@ -41,7 +41,7 @@ class InstructorAnalyticsDashboardTab(CourseTab):
         """
         Counstruct tab.
         """
-        super(InstructorAnalyticsDashboardTab, self).__init__(tab_dict)
+        super().__init__(tab_dict)
         self._fragment_view = None
 
     @property
@@ -64,4 +64,4 @@ class InstructorAnalyticsDashboardTab(CourseTab):
         """
         Render this tab to a web fragment.
         """
-        return self.fragment_view.render_to_fragment(request, course_id=unicode(course.id), **kwargs)
+        return self.fragment_view.render_to_fragment(request, course_id=str(course.id), **kwargs)

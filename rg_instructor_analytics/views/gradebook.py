@@ -3,7 +3,6 @@ Gradebook sub-tab module.
 """
 from collections import OrderedDict
 import json
-import six
 
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -36,7 +35,7 @@ class GradebookView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(GradebookView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @staticmethod
     @apply_data_mocker(StudentsInfoGradebookDataMocker)
@@ -102,7 +101,7 @@ class VideoView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(VideoView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @staticmethod
     @apply_data_mocker(StudentsInfoVideoViewsDataMocker)
@@ -170,7 +169,7 @@ class DiscussionActivityView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(DiscussionActivityView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @staticmethod
     @apply_data_mocker(StudentsInfoDiscussionsDataMocker)
@@ -233,7 +232,7 @@ class StudentStepView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(StudentStepView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @staticmethod
     @apply_data_mocker(StudentsInfoStudentStepDataMocker)
@@ -281,9 +280,7 @@ class StudentStepView(View):
                 units.append(current)
                 units.append(target)
 
-        steps = range(len(units))
-        if six.PY3:
-            steps = list(steps)
+        steps = list(range(len(units)))
         x_default = [None] * len(tickvals)
         return JsonResponse(
             data={

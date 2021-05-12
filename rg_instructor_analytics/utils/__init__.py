@@ -2,7 +2,6 @@
 Util package.
 """
 import os
-import six
 
 import pkg_resources
 from django.db.models import Count
@@ -22,9 +21,7 @@ def resource_string(path):
 
 
 def choices_value_by_key(choices, key):
-    result = filter(lambda c: c[0] == key, choices)
-    if six.PY3:
-        result = list(result)
+    result = [c for c in choices if c[0] == key]
     return result[0][1] if result else ''
 
 

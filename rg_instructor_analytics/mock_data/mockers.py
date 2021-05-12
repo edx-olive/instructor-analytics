@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 import json
 import logging
 import os
-import six
 
 from django.http.response import JsonResponse
 from django.utils.translation import ugettext as _
@@ -23,8 +22,7 @@ def _get_mocker_keys(mock_dataset):
     return [os.path.splitext(f)[0] for f in os.listdir(os.path.join(base_data_path, mock_dataset))]
 
 
-class BaseDataMocker(object):
-    __metaclass__ = ABCMeta
+class BaseDataMocker(metaclass=ABCMeta):
     _dtype = 'i4'  # use int32 as basic type for data loading, redefine if needed
 
     def __init__(self, func, *args, **kwargs):
@@ -321,7 +319,7 @@ class FunnelsDataMocker(BaseDataMocker):
                 subsection for subsection in mock_funnels[section]['children'].values()
             ]
 
-        data = mock_funnels.values() if six.PY2 else list(mock_funnels.values())
+        data = list(mock_funnels.values())
         return JsonResponse(data={"courses_structure": data})
 
 

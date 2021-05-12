@@ -115,7 +115,7 @@ class InstructorTabsConfig(models.Model):
         else:
             return [k for k, v in conf.items() if k in fields and v]
 
-    def __unicode__(self):
+    def __str__(self):
         """
         Return human readable object name.
         """
@@ -133,13 +133,13 @@ class GenderStats(models.Model):
     values = JSONField(null=False, blank=True, load_kwargs={'object_pairs_hook': collections.OrderedDict})
     date = models.DateField(_("date"))
 
-    class Meta(object):
+    class Meta():
         verbose_name = _("gender statistics")
         verbose_name_plural = _("gender statistics")
         unique_together = ('site', 'date')
         ordering = ['date']
 
-    def __unicode__(self):
+    def __str__(self):
         return "{}-{}".format(self.site, self.date.strftime("%Y-%m-%d"))
 
     @classmethod
@@ -176,13 +176,13 @@ class EducationStats(models.Model):
     values = JSONField(null=False, blank=True, load_kwargs={'object_pairs_hook': collections.OrderedDict})
     date = models.DateField(_("date"))
 
-    class Meta(object):
+    class Meta():
         verbose_name = _("education statistics")
         verbose_name_plural = _("education statistics")
         unique_together = ('site', 'date')
         ordering = ['date']
 
-    def __unicode__(self):
+    def __str__(self):
         return "{}-{}".format(self.site, self.date.strftime("%Y-%m-%d"))
 
     @classmethod
@@ -221,13 +221,13 @@ class AgeStats(models.Model):
     values = JSONField(null=False, blank=True, load_kwargs={'object_pairs_hook': collections.OrderedDict})
     date = models.DateField(_("date"))
 
-    class Meta(object):
+    class Meta():
         verbose_name = _("age statistics")
         verbose_name_plural = _("age statistics")
         unique_together = ('site', 'date')
         ordering = ['date']
 
-    def __unicode__(self):
+    def __str__(self):
         return "{}-{}".format(self.site, self.date.strftime("%Y-%m-%d"))
 
     @classmethod
@@ -264,13 +264,13 @@ class ResidenceStats(models.Model):
     values = JSONField(null=False, blank=True, load_kwargs={'object_pairs_hook': collections.OrderedDict})
     date = models.DateField(_("date"))
 
-    class Meta(object):
+    class Meta():
         verbose_name = _("geo statistics")
         verbose_name_plural = _("geo statistics")
         unique_together = ('site', 'date')
         ordering = ['date']
 
-    def __unicode__(self):
+    def __str__(self):
         return "{}-{}".format(self.site, self.date.strftime("%Y-%m-%d"))
 
     @classmethod

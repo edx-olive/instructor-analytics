@@ -37,7 +37,7 @@ class EnrollmentStatisticView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(EnrollmentStatisticView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @staticmethod
     @apply_data_mocker(EnrollmentsDataMocker)

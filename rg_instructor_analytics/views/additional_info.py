@@ -5,7 +5,6 @@ from collections import OrderedDict
 import logging
 
 import pycountry
-import six
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext as _
 from rest_framework.decorators import list_route
@@ -87,12 +86,8 @@ class AdditionalInfoViewSet(ViewSet):
             'max': 200,
             'data': []
         }
-        if six.PY2:
-            alpha2 = 'alpha2'
-            alpha3 = 'alpha3'
-        else:
-            alpha2 = 'alpha_2'
-            alpha3 = 'alpha_3'
+        alpha2 = 'alpha_2'
+        alpha3 = 'alpha_3'
 
         for key, value in percentage_data.items():
             # TODO: Revise the possibility of recalculation "percentage_data"

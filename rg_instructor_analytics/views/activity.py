@@ -30,7 +30,7 @@ class ActivityView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ActivityView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @apply_data_mocker(ActivitiesDailyDataMocker)
     def get_daily_activity_for_course(self, from_date, to_date, course_key):

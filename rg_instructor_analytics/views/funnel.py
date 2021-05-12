@@ -62,7 +62,7 @@ class GradeFunnelView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(GradeFunnelView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @apply_data_mocker(FunnelsDataMocker)
     def post(self, request, course_id):
@@ -220,7 +220,7 @@ class GradeFunnelSendMessage(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(GradeFunnelSendMessage, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, course_id):
         """

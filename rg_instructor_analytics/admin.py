@@ -31,11 +31,11 @@ class InstructorTabsConfigAdmin(admin.ModelAdmin):
         """
         Save model and track event.
         """
-        super(InstructorTabsConfigAdmin, self).save_model(request, obj, form, change)
+        super().save_model(request, obj, form, change)
         track_info = {
-            'instructor': unicode(obj.user),
+            'instructor': str(obj.user),
             'instructor_id': obj.user.id,
-            'admin': unicode(request.user),
+            'admin': str(request.user),
             'admin_id': request.user.id,
         }
         track_info.update(dict((f, getattr(obj, f, None)) for f in obj.get_tabs_names()))

@@ -46,7 +46,7 @@ class ProblemHomeWorkStatisticView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemHomeWorkStatisticView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, course_id):
         """
@@ -170,7 +170,7 @@ class ProblemsStatisticView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemsStatisticView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @apply_data_mocker(ProblemsLvl2DataMocker)
     def post(self, request, course_id):
@@ -247,7 +247,7 @@ class ProblemDetailView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemDetailView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def get(self, request, course_id):
         """
@@ -258,12 +258,10 @@ class ProblemDetailView(View):
         return xblock_view(request, request.GET.get('course_id'), request.GET['problem'], 'student_view')
 
 
-class ProblemQuestionParser():
+class ProblemQuestionParser(metaclass=ABCMeta):
     """
     Base class for provide statistic for question.
     """
-
-    __metaclass__ = ABCMeta
 
     def __init__(self, problemID, questionID, answer_map):
         """
@@ -312,7 +310,7 @@ class ProblemSelectQuestion(ProblemQuestionParser):
         """
         Implement constructor.
         """
-        super(ProblemSelectQuestion, self).__init__(problemID, questionID, answer_map)
+        super().__init__(problemID, questionID, answer_map)
 
     def init_statistic_object(self):
         """
@@ -339,7 +337,7 @@ class ProblemMultiSelectQuestion(ProblemSelectQuestion):
         """
         Implement constructor.
         """
-        super(ProblemMultiSelectQuestion, self).__init__(problemID, questionID, answer_map)
+        super().__init__(problemID, questionID, answer_map)
 
     def process_statistic_item(self, state, item):
         """
@@ -363,7 +361,7 @@ class ProblemQuestionView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemQuestionView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, course_id):
         """
@@ -408,7 +406,7 @@ class ProblemStudentDataView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemStudentDataView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, course_id):
         """

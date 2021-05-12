@@ -5,7 +5,6 @@ import json
 import logging
 from collections import OrderedDict
 from datetime import datetime, date
-import six
 
 from celery.schedules import crontab
 from celery.task import periodic_task, task
@@ -152,12 +151,7 @@ def grade_collector_stat():
 
     collected_stat = []
 
-    if six.PY2:
-        items = users_by_course.iteritems()
-    else:
-        items = users_by_course.items()
-
-    for course_string_id, users in items:
+    for course_string_id, users in users_by_course.items():
         try:
             course_key = CourseKey.from_string(str(course_string_id))
             course = get_course_by_id(course_key, depth=0)
