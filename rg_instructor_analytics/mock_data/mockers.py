@@ -6,12 +6,10 @@ from datetime import datetime, timedelta
 import json
 import logging
 import os
-import six
 
 from django.http.response import JsonResponse
 from django.utils.translation import ugettext as _
 import numpy as np
-
 import pycountry
 
 base_data_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'datasets')
@@ -23,8 +21,7 @@ def _get_mocker_keys(mock_dataset):
     return [os.path.splitext(f)[0] for f in os.listdir(os.path.join(base_data_path, mock_dataset))]
 
 
-class BaseDataMocker(object):
-    __metaclass__ = ABCMeta
+class BaseDataMocker(metaclass=ABCMeta):
     _dtype = 'i4'  # use int32 as basic type for data loading, redefine if needed
 
     def __init__(self, func, *args, **kwargs):
@@ -69,11 +66,11 @@ class BaseDataMocker(object):
     def _get_dates_indexes(dates, from_date, to_date):
         try:
             start_ind = dates.index(from_date)
-        except ValueError as e:
+        except ValueError:
             start_ind = 0
         try:
             end_ind = dates.index(to_date) + 1
-        except ValueError as e:
+        except ValueError:
             end_ind = len(dates) - 1
         return start_ind, end_ind
 
@@ -270,7 +267,7 @@ class FunnelsDataMocker(BaseDataMocker):
             learners_in = int(learners_in)
             learners_out = int(learners_out)
             learners_stuck = int(learners_stuck)
-            student_emails = ['learner{}@example.com'.format(i+student_num) for i in range(learners_stuck)]
+            student_emails = ['learner{}@example.com'.format(i + student_num) for i in range(learners_stuck)]
             student_num += learners_stuck
             if section_name not in mock_funnels:
                 mock_funnels[section_name] = {
@@ -321,7 +318,7 @@ class FunnelsDataMocker(BaseDataMocker):
                 subsection for subsection in mock_funnels[section]['children'].values()
             ]
 
-        data = mock_funnels.values() if six.PY2 else list(mock_funnels.values())
+        data = list(mock_funnels.values())
         return JsonResponse(data={"courses_structure": data})
 
 
@@ -452,7 +449,7 @@ class AdditionalInfoGeoDataMocker(AditionalInfoDataMocker):
                     'percent': int(round(countries_counter[key] * 100.0 / total)),
                     'value': countries_counter[key],
                 })
-            except:
+            except Exception:  # Fixme: Appropriate Exception should be checked, not general one.
                 # pycountry.countries.get by name is Failed for 'South Korea' now;
                 # it should be 'Korea, the Republic of' for correct getting data,
                 # but that will broke csv file

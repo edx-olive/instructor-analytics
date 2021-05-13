@@ -16,8 +16,8 @@ from rg_instructor_analytics_log_collector.models import (
 )
 
 from lms.djangoapps.courseware.courses import get_course_by_id
+from rg_instructor_analytics.mock_data import ActivitiesDailyDataMocker, apply_data_mocker, UnitVisitsDataMocker
 from rg_instructor_analytics.utils.decorators import instructor_access_required
-from rg_instructor_analytics.mock_data import apply_data_mocker, ActivitiesDailyDataMocker, UnitVisitsDataMocker
 
 
 class ActivityView(View):
@@ -30,7 +30,7 @@ class ActivityView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ActivityView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @apply_data_mocker(ActivitiesDailyDataMocker)
     def get_daily_activity_for_course(self, from_date, to_date, course_key):
@@ -50,7 +50,8 @@ class ActivityView(View):
             .values_list('day') \
             .annotate(total=Sum('total'))
 
-        format_day = lambda fday: calendar.timegm(fday.timetuple()) * 1000
+        def format_day(fday):
+            return calendar.timegm(fday.timetuple()) * 1000
 
         def complete_data(qs):
             out_list = []
@@ -93,7 +94,7 @@ class ActivityView(View):
 
         def _make_query(field_name):
             """
-            Create aggregated query and return it's result
+            Create aggregated query and return it's result.
 
             Query format is:
                 SELECT <field_name>, COUNT(<field_name>) AS <field_name>__count

@@ -2,8 +2,6 @@
 Suggestions tab module.
 """
 from abc import ABCMeta, abstractmethod
-import six
-from six.moves import zip
 
 from django.http import HttpResponseBadRequest
 from django.http.response import JsonResponse
@@ -14,24 +12,22 @@ import numpy as np
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
-from course_modes.models import CourseMode
+from common.djangoapps.course_modes.models import CourseMode
 from rg_instructor_analytics.utils.decorators import instructor_access_required
 from rg_instructor_analytics.views.funnel import GradeFunnelView
 from rg_instructor_analytics.views.problem import ProblemHomeWorkStatisticView
 
 
-class BaseSuggestion(object):
+class BaseSuggestion(metaclass=ABCMeta):
     """
     Base class for the suggestion generator.
     """
-
-    __metaclass__ = ABCMeta
 
     def __init__(self):
         """
         Construct suggestion.
         """
-        super(BaseSuggestion, self).__init__()
+        super().__init__()
         self.suggestion = []
 
     @abstractmethod
@@ -164,12 +160,9 @@ class ProblemSuggestion(BaseSuggestion):
         Generate suggestion, based on the funnels tab information.
         """
         problem_stat = ProblemHomeWorkStatisticView().get_homework_stat(course_key)
-        problem_stat['success'] = map(
-            lambda args: args[0] and args[1] / args[0],  # where args[1] is grade, args[0] is attempts
-            zip(problem_stat['correct_answer'], problem_stat['attempts'])
-        )
-        if six.PY3:
-            problem_stat['success'] = list(problem_stat['success'])
+        problem_stat['success'] = [
+            args[0] and args[1] / args[0] for args in zip(problem_stat['correct_answer'], problem_stat['attempts'])
+        ]
 
         problems = np.array(problem_stat['success'])
         problems = problems[np.nonzero(problems)]
@@ -201,7 +194,7 @@ class SuggestionView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(SuggestionView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, course_id):
         """

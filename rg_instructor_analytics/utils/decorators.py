@@ -10,8 +10,8 @@ from django.utils.translation import ugettext as _
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
-from courseware.access import has_access
-from courseware.courses import get_course
+from lms.djangoapps.courseware.access import has_access
+from lms.djangoapps.courseware.courses import get_course
 
 log = logging.getLogger(__name__)
 

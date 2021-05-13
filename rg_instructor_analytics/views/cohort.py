@@ -9,12 +9,12 @@ from django.utils.translation import ugettext as _
 from django.views.generic import View
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
-from student.models import CourseEnrollment
 
+from common.djangoapps.student.models import CourseEnrollment
 from rg_instructor_analytics import tasks
+from rg_instructor_analytics.mock_data import apply_data_mocker, CohortsDataMocker
 from rg_instructor_analytics.models import GradeStatistic
 from rg_instructor_analytics.utils.decorators import instructor_access_required
-from rg_instructor_analytics.mock_data import apply_data_mocker, CohortsDataMocker
 
 
 class CohortView(View):
@@ -27,7 +27,7 @@ class CohortView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(CohortView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @apply_data_mocker(CohortsDataMocker)
     def post(self, request, course_id):
@@ -165,7 +165,7 @@ class CohortSendMessage(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(CohortSendMessage, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, course_id):
         """

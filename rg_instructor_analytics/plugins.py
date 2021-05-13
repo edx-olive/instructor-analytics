@@ -5,8 +5,8 @@ from django.conf import settings
 from django.core.files.storage import get_storage_class
 from django.utils.translation import ugettext_noop
 
-from courseware.access import has_access
-from courseware.tabs import CourseTab
+from lms.djangoapps.courseware.access import has_access
+from lms.djangoapps.courseware.tabs import CourseTab
 from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
 
 
@@ -41,7 +41,7 @@ class InstructorAnalyticsDashboardTab(CourseTab):
         """
         Counstruct tab.
         """
-        super(InstructorAnalyticsDashboardTab, self).__init__(tab_dict)
+        super().__init__(tab_dict)
         self._fragment_view = None
 
     @property
@@ -64,4 +64,4 @@ class InstructorAnalyticsDashboardTab(CourseTab):
         """
         Render this tab to a web fragment.
         """
-        return self.fragment_view.render_to_fragment(request, course_id=unicode(course.id), **kwargs)
+        return self.fragment_view.render_to_fragment(request, course_id=str(course.id), **kwargs)

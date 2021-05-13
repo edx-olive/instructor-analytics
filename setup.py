@@ -14,7 +14,7 @@ setup(
     version="2.3.4",
     install_requires=[
         "setuptools",
-        "web-fragments==0.2.2",
+        "web-fragments==0.3.2",
     ],
     requires=[],
     packages=["rg_instructor_analytics"],

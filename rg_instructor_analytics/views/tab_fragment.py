@@ -2,11 +2,8 @@
 Module for tab fragment.
 """
 import json
-import sys
 from time import mktime
 
-from django.contrib.sites.models import Site
-from django.db.models import F
 from django.http import Http404
 from django.shortcuts import render_to_response
 from django.urls import reverse
@@ -16,30 +13,17 @@ from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import ensure_csrf_cookie
 from opaque_keys.edx.keys import CourseKey
 from rg_instructor_analytics_log_collector.models import EnrollmentByDay
-import six
-from util.views import ensure_valid_course_key
 
-from courseware.courses import get_course_by_id
+from common.djangoapps.student.models import CourseAccessRole
+from common.djangoapps.util.views import ensure_valid_course_key
+from lms.djangoapps.courseware.courses import get_course_by_id
+from lms.djangoapps.instructor import permissions
+from lms.djangoapps.instructor.views.api import require_course_permission
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 from rg_instructor_analytics.models import InstructorTabsConfig
-from rg_instructor_analytics.utils.compatibility_imports import RELEASE_LINE
-from student.models import CourseAccessRole
 
 
-if RELEASE_LINE in ('juniper', 'koa'):
-    from lms.djangoapps.instructor.views.api import require_course_permission
-    from lms.djangoapps.instructor import permissions
-    can_access = require_course_permission(permissions.CAN_RESEARCH)
-else:
-    from lms.djangoapps.instructor.views.api import require_level
-    can_access = require_level('staff')
-
-
-# NOTE(flying-pi) reload(sys) is used for restore method `setdefaultencoding`,
-# which set flag PYTHONIOENCODING to utf8.
-if six.PY2:
-    reload(sys)
-    sys.setdefaultencoding('utf8')
+can_access = require_course_permission(permissions.CAN_RESEARCH)
 
 
 TABS = (
@@ -143,7 +127,7 @@ def get_instructor_courses(user):
         except Http404:
             continue
 
-    return courses.values()
+    return list(courses.values())
 
 
 def get_available_courses(user):
@@ -168,7 +152,7 @@ def get_course_dates_info(course):
 
 def make_api_path(tail_url_name, args):
     """
-    Throws away the beginning part of API URL : e.g. <A/B/C> => <B/C>
+    Throws away the beginning part of API URL : e.g. <A/B/C> => <B/C>.
     """
     root = reverse('instructor_analytics_dashboard', args=args)
     tail = reverse(tail_url_name, args=args)

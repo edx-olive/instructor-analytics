@@ -1,9 +1,10 @@
 """
 Url config file.
 """
-from django.conf.urls import url, include
+from django.conf.urls import include, url
 from rest_framework.routers import SimpleRouter
 
+from rg_instructor_analytics.views import AdditionalInfoViewSet
 from rg_instructor_analytics.views.activity import ActivityView
 from rg_instructor_analytics.views.cohort import CohortSendMessage, CohortView
 from rg_instructor_analytics.views.enrollment import EnrollmentStatisticView
@@ -15,7 +16,6 @@ from rg_instructor_analytics.views.problem import (
     ProblemDetailView, ProblemHomeWorkStatisticView, ProblemQuestionView, ProblemsStatisticView, ProblemStudentDataView
 )
 from rg_instructor_analytics.views.suggestion import SuggestionView
-from rg_instructor_analytics.views import AdditionalInfoViewSet
 from rg_instructor_analytics.views.tab_fragment import instructor_analytics_dashboard
 
 router = SimpleRouter()

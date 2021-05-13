@@ -1,11 +1,10 @@
 """
 Module for celery tasks.
 """
+from collections import OrderedDict
+from datetime import date, datetime
 import json
 import logging
-from collections import OrderedDict
-from datetime import datetime, date
-import six
 
 from celery.schedules import crontab
 from celery.task import periodic_task, task
@@ -22,27 +21,18 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
-from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
-from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
-from student.models import CourseEnrollment
 from xmodule.modulestore.django import modulestore
 
-from rg_instructor_analytics.models import AgeStats, EducationStats, GradeStatistic, LastGradeStatUpdate, GenderStats, ResidenceStats
-from rg_instructor_analytics.utils import get_microsite_courses, get_courses_learners, aggregate_users_stats
-from rg_instructor_analytics.utils.compatibility_imports import specific, StudentModule
-
-
-HAWTHORN = False
-
-try:
-    from lms.djangoapps.grades.new.course_grade_factory import CourseGradeFactory
-except ImportError:
-    try:
-        from lms.djangoapps.grades.new.course_grade import CourseGradeFactory
-    except ImportError:
-        # Hawthorn release:
-        from lms.djangoapps.grades.course_grade_factory import CourseGradeFactory
-        HAWTHORN = True
+from common.djangoapps.student.models import CourseEnrollment
+from lms.djangoapps.courseware.models import StudentModule
+from lms.djangoapps.grades.course_grade_factory import CourseGradeFactory
+from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
+from openedx.core.djangoapps.site_configuration import helpers as configuration_helpers
+from rg_instructor_analytics.models import (
+    AgeStats, EducationStats, GenderStats, GradeStatistic, LastGradeStatUpdate, ResidenceStats
+)
+from rg_instructor_analytics.utils import aggregate_users_stats, get_courses_learners, get_microsite_courses
+from rg_instructor_analytics.utils import juniper_specific as specific
 
 log = logging.getLogger(__name__)
 DEFAULT_DATE_TIME = datetime(2000, 1, 1, 0, 0)
@@ -120,11 +110,7 @@ def get_grade_summary(user_id, course):
     Return the grade for the given student in the addressed course.
     """
     try:
-        if HAWTHORN:
-            grade_summary = CourseGradeFactory().read(User.objects.all().filter(id=user_id).first(), course).summary
-        else:
-            grade_summary = CourseGradeFactory().create(User.objects.all().filter(id=user_id).first(), course).summary
-        return grade_summary
+        return CourseGradeFactory().read(User.objects.all().filter(id=user_id).first(), course).summary
     except PermissionDenied:
         return None
 
@@ -152,12 +138,7 @@ def grade_collector_stat():
 
     collected_stat = []
 
-    if six.PY2:
-        items = users_by_course.iteritems()
-    else:
-        items = users_by_course.items()
-
-    for course_string_id, users in items:
+    for course_string_id, users in users_by_course.items():
         try:
             course_key = CourseKey.from_string(str(course_string_id))
             course = get_course_by_id(course_key, depth=0)

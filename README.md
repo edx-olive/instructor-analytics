@@ -23,17 +23,19 @@ It adds extra navigation `Instructor analytics` tab for instructors (next to `In
 
 ## Installation
 
-`Instructor Analytics` must be installed together with the [Util for the tracking log parsing](https://gitlab.raccoongang.com/rg-developers/instructor-analytics-log-collector/-/tree/v2.3.0).
- Install this utility from branch `v2.3.0` before installing `Instructor Analytics`.
+`Instructor Analytics` must be installed together with the [Util for the tracking log parsing](https://gitlab.raccoongang.com/rg-developers/instructor-analytics-log-collector/-/tags).
+ Install this utility from tag `v3.x.x` before installing `Instructor Analytics`.
 
 * Add `rg_instructor_analytics` to the `ADDL_INSTALLED_APPS` in `lms.env.json`
-> Note: If you install `Instructor Analytics` with Open edX Ficus Release you also have to add to the `web_fragments` in `ADDL_INSTALLED_APPS`
+> Note: If you interested in the `Instructor Analytics` for Open edX IronWood or
+> earlier please switch to the tag v2.x.x [Instructor Analytics Tags]
+> (https://gitlab.raccoongang.com/rg-developers/instructor-analytics/-/tags)
 * Add in to the settings file `lms.env.json`
 ```
 FEATURES['ENABLE_XBLOCK_VIEW_ENDPOINT'] = True
 FEATURES['ENABLE_RG_INSTRUCTOR_ANALYTICS'] = True
 ```
-* Add to `edx-platform/lms/urls.py`:
+* For non RG OeX installations add to `edx-platform/lms/urls.py`:
 ```python
 url(
         r'^courses/{}/tab/instructor_analytics/'.format(

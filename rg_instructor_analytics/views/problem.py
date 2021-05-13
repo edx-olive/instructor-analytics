@@ -15,17 +15,20 @@ from django.views.generic import View
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
-from courseware.courses import get_course_by_id
-from courseware.module_render import xblock_view
-from rg_instructor_analytics.utils.compatibility_imports import StudentModule
+from lms.djangoapps.courseware.courses import get_course_by_id
+from lms.djangoapps.courseware.models import StudentModule
+from lms.djangoapps.courseware.module_render import xblock_view
+from rg_instructor_analytics.mock_data import (
+    apply_data_mocker,
+    ProblemsLvl1DataMocker,
+    ProblemsLvl2DataMocker,
+    ProblemsLvl3DataMocker,
+)
+from rg_instructor_analytics.utils import juniper_specific as specific
 from rg_instructor_analytics.utils.decorators import instructor_access_required
-from rg_instructor_analytics.utils.compatibility_imports import specific
-from rg_instructor_analytics.mock_data import apply_data_mocker, ProblemsLvl1DataMocker, ProblemsLvl2DataMocker, \
-    ProblemsLvl3DataMocker
 
 QUESTION_SELECT_TYPE = 'select'
 QUESTION_MULTI_SELECT_TYPE = 'multySelect'
-
 
 
 class ProblemHomeWorkStatisticView(View):
@@ -46,7 +49,7 @@ class ProblemHomeWorkStatisticView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemHomeWorkStatisticView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, course_id):
         """
@@ -170,7 +173,7 @@ class ProblemsStatisticView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemsStatisticView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @apply_data_mocker(ProblemsLvl2DataMocker)
     def post(self, request, course_id):
@@ -247,7 +250,7 @@ class ProblemDetailView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemDetailView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def get(self, request, course_id):
         """
@@ -258,12 +261,10 @@ class ProblemDetailView(View):
         return xblock_view(request, request.GET.get('course_id'), request.GET['problem'], 'student_view')
 
 
-class ProblemQuestionParser():
+class ProblemQuestionParser(metaclass=ABCMeta):
     """
     Base class for provide statistic for question.
     """
-
-    __metaclass__ = ABCMeta
 
     def __init__(self, problemID, questionID, answer_map):
         """
@@ -312,7 +313,7 @@ class ProblemSelectQuestion(ProblemQuestionParser):
         """
         Implement constructor.
         """
-        super(ProblemSelectQuestion, self).__init__(problemID, questionID, answer_map)
+        super().__init__(problemID, questionID, answer_map)
 
     def init_statistic_object(self):
         """
@@ -339,7 +340,7 @@ class ProblemMultiSelectQuestion(ProblemSelectQuestion):
         """
         Implement constructor.
         """
-        super(ProblemMultiSelectQuestion, self).__init__(problemID, questionID, answer_map)
+        super().__init__(problemID, questionID, answer_map)
 
     def process_statistic_item(self, state, item):
         """
@@ -363,7 +364,7 @@ class ProblemQuestionView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemQuestionView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, course_id):
         """
@@ -408,7 +409,7 @@ class ProblemStudentDataView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(ProblemStudentDataView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     def post(self, request, course_id):
         """

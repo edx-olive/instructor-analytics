@@ -3,7 +3,6 @@ Gradebook sub-tab module.
 """
 from collections import OrderedDict
 import json
-import six
 
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -17,11 +16,16 @@ from rg_instructor_analytics_log_collector.models import DiscussionActivity, Las
     VideoViewsByUser
 
 from lms.djangoapps.courseware.courses import get_course_by_id
+from lms.djangoapps.discussion.django_comment_client import utils as comment_utils
+from rg_instructor_analytics.mock_data import (
+    apply_data_mocker,
+    StudentsInfoDiscussionsDataMocker,
+    StudentsInfoGradebookDataMocker,
+    StudentsInfoStudentStepDataMocker,
+    StudentsInfoVideoViewsDataMocker,
+)
 from rg_instructor_analytics.models import GradeStatistic
-from rg_instructor_analytics.utils.compatibility_imports import comment_utils
 from rg_instructor_analytics.utils.decorators import instructor_access_required
-from rg_instructor_analytics.mock_data import apply_data_mocker, StudentsInfoGradebookDataMocker, \
-    StudentsInfoVideoViewsDataMocker, StudentsInfoDiscussionsDataMocker, StudentsInfoStudentStepDataMocker
 
 
 class GradebookView(View):
@@ -36,7 +40,7 @@ class GradebookView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(GradebookView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @staticmethod
     @apply_data_mocker(StudentsInfoGradebookDataMocker)
@@ -102,7 +106,7 @@ class VideoView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(VideoView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @staticmethod
     @apply_data_mocker(StudentsInfoVideoViewsDataMocker)
@@ -170,7 +174,7 @@ class DiscussionActivityView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(DiscussionActivityView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @staticmethod
     @apply_data_mocker(StudentsInfoDiscussionsDataMocker)
@@ -233,7 +237,7 @@ class StudentStepView(View):
         """
         See: https://docs.djangoproject.com/en/1.8/topics/class-based-views/intro/#id2.
         """
-        return super(StudentStepView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
     @staticmethod
     @apply_data_mocker(StudentsInfoStudentStepDataMocker)
@@ -281,9 +285,7 @@ class StudentStepView(View):
                 units.append(current)
                 units.append(target)
 
-        steps = range(len(units))
-        if six.PY3:
-            steps = list(steps)
+        steps = list(range(len(units)))
         x_default = [None] * len(tickvals)
         return JsonResponse(
             data={

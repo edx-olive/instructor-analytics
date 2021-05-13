@@ -2,13 +2,13 @@
 Util package.
 """
 import os
-import six
 
-import pkg_resources
 from django.db.models import Count
+import pkg_resources
+
+from common.djangoapps.student.models import CourseEnrollment, UserProfile
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
 
-from student.models import CourseEnrollment, UserProfile
 
 def resource_string(path):
     """
@@ -22,15 +22,14 @@ def resource_string(path):
 
 
 def choices_value_by_key(choices, key):
-    result = filter(lambda c: c[0] == key, choices)
-    if six.PY3:
-        result = list(result)
+    result = [c for c in choices if c[0] == key]
     return result[0][1] if result else ''
 
 
 def get_microsite_courses(site):
     """
     Finds all Courses which are related to given Site.
+
     :param site: Site
     :return: (list) CourseLocator objects
     """
@@ -53,6 +52,7 @@ def get_microsite_courses(site):
 def get_courses_learners(courses_ids):
     """
     Determine all Course learners.
+
     :param courses_ids: CourseOverview ids
     :return: (set) User ids
     """
@@ -67,6 +67,7 @@ def get_courses_learners(courses_ids):
 def aggregate_users_stats(users_ids, metrics):
     """
     Calculate aggregated stats on given users data sample.
+
     :param users_ids: (set | list) User ids
     :param metrics: UserProfile field name
     :return: (dict)
