@@ -1,9 +1,13 @@
 import React from "react";
 import * as R from "ramda";
-import { FormControl, MenuItem, Select } from "@material-ui/core";
+import { FormControl, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { courseToggling, siteToggling } from "./data/actions";
+import MuiMenuItem from "@material-ui/core/MenuItem";
+import { withStyles } from "@material-ui/core/styles";
+import { isRtl } from "../rtl";
+
 
 const useStyles = makeStyles(theme => ({
   select: {
@@ -11,6 +15,12 @@ const useStyles = makeStyles(theme => ({
     padding: 12
   }
 }));
+
+const MenuItem = withStyles({
+  root: {
+    justifyContent: isRtl ? "flex-end" : "flex-start"
+  }
+})(MuiMenuItem);
 
 const Selector = ({ items, label }) => {
   const classes = useStyles();

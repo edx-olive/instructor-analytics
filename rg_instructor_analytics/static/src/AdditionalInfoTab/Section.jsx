@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography } from "@material-ui/core";
+import { isRtl } from "./rtl";
+
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -10,20 +12,20 @@ const useStyles = makeStyles(theme => ({
     textTransform: "uppercase",
     letterSpacing: "0px",
     marginBottom: "-8px",
-    textAlign: "left",
+    textAlign: isRtl ? "right" : "left",
     opacity: 1,
     color: "#3E3E3E",
   },
   subheading: {
     fontSize: "18px",
-    textAlign: "left",
+    textAlign: isRtl ? "right" : "left",
     fontWeight: 600,
     color: "#3E3E3E",
     letterSpacing: "0px",
   },
   text: {
     fontSize: "16px",
-    textAlign: "left",
+    textAlign: isRtl ? "right" : "left",
     fontWeight: 300,
     color: "#3E3E3E",
     letterSpacing: "0px",

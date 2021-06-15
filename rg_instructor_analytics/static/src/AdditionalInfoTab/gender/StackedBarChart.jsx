@@ -6,6 +6,8 @@ import { Grid, Box, makeStyles, useTheme } from "@material-ui/core";
 import GenderTooltip from "./GenderTooltip";
 import maleImg from "./img/male.svg";
 import femaleImg from "./img/female.svg";
+import { isRtl } from "../rtl";
+
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -21,6 +23,7 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(36),
     minHeight: 80,
     display: "flex",
+    direction: "ltr",
     alignItems: "center",
     justifyContent: "center",
 
@@ -73,12 +76,12 @@ export const StackedBarChart = ({ data = {} }) => {
     direction: "row",
     itemWidth: theme.spacing(16),
     itemHeight: 40,
-    itemDirection: "left-to-right",
-    translateX: 30,
+    itemDirection: isRtl ? "right-to-left" : "left-to-right",
+    translateX: isRtl ? -30 : 30,
     translateY: 80,
   };
 
-  const makeLabels = item => `${item.value}%`;
+  const makeLabels = item => isRtl ? `%${item.value}` : `${item.value}%`;
   const makeTooltip = ({ id, value, data }) => (
     <GenderTooltip id={id} value={value} data={data} abs_data={nonEmptyData} />
   );
@@ -94,7 +97,7 @@ export const StackedBarChart = ({ data = {} }) => {
   return (
     <Box className={classes.box}>
       <Grid container spacing={1}>
-        <Grid item xs={2} className={classes.male} />
+        <Grid item xs={2} className={isRtl ? classes.female : classes.male} />
         <Grid item xs={8}>
           <div className={classes.wrapper}>
             <Bar
@@ -118,7 +121,7 @@ export const StackedBarChart = ({ data = {} }) => {
             />
           </div>
         </Grid>
-        <Grid item xs={2} className={classes.female} />
+        <Grid item xs={2} className={isRtl ? classes.male : classes.female} />
       </Grid>
     </Box>
   );
