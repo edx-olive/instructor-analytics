@@ -11,7 +11,7 @@ export const WorldMapChart = ({
   data = [],
   min = 0,
   max = 100,
-  width = 1200,
+  width = 980,
   height = 600,
   borderColor,
   unknownColor,

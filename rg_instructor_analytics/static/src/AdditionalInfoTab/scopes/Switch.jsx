@@ -1,9 +1,13 @@
 import React from "react";
-import { Button, ButtonGroup, makeStyles } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
+import MuiButtonGroup from "@material-ui/core/ButtonGroup";
+import { withStyles } from "@material-ui/core/styles";
 import * as R from "ramda";
 import { useDispatch } from "react-redux";
 import { scopeToggling } from "./data/actions";
 import * as PropTypes from "prop-types";
+import { isRtl } from "../rtl";
+
 
 // eslint-disable-next-line
 const useStyles = makeStyles(theme => ({
@@ -11,6 +15,12 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.common.white
   }
 }));
+
+const ButtonGroup = withStyles({
+  root: {
+    flexDirection: isRtl ? "row-reverse" : "row"
+  }
+})(MuiButtonGroup);
 
 const Switch = ({ items, activeItem, size }) => {
   const classes = useStyles();

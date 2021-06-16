@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Bar } from "@nivo/bar";
 import {makeStyles, useTheme} from "@material-ui/core";
 import AgeTooltip from "./AgeTooltip";
+import { isRtl } from "../rtl";
 
 const useStyles = makeStyles(theme => ({
   wrapper: {
@@ -40,7 +41,7 @@ export const BarChart = ({
     <AgeTooltip id={id} value={value} data={data} />
   );
   const makeXAxis = d => (d % 20 === 0) ? `${d}` : '';
-  const makeLabel = d => <tspan x={ (d + 5) * ((width-160) / 100) }>{ `${d}%` }</tspan>;
+  const makeLabel = d => <tspan x={ (d + 5) * ((width-160) / 100) }>{ isRtl ? `%${d}` : `${d}%` }</tspan>;
 
   const CustomTick = tick => {
 
@@ -89,6 +90,7 @@ export const BarChart = ({
       axisBottom={{ format: makeXAxis, tickSize: 0 }}
       axisLeft={{ renderTick: CustomTick, tickSize: 0 }}
       tooltip={makeTooltip}
+      reverse={isRtl}
       {...rest}
     />
     </div>

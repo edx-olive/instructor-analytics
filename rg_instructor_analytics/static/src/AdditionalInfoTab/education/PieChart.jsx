@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import { Pie } from "@nivo/pie";
 import { Box, makeStyles } from "@material-ui/core";
 import EducationTooltip from "./EducationTooltip";
+import { isRtl } from "../rtl";
 
 const useStyles = makeStyles(theme => ({
   box: {
     display: "flex",
-
+    flexDirection: isRtl ? "row-reverse": "row",
+    direction: "ltr",
     // Chart legend:
     "& div svg": {
       overflow: "visible !important"
@@ -37,10 +39,11 @@ const PieChart = ({ data = [], width = 800, height = 300, ...rest }) => {
   const legendConfig = {
     anchor: "right",
     direction: "column",
-    translateX: 550,
+    translateX: isRtl ? -650 : 550,
     itemWidth: 700,
     itemHeight: 30,
-    legendFormat: "value"
+    legendFormat: "value",
+    itemDirection: isRtl ? "right-to-left" : "left-to-right"
   };
 
   const makeTooltip = item => <EducationTooltip {...item} />;
@@ -63,7 +66,7 @@ const PieChart = ({ data = [], width = 800, height = 300, ...rest }) => {
         radialLabelsLinkDiagonalLength={10}
         radialLabelsLinkHorizontalLength={0}
         radialLabelsLinkOffset={10}
-        radialLabel={item => `${item.value}%`}
+        radialLabel={item => isRtl ? `%${item.value}` : `${item.value}%`}
         legends={[legendConfig]}
         tooltip={makeTooltip}
         {...rest}
