@@ -18,6 +18,7 @@ function ActivityTab(button, content) {
   var $visitsCheckbox = content.find('#series-visits');
   var defaultColor = '#3e3e3e';
   var defaultFontSize = '12px';
+  var isRtl = $('body').hasClass('rtl');
 
   var unitsBySequenceOrder = null;
   var unitsOrder = 'sequence_order';
@@ -66,6 +67,8 @@ function ActivityTab(button, content) {
             text: ''
         },
         legend: {
+            rtl: isRtl,
+            useHTML: Highcharts.hasBidiBug,
             layout: 'horizontal',
             align: 'center',
             verticalAlign: 'top',
@@ -81,6 +84,7 @@ function ActivityTab(button, content) {
 
         },
         xAxis: {
+            reversed: isRtl,
             type: 'datetime',
             gridLineWidth: 1,
             allowDecimals: false,
@@ -96,6 +100,7 @@ function ActivityTab(button, content) {
             colors: ['#50c156', '#568ecc', '#8e28c1']
         },
         yAxis: {
+            opposite: isRtl,
             title: {
                 text: ''
             },
@@ -111,6 +116,7 @@ function ActivityTab(button, content) {
                 color: defaultColor
             },
             shared: true,
+            valueSuffix: ' ' + django.gettext("Units") + ' '
         },
         credits: {
             enabled: false
@@ -123,6 +129,17 @@ function ActivityTab(button, content) {
         series: chartData,
         dashStyle: 'longdash'
     });
+
+    if (isRtl) {
+        chart.update({
+            tooltip: {
+                useHTML: true,
+                style: {
+                    textAlign: 'right'
+                }
+            }
+        });
+    }
 
     function toggleSeriesCheckbox($checkbox, series_num) {
         chart.series[series_num].update({
@@ -240,6 +257,7 @@ function ActivityTab(button, content) {
             }
         }, 
         xAxis: {
+            reversed: isRtl,
             type: 'category',
             labels: {
                 style: {
@@ -254,6 +272,7 @@ function ActivityTab(button, content) {
             enabled: false
         },
         yAxis: {
+            reversed: isRtl,
             allowDecimals: false,
             endOnTick: false,
             title: {

@@ -31,6 +31,7 @@ function EnrollmentTab(button, content) {
 
       var chartClass = 'enrollment-stats-plot';
       var checkedClass = 'is-checked';
+      var isRtl = $('body').hasClass('rtl');
 
       function drawChart(series, colors) {
         Highcharts.setOptions({
@@ -41,15 +42,21 @@ function EnrollmentTab(button, content) {
               fontFamily: "'Open Sans', sans-serif"
             },
             marginTop: 40,
+          },
+          lang: {
+            months: moment.months(),
+            weekdays: moment.weekdays(),
+            shortMonths: moment.monthsShort()
           }
         });
 
-        Highcharts.chart(chartClass,
+        var chart = Highcharts.chart(chartClass,
           {
             title: {
               text: ''
             },
             legend: {
+              rtl: isRtl,
               layout: 'horizontal',
               align: 'center',
               verticalAlign: 'top',
@@ -64,6 +71,7 @@ function EnrollmentTab(button, content) {
                   Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
             },
             xAxis: {
+              reversed: isRtl,
               dateTimeLabelFormats: {
                 day: '%b %d'
               },
@@ -79,6 +87,7 @@ function EnrollmentTab(button, content) {
               }
             },
             yAxis: {
+              opposite: isRtl,
               title: {
                 text: ''
               },
@@ -92,7 +101,7 @@ function EnrollmentTab(button, content) {
             },
             tooltip: {
               shared: true,
-              valueSuffix: ' users',
+              valueSuffix: ' ' + django.gettext("Users") + ' ',
               style: {
                 color: defaultColor
               }
@@ -112,6 +121,17 @@ function EnrollmentTab(button, content) {
             },
             series: series
           });
+
+          if (isRtl) {
+            chart.update({
+              tooltip: {
+                useHTML: true,
+                style: {
+                  textAlign: 'right'
+                }
+              }
+            });
+          }
       }
 
       function drawChartTotal() {

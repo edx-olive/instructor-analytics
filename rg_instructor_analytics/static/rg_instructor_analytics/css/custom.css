@@ -246,6 +246,10 @@ ul.disc-list .analytics-title-text:before {
   margin: 40px 0 55px;
 }
 
+figure.enrollment-chart {
+  max-height: 525px;
+}
+
 .enrollment-chart,
 .units-chart {
   margin-bottom: 0;
@@ -1330,6 +1334,7 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   opacity: 0;
   visibility: hidden;
   transition: all 200ms ease;
+  z-index: 1;
 }
 
 .funnel-item-1 .emails-list-button-holder {
@@ -1730,4 +1735,246 @@ button.funnel-send-email-btn:focus,
 
 .wrapper-course-material .course-material {
   max-width: 1170px;
+}
+
+/* RTL */
+
+body.rtl ul.disc-list .analytics-title-text {
+  padding: 0 20px 0;
+}
+
+body.rtl ul.disc-list .analytics-title-text:before {
+  left: initial;
+  right: 0;
+}
+
+body.rtl .enroll-buttons-holder .custom-select .filter-dropdown,
+body.rtl #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn,
+body.rtl .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li select {
+  padding: 3px 15px 3px 30px !important;
+  font-weight: 600;
+}
+
+body.rtl .date-btn:before, 
+body.rtl .date-btn:after, 
+body.rtl .enroll-buttons-holder .custom-select:before, 
+body.rtl .enroll-buttons-holder .custom-select:after, 
+body.rtl .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:before, 
+body.rtl .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li.course-select:after {
+  right: initial;
+  left: 10px;
+}
+
+body.rtl .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li select,
+body.rtl .enroll-buttons-holder .custom-select .filter-dropdown {
+  background-position: left 10px center !important;
+}
+
+body.rtl .enroll-buttons-holder .custom-select select.filter-dropdown,
+body.rtl .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .units-sort-order {
+  padding: 3px 15px 3px 30px !important;
+  background-position: left 10px center !important;
+}
+
+body.rtl .count-limit-container a {
+  margin: 0 0 0 10px;
+}
+
+body.rtl .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup label {
+  padding-right: 55px;
+}
+
+body.rtl .filter-btn-holder {
+  margin: 0 0 0 16px;
+}
+
+body.rtl .course-select {
+  right: initial;
+  left: 60px;
+}
+
+body.rtl .enrollment-toggle-btns__label:first-child {
+  margin: 0 0 0 40px;
+}
+
+body.rtl .activity-toggle-checkboxes__label {
+  margin: 0 0 0 35px;
+}
+
+body.rtl .activity-toggle-checkboxes__label:last-child {
+  margin-left: 0;
+}
+
+body.rtl .date-range-picker {
+  margin: 0 20px 0 0 !important;
+}
+
+body.rtl .enroll-buttons-holder .js-datepicker-dropdown button {
+  margin: 0 0 0 11px !important;
+}
+
+body.rtl .enroll-buttons-holder .js-datepicker-dropdown button:last-child {
+  margin-left: 0 !important;
+}
+
+body.rtl .progress-funnel-content {
+  align-items: center;
+  padding-left: 0 !important;
+}
+
+body.rtl .funnel-item button.emails-list__close {
+  right: initial;
+  left: 13px;
+}
+
+.funnel-item .input-checkbox input[type="checkbox"] + .label-text {
+  overflow: visible;
+}
+
+body.rtl .funnel-item .input-checkbox input[type="checkbox"] + .label-text:before {
+  position: static;
+  margin-left: 10px;
+}
+
+body.rtl .funnel-item-0 > .funnel-item-content .funnel-item-name:before,
+body.rtl .funnel-item-1 > .funnel-item-content .funnel-item-name:before {
+  left: initial;
+  right: -6px;
+}
+
+body.rtl #cohort-check-list li input[type="checkbox"] + label {
+  margin: 0 0 0 10px !important;
+}
+
+body.rtl #problems-stats-plot .plot-bar-vertical {
+  flex-direction: row-reverse;
+}
+
+body.rtl .enrollment-toggle-btns__label input[type="radio"] + .label-text,
+body.rtl .activity-toggle-checkboxes__label input[type="checkbox"] + .label-text,
+body.rtl .analytics-legend-holder__square .analytics-legend-item, 
+body.rtl .activity-legend-holder__square .activity-legend-item {
+  padding: 0 30px 0 0;
+}
+
+body.rtl .enrollment-toggle-btns__label input[type="radio"] + .label-text:before,
+body.rtl .activity-toggle-checkboxes__label input[type="checkbox"] + .label-text:before,
+body.rtl .analytics-legend-holder__square .analytics-legend-item:before, 
+body.rtl .activity-legend-holder__square .activity-legend-item:before {
+  left: initial;
+  right: 0;
+}
+
+body.rtl .enrollment-toggle-btns__label input[type="radio"] + .label-text:after {
+  left: initial;
+  right: 5px;
+}
+
+body.rtl .gradebook-table-cell:first-child a {
+  text-align: right;
+}
+
+body.rtl .activity-toggle-checkboxes__label input[type="checkbox"] + .label-text:after {
+  left: initial;
+  right: -2px;
+}
+
+body.rtl #problem-homeworks-stats-plot .y-axis-l,
+body.rtl #problems-stats-plot .y-axis-l {
+  left: initial;
+  right: 15px;
+}
+
+body.rtl #problem-homeworks-stats-plot .y-axis-r {
+  right: initial;
+  left: 15px;
+}
+
+body.rtl .funnel-item-0 > .funnel-item-content > .funnel-item-stuck,
+body.rtl .funnel-item-1 > .funnel-item-content > .funnel-item-stuck,
+body.rtl .funnel-item-2 > .funnel-item-content > .funnel-item-stuck {
+  right: initial;
+  left: 30px;
+  display: flex;
+}
+
+body.rtl .funnel-item-0 > .funnel-item-content .funnel-item-name,
+body.rtl .funnel-item-1 > .funnel-item-content > .funnel-item-name,
+body.rtl .funnel-item-2 > .funnel-item-content > .funnel-item-name {
+  text-align: right;
+  padding: 0 20px 0 80px;
+}
+
+body.rtl .emails-list-button-holder {
+  left: -172px;
+  top: -7px;
+}
+
+body.rtl .emails-list-button-holder button.emails-list-button {
+  margin-left: 0 !important;
+  min-width: 110px;
+}
+
+body.rtl .funnel-item-0 > .emails-list span {
+  text-align: right;
+}
+
+body.rtl .funnel-item .emails-list span.emails-list-mails {
+  padding: 9px 20px;
+  text-align: right;
+}
+
+body.rtl .funnel-item-outgoing {
+  right: initial;
+  left: -10px;
+  transform: translate(-100%, -50%);
+  padding-left: 0;
+  padding-right: 30px;
+  background-image: none;
+}
+
+body.rtl .funnel-item-outgoing:before,
+body.rtl .funnel-item-incoming:before {
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cdefs%3E%3Cstyle%3E.a%7Bfill:none;%7D.b%7Bfill:%233caada;%7D%3C/style%3E%3C/defs%3E%3Cpath class='a' d='M0,0H24V24H0Z'/%3E%3Cpath class='b' d='M8.59,16.59,13.17,12,8.59,7.41,10,6l6,6-6,6Z'/%3E%3C/svg%3E");
+  background-size: auto 30px;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-position: left center;
+  transform: scale(-1);
+}
+
+body.rtl .funnel-item-incoming {
+  left: initial;
+  right: -10px;
+  transform: translate(100%, -50%);
+  padding-left: 30px;
+  padding-right: 0;
+  background-image: none;
+}
+
+body.rtl .funnel-item-incoming:before {
+  right: initial;
+  left: 0;
+  background-position: right center;
+}
+
+body.rtl .funnel-item-1 .funnel-item-outgoing {
+  left: -30px;
+}
+
+body.rtl .funnel-item-1 .funnel-item-incoming {
+  right: -30px;
+}
+
+body.rtl .funnel-item-2 .funnel-item-outgoing {
+  left: -10px;
+}
+
+body.rtl .funnel-item-2 .funnel-item-incoming {
+  right: -10px;
 }
