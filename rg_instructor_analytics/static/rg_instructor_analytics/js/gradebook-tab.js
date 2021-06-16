@@ -87,10 +87,21 @@ function GradebookTab(button, content) {
         });
     }
 
+    function chartMaxLabelsLength(arr, value) {
+        var letterWidth = value;
+        var maxLabelLength = Math.max.apply(null, arr.map(function(label) {
+            return label.length;
+        }));
+
+        return maxLabelLength * letterWidth;
+    }
+
     function renderDiscussionActivity(data, userName) {
         var chartNames = data.thread_names;
         var chartValues = data.activity_count;
-        var y_template = {};
+        var y_template = {
+            side: isRtl ? "right" : "left"
+        };
         var chartData = chartNames.map(function(value, index) {
             return [chartNames[index], chartValues[index]];
         });
@@ -127,6 +138,7 @@ function GradebookTab(button, content) {
                 enabled: false
             },
             xAxis: {
+                opposite: isRtl,
                 type: 'category',
                 labels: {
                     style: {
@@ -139,6 +151,7 @@ function GradebookTab(button, content) {
                 angle: -90,
             },
             yAxis: {
+                reversed: isRtl,
                 allowDecimals: false,
                 title: {
                     text: ''
@@ -160,7 +173,11 @@ function GradebookTab(button, content) {
                 enabled: false
             },
             tooltip: {
-                pointFormat: '<b>{point.y:.1f}</b>'
+                pointFormat: '<b>{point.y:.1f}</b>',
+                useHTML: true,
+                style: {
+                    textAlign: isRtl ? 'right' : 'left'
+                }
             },
             series: [{
                 data: chartData,
@@ -217,6 +234,7 @@ function GradebookTab(button, content) {
                 enabled: false
             },
             xAxis: {
+                opposite: isRtl,
                 type: 'category',
                 labels: {
                     style: {
@@ -229,6 +247,7 @@ function GradebookTab(button, content) {
                 angle: -90,
             },
             yAxis: {
+                reversed: isRtl,
                 title: {
                     text: ''
                 },
@@ -337,7 +356,9 @@ function GradebookTab(button, content) {
         };
 
 
-        var x_template = {};
+        var x_template = {
+            autorange: isRtl ? "reversed" : true,
+        };
 
         if (Math.max(...data.steps) <= 5) {
             x_template["nticks"] = Math.max(...data.steps)+1
@@ -362,6 +383,7 @@ function GradebookTab(button, content) {
                 tickmode: 'array',
                 automargin: true,
                 autorange: true,
+                side: isRtl ? 'right' : 'left'
             },
         };
 
@@ -414,7 +436,7 @@ function GradebookTab(button, content) {
             htmlTemplate += (
                 '<div class="gradebook-table-cell">' +
                 '<div class="assignment-label">' +
-                greadebookTab.examNames[i] +
+                gettext(greadebookTab.examNames[i]) +
                 '</div>' +
                 '</div>'
             );
@@ -471,7 +493,7 @@ function GradebookTab(button, content) {
                 htmlStringStudentsUnenroll += _.template(
                     '<div class="gradebook-table-row">' +
                         '<div class="gradebook-table-cell">' +
-                            '<a data-position="<%= dataPosition %>" title="<%= studentName %> (unenroll)"><%= studentName %> (unenroll)</a>' +
+                            '<a data-position="<%= dataPosition %>" title="<%= studentName %> (unenroll)"><%= studentName %> (<%=gettext(\'Unenroll\')%>)</a>' +
                         '</div>' +
                         htmlStringResults +
                     '</div>'

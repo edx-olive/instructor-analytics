@@ -4,6 +4,7 @@ function CohortTab(button, content) {
     var $tabBanner = content.find('.tab-banner');
     var $tabContent = content.find('.tab-content');
     var timerId;
+    var isRtl = $('body').hasClass('rtl');
 
     cohortTab.cohortList = content.find('#cohort-check-list');
     cohortTab.emailBody = cohortTab.content.find('#email-body');
@@ -106,10 +107,11 @@ function CohortTab(button, content) {
                 '#01CC9B'
             ];
 
-            Highcharts.chart('cohort-plot', {
+            var chart = Highcharts.chart('cohort-plot', {
                 chart: {
                     type: 'pie',
-                    marginRight: 380,
+                    marginRight: isRtl ? 0 : 380,
+                    marginLeft: isRtl ? 380 : 0,
                     style: {
                         fontFamily: 'Exo 2.0, sans-serif'
                     }
@@ -130,6 +132,8 @@ function CohortTab(button, content) {
                         allowPointSelect: true,
                         cursor: 'pointer',
                         colors: pieColors,
+                        size: '100%',
+                        height: '100%',
                         dataLabels: {
                             enabled: true,
                             color: '#3e3e3e',
@@ -142,10 +146,11 @@ function CohortTab(button, content) {
                     }
                 },
                 legend: {
+                    rtl: isRtl,
                     layout: 'vertical',
-                    align: 'right',
+                    align: isRtl ? 'left' : 'right',
                     verticalAlign: 'middle',
-                    x: -200,
+                    x: isRtl ? 100 : -200,
                     y: 0,
                     itemMarginBottom: 20,
                     borderWidth: 0,
@@ -163,6 +168,36 @@ function CohortTab(button, content) {
                     data: chartData
                 }]
             });
+
+            if (isRtl) {
+                chart.update({
+                    tooltip: {
+                        useHTML: true,
+                        style: {
+                            textAlign: 'right'
+                        },
+                        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+                        ' <b>{point.y}</b>' + ' :' + django.gettext("Percent")
+                    },
+                    plotOptions: {
+                        pie: {
+                            dataLabels: {
+                                style: {
+                                    textOutline: false,
+                                    direction: "rtl"
+                                },
+                                x: 85
+                            }
+                        }
+                    },
+                    legend: {
+                        itemStyle: {
+                            direction: "rtl"
+                        },
+                        symbolPadding: -30
+                    }
+                });
+            }
 
             cohortTab.cohortList.empty();
             for (var i = 0; i < response.cohorts.length; i++) {
