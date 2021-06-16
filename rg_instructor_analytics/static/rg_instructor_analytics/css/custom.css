@@ -1737,6 +1737,15 @@ button.funnel-send-email-btn:focus,
   max-width: 1170px;
 }
 
+.richText .richText-toolbar ul li a .richText-dropdown-outer div.richText-dropdown .richText-form-item:last-child {
+  margin-top: 15px;
+}
+
+.richText .richText-form input[type="text"],
+.richText .richText-form input[type="number"] {
+  box-sizing: border-box;
+}
+
 /* RTL */
 
 body.rtl ul.disc-list .analytics-title-text {
@@ -1753,6 +1762,10 @@ body.rtl #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-
 body.rtl .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li select {
   padding: 3px 15px 3px 30px !important;
   font-weight: 600;
+}
+
+body.rtl #instructor-analytics-dashboard-content .instructor-nav .nav-item:first-child {
+  margin-left: 0;
 }
 
 body.rtl .date-btn:before, 
@@ -1977,4 +1990,31 @@ body.rtl .funnel-item-2 .funnel-item-outgoing {
 
 body.rtl .funnel-item-2 .funnel-item-incoming {
   right: -10px;
+}
+
+body.rtl #funnel-form-email .richText-toolbar > ul,
+body.rtl #cohort-form .richText-toolbar > ul {
+  display: flex;
+  margin-right: 20px;
+}
+
+body.rtl #funnel-form-email .richText-toolbar > ul li:first-child a,
+body.rtl #cohort-form .richText-toolbar > ul li:first-child a {
+  border-right: 0;
+}
+
+body.rtl #funnel-form-email .richText-toolbar > ul li:last-child a,
+body.rtl #cohort-form .richText-toolbar > ul li:last-child a {
+  border-left: 1px solid #efefef;
+}
+
+body.rtl .richText .richText-toolbar ul li a .richText-dropdown-outer .richText-dropdown .richText-dropdown-close {
+  left: -23px;
+  right: initial;
+}
+
+body.rtl #funnel-form-email .richText-help-popup #closeHelp,
+body.rtl #cohort-form .richText-help-popup #closeHelp {
+  left: 0 !important;
+  right: initial !important;
 }

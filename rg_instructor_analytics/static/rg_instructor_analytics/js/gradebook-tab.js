@@ -174,7 +174,7 @@ function GradebookTab(button, content) {
             },
             tooltip: {
                 pointFormat: '<b>{point.y:.1f}</b>',
-                useHTML: true,
+                useHTML: isRtl,
                 style: {
                     textAlign: isRtl ? 'right' : 'left'
                 }
@@ -269,7 +269,11 @@ function GradebookTab(button, content) {
                 enabled: false
             },
             tooltip: {
-                pointFormat: '<b>{point.y:.1f}</b>'
+                pointFormat: '<b>{point.y:.1f}</b>',
+                useHTML: isRtl,
+                style: {
+                    textAlign: isRtl ? 'right' : 'left'
+                }
             },
             series: [{
                 data: chartData,
@@ -592,6 +596,7 @@ function GradebookTab(button, content) {
                     enabled: false
                 },
                 xAxis: {
+                    reversed: isRtl,
                     type: 'category',
                     labels: {
                         style: {
@@ -603,6 +608,7 @@ function GradebookTab(button, content) {
                     lineWidth: 2,
                 },
                 yAxis: {
+                    opposite: isRtl,
                     title: {
                         text: ''
                     },
@@ -617,7 +623,12 @@ function GradebookTab(button, content) {
                     enabled: false
                 },
                 tooltip: {
-                    pointFormat: '<b>{point.y:.1f}</b>'
+                    pointFormat: '<b>{point.y:.1f}</b>',
+                    useHTML: isRtl,
+                    style: {
+                        textAlign: isRtl ? 'right' : 'left'
+                    }
+
                 },
                 series: [{
                     data: chartData,

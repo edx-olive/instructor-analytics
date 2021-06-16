@@ -114,7 +114,16 @@ function CohortTab(button, content) {
                     marginLeft: isRtl ? 380 : 0,
                     style: {
                         fontFamily: 'Exo 2.0, sans-serif'
-                    }
+                    },
+                    events: {
+                        load: function() {
+                            this.update({
+                                chart: {
+                                    height: 400
+                                }
+                            })
+                        }
+                    },
                 },
                 title: {
                     text: ''
@@ -132,15 +141,15 @@ function CohortTab(button, content) {
                         allowPointSelect: true,
                         cursor: 'pointer',
                         colors: pieColors,
-                        size: '100%',
-                        height: '100%',
+                        minSize: 320,
+                        size: 320,
                         dataLabels: {
                             enabled: true,
                             color: '#3e3e3e',
                             style: {
                                 fontSize: '12px',
                                 fontWeight: 'normal'
-                            }
+                            },
                         },
                         showInLegend: true
                     }
@@ -174,7 +183,8 @@ function CohortTab(button, content) {
                     tooltip: {
                         useHTML: true,
                         style: {
-                            textAlign: 'right'
+                            textAlign: 'right',
+                            direction: 'rtl'
                         },
                         pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
                         ' <b>{point.y}</b>' + ' :' + django.gettext("Percent")

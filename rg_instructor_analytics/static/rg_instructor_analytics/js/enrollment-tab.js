@@ -42,6 +42,15 @@ function EnrollmentTab(button, content) {
               fontFamily: "'Open Sans', sans-serif"
             },
             marginTop: 40,
+            events: {
+              load: function() {
+                this.update({
+                    chart: {
+                        height: 400
+                    }
+                })
+              }
+            },
           },
           lang: {
             months: moment.months(),
@@ -103,7 +112,9 @@ function EnrollmentTab(button, content) {
               shared: true,
               valueSuffix: ' ' + django.gettext("Users") + ' ',
               style: {
-                color: defaultColor
+                color: defaultColor,
+                textAlign: isRtl ? 'right' : 'left',
+                direction: isRtl ? 'rtl' : 'ltr',
               }
             },
             credits: {
