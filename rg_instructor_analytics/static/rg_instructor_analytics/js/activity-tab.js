@@ -62,6 +62,15 @@ function ActivityTab(button, content) {
         chart: {
             type: 'areaspline',
             marginTop: 40,
+            events: {
+            load: function() {
+                    this.update({
+                        chart: {
+                            height: 400
+                        }
+                    })
+                }
+            }
         },
         title: {
             text: ''
@@ -112,8 +121,11 @@ function ActivityTab(button, content) {
             }
         },
         tooltip: {
+            useHTML: isRtl,
             style: {
-                color: defaultColor
+                color: defaultColor,
+                textAlign: isRtl ? 'right' : 'left',
+                direction: isRtl ? 'rtl' : 'ltr',
             },
             shared: true,
             valueSuffix: ' ' + django.gettext("Units") + ' '
@@ -129,17 +141,6 @@ function ActivityTab(button, content) {
         series: chartData,
         dashStyle: 'longdash'
     });
-
-    if (isRtl) {
-        chart.update({
-            tooltip: {
-                useHTML: true,
-                style: {
-                    textAlign: 'right'
-                }
-            }
-        });
-    }
 
     function toggleSeriesCheckbox($checkbox, series_num) {
         chart.series[series_num].update({
@@ -289,7 +290,12 @@ function ActivityTab(button, content) {
             enabled: false
         },
         tooltip: {
-            pointFormat: '<b>{point.y:.1f}</b>'
+            pointFormat: '<b>{point.y:.1f}</b>',
+            useHTML: isRtl,
+            style: {
+                textAlign: isRtl ? 'right' : 'left',
+                direction: isRtl ? 'rtl' : 'ltr',
+            }
         },
         series: [{
             data: chartData,
