@@ -14,12 +14,12 @@ __________
 Unreleased
 ~~~~~~~~~~
 
-* Fix deprecated import path: Importing courseware instead of
-  lms.djangoapps.courseware is deprecated.
-
 [v3.0.0] - 2021-06-17 (Koa+ only)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+* Fix deprecated `base_name` parameter in DRF `Router.register` method.
+* Fix deprecated import path: Importing courseware instead of
+  lms.djangoapps.courseware is deprecated.
 * Full migration from Py2 to Py3, Py2 based OeX releases are not supported.
 * Add AR translation files.
 * Add RTL support to the Additional information tab.

@@ -21,7 +21,7 @@ from rg_instructor_analytics.views.tab_fragment import instructor_analytics_dash
 router = SimpleRouter()
 
 # Additional Info tab:
-router.register('additional-info', AdditionalInfoViewSet, base_name='additional-info')
+router.register('additional-info', AdditionalInfoViewSet, basename='additional-info')
 
 
 urlpatterns = [
