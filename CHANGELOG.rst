@@ -14,6 +14,12 @@ __________
 Unreleased
 ~~~~~~~~~~
 
+fix - 2021-07-07 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- fixed hover on chart elements in the problem tab
+- fixed chart position xAxis activity tab
+
 [v3.0.0] - 2021-06-17 (Koa+ only)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -477,6 +477,10 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   box-sizing: border-box;
 }
 
+#problem-homeworks-stats-plot .plot-body .plot-bar-vert .plot-bar-percent span.plot-bar-value.is-vertical {
+  writing-mode: vertical-rl;
+}
+
 .plot-bar-vert .plot-click-me:hover, 
 .plot-bar-vertical .plot-click-me:hover {
   color: #fff;
@@ -545,6 +549,14 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 
 #problem-homeworks-stats-plot .x-axis .hw-xaxis {
   text-transform: uppercase;
+}
+
+#problem-homeworks-stats-plot .x-axis li div {
+  max-width: 80px;
+}
+
+#problem-homeworks-stats-plot .x-axis li.is-hidden {
+  opacity: 0;
 }
 
 .plot-bar-value {

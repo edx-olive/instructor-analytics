@@ -15,6 +15,7 @@ function ProblemTab(button, content) {
     var $subsectionEmailList = content.find('.subsection-emails-list');
     var $problemEmailList = content.find('.problem-emails-list');
     var $problemLegend = content.find('.js-legend-holder');
+    var isRtl = $('body').hasClass('rtl');
 
     var $emailTemplate =
         '<div>' +
@@ -148,13 +149,21 @@ function ProblemTab(button, content) {
                 $('.plot-bar-vert').on('mouseover', function (e) {
 
                     let attr = $(this).data('attribute');
+                    let isLastElement = attr === $('.hw-xaxis').length - 1;
 
                     $('.hw-xaxis').removeClass('hover');
                     $('.hw-xaxis')[attr].classList.add('hover');
+
+                    if (isRtl && !attr == 0 || isLastElement) {
+                        $('.hw-xaxis')[attr - 1].classList.add('is-hidden');
+                    } else {
+                        $('.hw-xaxis')[attr + 1].classList.add('is-hidden');
+                    }
                 });
                 $('.plot-bar-vert').on('mouseleave', function (e) {
-                    $('.hw-xaxis').removeClass('hover');
+                    $('.hw-xaxis').removeClass('hover is-hidden');
                 });
+                $('.plot-bar-vert .plot-bar-percent .plot-bar-value').addClass('is-vertical');
             }
             if (problemTab.locationToOpen) {
                 openLocation();
