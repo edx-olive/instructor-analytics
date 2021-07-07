@@ -258,7 +258,7 @@ function ActivityTab(button, content) {
             }
         }, 
         xAxis: {
-            reversed: isRtl,
+            opposite: isRtl,
             type: 'category',
             labels: {
                 style: {
