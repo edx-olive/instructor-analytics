@@ -8,49 +8,34 @@ It adds extra navigation `Instructor analytics` tab for instructors (next to `In
 
 - Enrollment stats:
 
-> `enrollments`/`unenrollments` count given separately for each Course time-sliced by:
-> - arbitrary period;
-> - last week;
-> - last two weeks;
-> - last month;
-> - since course start;
+  > `enrollments`/`unenrollments` count given separately for each Course time-sliced by:
+  > - arbitrary period;
+  > - last week;
+  > - last two weeks;
+  > - last month;
+  > - since course start.
 
+- Activities
 - Problems
-- Gradebook
+- Student's Info
 - Clusters
 - Progress Funnel
 - Suggestions
+- Additional Information
 
 ## Installation
 
 `Instructor Analytics` must be installed together with the [Util for the tracking log parsing](https://gitlab.raccoongang.com/rg-developers/instructor-analytics-log-collector/-/tags).
- Install this utility from tag `v3.x.x` before installing `Instructor Analytics`.
+ Install this utility with the same tag.
 
-* Add `rg_instructor_analytics` to the `ADDL_INSTALLED_APPS` in `lms.env.json`
-> Note: If you interested in the `Instructor Analytics` for Open edX IronWood or
-> earlier please switch to the tag v2.x.x [Instructor Analytics Tags]
-> (https://gitlab.raccoongang.com/rg-developers/instructor-analytics/-/tags)
-* Add in to the settings file `lms.env.json`
-```
-FEATURES['ENABLE_XBLOCK_VIEW_ENDPOINT'] = True
-FEATURES['ENABLE_RG_INSTRUCTOR_ANALYTICS'] = True
-```
-* For non RG OeX installations add to `edx-platform/lms/urls.py`:
-```python
-url(
-        r'^courses/{}/tab/instructor_analytics/'.format(
-            settings.COURSE_ID_PATTERN,
-        ),
-        include('rg_instructor_analytics.urls'),
-        name='instructor_analytics_endpoint',
-    ),
-```
-> Note: url definition must be set *before* url with the name `course_tab_view`
+`Instructor Analytics` is OeX installable app so to install application it 
+should be added to the venv via `pip install` command.
 
-* Apply migration
+* Apply migration (if needed)
 * Ensure that celerybeat is running
-* Set setting for grade cache update, for example:
-    * for common.py
+* The default setting for grade cache update could be changed in the deployment
+  configurations or directly in lms.envs.<env_settings>:
+    * for common.py (defaults are)
     ```python
     RG_ANALYTICS_GRADE_STAT_UPDATE = {
         'minute': '0',
@@ -61,23 +46,34 @@ url(
     }
     ```
     * or provide settings in `FEATURES`
-    ```json
-    "FEATURES": {
+    ```yaml
+    FEATURES: 
         ...
-        "RG_ANALYTICS_GRADE_CRON_MINUTE": "0",
-        "RG_ANALYTICS_GRADE_CRON_HOUR": "*/6",
-        "RG_ANALYTICS_GRADE_CRON_DOM": "*",
-        "RG_ANALYTICS_GRADE_CRON_DOW": "*",
-        "RG_ANALYTICS_GRADE_CRON_MONTH": "*",
+        RG_ANALYTICS_GRADE_CRON_MINUTE: "0",
+        RG_ANALYTICS_GRADE_CRON_HOUR: "*/6",
+        RG_ANALYTICS_GRADE_CRON_DOM: "*",
+        RG_ANALYTICS_GRADE_CRON_DOW: "*",
+        RG_ANALYTICS_GRADE_CRON_MONTH: "*",
         ...
-    }
+    ```
+* The default settings for `RG_ANALYTICS_DEMOGRAPHICS_SCHEDULE` is a dict in the
+  `FEATURES` for example:
+    * for common.py (defaults are)
+    ```python
+        FEATURES['RG_ANALYTICS_DEMOGRAPHICS_SCHEDULE'] = {
+            'minute': '0',
+            'hour': '*/6',
+            'day_of_month': '*',
+            'day_of_week': '*',
+            'month_of_year': '*',
+        }
     ```
 * Run in the console:
 ```bash
 sudo -sHu edxapp
 cd ~
 . edxapp_env
-pip install -e git+https://github.com/raccoongang/rg_instructor_analytics@master#egg=rg_instructor_analytics
+pip install git+https://github.com/raccoongang/rg_instructor_analytics@v3.x.x#egg=rg_instructor_analytics
 cd edx-platform
 python ./manage.py lms collectstatic --settings=$EDX_PLATFORM_SETTINGS --noinput
 exit
