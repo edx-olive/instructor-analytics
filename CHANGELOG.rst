@@ -14,14 +14,16 @@ __________
 Unreleased
 ~~~~~~~~~~
 
-fix - 2021-07-07 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[v3.1.0] - 2021-07-08
+~~~~~~~~~~~~~~~~~~~~~
+* Feature Add Installable App Options
+* Docs: GitLab MR Template is added
 
 - fixed hover on chart elements in the problem tab
 - fixed chart position xAxis activity tab
 
 [v3.0.0] - 2021-06-17 (Koa+ only)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Fix deprecated `base_name` parameter in DRF `Router.register` method.
 * Fix deprecated import path: Importing courseware instead of
@@ -38,7 +40,7 @@ fix - 2021-07-07
 * CHANGELOG is added!
 
 * For the upcoming logs please use the following tags:
-   * Feature
+   * Feat
    * Enhancement
    * Fix
    * Documentation
