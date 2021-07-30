@@ -14,6 +14,10 @@ __________
 Unreleased
 ~~~~~~~~~~
 
+[v3.1.1] - 2021-07-30
+~~~~~~~~~~~~~~~~~~~~~
+* Fix scorm assessment in course analytics statistics
+
 [v3.1.0] - 2021-07-08
 ~~~~~~~~~~~~~~~~~~~~~
 * Feature Add Installable App Options
