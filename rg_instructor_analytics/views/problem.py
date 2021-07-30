@@ -116,7 +116,7 @@ class ProblemHomeWorkStatisticView(View):
                 problems_in_hw = 0
 
                 for child in chain.from_iterable(unit.get_children() for unit in subsection.get_children()):
-                    if child.location.category == 'problem':
+                    if child.location.category in ['problem', 'scormxblock']:
                         problem_id = specific.get_problem_id(child)
                         if problem_id in academic_performance:
                             current_performance = academic_performance[problem_id]
@@ -152,7 +152,7 @@ class ProblemHomeWorkStatisticView(View):
                 date_range_filter,
                 course_id__exact=course_key,
                 grade__isnull=False,
-                module_type__exact="problem",
+                module_type__in=["problem", "scormxblock"],
             )
             .values('module_state_key')
             .annotate(attempts_avg=Avg(self.ATTEMPTS_REQUEST))
