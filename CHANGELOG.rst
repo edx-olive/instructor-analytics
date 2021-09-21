@@ -13,6 +13,7 @@ __________
 
 Unreleased
 ~~~~~~~~~~
+* Add Vietnamese translations
 
 [v3.1.1] - 2021-07-30
 ~~~~~~~~~~~~~~~~~~~~~

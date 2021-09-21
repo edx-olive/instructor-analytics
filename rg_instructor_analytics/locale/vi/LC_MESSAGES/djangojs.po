@@ -1,0 +1,162 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-20 16:53+0000\n"
+"PO-Revision-Date: 2021-08-14 14:20+0000\n"
+"Last-Translator: \n"
+"Language-Team: Tiếng Việt\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.3; wp-5.4.6"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:31
+msgid "Video"
+msgstr "Video"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:41
+msgid "Discussion"
+msgstr "Thảo luận"
+
+#: static/rg_instructor_analytics/js/activity-tab.js:51
+msgid "Visit"
+msgstr "Đến"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:42 
+#: static/rg_instructor_analytics/js/enrollment-tab.js:62
+msgid "Total"
+msgstr "Tổng"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:51
+msgid "Enrollments/Unenrollments"
+msgstr "Đăng ký / Hủy đăng ký"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:78
+msgid "Enrollments"
+msgstr "Đăng ký"
+
+#: static/rg_instructor_analytics/js/enrollment-tab.js:93
+msgid "Unenrollments"
+msgstr "Hủy đăng ký"
+
+#: static/rg_instructor_analytics/js/funnel-tab.js:95
+msgid "Hide emails"
+msgstr "Ẩn email"
+
+#: static/rg_instructor_analytics/js/funnel-tab.js:99
+msgid "Show emails"
+msgstr "Hiển thị email"
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:283
+msgid "Search students"
+msgstr "Tìm kiếm học sinh"
+
+#: static/rg_instructor_analytics/js/gradebook-tab.js:375
+msgid "Date of the last Course visit:"
+msgstr "Ngày cuối cùng xem khóa học:"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:96
+msgid "DETAILS"
+msgstr "CHI TIẾT"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:213
+msgid "Subsection"
+msgstr "Tiểu mục"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:341
+msgid "Problem"
+msgstr "Vấn đề"
+
+#: static/rg_instructor_analytics/js/problem-tab.js:521 
+#: static/rg_instructor_analytics/js/problem-tab.js:540
+msgid "Show Plot"
+msgstr "Hiển thị Plot"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:55011 
+#: static/rg_instructor_analytics/js/react-bundle.js:58510 
+#: static/rg_instructor_analytics/js/react-bundle.js:58521 
+#: static/rg_instructor_analytics/js/react-bundle.js:59280 
+#: static/src/AdditionalInfoTab/age/Empty.jsx:22 
+#: static/src/AdditionalInfoTab/education/Empty.jsx:22 
+#: static/src/AdditionalInfoTab/gender/Empty.jsx:22 
+#: static/src/AdditionalInfoTab/geo/Empty.jsx:22
+msgid "no data available"
+msgstr "không có dữ liệu"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:55485 
+#: static/rg_instructor_analytics/js/react-bundle.js:58505 
+#: static/rg_instructor_analytics/js/react-bundle.js:58528 
+#: static/rg_instructor_analytics/js/react-bundle.js:59282 
+#: static/src/AdditionalInfoTab/age/AgeTooltip.jsx:26 
+#: static/src/AdditionalInfoTab/education/EducationTooltip.jsx:26 
+#: static/src/AdditionalInfoTab/gender/GenderTooltip.jsx:30 
+#: static/src/AdditionalInfoTab/geo/MapTooltip.jsx:28
+msgid "Users: "
+msgstr "Người dùng:"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:58533 
+#: static/src/AdditionalInfoTab/geo/TotalUsers.jsx:21
+msgid "Total Users: "
+msgstr "Tổng số người dùng:"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068 
+#: static/src/AdditionalInfoTab/index.jsx:19
+msgid "Country or region of residence"
+msgstr "Quốc gia hoặc khu vực cư trú"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068 
+#: static/src/AdditionalInfoTab/index.jsx:21 
+#: static/src/AdditionalInfoTab/index.jsx:35 
+#: static/src/AdditionalInfoTab/index.jsx:49 
+#: static/src/AdditionalInfoTab/index.jsx:63
+msgid "Saepe possimus voluptatum aspernatur temporibus porro alias"
+msgstr "Saepe possimus voluptatum aspernatur temporibus porro alias"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068 
+#: static/src/AdditionalInfoTab/index.jsx:24 
+#: static/src/AdditionalInfoTab/index.jsx:38 
+#: static/src/AdditionalInfoTab/index.jsx:52 
+#: static/src/AdditionalInfoTab/index.jsx:66
+msgid ""
+"Illum at dolorum amet reiciendis in, et adipisci assumenda deserunt quos "
+"deleniti quasi vero, perferendis dolorem modi ullam accusantium inventore "
+"amet, commodi illum perferendis ea tenetur iusto animi atque dicta rem ut?"
+msgstr ""
+"Illum at dolorum amet reiciendis in, et adipisci assnda Desunt quos "
+"Deleteniti quasi vero, perferendis dolorem modi ullam accantium inventore "
+"amet, Goodsi illum perferendis ea tenetur iusto animi atque dicta rem ut?"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068 
+#: static/src/AdditionalInfoTab/index.jsx:33
+msgid "Gender"
+msgstr "Giới tính"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068 
+#: static/src/AdditionalInfoTab/index.jsx:47
+msgid "Year of birth"
+msgstr "Năm sinh"
+
+#: static/rg_instructor_analytics/js/react-bundle.js:66068 
+#: static/src/AdditionalInfoTab/index.jsx:61
+msgid "Level of education"
+msgstr "Cấp học"
+
+#: static/rg_instructor_analytics/js/suggestions-tab.js:20
+msgid "No suggestions so far."
+msgstr "Không có đề xuất cho đến nay."
+
+#: static/rg_instructor_analytics/js/suggestions-tab.js:39
+msgid "Go to item"
+msgstr "Đi tới mục"
+
+#: static/rg_instructor_analytics/js/clusters-tab.js:123
+msgid "Percent:"
+msgstr "Phần trăm:"

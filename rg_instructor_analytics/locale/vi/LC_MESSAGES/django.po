@@ -1,0 +1,622 @@
+# #-#-#-#-#  django-partial.po (PACKAGE VERSION)  #-#-#-#-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# #-#-#-#-#  mako.po (PROJECT VERSION)  #-#-#-#-#
+# Translations template for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-20 19:20+0000\n"
+"PO-Revision-Date: 2021-08-14 14:20+0000\n"
+"Last-Translator: \n"
+"Language-Team: Tiếng Việt\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.3\n"
+"\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.3; wp-5.4.6"
+
+#: admin.py:20
+msgid "Tabs"
+msgstr "Các tab"
+
+#: admin.py:23
+msgid ""
+"Enabling additional tabs requires extra traffic, and might affect system "
+"activity. It might take a little time before data is updated."
+msgstr ""
+"Việc kích hoạt các tab bổ sung yêu cầu thêm lưu lượng truy cập và có thể ảnh "
+"hưởng đến hoạt động của hệ thống. Có thể mất một chút thời gian trước khi dữ "
+"liệu được cập nhật."
+
+#: models.py:23
+msgid "Generation Z: 1995-2012"
+msgstr "Thế hệ Z: 1995-2012"
+
+#: models.py:24
+msgid "Millenials: 1980-1994"
+msgstr "Millenials: 1980-1994"
+
+#: models.py:25
+msgid "Generation X: 1965-1979"
+msgstr "Thế hệ X: 1965-1979"
+
+#: models.py:26
+msgid "Baby boomers: 1942-1964"
+msgstr "Baby boomers: 1942-1964"
+
+#: models.py:30
+msgid "Academic degree"
+msgstr "Bằng cấp học thuật"
+
+#: models.py:31
+msgid "Master's degree on specialty"
+msgstr "Bằng thạc sĩ về chuyên ngành"
+
+#: models.py:32
+msgid "Undergraduate"
+msgstr "Đại học"
+
+#: models.py:33
+msgid "Incomplete higher education"
+msgstr "Chưa hoàn thành đại học"
+
+#: models.py:34
+msgid "The average"
+msgstr "Trung bình"
+
+#: models.py:35
+msgid "Incomplete secondary"
+msgstr "Chưa hoàn thành trung học"
+
+#: models.py:36
+msgid "Initial"
+msgstr "Ban đầu"
+
+#: models.py:37
+msgid "No formal education"
+msgstr "Không có giáo dục chính thức"
+
+#: models.py:38
+msgid "Other education"
+msgstr "Giáo dục khác"
+
+#: models.py:42
+msgid "Male"
+msgstr "Nam"
+
+#: models.py:43
+msgid "Other"
+msgstr "Khác"
+
+#: models.py:44
+msgid "Female"
+msgstr "Nữ"
+
+#: models.py:88
+msgid "Instructor"
+msgstr "Giáo viên"
+
+#: models.py:89 views/tab_fragment.py:38
+msgid "Enrollment stats"
+msgstr "Số liệu thống kê về đăng ký"
+
+#: models.py:90 views/tab_fragment.py:45
+msgid "Activities"
+msgstr "Các hoạt động"
+
+#: models.py:91 views/tab_fragment.py:52
+msgid "Problems"
+msgstr "Các vấn đề"
+
+#: models.py:92 views/tab_fragment.py:59
+msgid "Students' Info"
+msgstr "Thông tin học sinh"
+
+#: models.py:93 views/tab_fragment.py:66
+msgid "Clusters"
+msgstr "Cụm"
+
+#: models.py:94 views/tab_fragment.py:73
+msgid "Progress Funnel"
+msgstr "Kênh tiến trình"
+
+#: models.py:95 views/tab_fragment.py:80
+msgid "Suggestions"
+msgstr "Gợi ý"
+
+#: models.py:96
+msgid "Additional Info"
+msgstr "Thông tin bổ sung"
+
+#: models.py:131 models.py:174 models.py:219 models.py:262
+msgid "total users"
+msgstr "tổng số người dùng"
+
+#: models.py:132 models.py:175 models.py:220 models.py:263
+msgid "no data"
+msgstr "không có dữ liệu"
+
+#: models.py:134 models.py:177 models.py:222 models.py:265
+msgid "date"
+msgstr "ngày"
+
+#: models.py:137 models.py:138
+msgid "gender statistics"
+msgstr "thống kê giới tính"
+
+#: models.py:180 models.py:181
+msgid "education statistics"
+msgstr "thống kê giáo dục"
+
+#: models.py:225 models.py:226
+msgid "age statistics"
+msgstr "thống kê độ tuổi"
+
+#: models.py:268 models.py:269
+msgid "geo statistics"
+msgstr "thống kê địa lý"
+
+#: plugins.py:20
+msgid "Instructor analytics"
+msgstr "Phân tích của giáo viên"
+
+#: utils/decorators.py:43 views/activity.py:169 views/cohort.py:41 
+#: views/enrollment.py:165 views/funnel.py:93 views/gradebook.py:51 
+#: views/gradebook.py:119 views/gradebook.py:186 views/gradebook.py:248 
+#: views/problem.py:74 views/problem.py:197 views/problem.py:392 
+#: views/problem.py:433 views/suggestion.py:214
+msgid "Invalid course ID."
+msgstr "ID khóa học không hợp lệ."
+
+#: views/activity.py:167 views/enrollment.py:163 views/funnel.py:91 
+#: views/problem.py:72 views/problem.py:195 views/problem.py:431
+msgid "Invalid date range."
+msgstr "Phạm vi ngày không hợp lệ."
+
+#: views/additional_info.py:264
+msgid "system"
+msgstr "hệ thống"
+
+#: views/additional_info.py:265
+msgid "microsite"
+msgstr "trang web nhỏ"
+
+#: views/additional_info.py:266
+msgid "course"
+msgstr "khóa học"
+
+#: views/additional_info.py:270
+msgid "admin"
+msgstr "quản trị viên"
+
+#: views/additional_info.py:271
+msgid "instructor"
+msgstr "giáo viên"
+
+#: views/cohort.py:63
+msgid "zero progress"
+msgstr "không tiến bộ"
+
+#: views/cohort.py:66
+msgid "from {} % to {} %"
+msgstr "từ {}% đến {}%"
+
+#: views/cohort.py:176
+msgid "Not all field are filled."
+msgstr "Không phải tất cả các trường đều được điền."
+
+#: views/enrollment.py:161
+msgid "`from`, `to`, `course_id` are the must."
+msgstr "`from`,` to`, `course_id` là bắt buộc."
+
+#: views/gradebook.py:113 views/gradebook.py:180 views/gradebook.py:242
+msgid "Invalid username."
+msgstr "username không hợp lệ."
+
+#: views/problem.py:390
+msgid "Invalid `answerMap` (JSON parsing error)."
+msgstr "`AnswerMap` không hợp lệ (lỗi phân tích cú pháp JSON)."
+
+#: views/suggestion.py:131
+#, python-format
+msgid ""
+"Take a look at \"{}\" - the number of students that stuck there is {:01.0f}% "
+"higher than average."
+msgstr ""
+"Hãy xem \"{}\" - số học sinh thất bại ở đó cao hơn {: 01.0f}% so với mức "
+"trung bình."
+
+#: views/suggestion.py:176
+msgid ""
+"Take a look at \"{}\": there is too high avg attempts number and too low "
+"value of the mean success rate."
+msgstr ""
+"Hãy xem \"{}\": có số lần thử trung bình quá cao và giá trị của tỷ lệ thành "
+"công trung bình quá thấp."
+
+#: views/tab_fragment.py:87
+msgid "Additional Information"
+msgstr "thông tin thêm"
+
+#: templates/rg_instructor_analytics/activity.html:8 
+#: templates/rg_instructor_analytics/cohort.html:16 
+#: templates/rg_instructor_analytics/funnel.html:8 
+#: templates/rg_instructor_analytics/gradebook.html:9 
+#: templates/rg_instructor_analytics/problems.html:9
+msgid "Course has not started yet."
+msgstr "Khóa học vẫn chưa bắt đầu."
+
+#: templates/rg_instructor_analytics/activity.html:16 
+#: templates/rg_instructor_analytics/activity.html:31 
+#: templates/rg_instructor_analytics/cohort.html:27 
+#: templates/rg_instructor_analytics/gradebook.html:27 
+#: templates/rg_instructor_analytics/gradebook.html:53 
+#: templates/rg_instructor_analytics/gradebook.html:66 
+#: templates/rg_instructor_analytics/gradebook.html:78 
+#: templates/rg_instructor_analytics/time-filter.html:38
+msgid "Loading"
+msgstr "Đang tải"
+
+#: templates/rg_instructor_analytics/activity.html:21
+msgid "Video views count"
+msgstr "Số lượt xem video"
+
+#: templates/rg_instructor_analytics/activity.html:22
+msgid "Discussion activities count"
+msgstr "Số hoạt động thảo luận"
+
+#: templates/rg_instructor_analytics/activity.html:23
+msgid "Intensity of visits the course count"
+msgstr "Mật độ truy cập số lượng khóa học"
+
+#: templates/rg_instructor_analytics/activity.html:35
+msgid "Transition Pattern through Units"
+msgstr "Mô hình chuyển đổi thông qua các đơn vị"
+
+#: templates/rg_instructor_analytics/activity.html:37
+msgid ""
+"This graph indicates the amount of visits of each Unit and bring you the "
+"whole perspective of what part of Course was the most difficult or "
+"interesting for your Students."
+msgstr ""
+"Biểu đồ này cho biết số lượt truy cập của mỗi Bài học và cung cấp cho bạn "
+"toàn bộ viễn cảnh về phần nào trong Khóa học là khó nhất hoặc thú vị nhất "
+"đối với Học viên của bạn."
+
+#: templates/rg_instructor_analytics/cohort.html:19
+msgid "Keep an eye on your students' progress"
+msgstr "Theo dõi sự tiến bộ của học sinh"
+
+#: templates/rg_instructor_analytics/cohort.html:21
+msgid ""
+"This report constantly divides your students' progress in clusters: from low-"
+"performing to high-performing groups. You can take action right away - send "
+"appropriate email to clusters in couple of clicks."
+msgstr ""
+"Báo cáo này liên tục phân chia sự tiến bộ của học sinh của bạn theo các cụm: "
+"từ nhóm có thành tích thấp đến nhóm có thành tích cao. Bạn có thể thực hiện "
+"hành động ngay lập tức - gửi email thích hợp đến các cụm chỉ trong vài cú "
+"nhấp chuột."
+
+#: templates/rg_instructor_analytics/cohort.html:35 
+#: templates/rg_instructor_analytics/funnel.html:32
+msgid "Send Email"
+msgstr "Gửi email"
+
+#: templates/rg_instructor_analytics/cohort.html:37
+msgid ""
+"Choose clusters you want to send emails to, create email and send. Exactly "
+"that simple."
+msgstr ""
+"Chọn các cụm bạn muốn gửi email, tạo email và gửi. Chính xác là đơn giản."
+
+#: templates/rg_instructor_analytics/cohort.html:42 
+#: templates/rg_instructor_analytics/funnel.html:39
+msgid "Subject: "
+msgstr "Môn học:"
+
+#: templates/rg_instructor_analytics/cohort.html:45 
+#: templates/rg_instructor_analytics/funnel.html:42
+msgid "(Maximum 128 characters)"
+msgstr "(Tối đa 128 ký tự)"
+
+#: templates/rg_instructor_analytics/cohort.html:60 
+#: templates/rg_instructor_analytics/funnel.html:55
+msgid "SEND EMAIL(S)"
+msgstr "GỬI EMAIL"
+
+#: templates/rg_instructor_analytics/cohort.html:61 
+#: templates/rg_instructor_analytics/funnel.html:56
+msgid "Email(s) sending failed"
+msgstr "Gửi email không thành công"
+
+#: templates/rg_instructor_analytics/cohort.html:62 
+#: templates/rg_instructor_analytics/funnel.html:57
+msgid "Message sent"
+msgstr "Đã gửi tin nhắn"
+
+#: templates/rg_instructor_analytics/cohort.html:63 
+#: templates/rg_instructor_analytics/funnel.html:58
+msgid "Required fields"
+msgstr "Trường bắt buộc"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html:6
+msgid "This report shows the dynamics of the following metrics:"
+msgstr "Báo cáo này cho thấy động lực của các chỉ số sau:"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html:8
+msgid "Enrollments: Number of students that enrolled in the course"
+msgstr "Số lượng học sinh đã đăng ký trong khóa học"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html:9
+msgid "Unenrollments: Number of students that unenrolled from the course"
+msgstr "Hủy đăng ký: Số sinh viên đã hủy đăng ký khỏi khóa học"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html:10
+msgid "Total: Total number of students that are currently passing the course"
+msgstr "Tổng: Tổng số sinh viên hiện đã hoàn thành khóa học"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html:12
+msgid ""
+"You can choose the predefined periods of time to see the dynamics (Last Week,"
+" Last 2 Weeks, Last Month) or you can choose custom time period."
+msgstr ""
+"Bạn có thể chọn các khoảng thời gian được xác định trước để xem các động "
+"thái (Tuần trước, 2 tuần trước, tháng trước) hoặc bạn có thể chọn khoảng "
+"thời gian tùy chỉnh."
+
+#: templates/rg_instructor_analytics/enrollment_stats.html:20
+msgid "Enrollments"
+msgstr "Đăng ký"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html:21
+msgid "Unenrollments"
+msgstr "Hủy đăng ký"
+
+#: templates/rg_instructor_analytics/enrollment_stats.html:22
+msgid "Total"
+msgstr "Tổng"
+
+#: templates/rg_instructor_analytics/funnel.html:12
+msgid ""
+"This report shows which stages of your course prevent students from moving "
+"forward. "
+msgstr ""
+"Báo cáo này cho biết những giai đoạn nào trong khóa học của bạn gây khó khăn "
+"cho học sinh."
+
+#: templates/rg_instructor_analytics/funnel.html:15
+msgid "By stages we mean the hierarchical parts of Open edX course:"
+msgstr ""
+"Theo các giai đoạn, chúng tôi muốn nói đến các phần phân cấp của khóa học "
+"Open edX:"
+
+#: templates/rg_instructor_analytics/funnel.html:18
+msgid "Section"
+msgstr "Mục"
+
+#: templates/rg_instructor_analytics/funnel.html:19
+msgid "Subsection"
+msgstr "Tiểu mục"
+
+#: templates/rg_instructor_analytics/funnel.html:20
+msgid "Unit"
+msgstr "Đơn vị"
+
+#: templates/rg_instructor_analytics/funnel.html:23
+msgid ""
+"See how many students entered each stage, how many passed to another one and "
+"how many stuck."
+msgstr ""
+"Xem có bao nhiêu học sinh bước vào mỗi giai đoạn, bao nhiêu vượt qua giai "
+"đoạn khác và bao nhiêu bị thất bại."
+
+#: templates/rg_instructor_analytics/funnel.html:25
+msgid "Click on each stage to see the breakdown by available sub-stages."
+msgstr ""
+"Nhấp vào từng giai đoạn để xem bảng phân tích theo các giai đoạn phụ có sẵn."
+
+#: templates/rg_instructor_analytics/funnel.html:34
+msgid ""
+"Choose section or subsection with a checkbox. Email will be sent to all the "
+"students who stuck there."
+msgstr ""
+"Chọn mục hoặc tiểu mục bằng cách tích chọn. Email sẽ được gửi đến tất cả các "
+"học sinh ở đó."
+
+#: templates/rg_instructor_analytics/gradebook.html:13
+msgid ""
+"This reports gives an overview of all students' progress in a simple "
+"spreadsheet form."
+msgstr ""
+"Báo cáo này cung cấp một cái nhìn tổng quan về sự tiến bộ của tất cả học "
+"sinh trong một biểu mẫu bảng tính đơn giản."
+
+#: templates/rg_instructor_analytics/gradebook.html:16
+msgid ""
+"Progress details of any student are available by clicking on the "
+"corresponding row of the spreadsheet."
+msgstr ""
+"Chi tiết tiến độ của bất kỳ học sinh nào có sẵn bằng cách nhấp vào hàng "
+"tương ứng của bảng tính."
+
+#: templates/rg_instructor_analytics/gradebook.html:20
+msgid "You can filter student list by using 'Search Student...' field."
+msgstr ""
+"Bạn có thể lọc danh sách học sinh bằng cách sử dụng trường 'Tìm kiếm sinh "
+"viên ...'."
+
+#: templates/rg_instructor_analytics/gradebook.html:21
+msgid "You can search by first name, last name or email (non-case-sensitive)."
+msgstr ""
+"Bạn có thể tìm kiếm theo tên, họ hoặc email (không phân biệt chữ hoa chữ "
+"thường)."
+
+#: templates/rg_instructor_analytics/gradebook.html:37
+msgid "Progress Graph"
+msgstr "Biểu đồ tiến trình"
+
+#: templates/rg_instructor_analytics/gradebook.html:39
+msgid ""
+"This graph shows the current progress details for the selected student. It "
+"contains progress on each Homework (blue columns) and total course progress "
+"(red column)."
+msgstr ""
+"Biểu đồ này hiển thị chi tiết tiến độ hiện tại của học sinh đã chọn. Nó chứa "
+"tiến trình của mỗi Bài tập về nhà (cột màu xanh) và tổng tiến trình của khóa "
+"học (cột màu đỏ)."
+
+#: templates/rg_instructor_analytics/gradebook.html:46
+msgid "Video Views"
+msgstr "Lượt xem Video"
+
+#: templates/rg_instructor_analytics/gradebook.html:48
+msgid ""
+"This graph indicates the amount of seconds Student watched each of the "
+"course videos. Completed videos are indicated green."
+msgstr ""
+"Biểu đồ này cho biết thời lượng giây mà Học viên đã xem mỗi video của khóa "
+"học. Các video đã hoàn thành được biểu thị màu xanh lá cây."
+
+#: templates/rg_instructor_analytics/gradebook.html:59
+msgid "Discussion Activity"
+msgstr "Hoạt động thảo luận"
+
+#: templates/rg_instructor_analytics/gradebook.html:61
+msgid ""
+"This graphic indicates the amount of Student's activity in Discussions "
+"including comments, responses, topics creation, and votes."
+msgstr ""
+"Hình ảnh này cho biết số lượng hoạt động của Học sinh trong Thảo luận bao "
+"gồm nhận xét, phản hồi, tạo chủ đề và bình chọn."
+
+#: templates/rg_instructor_analytics/gradebook.html:72
+msgid "Student Step"
+msgstr "Bước sinh viên"
+
+#: templates/rg_instructor_analytics/gradebook.html:74
+msgid "Student's path through the course ."
+msgstr "Con đường của học sinh thông qua khóa học"
+
+#: templates/rg_instructor_analytics/instructor_analytics_fragment.html:6
+msgid "Instructor Analytics"
+msgstr "Phân tích của giáo viên"
+
+#: templates/rg_instructor_analytics/instructor_analytics_fragment.html:63
+msgid "Unfortunately, Analytics was disabled by admin."
+msgstr "Rất tiếc, Phân tích đã bị quản trị viên vô hiệu hóa."
+
+#: templates/rg_instructor_analytics/problems.html:14
+msgid ""
+"This report helps detect assessments that are most problematic for students."
+msgstr ""
+"Báo cáo này giúp phát hiện các đánh giá có vấn đề nhất đối với học sinh."
+
+#: templates/rg_instructor_analytics/problems.html:18
+msgid ""
+"Blue columns represent average count of attempts for all assessments in a "
+"subsection."
+msgstr ""
+"Các cột màu xanh dương thể hiện số lần thử trung bình cho tất cả các bài "
+"đánh giá trong một tiểu mục."
+
+#: templates/rg_instructor_analytics/problems.html:21
+msgid ""
+"Red columns represent average level of student's success in a subsection (%)"
+msgstr ""
+"Các cột màu đỏ thể hiện mức độ thành công trung bình của học sinh trong một "
+"tiểu mục (%)"
+
+#: templates/rg_instructor_analytics/problems.html:26
+msgid ""
+"Click on the area that represents a subsection (only subsections that "
+"contain graded assessments are displayed) to get more detailed information."
+msgstr ""
+"Nhấp vào khu vực đại diện cho một tiểu mục (chỉ những tiểu mục có chứa các "
+"đánh giá đã xếp loại mới được hiển thị) để biết thêm thông tin chi tiết."
+
+#: templates/rg_instructor_analytics/problems.html:44
+msgid ""
+"This level of the report indexes units from assessments success perspective"
+msgstr ""
+"Mức độ này của báo cáo lập chỉ mục các đơn vị từ quan điểm đánh giá thành "
+"công"
+
+#: templates/rg_instructor_analytics/problems.html:48
+msgid "Blue column = 100% if students gave correct answers with 1st attempt"
+msgstr ""
+"Cột màu xanh dương = 100% nếu học sinh trả lời đúng với lần thử đầu tiên"
+
+#: templates/rg_instructor_analytics/problems.html:51
+msgid ""
+"Red column = 100% if students gave incorrect answers and used all the "
+"attempts"
+msgstr ""
+"Cột màu đỏ = 100% nếu học sinh trả lời sai và sử dụng tất cả các lần thử"
+
+#: templates/rg_instructor_analytics/problems.html:56
+msgid "Click on the area that represents a unit to get detailed information."
+msgstr "Nhấp vào khu vực đại diện cho một đơn vị để nhận thông tin chi tiết."
+
+#: templates/rg_instructor_analytics/problems.html:59
+msgid "Correct Answers, %"
+msgstr "Câu trả lời đúng, %"
+
+#: templates/rg_instructor_analytics/problems.html:60
+msgid "Incorrect Answers, %"
+msgstr "Câu trả lời không chính xác, %"
+
+#: templates/rg_instructor_analytics/suggestion.html:9
+msgid "Computing"
+msgstr "Tin học"
+
+#: templates/rg_instructor_analytics/time-filter.html:9
+msgid "Select period"
+msgstr "Chọn khoảng thời gian"
+
+#: templates/rg_instructor_analytics/time-filter.html:13
+msgid "From"
+msgstr "Từ"
+
+#: templates/rg_instructor_analytics/time-filter.html:15
+msgid "To"
+msgstr "Đến"
+
+#: templates/rg_instructor_analytics/time-filter.html:20
+msgid "Apply"
+msgstr "Áp dụng"
+
+#: templates/rg_instructor_analytics/time-filter.html:21
+msgid "Cancel"
+msgstr "Hủy bỏ"
+
+#: templates/rg_instructor_analytics/time-filter.html:26
+msgid "Last Week"
+msgstr "Tuần trước"
+
+#: templates/rg_instructor_analytics/time-filter.html:27
+msgid "Last 2 Weeks"
+msgstr "2 tuần trước"
+
+#: templates/rg_instructor_analytics/time-filter.html:28
+msgid "Last Month"
+msgstr "Tháng trước"
+
+#: templates/rg_instructor_analytics/time-filter.html:29
+msgid "Since Course Start"
+msgstr "Kể từ khi khóa học bắt đầu"
+
+#: templates/rg_instructor_analytics/time-filter.html:31
+msgid "All Enrollments"
+msgstr "Tất cả đăng ký"
