@@ -14,6 +14,7 @@ __________
 Unreleased
 ~~~~~~~~~~
 * Add Vietnamese translations
+* Fix URLs config: remove redundant namespace from the included pattern_list
 
 [v3.1.1] - 2021-07-30
 ~~~~~~~~~~~~~~~~~~~~~

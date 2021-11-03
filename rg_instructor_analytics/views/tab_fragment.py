@@ -200,11 +200,11 @@ def instructor_analytics_dashboard(request, course_id):
         'course_dates_info': json.dumps(course_dates_info),
         'api_urls': {
             'add_info': {
-                'scopes': reverse('api:additional-info-scopes', args=[course_id]),
-                'geo': reverse('api:additional-info-geo-stats', args=[course_id]),
-                'gender': reverse('api:additional-info-gender-stats', args=[course_id]),
-                'age': reverse('api:additional-info-age-stats', args=[course_id]),
-                'education': reverse('api:additional-info-education-stats', args=[course_id]),
+                'scopes': reverse('additional-info-scopes', args=[course_id]),
+                'geo': reverse('additional-info-geo-stats', args=[course_id]),
+                'gender': reverse('additional-info-gender-stats', args=[course_id]),
+                'age': reverse('additional-info-age-stats', args=[course_id]),
+                'education': reverse('additional-info-education-stats', args=[course_id]),
             }
         },
     }
