@@ -179,7 +179,7 @@ def instructor_analytics_dashboard(request, course_id):
         {
             'course_id': str(user_course.id),
             'course_name': str(user_course.display_name),
-            'is_current': course == user_course,
+            'is_current': course.id == user_course.id,
         }
         for user_course in get_available_courses(request.user)
     ]
