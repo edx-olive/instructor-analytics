@@ -11,6 +11,10 @@ __________
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[v3.2.1] - 2021-11-12
+~~~~~~~~~~~~~~~~~~~~~
+Fix grammar mistakes in the reports` descriptions.
+
 [v3.2.0] - 2021-11-4
 ~~~~~~~~~~~~~~~~~~~~
 * Add Vietnamese translations

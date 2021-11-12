@@ -277,7 +277,7 @@ msgstr "Aktivitāšu pārejas modelis"
 
 #: templates/rg_instructor_analytics/activity.html
 msgid ""
-"This graph indicates the amount of visits of each Unit and bring you the "
+"This graph indicates the number of visits of each Unit and bring you the "
 "whole perspective of what part of Course was the most difficult or "
 "interesting for your Students."
 msgstr ""
@@ -470,7 +470,7 @@ msgstr "Video skatījumi"
 
 #: templates/rg_instructor_analytics/gradebook.html
 msgid ""
-"This graph indicates the amount of seconds Student watched each of the "
+"This graph indicates the number of seconds Student watched each of the "
 "course videos. Completed videos are indicated green."
 msgstr ""
 "Šis grafiks norāda sekunžu daudzumu, kuru students ir skatījies katrā kursa video. "
@@ -482,7 +482,7 @@ msgstr "Diskusiju aktivitāte"
 
 #: templates/rg_instructor_analytics/gradebook.html
 msgid ""
-"This graphic indicates the amount of Student's activity in Discussions "
+"This graphic indicates the number of Student's activity in Discussions "
 "including comments, responses, topics creation, and votes."
 msgstr ""
 "Šis grafiks norāda studenta aktivitātes līmeni diskusijās, ieskaitot  "
