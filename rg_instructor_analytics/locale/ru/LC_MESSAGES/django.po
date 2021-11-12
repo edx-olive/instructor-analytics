@@ -273,7 +273,7 @@ msgstr ""
 
 #: templates/rg_instructor_analytics/activity.html:37
 msgid ""
-"This graph indicates the amount of visits of each Unit and bring you the "
+"This graph indicates the number of visits of each Unit and bring you the "
 "whole perspective of what part of Course was the most difficult or "
 "interesting for your Students."
 msgstr ""
@@ -439,7 +439,7 @@ msgstr ""
 
 #: templates/rg_instructor_analytics/gradebook.html:48
 msgid ""
-"This graph indicates the amount of seconds Student watched each of the "
+"This graph indicates the number of seconds Student watched each of the "
 "course videos. Completed videos are indicated green."
 msgstr ""
 
@@ -449,7 +449,7 @@ msgstr ""
 
 #: templates/rg_instructor_analytics/gradebook.html:61
 msgid ""
-"This graphic indicates the amount of Student's activity in Discussions "
+"This graphic indicates the number of Student's activity in Discussions "
 "including comments, responses, topics creation, and votes."
 msgstr ""
 

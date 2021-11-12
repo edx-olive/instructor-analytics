@@ -171,15 +171,15 @@ msgstr "thống kê địa lý"
 msgid "Instructor analytics"
 msgstr "Phân tích của giáo viên"
 
-#: utils/decorators.py:43 views/activity.py:169 views/cohort.py:41 
-#: views/enrollment.py:165 views/funnel.py:93 views/gradebook.py:51 
-#: views/gradebook.py:119 views/gradebook.py:186 views/gradebook.py:248 
-#: views/problem.py:74 views/problem.py:197 views/problem.py:392 
+#: utils/decorators.py:43 views/activity.py:169 views/cohort.py:41
+#: views/enrollment.py:165 views/funnel.py:93 views/gradebook.py:51
+#: views/gradebook.py:119 views/gradebook.py:186 views/gradebook.py:248
+#: views/problem.py:74 views/problem.py:197 views/problem.py:392
 #: views/problem.py:433 views/suggestion.py:214
 msgid "Invalid course ID."
 msgstr "ID khóa học không hợp lệ."
 
-#: views/activity.py:167 views/enrollment.py:163 views/funnel.py:91 
+#: views/activity.py:167 views/enrollment.py:163 views/funnel.py:91
 #: views/problem.py:72 views/problem.py:195 views/problem.py:431
 msgid "Invalid date range."
 msgstr "Phạm vi ngày không hợp lệ."
@@ -249,21 +249,21 @@ msgstr ""
 msgid "Additional Information"
 msgstr "thông tin thêm"
 
-#: templates/rg_instructor_analytics/activity.html:8 
-#: templates/rg_instructor_analytics/cohort.html:16 
-#: templates/rg_instructor_analytics/funnel.html:8 
-#: templates/rg_instructor_analytics/gradebook.html:9 
+#: templates/rg_instructor_analytics/activity.html:8
+#: templates/rg_instructor_analytics/cohort.html:16
+#: templates/rg_instructor_analytics/funnel.html:8
+#: templates/rg_instructor_analytics/gradebook.html:9
 #: templates/rg_instructor_analytics/problems.html:9
 msgid "Course has not started yet."
 msgstr "Khóa học vẫn chưa bắt đầu."
 
-#: templates/rg_instructor_analytics/activity.html:16 
-#: templates/rg_instructor_analytics/activity.html:31 
-#: templates/rg_instructor_analytics/cohort.html:27 
-#: templates/rg_instructor_analytics/gradebook.html:27 
-#: templates/rg_instructor_analytics/gradebook.html:53 
-#: templates/rg_instructor_analytics/gradebook.html:66 
-#: templates/rg_instructor_analytics/gradebook.html:78 
+#: templates/rg_instructor_analytics/activity.html:16
+#: templates/rg_instructor_analytics/activity.html:31
+#: templates/rg_instructor_analytics/cohort.html:27
+#: templates/rg_instructor_analytics/gradebook.html:27
+#: templates/rg_instructor_analytics/gradebook.html:53
+#: templates/rg_instructor_analytics/gradebook.html:66
+#: templates/rg_instructor_analytics/gradebook.html:78
 #: templates/rg_instructor_analytics/time-filter.html:38
 msgid "Loading"
 msgstr "Đang tải"
@@ -286,7 +286,7 @@ msgstr "Mô hình chuyển đổi thông qua các đơn vị"
 
 #: templates/rg_instructor_analytics/activity.html:37
 msgid ""
-"This graph indicates the amount of visits of each Unit and bring you the "
+"This graph indicates the number of visits of each Unit and bring you the "
 "whole perspective of what part of Course was the most difficult or "
 "interesting for your Students."
 msgstr ""
@@ -309,7 +309,7 @@ msgstr ""
 "hành động ngay lập tức - gửi email thích hợp đến các cụm chỉ trong vài cú "
 "nhấp chuột."
 
-#: templates/rg_instructor_analytics/cohort.html:35 
+#: templates/rg_instructor_analytics/cohort.html:35
 #: templates/rg_instructor_analytics/funnel.html:32
 msgid "Send Email"
 msgstr "Gửi email"
@@ -321,32 +321,32 @@ msgid ""
 msgstr ""
 "Chọn các cụm bạn muốn gửi email, tạo email và gửi. Chính xác là đơn giản."
 
-#: templates/rg_instructor_analytics/cohort.html:42 
+#: templates/rg_instructor_analytics/cohort.html:42
 #: templates/rg_instructor_analytics/funnel.html:39
 msgid "Subject: "
 msgstr "Môn học:"
 
-#: templates/rg_instructor_analytics/cohort.html:45 
+#: templates/rg_instructor_analytics/cohort.html:45
 #: templates/rg_instructor_analytics/funnel.html:42
 msgid "(Maximum 128 characters)"
 msgstr "(Tối đa 128 ký tự)"
 
-#: templates/rg_instructor_analytics/cohort.html:60 
+#: templates/rg_instructor_analytics/cohort.html:60
 #: templates/rg_instructor_analytics/funnel.html:55
 msgid "SEND EMAIL(S)"
 msgstr "GỬI EMAIL"
 
-#: templates/rg_instructor_analytics/cohort.html:61 
+#: templates/rg_instructor_analytics/cohort.html:61
 #: templates/rg_instructor_analytics/funnel.html:56
 msgid "Email(s) sending failed"
 msgstr "Gửi email không thành công"
 
-#: templates/rg_instructor_analytics/cohort.html:62 
+#: templates/rg_instructor_analytics/cohort.html:62
 #: templates/rg_instructor_analytics/funnel.html:57
 msgid "Message sent"
 msgstr "Đã gửi tin nhắn"
 
-#: templates/rg_instructor_analytics/cohort.html:63 
+#: templates/rg_instructor_analytics/cohort.html:63
 #: templates/rg_instructor_analytics/funnel.html:58
 msgid "Required fields"
 msgstr "Trường bắt buộc"
@@ -483,7 +483,7 @@ msgstr "Lượt xem Video"
 
 #: templates/rg_instructor_analytics/gradebook.html:48
 msgid ""
-"This graph indicates the amount of seconds Student watched each of the "
+"This graph indicates the number of seconds Student watched each of the "
 "course videos. Completed videos are indicated green."
 msgstr ""
 "Biểu đồ này cho biết thời lượng giây mà Học viên đã xem mỗi video của khóa "
@@ -495,7 +495,7 @@ msgstr "Hoạt động thảo luận"
 
 #: templates/rg_instructor_analytics/gradebook.html:61
 msgid ""
-"This graphic indicates the amount of Student's activity in Discussions "
+"This graphic indicates the number of Student's activity in Discussions "
 "including comments, responses, topics creation, and votes."
 msgstr ""
 "Hình ảnh này cho biết số lượng hoạt động của Học sinh trong Thảo luận bao "
