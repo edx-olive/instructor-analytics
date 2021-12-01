@@ -5,7 +5,6 @@ from functools import wraps
 import logging
 
 from django.http import HttpResponseBadRequest, HttpResponseForbidden
-from django.utils.decorators import available_attrs
 from django.utils.translation import ugettext as _
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
@@ -25,7 +24,7 @@ def instructor_access_required(view_func):
     """
     role = 'staff'
 
-    @wraps(view_func, assigned=available_attrs(view_func))
+    @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
         course_id = request.POST.get('course_id') or kwargs.get('course_id')
         try:

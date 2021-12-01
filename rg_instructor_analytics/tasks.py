@@ -8,7 +8,6 @@ import logging
 
 from celery.schedules import crontab
 from celery.task import periodic_task, task
-from lms.djangoapps.courseware.courses import get_course_by_id
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
@@ -24,6 +23,7 @@ from opaque_keys.edx.keys import CourseKey
 from xmodule.modulestore.django import modulestore
 
 from common.djangoapps.student.models import CourseEnrollment
+from lms.djangoapps.courseware.courses import get_course_by_id
 from lms.djangoapps.courseware.models import StudentModule
 from lms.djangoapps.grades.course_grade_factory import CourseGradeFactory
 from openedx.core.djangoapps.content.course_overviews.models import CourseOverview
