@@ -1,3 +1,5 @@
-recursive-include rg_instructor_analytics/static *
-recursive-include rg_instructor_analytics/templates *
-recursive-include rg_instructor_analytics *py
+include CHANGELOG.rst
+recursive-include rg_instructor_analytics *
+recursive-exclude rg_instructor_analytics/tests *
+recursive-exclude rg_instructor_analytics/mock_data *
+exclude *.ini

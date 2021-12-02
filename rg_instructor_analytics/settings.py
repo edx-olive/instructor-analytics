@@ -3,6 +3,7 @@ Common settings variables are required by the rg_instructor_analytics.
 """
 from logging import getLogger
 import os
+
 from path import Path
 
 
@@ -11,7 +12,7 @@ log = getLogger(__name__)
 
 def plugin_settings(settings):
     """
-    Settings for rg_instructor_analytics
+    Settings for rg_instructor_analytics.
     """
     settings.RG_ANALYTICS_GRADE_STAT_UPDATE = {
         'minute': '0',

@@ -5,7 +5,7 @@ import json
 from time import mktime
 
 from django.http import Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -209,4 +209,4 @@ def instructor_analytics_dashboard(request, course_id):
         },
     }
 
-    return render_to_response('rg_instructor_analytics/instructor_analytics_fragment.html', context)
+    return render(request, 'rg_instructor_analytics/instructor_analytics_fragment.html', context)

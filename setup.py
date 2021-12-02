@@ -34,6 +34,7 @@ setup(
     ],
     requires=[],
     packages=["rg_instructor_analytics"],
+    include_package_data=True,
     description='Open Edx Instructor analytics tab',
     long_description=README + '\n\n' + CHANGELOG,
     entry_points={
