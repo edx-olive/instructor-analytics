@@ -25,10 +25,6 @@ ul.disc-list .analytics-title-text:before {
   transform: translateY(-50%);
 }
 
-.container {
-  max-width: 1140px;
-}
-
 .container > div {
   background: #fafafa;
   border-color: #fff;
