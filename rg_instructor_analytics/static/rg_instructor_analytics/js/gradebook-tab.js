@@ -378,7 +378,7 @@ function GradebookTab(button, content) {
                 }
             },
             showlegend: false,
-            height: heightLayout > 450 && heightLayout || 450,
+            height: heightLayout > 900 && heightLayout || 900,
             width: 940,
             xaxis: x_template,
             yaxis: {

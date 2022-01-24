@@ -11,6 +11,14 @@ __________
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[v3.4.0] - 2022-01-20
+~~~~~~~~~~~~~~~~~~~~~
+* Feature Add Full Responsive
+
+- Added Responsive for each analytics static tab and each Highcharts graphs
+- Added Responsive for Additional Information React App
+- Checked RTL for responsive
+
 [v3.3.0] - 2021-12-01
 ~~~~~~~~~~~~~~~~~~~~~
 Prepare changes to make RG IA become compatible with Django 3 and in consequece

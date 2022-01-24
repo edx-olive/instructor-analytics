@@ -58,25 +58,23 @@ from openedx.core.djangolib.js_utils import dump_js_escaped_json, js_escaped_str
                         </button>
                     </li>
                   % endfor
-
-                    <li class="course-select">
-
-                        <select id="select_course">
-
-                            %for course_info in available_courses:
-                                <option
-                                        value="${course_info['course_id']}"
-                                        ${(course_info['is_current'] and 'selected' or '')}>
-                                    ${course_info['course_name']}
-                                </option>
-                            %endfor
-
-                        </select>
-                    </li>
                 </ul>
 
                 % for tab in tabs:
                   <section id="section-${tab['class']}" class="idash-section">
+                      <div class="course-select">
+                          <select id="select_course">
+
+                              %for course_info in available_courses:
+                              <option
+                                      value="${course_info['course_id']}"
+                                      ${(course_info['is_current'] and 'selected' or '')}>
+                              ${course_info['course_name']}
+                              </option>
+                              %endfor
+
+                          </select>
+                      </div>
                     <%include file="${tab['template']}" args="section_data={'course':course, 'enroll_info':enroll_info}" />
                   </section>
                 % endfor

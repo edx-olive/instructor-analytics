@@ -37,7 +37,13 @@ ul.disc-list .analytics-title-text:before {
 }
 
 .analytics-main-wrapper {
-  padding: 0 !important;
+  padding: 0 60px 80px !important;
+}
+
+@media screen and (max-width: 1180px) {
+  .analytics-main-wrapper {
+    padding: 0 15px !important;
+  }
 }
 
 .enrollment-toggle-btns {
@@ -60,11 +66,13 @@ ul.disc-list .analytics-title-text:before {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin-bottom: 0;
+  margin: 5px 15px;
 }
 
-.enrollment-toggle-btns__label:first-child {
-  margin-right: 40px;
+@media screen and (max-width: 479px) {
+  .enrollment-toggle-btns__label {
+    margin: 5px !important;
+  }
 }
 
 .enrollment-toggle-btns__item:hover {
@@ -75,9 +83,16 @@ ul.disc-list .analytics-title-text:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center;
+}
+
+@media screen and (max-width: 479px) {
+  .enrollment-toggle-btns {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
 }
 
 .dropdown-content {
@@ -85,7 +100,16 @@ ul.disc-list .analytics-title-text:before {
   border-radius: 5px;
   box-shadow: 0 10px 10px rgba(149, 149, 149, .3);
   background-color: #fff;
-  padding: 30px 40px 40px !important;
+}
+
+@media screen and (max-width: 567px) {
+  .dropdown-content {
+    width: 100%;
+    left: 0;
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 20px 10px;
+  }
 }
 
 .dropdown-content.show {
@@ -93,7 +117,7 @@ ul.disc-list .analytics-title-text:before {
 }
 
 .date-range-picker {
-  margin: 0 0 0 20px !important;
+  margin: 0 !important;
   min-width: 225px;
   border: 2px solid #3caada !important;
   border-radius: 15px !important;
@@ -103,6 +127,11 @@ ul.disc-list .analytics-title-text:before {
 .dropdown-content label {
   color: #3e3e3e;
   line-height: 30px !important;
+  margin-right: 20px;
+}
+
+body.rtl .dropdown-content label {
+  margin: 0 0 0 20px;
 }
 
 .date-range-picker-holder {
@@ -150,25 +179,39 @@ ul.disc-list .analytics-title-text:before {
   border-radius: 5px;
 }
 
+@media screen and (max-width: 400px) {
+  .daterangepicker {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+}
+
 .daterangepicker:before,
 .daterangepicker:after {
   display: none !important;
 }
 
+@media screen and (max-width: 567px) {
+  .drp-calendar {
+    padding: 5px !important;
+  }
+}
+
 .daterangepicker .calendar-table {
   border: 0 !important;
   background: none !important;
+  position: relative;
 }
 
 .daterangepicker .calendar-table:after {
   content: "";
   position: absolute;
   background-color: #dadada;
-  border-radius: 5px 5px 0 0;
+  border-radius: 5px;
   top: 0;
   left: 0;
   width: 100%;
-  height: 40px;
+  height: 35px;
   z-index: -1;
 }
 
@@ -188,7 +231,7 @@ ul.disc-list .analytics-title-text:before {
   position: absolute;
   width: 20px;
   height: 20px;
-  top: 3px;
+  top: 6px;
   left: 5px;
   border-radius: 50%;
   background-color: #3caada;
@@ -204,7 +247,7 @@ ul.disc-list .analytics-title-text:before {
 }
 
 .daterangepicker .calendar-table th {
-  padding-bottom: 10px;
+  padding: 5px 0;
 }
 
 .daterangepicker .calendar-table td {
@@ -251,10 +294,6 @@ figure.enrollment-chart {
   margin-bottom: 0;
 }
 
-.chart-backgrond {
-  padding-top: 70px;
-}
-
 .activity-toggle-checkboxes {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -266,6 +305,7 @@ figure.enrollment-chart {
   -ms-flex-align: center;
   align-items: center;
   margin-top: 25px;
+  flex-wrap: wrap;
 }
 
 .activity-toggle-checkboxes__label {
@@ -277,12 +317,13 @@ figure.enrollment-chart {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin-bottom: 0;
-  margin-right: 35px;
+  margin: 10px;
 }
 
-.activity-toggle-checkboxes__label:last-child {
-  margin-right: 0;
+@media screen and (max-width: 479px) {
+  .activity-toggle-checkboxes__label {
+    width: 100%;
+  }
 }
 
 .activity-toggle-checkboxes__label input[type="checkbox"],
@@ -385,6 +426,13 @@ body.view-instructor_analytics #content {
   margin-bottom: 102px;
 }
 
+@media screen and (max-width: 479px) {
+  body.view-instructor_analytics #content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .choicegroup legend + .question-description {
   color: #3e3e3e !important;
 }
@@ -408,8 +456,13 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   padding-bottom: 20px;
 }
 
+.problem-bg-wrapper-holder {
+  overflow: auto;
+}
+
 .problem-bg-wrapper {
   margin: 40px 0 0;
+  min-width: 900px;
 }
 
 #problem-body #model_plot {
@@ -417,6 +470,12 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   padding: 11px 46px;
   box-shadow: none;
   margin: 30px 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  #problem-body #model_plot {
+    padding: 10px;
+  }
 }
 
 #problem-body .problem > div {
@@ -543,12 +602,10 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   left: 15px;
 }
 
-#problem-homeworks-stats-plot .x-axis .hw-xaxis {
-  text-transform: uppercase;
-}
-
 #problem-homeworks-stats-plot .x-axis li div {
-  max-width: 80px;
+  max-width: 90px;
+  max-height: 62px;
+  text-align: center;
 }
 
 #problem-homeworks-stats-plot .x-axis li.is-hidden {
@@ -623,10 +680,30 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   color: #3e3e3e;
 }
 
+@media screen and (max-width: 767px) {
+  #problem-question-plot .plot-name {
+    text-align: left;
+  }
+}
+
 #problem-question-plot .plot-bar-holder {
   background: #e2e2e2;
   border-radius: 5px;
   height: 27px;
+}
+
+@media screen and (max-width: 479px) {
+  #problem-question-plot .plot-bar-holder {
+    order: 3;
+    flex: auto;
+    width: 100%;
+  }
+}
+
+#problem-question-plot ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 #problem-question-plot .plot-bar {
@@ -640,10 +717,29 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   line-height: 27px;
 }
 
+@media screen and (max-width: 479px) {
+  #problem-question-plot .plot-value {
+    order: 2;
+  }
+}
+
 #problem-question-plot .plot-row {
   max-height: 27px;
   margin-bottom: 18px;
   width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  #problem-question-plot .plot-row {
+    padding-left: 0;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  #problem-question-plot .plot-row {
+    max-height: none;
+    flex-wrap: wrap;
+  }
 }
 
 #problem-body .problem {
@@ -755,10 +851,9 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 }
 
 .emails-list-holder {
-  max-width: 750px;
   border-radius: 15px;
   border: 2px solid #3caada;
-  padding: 1px 15px;
+  padding: 5px 15px;
 }
 
 .xmodule_display.xmodule_CapaModule div.problem .choicegroup label {
@@ -789,7 +884,7 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   -ms-flex-pack: justify;
   justify-content: space-between;
   border-bottom: 2px solid #c4e0f1;
-  padding-bottom: 4px;
+  padding-bottom: 10px;
   margin-bottom: 34px;
 }
 
@@ -800,17 +895,21 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 .top-title-holder h1 {
   margin-bottom: 0;
   font-size: 18px;
+  line-height: 30px;
   text-transform: uppercase;
   font-weight: 700;
   color: #3e3e3e;
+  padding-right: 230px;
 }
 
-.course-select {
-  position: absolute;
-  top: 98px;
-  right: 60px;
-  width: 310px;
-  height: 30px !important;
+body.rtl .top-title-holder h1 {
+  padding: 0 0 0 230px;
+}
+
+@media screen and (max-width: 767px) {
+  .top-title-holder h1 {
+    padding-right: 0;
+  }
 }
 
 .instructor-dashboard-content-2 .instructor-nav {
@@ -822,7 +921,12 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 700;
-  padding: 10px 13px !important;
+  padding: 10px 0 !important;
+  margin-right: 30px;
+}
+
+body.rtl .instructor-nav li button {
+  margin: 0 0 0 30px;
 }
 
 .instructor-nav li button.active-section {
@@ -833,6 +937,16 @@ body.view-instructor_analytics .xmodule_display.xmodule_CapaModule div.problem .
 #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn-holder {
   height: 30px;
   margin-right: 30px;
+}
+
+body.rtl #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn-holder {
+  margin: 0 0 0 30px;
+}
+
+@media screen and (max-width: 567px) {
+  #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn-holder {
+    margin: 0 10px 15px !important;
+  }
 }
 
 #instructor-analytics-dashboard-content .enroll-buttons-holder .filter-btn {
@@ -904,20 +1018,27 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 
 .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .instructor-nav li select,
 .enroll-buttons-holder .custom-select select.filter-dropdown,
-.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .units-sort-order {
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content .units-sort-order,
+.instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content #insight-site-selector,
+#select_course {
   border-radius: 15px !important;
   height: 30px !important;
   border: 2px solid #3caada !important;
   min-width: 245px;
   color: #3e3e3e !important;
   padding: 3px 30px 3px 15px !important;
-  font-weight: 600;
   background: url("../images/sort.svg") right 10px center no-repeat !important;
   background-size: 8px 22px !important;
   line-height: 20px;
   width: 100%;
   cursor: pointer;
   font-size: 16px !important;
+}
+
+@media screen and (max-width: 479px) {
+  .instructor-dashboard-wrapper-2 {
+    border: none;
+  }
 }
 
 .enroll-buttons-holder .custom-select select.filter-dropdown,
@@ -958,30 +1079,34 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   -webkit-box-pack: start !important;
   -ms-flex-pack: start !important;
   justify-content: flex-start !important;
-  padding: 23px 60px 0;
+  padding: 23px 0 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-#instructor-analytics-dashboard-content .instructor-nav .nav-item:first-child {
-  margin-left: -15px;
+  overflow: auto;
 }
 
 .idash-section {
-  padding: 0 60px 80px;
+  padding: 0 0 20px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* Progress Funnel */
 
 .idash-section .content.progress-funnel-content {
-  padding-top: 40px;
+  padding: 40px 50px;
+  align-items: center;
 }
 
 .progress-funnel-content {
-  padding-left: 212px !important;
   margin-bottom: 60px;
+}
+
+@media screen and (max-width: 991px) {
+  .funnel-item {
+    width: 100%;
+  }
 }
 
 .funnel-item-0 {
@@ -1062,6 +1187,18 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   right: -40px;
 }
 
+@media screen and (max-width: 479px) {
+  .funnel-item.funnel-item-1 .funnel-item-content:before {
+    width: 20px;
+    left: -20px;
+  }
+
+  .funnel-item.funnel-item-1 .funnel-item-content:after {
+    width: 20px;
+    right: -20px;
+  }
+}
+
 .funnel-item.funnel-item-2 .funnel-item-content:before {
   width: 21px;
   left: -21px;
@@ -1080,10 +1217,23 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 .funnel-item-0 > .funnel-item-content {
   background: linear-gradient(90deg, #0892ce 0, #40b4e6 100%);
   width: 559px;
-  min-height: 60px;
   min-height: 100%;
   margin: 5px 0 0;
   display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .funnel-item-0 > .funnel-item-content {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .funnel-item-0 > .funnel-item-content,
+  .funnel-item-1 > .funnel-item-content,
+  .funnel-item-2 > .funnel-item-content {
+    flex-wrap: wrap;
+  }
 }
 
 .funnel-item-0:first-child > .funnel-item-content {
@@ -1125,6 +1275,16 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 
 .funnel-item-1 .funnel-item-outgoing {
   right: -30px;
+}
+
+@media screen and (max-width: 479px) {
+  .funnel-item-1 .funnel-item-incoming {
+    left: -10px;
+  }
+
+  .funnel-item-1 .funnel-item-outgoing {
+    right: -10px;
+  }
 }
 
 .funnel-item-2 .funnel-item-incoming {
@@ -1181,6 +1341,12 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   color: #3e3e3e;
 }
 
+@media screen and (max-width: 479px) {
+  .funnel-item .input-checkbox input[type="checkbox"] + .label-text {
+    font-size: 12px;
+  }
+}
+
 .funnel-item .input-checkbox input[type="checkbox"] + .label-text:before {
   content: "";
   position: absolute;
@@ -1221,6 +1387,22 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   margin: 0;
 }
 
+@media screen and (max-width: 479px) {
+  .funnel-item-0 > .funnel-item-content > .funnel-item-stuck,
+  .funnel-item-1 > .funnel-item-content > .funnel-item-stuck,
+  .funnel-item-2 > .funnel-item-content > .funnel-item-stuck {
+    display: block;
+    position: relative;
+    top: auto;
+    left: auto !important;
+    right: auto !important;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    padding: 0 10px;
+  }
+}
+
 .funnel-item-1 > .funnel-item-content > .funnel-item-stuck {
   right: 20px;
 }
@@ -1245,12 +1427,40 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   word-wrap: break-word;
 }
 
+@media screen and (max-width: 479px) {
+  .funnel-item-0 > .funnel-item-content .funnel-item-name,
+  .funnel-item-1 > .funnel-item-content .funnel-item-name,
+  .funnel-item-2 > .funnel-item-content .funnel-item-name {
+    margin-bottom: 10px;
+    padding: 0 20px 0 30px !important;
+    width: 100%;
+  }
+
+  body.rtl .funnel-item-0 > .funnel-item-content .funnel-item-name,
+  body.rtl .funnel-item-1 > .funnel-item-content .funnel-item-name,
+  body.rtl .funnel-item-2 > .funnel-item-content .funnel-item-name {
+    padding: 0 30px 0 20px !important;
+  }
+}
+
 .funnel-item-1 > .funnel-item-content {
   background-color: #b4e8ff;
   box-shadow: 0 0 10px rgba(149, 149, 149, .2);
   border-radius: 5px;
   width: 519px;
   display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .funnel-item-1 > .funnel-item-content {
+    width: calc(100% - 39px);
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .funnel-item-1 > .funnel-item-content {
+    width: 100%;
+  }
 }
 
 .funnel-item-1 > .funnel-item-content > .funnel-item-name {
@@ -1312,6 +1522,12 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   color: #3e3e3e;
 }
 
+@media screen and (max-width: 479px) {
+  .funnel-item-2 > .funnel-item-content > .funnel-item-name {
+    padding: 0 10px !important;
+  }
+}
+
 .funnel-item-content:before {
   right: initial;
   left: 20px;
@@ -1337,16 +1553,23 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   border-radius: 5px;
   box-sizing: border-box;
   position: absolute;
-  top: -15px;
-  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   opacity: 0;
   visibility: hidden;
   transition: all 200ms ease;
   z-index: 1;
 }
 
-.funnel-item-1 .emails-list-button-holder {
-  left: -10px;
+@media screen and (min-width: 1051px) {
+  .emails-list-button-holder {
+    right: -170px;
+  }
+}
+
+.emails-list-button-holder .emails-list-button {
+  min-width: 110px;
+  margin-left: 0 !important;
 }
 
 .emails-list-button-holder button {
@@ -1360,6 +1583,29 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   text-transform: none !important;
 }
 
+@media screen and (max-width: 1050px) {
+  .emails-list[hidden] + .funnel-item {
+    margin-top: 38px;
+  }
+
+  .emails-list-button-holder {
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    padding: 5px;
+    background: none;
+    top: calc(100% + 20px);
+    box-shadow: none;
+    text-align: center;
+  }
+
+  .funnel-item .emails-list {
+    margin-top: 40px !important;
+    border-radius: 5px !important;
+  }
+}
+
 #funnel-email-subject,
 #email-subject {
   border: 1px solid #626262;
@@ -1368,9 +1614,18 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   height: 30px;
 }
 
+@media screen and (max-width: 479px) {
+  #funnel-email-subject,
+  #email-subject {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
 #funnel-form-email .richText,
 #section-cohort .richText {
   margin: 40px 0;
+  flex-wrap: wrap;
 }
 
 #funnel-form-email .richText .fa,
@@ -1380,6 +1635,13 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
 
 .richText .richText-toolbar ul li a {
   border-color: #e5e5e5 !important;
+  min-width: 15px;
+  text-align: center;
+}
+
+body.rtl .richText .richText-toolbar ul li a {
+  border-right: none;
+  border-left: 1px solid #e5e5e5 !important;
 }
 
 #funnel-form-email,
@@ -1471,6 +1733,7 @@ button.funnel-send-email-btn:focus,
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   position: relative;
+  max-width: 559px;
 }
 
 .funnel-item button.emails-list__close {
@@ -1484,6 +1747,13 @@ button.funnel-send-email-btn:focus,
   background: url("../images/close.svg") no-repeat center center !important;
   background-size: 15px 15px !important;
   margin-left: 0 !important;
+}
+
+@media screen and (max-width: 991px) {
+  .funnel-item button.emails-list__close {
+    top: 5px;
+    right: 5px;
+  }
 }
 
 .funnel-item button.emails-list__close:hover,
@@ -1552,16 +1822,31 @@ button.funnel-send-email-btn:focus,
   margin-top: 30px;
 }
 
+@media screen and (max-width: 479px) {
+  .count-limit-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+}
+
 .count-limit-container a {
   border-radius: 15px;
   border: 1px solid #3e3e3e;
   display: block;
-  margin-right: 10px;
-  padding: 1px 15px;
+  margin: 5px;
+  padding: 3px 15px;
   color: #3e3e3e !important;
   font-size: 14px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  text-align: center;
+}
+
+@media screen and (max-width: 479px) {
+  .count-limit-container a {
+    width: calc(50% - 5px);
+    margin: 5px 0;
+  }
 }
 
 .count-limit-container a.selected-limit,
@@ -1570,10 +1855,6 @@ button.funnel-send-email-btn:focus,
   background-color: #3caada;
   color: #fff !important;
   border-color: #3caada;
-}
-
-.count-limit-container a:last-child {
-  margin-right: 0;
 }
 
 .units-sort-order-container {
@@ -1688,6 +1969,13 @@ button.funnel-send-email-btn:focus,
   color: #3e3e3e;
   font-weight: 400 !important;
   margin: 20px 0 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 567px) {
+  .last-student-visit-banner {
+    width: 100%;
+  }
 }
 
 .last-student-visit-banner:not([hidden]) {
@@ -1712,9 +2000,16 @@ button.funnel-send-email-btn:focus,
   margin: 33px 0 0;
 }
 
+.gradebook-student-step-container-holder {
+  overflow: auto;
+  background: #fff;
+  border-radius: 5px;
+}
+
 .gradebook-student-step-container {
   margin-bottom: 0;
   padding-top: 0;
+  min-width: 800px;
 }
 
 .gradebook-student-step-plot {
@@ -1797,10 +2092,6 @@ body.rtl .instructor-dashboard-wrapper-2 #instructor-analytics-dashboard-content
   background-position: left 10px center !important;
 }
 
-body.rtl .count-limit-container a {
-  margin: 0 0 0 10px;
-}
-
 body.rtl .xmodule_display.xmodule_ProblemBlock div.problem .choicegroup label {
   padding-right: 55px;
 }
@@ -1809,25 +2100,12 @@ body.rtl .filter-btn-holder {
   margin: 0 0 0 16px;
 }
 
-body.rtl .course-select {
-  right: initial;
-  left: 60px;
-}
-
 body.rtl .enrollment-toggle-btns__label:first-child {
   margin: 0 0 0 40px;
 }
 
-body.rtl .activity-toggle-checkboxes__label {
-  margin: 0 0 0 35px;
-}
-
 body.rtl .activity-toggle-checkboxes__label:last-child {
   margin-left: 0;
-}
-
-body.rtl .date-range-picker {
-  margin: 0 20px 0 0 !important;
 }
 
 body.rtl .enroll-buttons-holder .js-datepicker-dropdown button {
@@ -1836,11 +2114,6 @@ body.rtl .enroll-buttons-holder .js-datepicker-dropdown button {
 
 body.rtl .enroll-buttons-holder .js-datepicker-dropdown button:last-child {
   margin-left: 0 !important;
-}
-
-body.rtl .progress-funnel-content {
-  align-items: center;
-  padding-left: 0 !important;
 }
 
 body.rtl .funnel-item button.emails-list__close {
@@ -1926,11 +2199,6 @@ body.rtl .funnel-item-2 > .funnel-item-content > .funnel-item-name {
   padding: 0 20px 0 80px;
 }
 
-body.rtl .emails-list-button-holder {
-  left: -172px;
-  top: -7px;
-}
-
 body.rtl .emails-list-button-holder button.emails-list-button {
   margin-left: 0 !important;
   min-width: 110px;
@@ -2003,6 +2271,7 @@ body.rtl .funnel-item-2 .funnel-item-incoming {
 body.rtl #funnel-form-email .richText-toolbar > ul,
 body.rtl #cohort-form .richText-toolbar > ul {
   display: flex;
+  flex-wrap: wrap;
   margin-right: 20px;
 }
 
@@ -2025,4 +2294,8 @@ body.rtl #funnel-form-email .richText-help-popup #closeHelp,
 body.rtl #cohort-form .richText-help-popup #closeHelp {
   left: 0 !important;
   right: initial !important;
+}
+
+body.rtl .gradebook-student-step-container-holder .js-plotly-plot .plotly .main-svg {
+  left: -200px;
 }

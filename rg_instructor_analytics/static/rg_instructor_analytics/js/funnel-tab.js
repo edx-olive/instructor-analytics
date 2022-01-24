@@ -159,31 +159,29 @@ function FunnelTab(button, content) {
 
       function generateFunnelItem(item, children) {
           var tpl = _.template(
-            '<div class="<%= className %>" data-edxid="<%= itemId %>">' +
+            '<div class="<%= className %> <%if (studentEmails.length) {%>has-emails<%}%>" data-edxid="<%= itemId %>">' +
                 '<div class="funnel-item-content">' +
                     '<span class="funnel-item-incoming"><%= incoming %></span>' +
                     '<span class="funnel-item-outgoing"><%= outcoming %></span>' +
                     '<%if (level < 2) {%>' +
                       '<%if (rtl) {%>' +
-                        '<%if (studentEmails.length != 0) {%>' +
+                        '<%if (studentEmails.length) {%>' +
                             '<div class="emails-list-button-holder">' +
                               '<button class="emails-list-button show-emails-button"><%- gettext("Show emails") %></button>' +
                             '</div>' +
                         '<%}%>' +
                         '<%} else {%>' +
-                          '<span class="funnel-item-outgoing">' +
-                              '<%if (studentEmails.length != 0) {%>' +
-                                  '<div class="emails-list-button-holder">' +
-                                    '<button class="emails-list-button show-emails-button"><%- gettext("Show emails") %></button>' +
-                                  '</div>' +
-                              '<%}%>' +
-                          '</span>' +
+                        '<%if (studentEmails.length) {%>' +
+                            '<div class="emails-list-button-holder">' +
+                              '<button class="emails-list-button show-emails-button"><%- gettext("Show emails") %></button>' +
+                            '</div>' +
+                        '<%}%>' +
                       '<%}%>' +
                     '<%}%>' +
                     '<span class="funnel-item-name"><%= itemName %></span>' +
                     '<span class="funnel-item-stuck"><%- gettext("stuck: ")%><b><%= stuck %></b></span>' +
                 '</div>' +
-                '<%if (studentEmails.length != 0) {%>' +
+                '<%if (studentEmails.length) {%>' +
                     '<div class="emails-list" hidden>' +
                       '<button class="emails-list__close show-emails-button js-emails-list-close"></button>' +
                       '<span class="emails-list-mails">' +

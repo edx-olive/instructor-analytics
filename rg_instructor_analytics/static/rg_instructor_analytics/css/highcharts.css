@@ -8,11 +8,24 @@
   background-color: #fff;
   -webkit-box-shadow: 0 0 10px rgba(149, 149, 149, .1);
   box-shadow: 0 0 10px rgba(149, 149, 149, .1);
-  padding: 40px;
+  padding: 20px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 5px;
   margin-top: 40px;
+}
+
+#section-cohort .highcharts-figure {
+    padding-top: 0;
+}
+
+@media screen and (max-width: 479px) {
+    .highcharts-figure,
+    .highcharts-data-table table,
+    .modal-for-plot,
+    .plot-container {
+        min-width: 0;
+    }
 }
 
 .highcharts-data-table table {

@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Bar } from "@nivo/bar";
+import { ResponsiveBar } from "@nivo/bar";
 import {makeStyles, useTheme} from "@material-ui/core";
 import AgeTooltip from "./AgeTooltip";
 import { isRtl } from "../rtl";
+import useWindowSize, { TABLET_VIEW } from "../useWindowSize";
 
 const useStyles = makeStyles(theme => ({
   wrapper: {
@@ -41,7 +42,10 @@ export const BarChart = ({
     <AgeTooltip id={id} value={value} data={data} />
   );
   const makeXAxis = d => (d % 20 === 0) ? `${d}` : '';
-  const makeLabel = d => <tspan x={ (d + 5) * ((width-160) / 100) }>{ isRtl ? `%${d}` : `${d}%` }</tspan>;
+  const makeLabel = d => <tspan x={ (d + 5) * ((width-160) / 100) }>{`${d}%`}</tspan>;
+  const makeLabelRtl = d => <tspan>{`%${d}`}</tspan>;
+  const { useWidth } = useWindowSize();
+  const isTabletView = useWidth > TABLET_VIEW;
 
   const CustomTick = tick => {
 
@@ -56,33 +60,35 @@ export const BarChart = ({
                 {tick.value.substring(tick.value.length - 9)}
             </text>
         </g>
-        <g transform={`translate(${tick.x-110},${tick.y})`}>
-            <text
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className={classes.axisLabel}
-            >
-                {tick.value.substring(0, tick.value.length - 9)}
-            </text>
-        </g>
+        {
+          isTabletView
+          ? <g transform={`translate(${tick.x-110},${tick.y})`}>
+              <text
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className={classes.axisLabel}
+              >
+                  {tick.value.substring(0, tick.value.length - 9)}
+              </text>
+          </g>
+          : null
+        }
         </g>
     )
   };
 
   return (
-    <div className={classes.wrapper}>
-    <Bar
+    <div className={classes.wrapper} style={{maxWidth: isTabletView ? `${width}px` : TABLET_VIEW, height: `${height}px`}}>
+    <ResponsiveBar
       data={data}
-      width={width}
-      height={height}
       colors={colors || theme.palette.primary.main}
-      margin={{ top: 20, right: 10, bottom: 30, left: 150 }}
+      margin={{ top: 20, right: 10, bottom: 30, left: isTabletView ? 150 : 60 }}
       padding={0.3}
       layout="horizontal"
       borderRadius={4}
       indexBy="label"
       label={item => item.value}
-      labelFormat={makeLabel}
+      labelFormat={!isRtl ? makeLabel : makeLabelRtl}
       enableGridX={true}
       gridXValues={[0, 20, 40, 60, 80, 100]}
       enableGridY={false}

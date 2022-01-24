@@ -110,8 +110,7 @@ function CohortTab(button, content) {
             var chart = Highcharts.chart('cohort-plot', {
                 chart: {
                     type: 'pie',
-                    marginRight: isRtl ? 0 : 380,
-                    marginLeft: isRtl ? 380 : 0,
+                    marginLeft: isRtl ? 380 : 100,
                     style: {
                         fontFamily: 'Exo 2.0, sans-serif'
                     },
@@ -141,8 +140,6 @@ function CohortTab(button, content) {
                         allowPointSelect: true,
                         cursor: 'pointer',
                         colors: pieColors,
-                        minSize: 320,
-                        size: 320,
                         dataLabels: {
                             enabled: true,
                             color: '#3e3e3e',
@@ -159,7 +156,7 @@ function CohortTab(button, content) {
                     layout: 'vertical',
                     align: isRtl ? 'left' : 'right',
                     verticalAlign: 'middle',
-                    x: isRtl ? 100 : -200,
+                    x: isRtl ? 50 : -200,
                     y: 0,
                     itemMarginBottom: 20,
                     borderWidth: 0,
@@ -169,13 +166,40 @@ function CohortTab(button, content) {
                     },
                     backgroundColor:
                         Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-                    
+
                 },
                 series: [{
                     innerSize: '23%',
                     slicedOffset: 3,
                     data: chartData
-                }]
+                }],
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 900
+                        },
+                        chartOptions: {
+                            chart: {
+                                marginLeft: 10,
+                            },
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom',
+                                x: 0,
+                                itemMarginBottom: 0,
+                                itemMarginTop: 15,
+                            },
+                            plotOptions: {
+                                pie: {
+                                    dataLabels: {
+                                        enabled: false,
+                                    }
+                                }
+                            },
+                        },
+                    }]
+                }
             });
 
             if (isRtl) {
@@ -199,12 +223,6 @@ function CohortTab(button, content) {
                                 x: 85
                             }
                         }
-                    },
-                    legend: {
-                        itemStyle: {
-                            direction: "rtl"
-                        },
-                        symbolPadding: -30
                     }
                 });
             }

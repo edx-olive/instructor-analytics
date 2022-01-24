@@ -61,7 +61,7 @@ function ActivityTab(button, content) {
     var chart = Highcharts.chart('activity-stats-plot', {
         chart: {
             type: 'areaspline',
-            marginTop: 40,
+            marginTop: 60,
             events: {
             load: function() {
                     this.update({
@@ -90,7 +90,6 @@ function ActivityTab(button, content) {
             },
             backgroundColor:
               Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF'
-
         },
         xAxis: {
             reversed: isRtl,
@@ -139,7 +138,23 @@ function ActivityTab(button, content) {
             }
         },
         series: chartData,
-        dashStyle: 'longdash'
+        dashStyle: 'longdash',
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 300
+                },
+                chartOptions: {
+                    chart: {
+                        marginTop: 90,
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        itemMarginBottom: 5,
+                    }
+                }
+            }]
+        }
     });
 
     function toggleSeriesCheckbox($checkbox, series_num) {
