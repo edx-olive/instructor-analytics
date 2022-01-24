@@ -82,9 +82,11 @@ from django.utils.translation import ugettext as _
         <span class="analytics-title-text js-analytics-subtitle-text hidden">
             ${_("Student's path through the course .")}
         </span>
-        <figure class="highcharts-figure gradebook-student-step-container js-highchart-figure">
-            <div id="gradebook-student-step-stats-plot"></div>
-        </figure>
+        <div class="gradebook-student-step-container-holder">
+            <figure class="highcharts-figure gradebook-student-step-container js-highchart-figure">
+                <div id="gradebook-student-step-stats-plot"></div>
+            </figure>
+        </div>
         <div class="loader hidden">
             ${_("Loading")}
             <img src="/static/rg_instructor_analytics/images/ajax-loader.gif" alt="loader">

@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Pie } from "@nivo/pie";
+import { ResponsivePie } from "@nivo/pie";
 import { Box, makeStyles } from "@material-ui/core";
 import EducationTooltip from "./EducationTooltip";
 import { isRtl } from "../rtl";
+import useWindowSize, { TABLET_VIEW } from "../useWindowSize";
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -24,6 +25,8 @@ const useStyles = makeStyles(theme => ({
 
 const PieChart = ({ data = [], width = 800, height = 300, ...rest }) => {
   const classes = useStyles();
+  const { useWidth } = useWindowSize();
+  const isTabletView = useWidth > TABLET_VIEW;
   const colors = [
     "#8EDC43",
     "#5361B6",
@@ -49,11 +52,9 @@ const PieChart = ({ data = [], width = 800, height = 300, ...rest }) => {
   const makeTooltip = item => <EducationTooltip {...item} />;
 
   return (
-    <Box className={classes.box}>
-      <Pie
+    <Box className={classes.box} style={{maxWidth: `${width}px`, height: `${height}px`, padding: isTabletView ? '4px' : '4px 40px'}}>
+      <ResponsivePie
         data={data}
-        height={height}
-        width={width}
         margin={{ top: 20, right: 10, bottom: 20, left: 10 }}
         colors={colors}
         innerRadius={0.25}
@@ -67,7 +68,7 @@ const PieChart = ({ data = [], width = 800, height = 300, ...rest }) => {
         radialLabelsLinkHorizontalLength={0}
         radialLabelsLinkOffset={10}
         radialLabel={item => isRtl ? `%${item.value}` : `${item.value}%`}
-        legends={[legendConfig]}
+        legends={isTabletView ? [legendConfig] : undefined}
         tooltip={makeTooltip}
         {...rest}
       />

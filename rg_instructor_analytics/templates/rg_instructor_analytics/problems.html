@@ -31,13 +31,15 @@ from django.utils.translation import ugettext as _
 
   <%include file="time-filter.html" args="active_tab='problems'"/>
 
-  <figure class="highcharts-figure problem-bg-wrapper">
-    <div class="js-legend-holder analytics-legend-holder analytics-legend-holder__square hidden">
-      <div class="analytics-legend-item">${_("Average attempts count")}</div>
-      <div class="analytics-legend-item">${_("Average success level")}, %</div>
-    </div>
-    <div id="problem-homeworks-stats-plot"></div>
-  </figure>
+  <div class="problem-bg-wrapper-holder">
+    <figure class="highcharts-figure problem-bg-wrapper">
+      <div class="js-legend-holder analytics-legend-holder analytics-legend-holder__square hidden">
+        <div class="analytics-legend-item">${_("Average attempts count")}</div>
+        <div class="analytics-legend-item">${_("Average success level")}, %</div>
+      </div>
+      <div id="problem-homeworks-stats-plot"></div>
+    </figure>
+  </div>
 
   <div class="subsection-emails-list"></div>
 
@@ -59,14 +61,15 @@ from django.utils.translation import ugettext as _
       ${_("Click on the area that represents a unit to get detailed information.")}
     </span>
   </div>
-  <figure class="highcharts-figure highcharts-problems-stats problem-bg-wrapper js-problem-details" hidden>
-    <div class="analytics-legend-holder analytics-legend-holder__square">
-      <div class="analytics-legend-item">${_("Correct Answers, %")}</div>
-      <div class="analytics-legend-item">${_("Incorrect Answers, %")}</div>
-    </div>
-      <div id="problems-stats-plot"></div>
-  </figure>
-
+  <div class="problem-bg-wrapper-holder">
+    <figure class="highcharts-figure highcharts-problems-stats problem-bg-wrapper js-problem-details" hidden>
+      <div class="analytics-legend-holder analytics-legend-holder__square">
+        <div class="analytics-legend-item">${_("Correct Answers, %")}</div>
+        <div class="analytics-legend-item">${_("Incorrect Answers, %")}</div>
+      </div>
+        <div id="problems-stats-plot"></div>
+    </figure>
+  </div>
 
   ## PROBLEM section ##
   <div class="problem-emails-list"></div>
