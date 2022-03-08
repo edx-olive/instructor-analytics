@@ -11,6 +11,10 @@ __________
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[v3.4.1] - 2022-03-06
+~~~~~~~~~~~~~~~~~~~~~
+* Fix empty message title styles
+
 [v3.4.0] - 2022-01-20
 ~~~~~~~~~~~~~~~~~~~~~
 * Feature Add Full Responsive

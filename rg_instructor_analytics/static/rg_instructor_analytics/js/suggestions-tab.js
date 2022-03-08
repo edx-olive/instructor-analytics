@@ -17,7 +17,7 @@ function SuggestionTab(button, content) {
         if (response.suggestion.length > 0) {
             suggestionContent[0].innerHTML = response.suggestion.map(renderSuggestion).join('\n');
         } else {
-            suggestionContent[0].innerHTML = '<div>' + django.gettext("No suggestions so far.") + '</div>';
+            suggestionContent[0].innerHTML = '<div class="analytics-title">' + django.gettext("No suggestions so far.") + '</div>';
         }
         suggestionContent.find('.go-to-item').click(function(evt) {
             var location = JSON.parse(evt.target.dataset.location);
