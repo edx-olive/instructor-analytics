@@ -29,9 +29,12 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
 
     // Chart legend:
-    "& div": {
+    "& > div:first-child": {
       display: "flex",
-      margin: "auto",
+      "& > div:first-child": {
+        display: "flex",
+        margin: "auto",
+      },
     },
     "& div svg": {
       overflow: "visible !important"
