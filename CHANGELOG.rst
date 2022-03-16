@@ -11,6 +11,16 @@ __________
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[Unreleased]
+
+[Fix] - 2022-03-16
+* Fix: data update takes too long
+
+  * grouped all the `RG_ANALYTICS_GRADE_CRON_<timespan>` settings to the dict `RG_ANALYTICS_GRADE_STAT_UPDATE`
+  (similar to the `settings.RG_ANALYTICS_GRADE_STAT_UPDATE`)
+  * relates to the deployment MR (https://gitlab.raccoongang.com/owlox-team/maple/deployment/-/merge_requests/15)
+  * YT: https://youtrack.raccoongang.com/issue/RGA-274
+
 [v3.4.2] - 2022-03-16
 ~~~~~~~~~~~~~~~~~~~~~
 * Fix Gender tooltip

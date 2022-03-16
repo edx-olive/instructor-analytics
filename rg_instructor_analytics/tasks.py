@@ -115,17 +115,10 @@ def get_grade_summary(user_id, course):
         return None
 
 
-cron_grade_settings = getattr(
-    settings, 'RG_ANALYTICS_GRADE_STAT_UPDATE',
-    {
-        'minute': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_MINUTE', '0')),
-        'hour': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_HOUR', '*/6')),
-        'day_of_month': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_DOM', '*')),
-        'day_of_week': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_DOW', '*')),
-        'month_of_year': str(settings.FEATURES.get('RG_ANALYTICS_GRADE_CRON_MONTH', '*')),
-    }
+cron_grade_settings = settings.FEATURES.get(
+    'RG_ANALYTICS_GRADE_STAT_UPDATE',
+    settings.RG_ANALYTICS_GRADE_STAT_UPDATE
 )
-
 
 @periodic_task(run_every=crontab(**cron_grade_settings))
 def grade_collector_stat():
