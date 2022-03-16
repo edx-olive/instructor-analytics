@@ -11,6 +11,12 @@ __________
 
 .. There should always be an "Unreleased" section for changes pending release.
 
+[v3.4.2] - 2022-03-16
+~~~~~~~~~~~~~~~~~~~~~
+* Fix Gender tooltip
+
+- Fixed Gender tooltip aligment in additional information tab
+
 [v3.4.1] - 2022-03-06
 ~~~~~~~~~~~~~~~~~~~~~
 * Fix empty message title styles
