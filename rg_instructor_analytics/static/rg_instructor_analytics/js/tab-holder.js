@@ -1,6 +1,6 @@
 function TabHolder(tabs, course, coursesSwitch) {
     var holder = this;
-    
+
     this.tabs = tabs;
     this.course = course;
 
@@ -21,7 +21,7 @@ function TabHolder(tabs, course, coursesSwitch) {
             holder.toggleToTab(tabName);
         });
     }
-    
+
     for (var tabName in tabs) {
         if (tabs.hasOwnProperty(tabName)) {
             setTab(tabName);
@@ -33,11 +33,19 @@ function TabHolder(tabs, course, coursesSwitch) {
             if (tabs.hasOwnProperty(tabName)) {
                 tabs[tabName].setActive(tabName === tab);
             }
-            
+
             // FIXME: temp dirty hack for React tabs:
             if (tab === 'add-info') {
                 coursesSwitch.parent().hide()
             } else {
+                if (tabName === tab) {
+                    coursesSwitch.off('change');
+                    coursesSwitch = $('.active-section').find('#select_course');
+                    coursesSwitch.val(this.course).change();
+                    coursesSwitch.change(function(item) {
+                        holder.selectCourse(item.target.value);
+                    });
+                }
                 coursesSwitch.parent().show()
             }
         }
@@ -45,7 +53,7 @@ function TabHolder(tabs, course, coursesSwitch) {
 
     this.openLocation = function(location) {
         var tab = tabs[location.value];
-        
+
         if (tab.openLocation) {
             tab.openLocation(location.child);
         }

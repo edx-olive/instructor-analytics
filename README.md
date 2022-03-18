@@ -28,7 +28,7 @@ It adds extra navigation `Instructor analytics` tab for instructors (next to `In
 `Instructor Analytics` must be installed together with the [Util for the tracking log parsing](https://gitlab.raccoongang.com/rg-developers/instructor-analytics-log-collector/-/tags).
  Install this utility with the same tag.
 
-`Instructor Analytics` is OeX installable app so to install application it 
+`Instructor Analytics` is OeX installable app so to install application it
 should be added to the venv via `pip install` command.
 
 * Apply migration (if needed)
@@ -47,13 +47,14 @@ should be added to the venv via `pip install` command.
     ```
     * or provide settings in `FEATURES`
     ```yaml
-    FEATURES: 
+    FEATURES:
         ...
-        RG_ANALYTICS_GRADE_CRON_MINUTE: "0",
-        RG_ANALYTICS_GRADE_CRON_HOUR: "*/6",
-        RG_ANALYTICS_GRADE_CRON_DOM: "*",
-        RG_ANALYTICS_GRADE_CRON_DOW: "*",
-        RG_ANALYTICS_GRADE_CRON_MONTH: "*",
+        RG_ANALYTICS_GRADE_STAT_UPDATE:
+          minute: '*/15'
+          hour: '*'
+          day_of_month: '*'
+          day_of_week: '*'
+          month_of_year: '*'
         ...
     ```
 * The default settings for `RG_ANALYTICS_DEMOGRAPHICS_SCHEDULE` is a dict in the
@@ -80,14 +81,14 @@ exit
 sudo /edx/bin/supervisorctl restart edxapp:lms
 ```
 
-##### After installation run next code in Django shell (warning this tasks can take time) 
+##### After installation run next code in Django shell (warning this tasks can take time)
 ```python
 from rg_instructor_analytics.tasks import grade_collector_stat
 
 grade_collector_stat()
 ```
 
-## Microsites 
+## Microsites
 
 for microsite configurations use this flag for enable/disable tab: `ENABLE_RG_INSTRUCTOR_ANALYTICS`
 
