@@ -13,6 +13,13 @@ __________
 
 [Unreleased]
 
+[Fix] - 2022-03-17
+* Fix: course filter doesn't work on all tabs except the first one
+
+  * YT: https://youtrack.raccoongang.com/issue/RGOeX-812
+
+* Docs: update README with info about RG_ANALYTICS_GRADE_STAT_UPDATE changes (related to RGA-274)
+
 [Fix] - 2022-03-16
 * Fix: data update takes too long
 
