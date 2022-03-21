@@ -1458,12 +1458,6 @@ body.view-instructor_analytics #instructor-analytics-dashboard-content .enroll-b
   }
 }
 
-@media screen and (max-width: 479px) {
-  .funnel-item-1 > .funnel-item-content {
-    width: 100%;
-  }
-}
-
 .funnel-item-1 > .funnel-item-content > .funnel-item-name {
   width: 100%;
   display: block;
