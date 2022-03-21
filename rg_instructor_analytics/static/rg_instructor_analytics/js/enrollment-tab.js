@@ -82,7 +82,8 @@ function EnrollmentTab(button, content) {
             xAxis: {
               reversed: isRtl,
               dateTimeLabelFormats: {
-                day: '%b %d'
+                day: '%b %d',
+                week: '%b %d',
               },
               type: 'datetime',
               allowDecimals: false,
@@ -166,7 +167,7 @@ function EnrollmentTab(button, content) {
         $('input').removeClass(checkedClass);
         $input.addClass(checkedClass);
 
-        if ($input.data('chart-name') == 'chart1') {
+        if ($input.data('chart-name') === 'chart1') {
           drawChartEnrollUnenroll();
         } else {
           drawChartTotal();
