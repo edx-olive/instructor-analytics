@@ -490,11 +490,6 @@
     width: calc(100% - 39px);
   }
 }
-@media screen and (max-width: 479px) {
-  .funnel-item-2 > .funnel-item-content {
-    width: 100%;
-  }
-}
 .funnel-item-2 .funnel-item-content:before {
   display: none;
 }
