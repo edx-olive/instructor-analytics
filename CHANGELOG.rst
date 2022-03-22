@@ -13,6 +13,10 @@ __________
 
 [Unreleased]
 
+[Fix] - 2022-03-21
+* Fix: date format for the "All Enrollments" tab
+    * YT: https://youtrack.raccoongang.com/issue/RGOeX-811
+
 [Fix] - 2022-03-18
 * Fix: delete mobile screen width
 
