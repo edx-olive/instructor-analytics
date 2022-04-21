@@ -13,6 +13,9 @@ __________
 
 [Unreleased]
 
+* Fix: hide Instructor Analytics from the course staff and admins. Display only for the platform staff and admins
+    * YT: https://youtrack.raccoongang.com/issue/RGOeX-1113
+
 [Fix] - 2022-03-21
 * Fix: date format for the "All Enrollments" tab
     * YT: https://youtrack.raccoongang.com/issue/RGOeX-811
