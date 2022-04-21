@@ -24,13 +24,15 @@ class InstructorAnalyticsDashboardTab(CourseTab):
     view_name = 'instructor_analytics_dashboard'
 
     @classmethod
-    def is_enabled(cls, course, user=None):
+    def is_enabled(cls, _, user=None):
         """
         Return true if the specified user has staff access.
         """
         return bool(
             user and
-            has_access(user, 'staff', course, course.id) and
+            # FIXME: it is restricted to have an access to the Instructor Analytics tab to course staff and admins
+            #  for now. Only platform staff and admins have such access.
+            has_access(user, 'staff', 'global', None) and
             configuration_helpers.get_value(
                 'ENABLE_RG_INSTRUCTOR_ANALYTICS',
                 settings.FEATURES.get('ENABLE_RG_INSTRUCTOR_ANALYTICS', False)
