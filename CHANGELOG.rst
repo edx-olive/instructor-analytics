@@ -12,53 +12,40 @@ __________
 .. There should always be an "Unreleased" section for changes pending release.
 
 [Unreleased]
+~~~~~~~~~~~~
 
-* Fix: hide Instructor Analytics from the course staff and admins. Display only for the platform staff and admins
-    * YT: https://youtrack.raccoongang.com/issue/RGOeX-1113
+[v3.3.1] - 2022-04-21
+~~~~~~~~~~~~~~~~~~~~~
+Fixes lots of issues and adds improvements.
 
-[Fix] - 2022-03-21
+Fixes:
+
+* Fix: hide Instructor Analytics from the course staff and admins. Display only for the platform staff and admins `RGOeX-1113 <https://youtrack.raccoongang.com/issue/RGOeX-1113>`_
 * Fix: date format for the "All Enrollments" tab
-    * YT: https://youtrack.raccoongang.com/issue/RGOeX-811
-
-[Fix] - 2022-03-18
+  `RGOeX-811 <https://youtrack.raccoongang.com/issue/RGOeX-811>`_
 * Fix: delete mobile screen width
-
-  * YT: https://youtrack.raccoongang.com/issue/RGOeX-934
-
-* Docs: update README with info about RG_ANALYTICS_GRADE_STAT_UPDATE changes (related to RGA-274)
-
-[Fix] - 2022-03-17
+  `RGOeX-934 <https://youtrack.raccoongang.com/issue/RGOeX-934>`_
 * Fix: course filter doesn't work on all tabs except the first one
+  `RGOeX-812 <https://youtrack.raccoongang.com/issue/RGOeX-812>`_
+* Fix: data update takes too long `RGA-274 <https://youtrack.raccoongang.com/issue/RGA-274>`_
 
-  * YT: https://youtrack.raccoongang.com/issue/RGOeX-812
-
-* Docs: update README with info about RG_ANALYTICS_GRADE_STAT_UPDATE changes (related to RGA-274)
-
-[Fix] - 2022-03-16
-* Fix: data update takes too long
-
-  * grouped all the `RG_ANALYTICS_GRADE_CRON_<timespan>` settings to the dict `RG_ANALYTICS_GRADE_STAT_UPDATE`
-  (similar to the `settings.RG_ANALYTICS_GRADE_STAT_UPDATE`)
-  * relates to the deployment MR (https://gitlab.raccoongang.com/owlox-team/maple/deployment/-/merge_requests/15)
-  * YT: https://youtrack.raccoongang.com/issue/RGA-274
-
-[v3.4.2] - 2022-03-16
-~~~~~~~~~~~~~~~~~~~~~
+  - grouped all the `RG_ANALYTICS_GRADE_CRON_<timespan>` settings to the dict `RG_ANALYTICS_GRADE_STAT_UPDATE`
+    (similar to the `settings.RG_ANALYTICS_GRADE_STAT_UPDATE`)
+  - relates to the `deployment MR <https://gitlab.raccoongang.com/owlox-team/maple/deployment/-/merge_requests/15)>`_
 * Fix Gender tooltip
-
-- Fixed Gender tooltip aligment in additional information tab
-
-[v3.4.1] - 2022-03-06
-~~~~~~~~~~~~~~~~~~~~~
+* Fixed Gender tooltip aligment in additional information tab
+* Fix Gender tooltip
+* Fixed Gender tooltip aligment in additional information tab
 * Fix empty message title styles
-
-[v3.4.0] - 2022-01-20
-~~~~~~~~~~~~~~~~~~~~~
 * Feature Add Full Responsive
 
-- Added Responsive for each analytics static tab and each Highcharts graphs
-- Added Responsive for Additional Information React App
-- Checked RTL for responsive
+  - Added Responsive for each analytics static tab and each Highcharts graphs
+  - Added Responsive for Additional Information React App
+  - Checked RTL for responsive
+
+Docs:
+
+- update README with info about RG_ANALYTICS_GRADE_STAT_UPDATE changes (related to RGA-274)
 
 [v3.3.0] - 2021-12-01
 ~~~~~~~~~~~~~~~~~~~~~
@@ -66,7 +53,7 @@ Prepare changes to make RG IA become compatible with Django 3 and in consequece
 Maple release.
 
 * Fix render_to_response Django shortcut which was deprecated in Django 2
-and finally removed in Django 3
+  and finally removed in Django 3
 * Fix data included to the package.
 * Fix styling issues.
 
