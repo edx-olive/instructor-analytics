@@ -16,6 +16,7 @@ from rg_instructor_analytics_log_collector.models import EnrollmentByDay
 
 from common.djangoapps.student.models import CourseAccessRole
 from common.djangoapps.util.views import ensure_valid_course_key
+from lms.djangoapps.ccx.models import CustomCourseForEdX
 from lms.djangoapps.courseware.courses import get_course_by_id
 from lms.djangoapps.instructor import permissions
 from lms.djangoapps.instructor.views.api import require_course_permission
@@ -90,7 +91,8 @@ def get_enroll_info(course):
     """
     Return enroll_start for given course.
     """
-    enrollment_by_day = EnrollmentByDay.objects.filter(course=course.id).order_by('day').first()
+    enrollment_by_day = EnrollmentByDay.objects.filter(
+        course=course.id).order_by('day').first()
     enroll_start = enrollment_by_day and enrollment_by_day.day
 
     return {
@@ -107,7 +109,7 @@ def get_staff_courses():
     for course in available_courses:
         try:
             courses.append(get_course_by_id(course.id, depth=0))
-        except Http404:
+        except (Http404, CustomCourseForEdX.DoesNotExist):
             continue
 
     return courses
@@ -118,13 +120,14 @@ def get_instructor_courses(user):
     Find courses, where User has permissions as Instructor or Course Staff.
     """
     courses = {}
-    available_courses = CourseAccessRole.objects.filter(user=user, role__in=['instructor', 'staff'])
+    available_courses = CourseAccessRole.objects.filter(
+        user=user, role__in=['instructor', 'staff'])
     for record in available_courses:
         try:
             course = get_course_by_id(record.course_id, depth=0)
             course_id = str(course.id)
             courses[course_id] = course
-        except Http404:
+        except (Http404, CustomCourseForEdX.DoesNotExist):
             continue
 
     return list(courses.values())
@@ -169,10 +172,11 @@ def instructor_analytics_dashboard(request, course_id):
     """
     course_key = CourseKey.from_string(course_id)
     course = get_course_by_id(course_key, depth=0)
+    list_of_available_courses = get_available_courses(request.user)
 
     enroll_info = {
         str(course_item.id): get_enroll_info(course_item)
-        for course_item in get_available_courses(request.user)
+        for course_item in list_of_available_courses
     }
 
     available_courses = [
@@ -181,12 +185,12 @@ def instructor_analytics_dashboard(request, course_id):
             'course_name': str(user_course.display_name),
             'is_current': course.id == user_course.id,
         }
-        for user_course in get_available_courses(request.user)
+        for user_course in list_of_available_courses
     ]
 
     course_dates_info = {
         str(course_item.id): get_course_dates_info(course_item)
-        for course_item in get_available_courses(request.user)
+        for course_item in list_of_available_courses
     }
 
     enabled_tabs = InstructorTabsConfig.tabs_for_user(request.user)
