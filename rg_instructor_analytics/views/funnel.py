@@ -1,11 +1,10 @@
 """
 Progress Funnel sub-tab module.
 """
-from datetime import date, timedelta
 import json
+from datetime import date, timedelta
 
-from django.db.models import Count, Q
-from django.db.models.expressions import RawSQL
+from django.db import connection
 from django.http.response import HttpResponseBadRequest, JsonResponse
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
@@ -13,16 +12,11 @@ from django.views.generic import View
 from opaque_keys import InvalidKeyError
 from opaque_keys.edx.keys import CourseKey
 
-from common.djangoapps.student.models import CourseEnrollment
 from lms.djangoapps.courseware.courses import get_course_by_id
-from lms.djangoapps.courseware.models import StudentModule
 from rg_instructor_analytics import tasks
 from rg_instructor_analytics.mock_data import apply_data_mocker, FunnelsDataMocker
 from rg_instructor_analytics.utils import juniper_specific as specific
 from rg_instructor_analytics.utils.decorators import instructor_access_required
-
-
-IGNORED_ENROLLMENT_MODES = []
 
 
 def course_element_info(element, level):
@@ -74,8 +68,10 @@ class GradeFunnelView(View):
         post_data = request.POST
 
         try:
-            from_date = post_data.get('from') and date.fromtimestamp(float(post_data['from']))
-            to_date = post_data.get('to') and date.fromtimestamp(float(post_data['to']))
+            from_date = post_data.get('from') and date.fromtimestamp(
+                float(post_data['from']))
+            to_date = post_data.get('to') and date.fromtimestamp(
+                float(post_data['to']))
 
             stats_course_id = request.POST.get('course_id')
             course_key = CourseKey.from_string(stats_course_id)
@@ -88,67 +84,53 @@ class GradeFunnelView(View):
         return JsonResponse(data={'courses_structure': self.get_funnel_info(course_key, from_date, to_date)})
 
     @staticmethod
-    def get_query_for_course_item_stat(course_key, block_type, from_date=None, to_date=None):
-        """
-        Build DB queryset for course block type and given course.
-        """
-        # TODO use preaggregation
-        modified_filter = RawSQL(
-            "(SELECT MAX(t2.modified) FROM courseware_studentmodule t2 " +
-            "WHERE (t2.student_id = courseware_studentmodule.student_id) AND t2.course_id = %s "
-            "AND t2.module_type = %s)", (course_key, block_type))
-
-        date_range_filter = Q(modified__range=(
-            from_date, to_date + timedelta(days=1))
-        ) if from_date and to_date else Q()
-
-        enrolled_by_course = CourseEnrollment.objects.filter(course_id=course_key).values_list('user__id', flat=True)
-        students_course_state_qs = StudentModule.objects.filter(
-            date_range_filter,
-            course_id=course_key,
-            module_type=block_type,
-            modified__exact=modified_filter,
-            student_id__in=enrolled_by_course
-        )
-
-        if IGNORED_ENROLLMENT_MODES:
-            users = (
-                CourseEnrollment.objects
-                .filter(
-                    course_id=course_key,
-                    mode__in=IGNORED_ENROLLMENT_MODES
-                )
-                .values_list('user', flat=True)
-            )
-            students_course_state_qs = students_course_state_qs.exclude(student__in=users)
-
-        return students_course_state_qs
-
-    def get_progress_info_for_subsection(self, course_key, from_date=None, to_date=None):
+    def get_progress_info_for_subsection(course_key, from_date=None, to_date=None, module_type='sequential'):
         """
         Return activity for each of the section.
         """
-        query_info = self.get_query_for_course_item_stat(course_key, 'sequential', from_date, to_date)
-        dict_info = query_info.values(
-            'module_state_key', 'state', 'student__email'
-        ).order_by(
-            'module_state_key', 'state'
-        ).annotate(
-            count=Count('module_state_key')
-        ).values(
-            'module_state_key', 'state', 'count', 'student__email'
-        )
         result = {}
+        query_params = dict(course_id=course_key, module_type=module_type)
 
-        for info in dict_info:
-            if specific.get_problem_str(info['module_state_key']) not in result:
-                result[specific.get_problem_str(info['module_state_key'])] = []
+        subquery = """
+            SELECT student_id, MAX(modified) as modified FROM courseware_studentmodule
+            WHERE
+                course_id = %(course_id)s
+                AND module_type = %(module_type)s
+                AND student_id IN (SELECT user_id FROM student_courseenrollment U0 WHERE U0.course_id = %(course_id)s)
+        """
+        if from_date:
+            subquery += """ AND modified BETWEEN %(from_date)s AND %(to_date)s"""
+            query_params['from_date'] = from_date.strftime('%Y-%m-%d')
+            query_params['to_date'] = (
+                to_date + timedelta(days=1)).strftime('%Y-%m-%d')
+        subquery += """
+            GROUP BY student_id
+        """
 
-            result[specific.get_problem_str(info['module_state_key'])].append({
-                'count': info['count'],
-                'offset': json.loads(info['state'])['position'],
-                'student_email': info['student__email']
-            })
+        main_query = """
+            SELECT auth_user.email, t1.module_id, t1.state, COUNT(t1.module_id) AS count
+            FROM courseware_studentmodule t1
+            INNER JOIN auth_user ON t1.student_id = auth_user.id
+            INNER JOIN (
+              {subquery}
+            ) AS t2 ON t1.student_id = t2.student_id and t1.modified = t2.modified
+            GROUP BY t1.module_id, t1.state, auth_user.email
+            ORDER BY t1.module_id ASC, t1.state ASC
+        """.format(subquery=subquery)
+
+        with connection.cursor() as cursor:
+            cursor.execute(main_query, query_params)
+            for row in cursor.fetchall():
+                email, module_id, state, count = row
+
+                if specific.get_problem_str(module_id) not in result:
+                    result[specific.get_problem_str(module_id)] = []
+
+                result[specific.get_problem_str(module_id)].append({
+                    'count': count,
+                    'offset': json.loads(state)['position'],
+                    'student_email': email
+                })
         return result
 
     @staticmethod
@@ -177,10 +159,12 @@ class GradeFunnelView(View):
                                 progress_unit = subsection_info['children'][-1]
 
                             progress_unit['student_count'] += progress_info['count']
-                            progress_unit['student_emails'] += [progress_info['student_email']]
+                            progress_unit['student_emails'] += [
+                                progress_info['student_email']]
 
                             subsection_info['student_count'] += progress_info['count']
-                            subsection_info['student_emails'] += [progress_info['student_email']]
+                            subsection_info['student_emails'] += [
+                                progress_info['student_email']]
 
                     section_info['student_count'] += subsection_info['student_count']
                     section_info['student_emails'] += subsection_info['student_emails']
@@ -204,8 +188,10 @@ class GradeFunnelView(View):
 
         Structure of the node described inside function course_element_info.
         """
-        subsection_activity = self.get_progress_info_for_subsection(course_key, from_date, to_date)
-        courses_structure = self.get_course_info(course_key, subsection_activity)
+        subsection_activity = self.get_progress_info_for_subsection(
+            course_key, from_date, to_date)
+        courses_structure = self.get_course_info(
+            course_key, subsection_activity)
         self.append_inout_info(courses_structure)
         return courses_structure
 
